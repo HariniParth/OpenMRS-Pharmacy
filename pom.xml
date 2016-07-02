@@ -6,7 +6,7 @@
 	<artifactId>pharmacy</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>pharmacy</name>
+	<name>Pharmacy</name>
 	<description>helps to view and dispense drug orders</description>
 	
 	<developers>
@@ -27,7 +27,7 @@
 	</scm>
 	
 	<properties>
-		<openMRSVersion>1.12.0</openMRSVersion>
+		<openMRSVersion>1.11.2</openMRSVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<uiframeworkVersion>3.2</uiframeworkVersion>
 		<appframeworkVersion>2.1</appframeworkVersion>
