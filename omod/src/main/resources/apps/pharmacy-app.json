@@ -1,0 +1,18 @@
+[
+    {
+        "id": "${project.parent.artifactId}.appId1",
+        "description": "Pharmacy system to view existing orders",
+        "order": 1,
+        "extensions": [
+            {
+                "id": "coreapps.activeVisitsHomepageLink",
+                "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+                "type": "link",
+                "label": "Pharmacy",
+                "url": "pharmacy/dashboard.page",
+                "icon": "icon-signin",
+                "requiredPrivilege": "App: some random privilege"
+            }
+        ]
+    }
+]
