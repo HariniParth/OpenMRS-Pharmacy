@@ -1,0 +1,6 @@
+org/openmrs/module/pharmacy/Pharmacy.class
+org/openmrs/module/pharmacy/api/db/hibernate/HibernatePharmacyDAO.class
+org/openmrs/module/pharmacy/api/db/PharmacyDAO.class
+org/openmrs/module/pharmacy/api/impl/PharmacyServiceImpl.class
+org/openmrs/module/pharmacy/PharmacyActivator.class
+org/openmrs/module/pharmacy/api/PharmacyService.class
