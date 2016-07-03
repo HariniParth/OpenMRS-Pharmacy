@@ -20,9 +20,21 @@
 <div class="info-body">
     <h3>${ ui.message("ACTIVE DRUG ORDERS") }</h3>
     <p>${ ui.message("Click on an order item to record action") }</p>
-    
-    <% currentOrders.each { currentOrder -> %>
-        <div>${ currentOrder.orderId }</div>
+    <br/>
+    <% currentDrugOrders.each { currentDrugOrder -> %>
+        <p>
+            <a href="#" id="pharmacyView">Patient ID: 
+                <% patientFullNameList.each { patient -> %>
+                    <% if(currentDrugOrder.patientid == patient.person) { %>
+                        ${ patient.givenName } ${ patient.middleName } ${ patient.familyName }
+                    <% } %>
+                <% } %>
+
+                ${ currentDrugOrder.drugname }    
+                ${ currentDrugOrder.startdate }
+            </a>
+        </p>
+        
     <% } %>
     
 </div>
