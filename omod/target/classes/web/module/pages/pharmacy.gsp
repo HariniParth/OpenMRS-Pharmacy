@@ -17,6 +17,16 @@
     ];
 </script>
 
+<div class="info-body">
+    <h3>${ ui.message("ACTIVE DRUG ORDERS") }</h3>
+    <p>${ ui.message("Click on an order item to record action") }</p>
+    
+    <% currentOrders.each { currentOrder -> %>
+        <div>${ currentOrder.orderId }</div>
+    <% } %>
+    
+</div>
+
 <script type="text/javascript">
     jq(function() {
         emr.updateBreadcrumbs();
