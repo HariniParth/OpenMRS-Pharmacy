@@ -30,9 +30,9 @@ ${ ui.includeFragment("pharmacy", "searchBar") }
     <% currentDrugOrders.each { currentDrugOrder -> %>
         <p>
             <a href="#" id="pharmacyView" onclick="viewPharmaOrderView('${ currentDrugOrder.orderId }')">
-                <span id="col-lg-2">${ currentDrugOrder.drugname }</span>          
+                ${ currentDrugOrder.drugname }          
                 Start Date: 
-                <span id="col-lg-2">${ currentDrugOrder.startdate }</span>
+                ${ currentDrugOrder.startdate }
             </a>
         </p>
         

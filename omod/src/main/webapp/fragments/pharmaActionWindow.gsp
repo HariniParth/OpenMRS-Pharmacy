@@ -1,7 +1,8 @@
 <div id="pharmaActionView">
     <form method="post">
         <h4>${ ui.message("Record Action") }</h4>
-        <div class="fields"><label>Order ID </label><text id="order_id_display" /></div>
+        
+        <div class="fields"><label>Order ID </label></div>        
         <div class="fields"><label>Patient ID</label></div>
         <div class="fields"><label>Patient Name</label></div>
         <div class="fields"><label>Start Date</label></div>

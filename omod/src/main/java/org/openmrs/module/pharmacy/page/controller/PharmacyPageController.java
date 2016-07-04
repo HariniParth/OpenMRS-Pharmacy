@@ -13,6 +13,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.page.PageModel;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -20,7 +21,8 @@ import org.openmrs.ui.framework.page.PageModel;
  */
 public class PharmacyPageController {
     
-    public void controller(PageModel model){
+    public void controller(PageModel model,
+                            @RequestParam(value = "order_id_display", required = false) String order_id_display){
         
         ArrayList<drugorders> currentDrugOrders = new ArrayList<drugorders>();
         ArrayList<Patient> patientWithOrders = new ArrayList<Patient>();
