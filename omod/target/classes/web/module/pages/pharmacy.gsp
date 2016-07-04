@@ -1,6 +1,7 @@
 <%
     ui.decorateWith("appui", "standardEmrPage");
-    ui.includeCss("Pharmacy", "pharmacy.css")
+    ui.includeCss("pharmacy", "pharmacy.css")
+    ui.includeJavascript("pharmacy", "pharmacy.js")
 %>
 
 <script type="text/javascript">
@@ -18,13 +19,17 @@
     ];
 </script>
 
+${ ui.includeFragment("pharmacy", "searchBar") }
+
+<div class="col-lg-12"></div>
 <div class="info-body">
+    
     <h3>${ ui.message("ACTIVE DRUG ORDERS") }</h3>
     <p>${ ui.message("Click on an order item to record action") }</p>
     <br/>
     <% currentDrugOrders.each { currentDrugOrder -> %>
         <p>
-            <a href="#" id="pharmacyView">
+            <a href="#" id="pharmacyView" onclick="viewPharmaOrderView('${ currentDrugOrder.orderId }')">
                 <span id="col-lg-2">${ currentDrugOrder.drugname }</span>          
                 Start Date: 
                 <span id="col-lg-2">${ currentDrugOrder.startdate }</span>
@@ -32,6 +37,9 @@
         </p>
         
     <% } %>
+    
+    ${ ui.includeFragment("pharmacy", "pharmaOrderView") }
+    ${ ui.includeFragment("pharmacy", "pharmaActionWindow") }
     
 </div>
 

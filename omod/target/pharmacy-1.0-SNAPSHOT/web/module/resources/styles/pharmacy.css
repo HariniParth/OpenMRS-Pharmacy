@@ -8,6 +8,44 @@ and open the template in the editor.
     Author     : harini-geek
 */
 
+.info-body{
+    width: 100%;
+    background-color: white;
+}
+
 #col-lg-2{
-    width: 30%;
+    width: 50%;
+}
+
+#search-bar{
+    width: 100%;
+}
+
+#searchField{
+    padding: 10px;
+    width: 40%;
+}
+
+#pharmaOrderView{
+    width: 40%;
+    float: right;
+    background: #F9F9F9;
+    display: none;
+    float: right;
+}
+
+.col-lg-12{
+    width: 100%;
+}
+
+#pharmaActionView{
+    width: 40%;
+    float: right;
+    background: #F9F9F9;
+    display: none;
+    float: right;
+}
+
+.fields{
+    padding-left: 10px;
 }
