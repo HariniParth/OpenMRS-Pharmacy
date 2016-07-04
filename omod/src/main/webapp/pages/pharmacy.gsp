@@ -1,5 +1,6 @@
 <%
     ui.decorateWith("appui", "standardEmrPage");
+    ui.includeCss("pharmacy", "pharmacy.css")
 %>
 
 <script type="text/javascript">
@@ -23,15 +24,10 @@
     <br/>
     <% currentDrugOrders.each { currentDrugOrder -> %>
         <p>
-            <a href="#" id="pharmacyView">Patient ID: 
-                <% patientFullNameList.each { patient -> %>
-                    <% if(currentDrugOrder.patientid == patient.person) { %>
-                        ${ patient.givenName } ${ patient.middleName } ${ patient.familyName }
-                    <% } %>
-                <% } %>
-
-                ${ currentDrugOrder.drugname }    
-                ${ currentDrugOrder.startdate }
+            <a href="#" id="pharmacyView">
+                <span id="col-lg-2">${ currentDrugOrder.drugname }</span>          
+                Start Date: 
+                <span id="col-lg-2">${ currentDrugOrder.startdate }</span>
             </a>
         </p>
         

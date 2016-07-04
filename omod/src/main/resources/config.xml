@@ -19,6 +19,9 @@
 		<require_module version="${uiframeworkVersion}">
 			org.openmrs.module.uiframework
 		</require_module>
+                <require_module version="${drugordersersion}">
+			org.openmrs.module.drugorders
+		</require_module>
 	</require_modules>
 
 	
