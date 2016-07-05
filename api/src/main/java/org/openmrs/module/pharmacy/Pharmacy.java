@@ -21,7 +21,18 @@ public class Pharmacy extends BaseOpenmrsObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+        private Integer orderId;
+        private String Uuid;
+        private Integer orderstatus;
+        private String comments;
+        private String message;
+        private Integer forwardcomments;
+        private Integer additionalmessage;
 	
+        public Pharmacy(){
+            
+        }
+        
 	@Override
 	public Integer getId() {
 		return id;
@@ -31,5 +42,62 @@ public class Pharmacy extends BaseOpenmrsObject implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+        
+        public Integer getOrderId() {
+            return orderId;
+        }
+
+        public void setOrderId(Integer orderId) {
+            this.orderId = orderId;
+        }
 	
+        @Override
+	public String getUuid() {
+		return Uuid;
+	}
+        
+        @Override
+	public void setUuid(String Uuid) {
+		this.Uuid = Uuid;
+	}
+        
+        public Integer getOrderstatus() {
+		return orderstatus;
+	}
+
+	public void setOrderstatus(Integer orderstatus) {
+		this.orderstatus = orderstatus;
+	}
+        
+        public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+        
+        public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+        
+        public Integer getForwardcomments() {
+            return forwardcomments;
+        }
+
+        public void setForwardcomments(Integer forwardcomments) {
+            this.forwardcomments = forwardcomments;
+        }
+        
+        public Integer getAdditionalmessage() {
+            return additionalmessage;
+        }
+
+        public void setAdditionalmessage(Integer additionalmessage) {
+            this.additionalmessage = additionalmessage;
+        }  
 }

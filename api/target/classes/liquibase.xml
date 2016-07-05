@@ -9,4 +9,34 @@
         for a list of supported elements and attributes
     -->
     
+    <changeSet id="harini_table_3" author="harini">
+        <sql>
+            drop table if exists pharmacy;
+        </sql>
+    </changeSet>
+    
+    <changeSet author="harini" id="harini_table_4">
+        <preConditions onFail="WARN" onError="WARN">
+            <not>
+                <tableExists tableName="pharmacy" />
+            </not>
+        </preConditions>
+    
+        <createTable tableName="pharmacy">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_id" type="int">
+                <constraints nullable="true" foreignKeyName="orderid" references="orders(order_id)" />
+            </column>  
+            <column name="uuid" type="varchar(255)"></column>
+            <column name="orderstatus" type="int"></column>
+            <column name="comments" type="varchar(255)"></column>
+            <column name="forwardcomments" type="int"></column>
+            <column name="additionalmessage" type="int"></column>
+            <column name="message" type="varchar(255)"></column>
+            
+        </createTable>
+    </changeSet>
+    
 </databaseChangeLog>
