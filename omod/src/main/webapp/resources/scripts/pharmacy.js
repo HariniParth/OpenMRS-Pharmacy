@@ -11,7 +11,8 @@ $(document).ready( function() {
 });
 
 function viewPharmaOrderView(orderId){
-    $("#order_id_display").text(orderId);
+    $("#order_id_display").val(orderId);
+    //$("#start_date_display").text(startdate);
     jq("#pharmaOrderView").show();
 }
 

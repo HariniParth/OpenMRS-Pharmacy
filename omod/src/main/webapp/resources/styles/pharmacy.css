@@ -21,9 +21,18 @@ and open the template in the editor.
     width: 100%;
 }
 
-#searchField{
-    padding: 10px;
-    width: 40%;
+.col-lg-6{
+    width: 100%;
+}
+
+#patient-search-bar{
+    width: 50%;
+    float: right;
+}
+
+#order-search-bar{
+    width: 50%;
+    float: left;
 }
 
 #pharmaOrderView{
