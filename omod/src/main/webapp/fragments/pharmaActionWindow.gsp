@@ -1,3 +1,7 @@
+<%
+    ui.includeCss("pharmacy", "pharmacy.css")
+%>
+
 <div id="pharmaActionView">
     <form method="post">
         <h4>${ ui.message("Record Action") }</h4>

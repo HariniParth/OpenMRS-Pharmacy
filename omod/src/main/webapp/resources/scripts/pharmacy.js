@@ -7,24 +7,31 @@
 /* global jq */
 
 $(document).ready( function() {
-    jq("#pharmaOrderView").hide();
+    jq("#pharmaOrderViewWindow").hide();
+    jq("#pharmaOrderActionWindow").hide();
 });
 
 function viewPharmaOrderView(orderId){
-    $("#order_id_display").val(orderId);
-    //$("#start_date_display").text(startdate);
-    jq("#pharmaOrderView").show();
+    $("#order_id_display").text(orderId);
+    jq("#pharmaOrderViewWindow").show();
 }
 
 function hidePharmaOrderView(){
-    jq("#pharmaOrderView").hide();
+    jq("#pharmaOrderViewWindow").hide();
 }
 
 function showPharmaActionWindow(){
-    jq("#pharmaOrderView").hide();
-    jq("#pharmaActionView").show();
+    jq("#pharmaOrderViewWindow").hide();
+    jq("#pharmaOrderActionWindow").show();
 }
 
 function hidePharmaActionWindow(){
-    jq("#pharmaActionView").hide();
+    jq("#pharmaOrderActionWindow").hide();
+    jq("#pharmaOrderViewWindow").show();
+}
+
+function searchPharmaOrderByOrderID(){
+    var orderId = $("#search_order_id").val();
+    $("#order_id_display").val(orderId);
+    jq("#pharmaOrderViewWindow").show();
 }

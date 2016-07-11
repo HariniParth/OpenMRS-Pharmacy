@@ -29,31 +29,28 @@
     </div>
 </div>
 
+<br/><br/>
 
-<div class="col-lg-12"></div>
 <div class="info-body">
     
     <h3>${ ui.message("ACTIVE DRUG ORDERS") }</h3>
     <p>${ ui.message("Click on an order item to record action") } - 
-    Selected: <label id="order_id_display" value="order_id_display" name="order_id_display"></label>
-    </p> 
+        Selected: <label id="order_id_display" name="order_id_display"></label></p>
+    
     <br/>
-    <% currentDrugOrders.each { currentDrugOrder -> %>
-        <p>
-            <a href="#" id="pharmacyView" onclick="viewPharmaOrderView('${ currentDrugOrder.orderId }')">
-                ${ currentDrugOrder.drugname }          
-                Start Date: 
-                ${ currentDrugOrder.startdate }
-            </a>
-        </p>
-        
-    <% } %>
     
+    <div id="currentDrugOrdersWindow">
+        ${ ui.includeFragment("pharmacy", "currentDrugOrders") }
+    </div>
     
-    ${ ui.includeFragment("pharmacy", "pharmaOrderView") }
-    
-    ${ ui.includeFragment("pharmacy", "pharmaActionWindow") }
-    
+    <div id="pharmaOrderViewWindow">
+        ${ ui.includeFragment("pharmacy", "pharmaOrderView") }
+    </div>
+
+    <div id="pharmaOrderActionWindow">
+        ${ ui.includeFragment("pharmacy", "pharmaActionWindow") }
+    </div>
+
 </div>
 
 <script type="text/javascript">

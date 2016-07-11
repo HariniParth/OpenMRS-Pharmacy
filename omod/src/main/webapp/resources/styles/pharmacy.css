@@ -10,18 +10,26 @@ and open the template in the editor.
 
 .info-body{
     width: 100%;
+    height: 1000px;
     background-color: white;
 }
 
-#col-lg-2{
-    width: 50%;
+.info-body #currentDrugOrdersWindow{
+    width: 60%;
+    float: left;
+}
+
+.info-body #pharmaOrderViewWindow{
+    width: 40%;
+    float: right;
+}
+
+.info-body #pharmaOrderActionWindow{
+    width: 40%;
+    float: right;
 }
 
 #search-bar{
-    width: 100%;
-}
-
-.col-lg-6{
     width: 100%;
 }
 
@@ -33,26 +41,6 @@ and open the template in the editor.
 #order-search-bar{
     width: 50%;
     float: left;
-}
-
-#pharmaOrderView{
-    width: 40%;
-    float: right;
-    background: #F9F9F9;
-    display: none;
-    float: right;
-}
-
-.col-lg-12{
-    width: 100%;
-}
-
-#pharmaActionView{
-    width: 40%;
-    float: right;
-    background: #F9F9F9;
-    display: none;
-    float: right;
 }
 
 .fields{

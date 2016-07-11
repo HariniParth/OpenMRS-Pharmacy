@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.openmrs.module.pharmacy.page.controller;
+package org.openmrs.module.pharmacy.fragment.controller;
 
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author harini-geek
  */
-public class PharmacyPageController {
+public class SearchBarByOrderFragmentController {
     
     public void controller(PageModel model,
-                            @RequestParam(value = "order_id_display", required = false) String order_id_display){
-
-        model.addAttribute("order_id_display", order_id_display);
+                            @RequestParam(value = "search_order_id", required = false) String search_order_id){
+        model.addAttribute("search_order_id", search_order_id);
     }
 }

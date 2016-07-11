@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author harini-geek
  */
-public class PharmaOrderViewController {
+public class PharmaOrderViewFragmentController {
     
     public void controller(PageModel model, 
                             @RequestParam(value = "order_id_display", required = false) String order_id_display,
@@ -22,8 +22,6 @@ public class PharmaOrderViewController {
         model.addAttribute("order_id_display", order_id_display);
         model.addAttribute("start_date_display", start_date_display);
         model.addAttribute("OrderIDSelected", selected_order_id_display);
-        System.out.println("OrderID"+order_id_display);
-        System.out.println("OrderIDSelected"+selected_order_id_display);
     } 
     
 }
