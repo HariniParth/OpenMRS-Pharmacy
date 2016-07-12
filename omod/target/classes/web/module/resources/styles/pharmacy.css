@@ -60,3 +60,7 @@ and open the template in the editor.
     width: 70%;
     float: right;
 }
+
+.heading{
+    text-align: center;
+}

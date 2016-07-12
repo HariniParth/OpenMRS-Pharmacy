@@ -11,9 +11,10 @@ $(document).ready( function() {
     jq("#pharmaOrderActionWindow").hide();
 });
 
-function viewPharmaOrderView(orderId,patientId,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
+function viewPharmaOrderView(orderId,patientId,patientName,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
     $("#order_id").text(orderId);
     $("#patient_id").text(patientId);
+    $("#patient_name").text(patientName);
     $("#start_date").text(startDate);
     $("#order_details").text(drugName +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
     $("#patient_instructions").text(patientinstructions);
@@ -25,8 +26,9 @@ function hidePharmaOrderView(){
     jq("#pharmaOrderViewWindow").hide();
 }
 
-function showPharmaActionWindow(){
+function showPharmaActionWindow(status){
     jq("#pharmaOrderViewWindow").hide();
+    $("#status").text(status);
     jq("#pharmaOrderActionWindow").show();
 }
 
