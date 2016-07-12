@@ -11,8 +11,13 @@ $(document).ready( function() {
     jq("#pharmaOrderActionWindow").hide();
 });
 
-function viewPharmaOrderView(orderId){
-    $("#order_id_display").text(orderId);
+function viewPharmaOrderView(orderId,patientId,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
+    $("#order_id").text(orderId);
+    $("#patient_id").text(patientId);
+    $("#start_date").text(startDate);
+    $("#order_details").text(drugName +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
+    $("#patient_instructions").text(patientinstructions);
+    $("#pharmacist_instructions").text(pharmacistinstructions);
     jq("#pharmaOrderViewWindow").show();
 }
 

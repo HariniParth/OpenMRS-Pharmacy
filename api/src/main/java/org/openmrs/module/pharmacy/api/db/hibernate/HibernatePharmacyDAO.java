@@ -35,4 +35,5 @@ public class HibernatePharmacyDAO implements PharmacyDAO {
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
+
 }

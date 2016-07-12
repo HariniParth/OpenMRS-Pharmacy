@@ -37,4 +37,5 @@ public class PharmacyServiceImpl extends BaseOpenmrsService implements PharmacyS
     public PharmacyDAO getDao() {
 	    return dao;
     }
+
 }

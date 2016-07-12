@@ -6,6 +6,7 @@
 package org.openmrs.module.pharmacy.fragment.controller;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import org.openmrs.DrugOrder;
 import org.openmrs.Order;
@@ -26,6 +27,7 @@ public class CurrentDrugOrdersFragmentController {
         ArrayList<drugorders> currentDrugOrdersExtension = new ArrayList<drugorders>();
         ArrayList<DrugOrder> currentDrugOrderMain = new ArrayList<DrugOrder>();
         ArrayList<Patient> patientWithOrders = new ArrayList<Patient>();
+        Hashtable<Integer,String> patientNames = new Hashtable<Integer,String>();
         
         List<Patient> patients = Context.getPatientService().getAllPatients();
         for(Patient patient : patients){
@@ -40,6 +42,7 @@ public class CurrentDrugOrdersFragmentController {
                     currentDrugOrderMain.add(dorderMain);
                     
                     patientWithOrders.add(patient);
+                    patientNames.put(patient.getPatientId(),Context.getPersonService().getPerson(patient).getGivenName()+" "+Context.getPersonService().getPerson(patient).getFamilyName());
                 }
             }
         }
@@ -47,6 +50,7 @@ public class CurrentDrugOrdersFragmentController {
         model.addAttribute("currentDrugOrdersExtension", currentDrugOrdersExtension);
         model.addAttribute("currentDrugOrdersMain", currentDrugOrderMain);
         model.addAttribute("patientsWithOrder", patientWithOrders);
+        model.addAttribute("patientNames", patientNames);
     }
     
 }
