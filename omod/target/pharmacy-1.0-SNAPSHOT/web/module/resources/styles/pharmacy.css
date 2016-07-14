@@ -43,6 +43,16 @@ and open the template in the editor.
     float: left;
 }
 
+#orderSearchField{
+    width: 60%;
+    float: left;
+}
+
+#orderSearchButton{
+    width: 40%;
+    float: right;
+}
+
 .fields{
     padding-left: 10px;
 }

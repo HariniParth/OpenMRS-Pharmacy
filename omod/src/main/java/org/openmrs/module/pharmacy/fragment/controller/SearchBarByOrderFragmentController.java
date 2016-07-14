@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class SearchBarByOrderFragmentController {
     
-    public void controller(PageModel model,
-                            @RequestParam(value = "search_order_id", required = false) String search_order_id){
+    public void controller(PageModel model,@RequestParam(value = "search_order_id", required = false) String search_order_id){
+        
         model.addAttribute("search_order_id", search_order_id);
+        
     }
 }

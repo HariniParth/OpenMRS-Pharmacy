@@ -35,7 +35,3 @@ function hidePharmaActionWindow(){
     jq("#pharmaOrderActionWindow").hide();
     jq("#pharmaOrderViewWindow").show();
 }
-
-function searchPharmaOrderByOrderID(){
-    jq("#pharmaOrderViewWindow").show();
-}
