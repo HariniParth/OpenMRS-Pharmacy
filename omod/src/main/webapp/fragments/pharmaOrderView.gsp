@@ -8,28 +8,35 @@
 
         <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Order ID </label></div>
-            <div id="order_value"><label id="order_id" value="order_id"></label></div>
+            <div id="order_value"><input type="text" id="pharma_order_id" name="pharma_order_id" readonly /></div>
         </div>
 
+        <br/><br/>
+        
         <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Patient ID</label></div>
-            <div id="order_value"><label id="patient_id" value="patient_id"></label></div>
+            <div id="order_value"><input type="text" id="pharma_patient_id" name="pharma_patient_id" readonly /></div>
         </div>
 
+        <br/><br/>
+        
         <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Patient Name</label></div>
-            <div id="order_value"><label id="patient_name" value="patient_name"></label></div>
+            <div id="order_value"><input type="text" id="pharma_patient_name" name="pharma_patient_name" readonly /></div>
         </div>
 
+        <br/><br/>
+        
         <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Start Date</label></div>
-            <div id="order_value"><label id="start_date" value="start_date"></label></div>
+            <div id="order_value"><input type="text" id="pharma_start_date" name="pharma_start_date" readonly /></div>
         </div>   
 
+        <br/><br/>
+        
         <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Order/s</label></div>
-            <br/><br/><br/>
-            <div id="order_value"><label id="order_details" value="order_details"></label></div>
+            <div id="order_value"><input type="text" id="pharma_order_details" name="pharma_order_details" readonly /></div>
         </div> 
 
         <br/><br/>
@@ -38,14 +45,14 @@
 
         <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Patient</label></div>
-            <div id="order_value"><label id="patient_instructions" value="patient_instructions"></label></div>
+            <div id="order_value"><input type="text" id="pharma_patient_instructions" name="pharma_patient_instructions" readonly /></div>
         </div>     
 
         <br/><br/>
 
         <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Pharmacist</label></div>
-            <div id="order_value"><label id="pharmacist_instructions" value="pharmacist_instructions"></label></div>
+            <div id="order_value"><input type="text" id="pharma_pharmacist_instructions" name="pharma_pharmacist_instructions" readonly /></div>
         </div>    
 
         <br/><br/>

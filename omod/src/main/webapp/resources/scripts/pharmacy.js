@@ -8,17 +8,16 @@
 
 $(document).ready( function() {
     jq("#pharmaOrderViewWindow").hide();
-    jq("#pharmaOrderActionWindow").hide();
 });
 
 function viewPharmaOrderView(orderId,patientId,patientName,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
-    $("#order_id").text(orderId);
-    $("#patient_id").text(patientId);
-    $("#patient_name").text(patientName);
-    $("#start_date").text(startDate);
-    $("#order_details").text(drugName +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
-    $("#patient_instructions").text(patientinstructions);
-    $("#pharmacist_instructions").text(pharmacistinstructions);
+    $("#pharma_order_id").val(orderId);
+    $("#pharma_patient_id").val(patientId);
+    $("#pharma_patient_name").val(patientName);
+    $("#pharma_start_date").val(startDate);
+    $("#pharma_order_details").val(drugName +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
+    $("#pharma_patient_instructions").val(patientinstructions);
+    $("#pharma_pharmacist_instructions").val(pharmacistinstructions);
     jq("#pharmaOrderViewWindow").show();
 }
 
@@ -38,7 +37,5 @@ function hidePharmaActionWindow(){
 }
 
 function searchPharmaOrderByOrderID(){
-    var orderId = $("#search_order_id").val();
-    $("#order_id_display").val(orderId);
     jq("#pharmaOrderViewWindow").show();
 }
