@@ -28,6 +28,7 @@ public class CurrentDrugOrdersFragmentController {
         ArrayList<DrugOrder> currentDrugOrderMain = new ArrayList<DrugOrder>();
         ArrayList<Patient> patientWithOrders = new ArrayList<Patient>();
         Hashtable<Integer,String> patientNames = new Hashtable<Integer,String>();
+        Hashtable<Integer,String> patientIdentifiers = new Hashtable<Integer,String>();
         
         List<Patient> patients = Context.getPatientService().getAllPatients();
         for(Patient patient : patients){
@@ -43,6 +44,8 @@ public class CurrentDrugOrdersFragmentController {
                     
                     patientWithOrders.add(patient);
                     patientNames.put(patient.getPatientId(),Context.getPersonService().getPerson(patient).getGivenName()+" "+Context.getPersonService().getPerson(patient).getFamilyName());
+                    
+                    patientIdentifiers.put(patient.getPatientId(),Context.getPatientService().getPatientByExample(patient).getPatientIdentifier().getIdentifier());
                 }
             }
         }
@@ -51,6 +54,7 @@ public class CurrentDrugOrdersFragmentController {
         model.addAttribute("currentDrugOrdersMain", currentDrugOrderMain);
         model.addAttribute("patientsWithOrder", patientWithOrders);
         model.addAttribute("patientNames", patientNames);
+        model.addAttribute("patientIdentifiers", patientIdentifiers);
     }
     
 }
