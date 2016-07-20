@@ -33,7 +33,9 @@ public class PharmacyPageController {
                             @RequestParam(value = "pharma_action_order_id", required = false) Integer pharma_action_order_id,
                             @RequestParam(value = "comments", required = false) String comments,
                             @RequestParam(value = "additionalMessage", required = false) String additionalMessage,
-                            @RequestParam(value = "action", required = false) String action){
+                            @RequestParam(value = "action", required = false) String action,
+                            @RequestParam(value = "commentCheckbox", required = false) String commentCheckbox,
+                            @RequestParam(value = "messageCheckbox", required = false) String messageCheckbox){
 
         model.addAttribute("search_order_id", search_order_id);
         model.addAttribute("search_patient_id", search_patient_id);
@@ -102,24 +104,32 @@ public class PharmacyPageController {
                 if("OK".equals(action)){
                     try {
                         Pharmacy pharmacyOrder = Context.getService(PharmacyService.class).getNewTable(pharma_action_order_id);
-                        System.out.println("One"+pharmacyOrder.getOrderId());
+                        int existingPharmaRecord = pharmacyOrder.getOrderId();
                         }
                         catch (Exception e){
                             System.out.println(e.toString());
                         }
                         Pharmacy pharmacyOrder = new Pharmacy();
                         pharmacyOrder.setOrderId(pharma_action_order_id);
-                        System.out.println(pharma_action_order_id);
-                        System.out.println(pharma_order_status);
                         pharmacyOrder.setOrderstatus(pharma_order_status);
-                        System.out.println(comments);
                         pharmacyOrder.setComments(comments);
-                        System.out.println(additionalMessage);
+                        
+                        if(!(commentCheckbox.equals("1"))){
+                            pharmacyOrder.setForwardcomments(0);
+                        } else {
+                            pharmacyOrder.setForwardcomments(1);
+                        }
+                        
+                        if(!(messageCheckbox.equals("1"))){
+                            pharmacyOrder.setAdditionalmessage(0);
+                        } else {
+                            pharmacyOrder.setAdditionalmessage(1);
+                        }
+                        
                         pharmacyOrder.setMessage(additionalMessage);
                         Context.getService(PharmacyService.class).saveNewTable(pharmacyOrder);
 
                         drugorders drugorder = Context.getService(drugordersService.class).getNewTable(pharma_action_order_id);
-                        System.out.println(drugorder.getOrderstatus());
                         if(!(pharma_order_status.equals("Hold"))){
                             drugorder.setOrderstatus(pharma_order_status);
                         }

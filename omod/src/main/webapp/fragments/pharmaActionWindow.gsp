@@ -108,11 +108,11 @@
         </div>
         
         <div class="fields">
-            <input type="checkbox" name="commentCheckbox" > Forward message to ordering physician<br>
+            <input type="checkbox" name="commentCheckbox" value="1" />Forward message to ordering physician<br/>
         </div>
         
         <div class="fields">
-            <input type="checkbox" name="messageCheckbox" > Send another message to ordering physician<br>
+            <input type="checkbox" name="messageCheckbox" value="1" />Send another message to ordering physician<br/>
         </div>
         
         <div class="fields">
