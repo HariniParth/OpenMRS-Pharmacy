@@ -10,6 +10,7 @@
 package org.openmrs.module.pharmacy.api;
 
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.module.pharmacy.Pharmacy;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -29,4 +30,6 @@ public interface PharmacyService extends OpenmrsService {
 	 * Add service methods here
 	 * 
 	 */
+    public Pharmacy saveNewTable(Pharmacy newTable);
+    public Pharmacy getNewTable(Integer id);
 }

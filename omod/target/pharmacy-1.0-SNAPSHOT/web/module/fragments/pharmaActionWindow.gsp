@@ -71,13 +71,11 @@
             </div>
         </div> 
 
-        <br/><br/><br/>
+        <br/><br/>
 
         <div class="fields" id="view_order_detail">
             <label>Physician instructions for</label>
         </div>
-        
-        <br/>
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
@@ -99,7 +97,7 @@
             </div>
         </div>    
 
-        <br/><br/><br/>
+        <br/><br/>
         
         <div class="fields">
             <label>Enter Comments</label>
@@ -118,7 +116,7 @@
         </div>
         
         <div class="fields">
-            <input type="textarea" maxlength="50" id="patientInstructions" name="patientInstructions"/>
+            <input type="textarea" maxlength="50" id="additionalMessage" name="additionalMessage"/>
         </div>
         
         <br/>

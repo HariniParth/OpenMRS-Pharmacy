@@ -12,6 +12,8 @@ package org.openmrs.module.pharmacy.api.db.hibernate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
+import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.pharmacy.Pharmacy;
 import org.openmrs.module.pharmacy.api.db.PharmacyDAO;
 
 /**
@@ -34,6 +36,17 @@ public class HibernatePharmacyDAO implements PharmacyDAO {
      */
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
+    }
+    
+        @Override
+    public Pharmacy saveNewTable(Pharmacy newTable){
+        sessionFactory.getCurrentSession().saveOrUpdate(newTable);
+        return newTable;
+    }
+    
+        @Override
+    public Pharmacy getNewTable(Integer id){
+        return (Pharmacy) sessionFactory.getCurrentSession().get(Pharmacy.class, id);
     }
 
 }

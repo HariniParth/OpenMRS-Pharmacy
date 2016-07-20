@@ -30,7 +30,7 @@
                 <constraints nullable="true" foreignKeyName="orderid" references="orders(order_id)" />
             </column>  
             <column name="uuid" type="varchar(255)"></column>
-            <column name="orderstatus" type="int"></column>
+            <column name="orderstatus" type="varchar(10)"></column>
             <column name="comments" type="varchar(255)"></column>
             <column name="forwardcomments" type="int"></column>
             <column name="additionalmessage" type="int"></column>

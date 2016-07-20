@@ -14,6 +14,8 @@ import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.pharmacy.Pharmacy;
+import org.openmrs.module.pharmacy.api.PharmacyService;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,7 +29,10 @@ public class PharmacyPageController {
                             @RequestParam(value = "pharma_order_id", required = false) String pharma_order_id,
                             @RequestParam(value = "search_order_id", required = false) String search_order_id,
                             @RequestParam(value = "search_patient_id", required = false) String search_patient_id,
-                            @RequestParam(value = "pharma_action_order_id", required = false) String pharma_action_order_id,
+                            @RequestParam(value = "pharma_order_status", required = false) String pharma_order_status,
+                            @RequestParam(value = "pharma_action_order_id", required = false) Integer pharma_action_order_id,
+                            @RequestParam(value = "comments", required = false) String comments,
+                            @RequestParam(value = "additionalMessage", required = false) String additionalMessage,
                             @RequestParam(value = "action", required = false) String action){
 
         model.addAttribute("search_order_id", search_order_id);
@@ -93,6 +98,33 @@ public class PharmacyPageController {
                 if("Drop".equals(action)){
                     String order_status = "Drop";
                     model.addAttribute("order_status", order_status);
+                }
+                if("OK".equals(action)){
+                    try {
+                        Pharmacy pharmacyOrder = Context.getService(PharmacyService.class).getNewTable(pharma_action_order_id);
+                        System.out.println("One"+pharmacyOrder.getOrderId());
+                        }
+                        catch (Exception e){
+                            System.out.println(e.toString());
+                        }
+                        Pharmacy pharmacyOrder = new Pharmacy();
+                        pharmacyOrder.setOrderId(pharma_action_order_id);
+                        System.out.println(pharma_action_order_id);
+                        System.out.println(pharma_order_status);
+                        pharmacyOrder.setOrderstatus(pharma_order_status);
+                        System.out.println(comments);
+                        pharmacyOrder.setComments(comments);
+                        System.out.println(additionalMessage);
+                        pharmacyOrder.setMessage(additionalMessage);
+                        Context.getService(PharmacyService.class).saveNewTable(pharmacyOrder);
+
+                        drugorders drugorder = Context.getService(drugordersService.class).getNewTable(pharma_action_order_id);
+                        System.out.println(drugorder.getOrderstatus());
+                        if(!(pharma_order_status.equals("Hold"))){
+                            drugorder.setOrderstatus(pharma_order_status);
+                        }
+                        Context.getService(drugordersService.class).saveNewTable(drugorder);
+                    
                 }
             }
             catch (Exception e){

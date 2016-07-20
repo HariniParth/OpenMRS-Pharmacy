@@ -23,7 +23,7 @@ public class Pharmacy extends BaseOpenmrsObject implements Serializable {
 	private Integer id;
         private Integer orderId;
         private String Uuid;
-        private Integer orderstatus;
+        private String orderstatus;
         private String comments;
         private String message;
         private Integer forwardcomments;
@@ -61,11 +61,11 @@ public class Pharmacy extends BaseOpenmrsObject implements Serializable {
 		this.Uuid = Uuid;
 	}
         
-        public Integer getOrderstatus() {
+        public String getOrderstatus() {
 		return orderstatus;
 	}
 
-	public void setOrderstatus(Integer orderstatus) {
+	public void setOrderstatus(String orderstatus) {
 		this.orderstatus = orderstatus;
 	}
         

@@ -12,6 +12,7 @@ package org.openmrs.module.pharmacy.api.impl;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.module.pharmacy.Pharmacy;
 import org.openmrs.module.pharmacy.api.PharmacyService;
 import org.openmrs.module.pharmacy.api.db.PharmacyDAO;
 
@@ -36,6 +37,16 @@ public class PharmacyServiceImpl extends BaseOpenmrsService implements PharmacyS
      */
     public PharmacyDAO getDao() {
 	    return dao;
+    }
+    
+        @Override
+    public Pharmacy saveNewTable(Pharmacy newTable){
+        return dao.saveNewTable(newTable);
+    }
+    
+        @Override
+    public Pharmacy getNewTable(Integer id){
+        return dao.getNewTable(id);
     }
 
 }
