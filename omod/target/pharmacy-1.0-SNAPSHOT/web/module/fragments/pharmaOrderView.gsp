@@ -57,11 +57,11 @@
 
         <br/><br/>
 
-        <div class="fields"><button class="confirm right" id="btn-dispatch" name="dispatchOrder" type="submit" onclick="showPharmaActionWindow('Dispatch')">${ ui.message("Dispatch") }</button></div>
+        <div class="fields"><input class="confirm right" id="btn-dispatch" name="action" value="Dispatch" type="submit" onclick="showPharmaActionWindow()" /></div>
         <br/><br/>
-        <div class="fields"><button class="confirm right" id="btn-hold" name="holdOrder" type="submit" onclick="showPharmaActionWindow('Hold')">${ ui.message("Hold") }</button></div>
+        <div class="fields"><input class="confirm right" id="btn-hold" name="action" value="Hold" type="submit" onclick="showPharmaActionWindow()" /></div>
         <br/><br/>
-        <div class="fields"><button class="confirm right" id="btn-drop" name="dropOrder" type="submit" onclick="showPharmaActionWindow('Cancelled')">${ ui.message("Drop") }</button>
-        <button class="cancel" id="btn-place" onclick="hidePharmaOrderView()">${ ui.message("Cancel") }</button></div>
+        <div class="fields"><input class="confirm right" id="btn-drop" name="action" value="Drop" type="submit" onclick="showPharmaActionWindow()" />
+        <input class="cancel" type="button" id="btn-place" value="Close" onclick="hidePharmaOrderView()" /></div>
     </form>
 </div>

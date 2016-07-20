@@ -35,7 +35,8 @@
     
     <h3>${ ui.message("ACTIVE DRUG ORDERS") }</h3>
     <p>${ ui.message("Click on an order item to record action") } - 
-        Selected: <label id="order_id_display" name="order_id_display"></label></p>
+        Selected: <label id="order_id_display" name="order_id_display"></label>
+    </p>
 
     <br/>
     

@@ -7,6 +7,7 @@ package org.openmrs.module.pharmacy.page.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
 import org.openmrs.DrugOrder;
 import org.openmrs.Order;
 import org.openmrs.Patient;
@@ -25,12 +26,15 @@ public class PharmacyPageController {
     public void controller(PageModel model,@RequestParam(value = "order_id_display", required = false) String order_id_display,
                             @RequestParam(value = "pharma_order_id", required = false) String pharma_order_id,
                             @RequestParam(value = "search_order_id", required = false) String search_order_id,
-                            @RequestParam(value = "search_patient_id", required = false) String search_patient_id){
+                            @RequestParam(value = "search_patient_id", required = false) String search_patient_id,
+                            @RequestParam(value = "pharma_action_order_id", required = false) String pharma_action_order_id,
+                            @RequestParam(value = "action", required = false) String action){
 
         model.addAttribute("search_order_id", search_order_id);
         model.addAttribute("search_patient_id", search_patient_id);
         model.addAttribute("pharma_order_id", pharma_order_id);
         model.addAttribute("order_id_display", order_id_display);
+        model.addAttribute("pharma_action_order_id", pharma_action_order_id);
         
         if(!(search_order_id).equals("")){
             DrugOrder dorder_main = (DrugOrder) Context.getOrderService().getOrder(Integer.parseInt(search_order_id));
@@ -73,6 +77,26 @@ public class PharmacyPageController {
                     String pharma_patient_name = Context.getPersonService().getPerson(pharma_patient).getGivenName() + " " + Context.getPersonService().getPerson(pharma_patient).getFamilyName();
                     model.addAttribute("pharma_patient_name", pharma_patient_name);
                 }
+            }
+        }
+        
+        if(StringUtils.isNotBlank(action)){
+            try {
+                if("Dispatch".equals(action)){
+                    String order_status = "Dispatch";
+                    model.addAttribute("order_status", order_status);
+                } 
+                if("Hold".equals(action)){
+                    String order_status = "Hold";
+                    model.addAttribute("order_status", order_status);
+                }
+                if("Drop".equals(action)){
+                    String order_status = "Drop";
+                    model.addAttribute("order_status", order_status);
+                }
+            }
+            catch (Exception e){
+                System.out.println(e.toString());
             }
         }
     }

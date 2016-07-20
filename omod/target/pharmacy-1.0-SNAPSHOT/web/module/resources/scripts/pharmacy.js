@@ -25,9 +25,8 @@ function hidePharmaOrderView(){
     jq("#pharmaOrderViewWindow").hide();
 }
 
-function showPharmaActionWindow(status){
+function showPharmaActionWindow(){
     jq("#pharmaOrderViewWindow").hide();
-    $("#status").text(status);
     jq("#pharmaOrderActionWindow").show();
 }
 
