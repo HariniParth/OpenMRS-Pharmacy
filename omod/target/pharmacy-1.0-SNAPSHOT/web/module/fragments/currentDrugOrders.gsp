@@ -17,11 +17,11 @@
                                     ${ currentDrugOrderExtension.startdate }
                                 </a>
                             </p>
+                            <br/>
                         <% } %>
                     <% } %>
                 <% } %>
             <% } %>
         <% } %>
     <% } %>
-    <br/>
 <% } %>
