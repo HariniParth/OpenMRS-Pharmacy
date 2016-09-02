@@ -12,7 +12,6 @@ package org.openmrs.module.pharmacy.api.db.hibernate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
-import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.module.pharmacy.Pharmacy;
 import org.openmrs.module.pharmacy.api.db.PharmacyDAO;
 
@@ -20,33 +19,34 @@ import org.openmrs.module.pharmacy.api.db.PharmacyDAO;
  * It is a default implementation of  {@link PharmacyDAO}.
  */
 public class HibernatePharmacyDAO implements PharmacyDAO {
-	protected final Log log = LogFactory.getLog(this.getClass());
+    
+    protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 	
-	/**
-     * @param sessionFactory the sessionFactory to set
-     */
+    /**
+        * @param sessionFactory the sessionFactory to set
+    */
     public void setSessionFactory(SessionFactory sessionFactory) {
 	    this.sessionFactory = sessionFactory;
     }
     
-	/**
-     * @return the sessionFactory
-     */
+    /**
+        * @return the sessionFactory
+    */
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
     
-        @Override
-    public Pharmacy saveNewTable(Pharmacy newTable){
-        sessionFactory.getCurrentSession().saveOrUpdate(newTable);
-        return newTable;
+    @Override
+    public Pharmacy savePharmaOrder(Pharmacy pharmaOrder){
+        sessionFactory.getCurrentSession().saveOrUpdate(pharmaOrder);
+        return pharmaOrder;
     }
     
-        @Override
-    public Pharmacy getNewTable(Integer id){
-        return (Pharmacy) sessionFactory.getCurrentSession().get(Pharmacy.class, id);
+    @Override
+    public Pharmacy getPharmaOrder(Integer orderID){
+        return (Pharmacy) sessionFactory.getCurrentSession().get(Pharmacy.class, orderID);
     }
 
 }

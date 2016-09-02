@@ -21,32 +21,32 @@ import org.openmrs.module.pharmacy.api.db.PharmacyDAO;
  */
 public class PharmacyServiceImpl extends BaseOpenmrsService implements PharmacyService {
 	
-	protected final Log log = LogFactory.getLog(this.getClass());
+    protected final Log log = LogFactory.getLog(this.getClass());
+
+    private PharmacyDAO dao;
 	
-	private PharmacyDAO dao;
-	
-	/**
-     * @param dao the dao to set
-     */
+    /**
+        * @param dao the dao to set
+    */
     public void setDao(PharmacyDAO dao) {
 	    this.dao = dao;
     }
     
     /**
-     * @return the dao
-     */
+        * @return the dao
+    */
     public PharmacyDAO getDao() {
 	    return dao;
     }
     
-        @Override
-    public Pharmacy saveNewTable(Pharmacy newTable){
-        return dao.saveNewTable(newTable);
+    @Override
+    public Pharmacy savePharmaOrder(Pharmacy pharmaOrder){
+        return dao.savePharmaOrder(pharmaOrder);
     }
     
-        @Override
-    public Pharmacy getNewTable(Integer id){
-        return dao.getNewTable(id);
+    @Override
+    public Pharmacy getPharmaOrder(Integer orderID){
+        return dao.getPharmaOrder(orderID);
     }
 
 }

@@ -39,7 +39,7 @@ public class SearchOrderViewFragmentController {
                         try{
                             DrugOrder dorder_main = (DrugOrder) Context.getOrderService().getOrder(Integer.parseInt(search_order_id));
                             model.addAttribute("dorder_main", dorder_main);
-                            drugorders dorder_extension = Context.getService(drugordersService.class).getNewTable(dorder_main.getOrderId());
+                            drugorders dorder_extension = Context.getService(drugordersService.class).getDrugOrderByOrderID(dorder_main.getOrderId());
                             model.addAttribute("dorder_extension", dorder_extension);
 
                             List<Patient> pharma_patients = Context.getPatientService().getAllPatients(true);
@@ -75,7 +75,7 @@ public class SearchOrderViewFragmentController {
                                         drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
                                         drugOrdersMain.add(drugOrderMain);
 
-                                        drugorders dorder_extension = Context.getService(drugordersService.class).getNewTable(drugOrderMain.getOrderId());
+                                        drugorders dorder_extension = Context.getService(drugordersService.class).getDrugOrderByOrderID(drugOrderMain.getOrderId());
                                         dorders_extension.add(dorder_extension);
                                     }
                                 }

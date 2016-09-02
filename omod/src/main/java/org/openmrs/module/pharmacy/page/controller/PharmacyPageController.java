@@ -5,12 +5,7 @@
  */
 package org.openmrs.module.pharmacy.page.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.lang.StringUtils;
-import org.openmrs.DrugOrder;
-import org.openmrs.Order;
-import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
@@ -54,39 +49,34 @@ public class PharmacyPageController {
                     model.addAttribute("order_status", order_status);
                 }
                 if("OK".equals(action)){
-                    try {
-                        Pharmacy pharmacyOrder = Context.getService(PharmacyService.class).getNewTable(pharma_action_order_id);
-                        int existingPharmaRecord = pharmacyOrder.getOrderId();
-                        }
-                        catch (Exception e){
-                            System.out.println(e.toString());
-                        }
-                        Pharmacy pharmacyOrder = new Pharmacy();
-                        pharmacyOrder.setOrderId(pharma_action_order_id);
-                        pharmacyOrder.setOrderstatus(pharma_order_status);
-                        pharmacyOrder.setComments(comments);
-                        
-                        if(!(commentCheckbox.equals("1"))){
-                            pharmacyOrder.setForwardcomments(0);
-                        } else {
-                            pharmacyOrder.setForwardcomments(1);
-                        }
-                        
-                        if(!(messageCheckbox.equals("1"))){
-                            pharmacyOrder.setAdditionalmessage(0);
-                        } else {
-                            pharmacyOrder.setAdditionalmessage(1);
-                        }
-                        
-                        pharmacyOrder.setMessage(additionalMessage);
-                        Context.getService(PharmacyService.class).saveNewTable(pharmacyOrder);
-
-                        drugorders drugorder = Context.getService(drugordersService.class).getNewTable(pharma_action_order_id);
-                        if(!(pharma_order_status.equals("Hold"))){
-                            drugorder.setOrderstatus(pharma_order_status);
-                        }
-                        Context.getService(drugordersService.class).saveNewTable(drugorder);
                     
+                    Pharmacy pharmacyOrder = new Pharmacy();
+                    pharmacyOrder.setOrderid(pharma_action_order_id);
+                    pharmacyOrder.setOrderstatus(pharma_order_status);
+                    pharmacyOrder.setComments(comments);
+
+                    if(!(commentCheckbox.equals("1"))){
+                        pharmacyOrder.setForwardcomments(0);
+                    } else {
+                        pharmacyOrder.setForwardcomments(1);
+                    }
+
+                    if(!(messageCheckbox.equals("1"))){
+                        pharmacyOrder.setAdditionalmessage(0);
+                    } else {
+                        pharmacyOrder.setAdditionalmessage(1);
+                    }
+
+                    pharmacyOrder.setMessage(additionalMessage);
+                    Context.getService(PharmacyService.class).savePharmaOrder(pharmacyOrder);
+
+                    drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(pharma_action_order_id);
+                    if(!(pharma_order_status.equals("Hold"))){
+                        drugorder.setOrderstatus(pharma_order_status);
+                    }
+                    
+                    Context.getService(drugordersService.class).saveDrugOrder(drugorder);
+
                 }
             }
             catch (Exception e){

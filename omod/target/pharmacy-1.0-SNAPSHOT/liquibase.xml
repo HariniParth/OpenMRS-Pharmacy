@@ -9,13 +9,13 @@
         for a list of supported elements and attributes
     -->
     
-    <changeSet id="harini_table_3" author="harini">
+    <changeSet id="harini_table_9" author="harini">
         <sql>
             drop table if exists pharmacy;
         </sql>
     </changeSet>
     
-    <changeSet author="harini" id="harini_table_4">
+    <changeSet author="harini" id="harini_table_10">
         <preConditions onFail="WARN" onError="WARN">
             <not>
                 <tableExists tableName="pharmacy" />
@@ -26,8 +26,8 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="order_id" type="int">
-                <constraints nullable="true" foreignKeyName="orderid" references="orders(order_id)" />
+            <column name="orderid" type="int">
+                <constraints nullable="true" foreignKeyName="pharmacy_orderid" references="orders(order_id)" />
             </column>  
             <column name="uuid" type="varchar(255)"></column>
             <column name="orderstatus" type="varchar(10)"></column>

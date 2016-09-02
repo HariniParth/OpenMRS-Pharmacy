@@ -17,9 +17,7 @@ import org.openmrs.module.pharmacy.api.PharmacyService;
  */
 public interface PharmacyDAO {
 	
-	/*
-	 * Add DAO methods here
-	 */
-    public Pharmacy saveNewTable(Pharmacy newTable);
-    public Pharmacy getNewTable(Integer id);
+    public Pharmacy savePharmaOrder(Pharmacy pharmaOrder);
+    public Pharmacy getPharmaOrder(Integer orderID);
+    
 }

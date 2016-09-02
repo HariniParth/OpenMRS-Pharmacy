@@ -36,7 +36,7 @@ public class CurrentDrugOrdersFragmentController {
             int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
             for(Order order : orders){
                 if(order.getOrderType().getOrderTypeId() == drugOrderTypeId){
-                    drugorders dorderExtension = Context.getService(drugordersService.class).getNewTable(order.getOrderId());
+                    drugorders dorderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(order.getOrderId());
                     currentDrugOrdersExtension.add(dorderExtension);
                     
                     DrugOrder dorderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());

@@ -26,10 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface PharmacyService extends OpenmrsService {
      
-	/*
-	 * Add service methods here
-	 * 
-	 */
-    public Pharmacy saveNewTable(Pharmacy newTable);
-    public Pharmacy getNewTable(Integer id);
+    public Pharmacy savePharmaOrder(Pharmacy pharmaOrder);
+    public Pharmacy getPharmaOrder(Integer orderID);
+    
 }
