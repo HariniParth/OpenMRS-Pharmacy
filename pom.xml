@@ -127,6 +127,7 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>drugorders-api</artifactId>
 				<version>1.0-SNAPSHOT</version>
+                                <scope>provided</scope>
 			</dependency>
 
 			<!-- we explicitly use version 3.2.10 since 3.2.11 has a bug which was giving us issues,
