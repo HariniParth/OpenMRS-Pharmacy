@@ -11,7 +11,6 @@ import org.apache.commons.lang.StringUtils;
 import org.openmrs.DrugOrder;
 import org.openmrs.Order;
 import org.openmrs.Patient;
-import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;

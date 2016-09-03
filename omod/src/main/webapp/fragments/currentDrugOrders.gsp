@@ -10,9 +10,9 @@
                     <% patientIdentifiers.each { patientIdentifier -> %>
                         <% if(patientIdentifier.key.toInteger() == currentDrugOrderExtension.patientid.toInteger()) { %>
                             <p> 
-                                <a href="#" id="pharmacyView" onclick="viewPharmaOrderView('${ currentDrugOrderMain.orderId }','${ patientIdentifier.value }','${ patientName.value }','${ currentDrugOrderExtension.startdate }','${ currentDrugOrderExtension.drugname }','${ currentDrugOrderMain.route.getDisplayString() }','${ currentDrugOrderMain.dose }','${ currentDrugOrderMain.doseUnits.getDisplayString() }','${ currentDrugOrderMain.duration }','${ currentDrugOrderMain.durationUnits.getDisplayString() }','${ currentDrugOrderMain.quantity }','${ currentDrugOrderMain.quantityUnits.getDisplayString() }','${ currentDrugOrderMain.frequency }','${ currentDrugOrderExtension.patientinstructions }','${ currentDrugOrderExtension.pharmacistinstructions }')">
+                                <a href="#" id="pharmacyView" onclick="viewPharmaOrderView('${ currentDrugOrderMain.orderId }','${ patientIdentifier.value }','${ patientName.value }','${ currentDrugOrderExtension.startdate }','${ currentDrugOrderExtension.drugname.getDisplayString() }','${ currentDrugOrderMain.route.getDisplayString() }','${ currentDrugOrderMain.dose }','${ currentDrugOrderMain.doseUnits.getDisplayString() }','${ currentDrugOrderMain.duration }','${ currentDrugOrderMain.durationUnits.getDisplayString() }','${ currentDrugOrderMain.quantity }','${ currentDrugOrderMain.quantityUnits.getDisplayString() }','${ currentDrugOrderMain.frequency }','${ currentDrugOrderExtension.patientinstructions }','${ currentDrugOrderExtension.pharmacistinstructions }')">
                                     ${ patientName.value } 
-                                    ${ currentDrugOrderExtension.drugname } 
+                                    ${ currentDrugOrderExtension.drugname.getDisplayString() } 
                                     Start Date: 
                                     ${ currentDrugOrderExtension.startdate }
                                 </a>

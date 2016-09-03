@@ -16,7 +16,7 @@
 <script type="text/javascript">
     var breadcrumbs = [
         { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
-        { label: "Pharmacy Orders"}
+        { label: "${ ui.message("Pharmacy") }" }
     ];
 </script>
 
@@ -33,7 +33,7 @@
 
 <div class="info-body">
     
-    <h3>${ ui.message("ACTIVE DRUG ORDERS") }</h3>
+    <h3 id="header">${ ui.message("ACTIVE DRUG ORDERS") }</h3>
     <p>${ ui.message("Click on an order item to record action") }</p>
 
     <br/>
