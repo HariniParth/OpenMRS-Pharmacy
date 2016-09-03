@@ -5,6 +5,7 @@
  */
 package org.openmrs.module.pharmacy.page.controller;
 
+import java.util.UUID;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
@@ -54,6 +55,7 @@ public class PharmacyPageController {
                     pharmacyOrder.setOrderid(pharma_action_order_id);
                     pharmacyOrder.setOrderstatus(pharma_order_status);
                     pharmacyOrder.setComments(comments);
+                    pharmacyOrder.setUuid(UUID.randomUUID().toString());
 
                     if(!(commentCheckbox.equals("1"))){
                         pharmacyOrder.setForwardcomments(0);

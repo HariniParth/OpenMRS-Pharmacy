@@ -4,7 +4,7 @@
 
 <% currentDrugOrdersExtension.each { currentDrugOrderExtension -> %>
     <% currentDrugOrdersMain.each { currentDrugOrderMain -> %>
-        <% if(currentDrugOrderMain.orderId.equals(currentDrugOrderExtension.orderId) && ((currentDrugOrderExtension.orderstatus).equals("Active") || (currentDrugOrderExtension.orderstatus).equals("Hold"))) { %>
+        <% if(currentDrugOrderMain.orderId.equals(currentDrugOrderExtension.orderId) && ((currentDrugOrderExtension.orderstatus).equals("Active") || (currentDrugOrderExtension.orderstatus).equals("Hold") || (currentDrugOrderExtension.orderstatus).equals("Active-Plan"))) { %>
             <% patientNames.each { patientName -> %>
                 <% if(patientName.key.toInteger() == currentDrugOrderExtension.patientid.toInteger()) { %>
                     <% patientIdentifiers.each { patientIdentifier -> %>
