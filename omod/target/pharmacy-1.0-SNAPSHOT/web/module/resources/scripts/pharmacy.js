@@ -27,10 +27,16 @@ function hidePharmaOrderView(){
 
 function showPharmaActionWindow(){
     jq("#pharmaOrderViewWindow").hide();
-    jq("#pharmaOrderActionWindow").show();
 }
 
-function hidePharmaActionWindow(){
+function hidePharmaActionWindow(orderID,patientID,patientName,startDate,orderDetails,patientInst,pharmaInst){
     jq("#pharmaOrderActionWindow").hide();
+    $("#pharma_order_id").val(orderID);
+    $("#pharma_patient_id").val(patientID);
+    $("#pharma_patient_name").val(patientName);
+    $("#pharma_start_date").val(startDate);
+    $("#pharma_order_details").val(orderDetails);
+    $("#pharma_patient_instructions").val(patientInst);
+    $("#pharma_pharmacist_instructions").val(pharmaInst);
     jq("#pharmaOrderViewWindow").show();
 }

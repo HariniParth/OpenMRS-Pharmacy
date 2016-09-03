@@ -39,7 +39,7 @@
             <div id="order_value"><input type="text" id="pharma_order_details" name="pharma_order_details" readonly /></div>
         </div> 
 
-        <br/><br/>
+        <br/><br/><br/>
 
         <div class="fields" id="view_order_detail"><label>Physician instructions for</label></div>
 

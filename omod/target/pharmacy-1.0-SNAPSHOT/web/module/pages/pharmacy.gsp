@@ -20,7 +20,7 @@
     ];
 </script>
 
-<div class="col-lg-12">
+<div class="col-lg-12" id="searchBar">
     <div class="col-lg-6">
         ${ ui.includeFragment("pharmacy", "searchBarByOrder") }
     </div>
@@ -28,17 +28,14 @@
         ${ ui.includeFragment("pharmacy", "searchBarByPatient") }
     </div>
 </div>
-
-<br/><br/><br/><br/>
+<br/><br/><br/><br/><br/>
 
 <div class="info-body">
-    
-    <h3 id="header">${ ui.message("ACTIVE DRUG ORDERS") }</h3>
-    <p>${ ui.message("Click on an order item to record action") }</p>
 
-    <br/>
-    
     <div id="currentDrugOrdersWindow">
+        <h3 id="header">${ ui.message("ACTIVE DRUG ORDERS") }</h3>
+        <p>${ ui.message("Click on an order item to record action") }</p><br/>
+        
         ${ ui.includeFragment("pharmacy", "searchOrderView") }
         ${ ui.includeFragment("pharmacy", "currentDrugOrders") }
     </div>
