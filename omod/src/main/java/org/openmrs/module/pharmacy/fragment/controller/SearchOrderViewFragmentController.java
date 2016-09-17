@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import org.openmrs.DrugOrder;
 import org.openmrs.Order;
 import org.openmrs.Patient;
+import org.openmrs.Person;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
@@ -24,71 +25,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SearchOrderViewFragmentController {
     
     
-    public void controller(PageModel model,@RequestParam(value = "search_order_id", required = false) String search_order_id,
-                            @RequestParam(value = "search_patient_id", required = false) String search_patient_id,
+    public void controller(PageModel model,@RequestParam(value = "patient_first_name", required = false) String patient_first_name,
+                            @RequestParam(value = "patient_last_name", required = false) String patient_last_name,
                             @RequestParam(value = "action", required = false) String action){
-        
-        model.addAttribute("search_order_id", search_order_id);
-        model.addAttribute("search_patient_id", search_patient_id);
-        
+       
+        model.addAttribute("patient_first_name", patient_first_name);
+        model.addAttribute("patient_last_name", patient_last_name);
+                                
         if(StringUtils.isNotBlank(action)){
             try {
-                if("searchByOrder".equals(action)){
-                    if(!(search_order_id).equals("")){
-                        try{
-                            DrugOrder dorder_main = (DrugOrder) Context.getOrderService().getOrder(Integer.parseInt(search_order_id));
-                            model.addAttribute("dorder_main", dorder_main);
-                            drugorders dorder_extension = Context.getService(drugordersService.class).getDrugOrderByOrderID(dorder_main.getOrderId());
-                            model.addAttribute("dorder_extension", dorder_extension);
-
-                            List<Patient> pharma_patients = Context.getPatientService().getAllPatients(true);
-                            for(Patient pharma_patient : pharma_patients){
-                                if(Integer.toString(pharma_patient.getPatientId()).equals(dorder_extension.getPatientid())){
-                                    String pharma_patient_name = Context.getPersonService().getPerson(pharma_patient).getGivenName() + " " + Context.getPersonService().getPerson(pharma_patient).getFamilyName();
-                                    model.addAttribute("pharma_patient_name", pharma_patient_name);
-                                }
+                if("searchByPatient".equals(action)){
+                    boolean patient_found = false;
+                    List<Integer> orders = new ArrayList<Integer>();
+                    ArrayList<DrugOrder> drugOrdersMain = new ArrayList<DrugOrder>();
+                    ArrayList<drugorders> drugOrdersExtension = new ArrayList<drugorders>();
+                                
+                    if(!(patient_first_name).equals("") && !(patient_last_name).equals("")){
+                        
+                        List<drugorders> allOrders = Context.getService(drugordersService.class).getAllDrugOrders();
+                        
+                        for(drugorders order : allOrders){
+                            Person person = Context.getPersonService().getPerson(Integer.parseInt(order.getPatientid()));
+                            
+                            if(person.getGivenName().equals(patient_first_name) && person.getFamilyName().equals(patient_last_name)){
+                                patient_found = true;
+                                model.addAttribute("PatientFound", patient_found);
+                                orders.add(order.getOrderId());
                             }
-                        } catch (Exception e){
-                            System.out.println(e.toString());
                         }
                     }
-                }
-                
-                if("searchByPatient".equals(action)){
-                    if(!(search_patient_id).equals("")){
-                        boolean patient_id_found = false;
-                        List<Patient> pharma_patients = Context.getPatientService().getAllPatients();
-                        for(Patient pharma_patient : pharma_patients){
-                            if((pharma_patient.getPatientIdentifier().getIdentifier()).equals(search_patient_id)){
-                                patient_id_found = true;
-                                model.addAttribute("patient_found", patient_id_found);
-                                
-                                List<Order> orders = Context.getOrderService().getAllOrdersByPatient(pharma_patient);
-                                ArrayList<DrugOrder> drugOrdersMain = new ArrayList<DrugOrder>();
-                                ArrayList<drugorders> dorders_extension = new ArrayList<drugorders>();
-                                int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
-                                DrugOrder drugOrderMain;
-
-                                for (Order order : orders) {
-                                    if (order.getOrderType().getOrderTypeId() == drugOrderTypeId){
-                                        drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
-                                        drugOrdersMain.add(drugOrderMain);
-
-                                        drugorders dorder_extension = Context.getService(drugordersService.class).getDrugOrderByOrderID(drugOrderMain.getOrderId());
-                                        dorders_extension.add(dorder_extension);
-                                    }
-                                }
-                                model.addAttribute("dorders_main", drugOrdersMain);
-                                model.addAttribute("dorders_extension", dorders_extension);
-
-                                String pharma_patient_name = Context.getPersonService().getPerson(pharma_patient).getGivenName() + " " + Context.getPersonService().getPerson(pharma_patient).getFamilyName();
-                                model.addAttribute("pharma_patient_name", pharma_patient_name);
-                            }
+                    
+                    if(patient_found){
+                        for(Integer order : orders){
+                            DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order);
+                            drugOrdersMain.add(drugOrderMain);
+                            
+                            drugorders drugOrderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(drugOrderMain.getOrderId());
+                            drugOrdersExtension.add(drugOrderExtension);
                         }
-                        if(!patient_id_found){
-                            boolean patient_found = false;
-                            model.addAttribute("patient_found", patient_found);
-                        }
+                        model.addAttribute("drugOrdersMain", drugOrdersMain);
+                        model.addAttribute("drugOrdersExtension", drugOrdersExtension);
+                    }
+                    
+                    if(!patient_found){
+                        model.addAttribute("PatientFound", patient_found);
                     }
                 }
             }

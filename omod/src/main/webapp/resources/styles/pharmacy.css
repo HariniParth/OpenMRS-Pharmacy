@@ -29,28 +29,18 @@ and open the template in the editor.
     float: right;
 }
 
-#search-bar{
+#patient-search-bar{
     width: 100%;
 }
 
-#patient-search-bar{
-    width: 45%;
-    float: right;
-}
-
-#order-search-bar{
-    width: 45%;
-    float: left;
-}
-
 #orderSearchField{
-    width: 60%;
+    width: 40%;
     float: left;
 }
 
 #orderSearchButton{
-    width: 40%;
-    float: right;
+    width: 10%;
+    float: left;
 }
 
 .fields{
@@ -80,9 +70,8 @@ and open the template in the editor.
     font-weight: bold;
 }
 
-#pharmaOrderView, #pharmaActionView{
+#pharmaOrderView, #pharmaActionView, #patient-search-bar{
     background: #F9F9F9;
     border: 1px solid #eee;
-    padding: 5px;
     color: #363463;
 }

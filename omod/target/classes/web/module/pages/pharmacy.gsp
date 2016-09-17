@@ -20,15 +20,7 @@
     ];
 </script>
 
-<div class="col-lg-12" id="searchBar">
-    <div class="col-lg-6">
-        ${ ui.includeFragment("pharmacy", "searchBarByOrder") }
-    </div>
-    <div class="col-lg-6">
-        ${ ui.includeFragment("pharmacy", "searchBarByPatient") }
-    </div>
-</div>
-<br/><br/><br/><br/><br/>
+${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
 
 <div class="info-body">
 
