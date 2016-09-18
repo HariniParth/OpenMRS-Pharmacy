@@ -6,9 +6,18 @@
     <form method="post">
         <h4 class="heading">${ ui.message("Record Action") }</h4>
 
+        <input type="hidden" id="pharma_order_id" name="pharma_order_id" readonly />
+        
         <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Order ID </label></div>
-            <div id="order_value"><input type="text" id="pharma_order_id" name="pharma_order_id" readonly /></div>
+            <div id="order_label"><label>Patient Name</label></div>
+            <div id="order_value"><input type="text" id="pharma_patient_name" name="pharma_patient_name" readonly /></div>
+        </div>
+
+        <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label"><label>Patient DOB</label></div>
+            <div id="order_value"><input type="text" id="pharma_patient_dob" name="pharma_patient_dob" readonly /></div>
         </div>
 
         <br/><br/>
@@ -16,13 +25,6 @@
         <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Patient ID</label></div>
             <div id="order_value"><input type="text" id="pharma_patient_id" name="pharma_patient_id" readonly /></div>
-        </div>
-
-        <br/><br/>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Patient Name</label></div>
-            <div id="order_value"><input type="text" id="pharma_patient_name" name="pharma_patient_name" readonly /></div>
         </div>
 
         <br/><br/>

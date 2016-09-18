@@ -6,11 +6,10 @@
 package org.openmrs.module.pharmacy.fragment.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.DrugOrder;
-import org.openmrs.Order;
-import org.openmrs.Patient;
 import org.openmrs.Person;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
@@ -36,6 +35,9 @@ public class SearchOrderViewFragmentController {
             try {
                 if("searchByPatient".equals(action)){
                     boolean patient_found = false;
+                    Date patient_DOB = null;
+                    String patient_identifier = null;
+                    
                     List<Integer> orders = new ArrayList<Integer>();
                     ArrayList<DrugOrder> drugOrdersMain = new ArrayList<DrugOrder>();
                     ArrayList<drugorders> drugOrdersExtension = new ArrayList<drugorders>();
@@ -51,6 +53,8 @@ public class SearchOrderViewFragmentController {
                                 patient_found = true;
                                 model.addAttribute("PatientFound", patient_found);
                                 orders.add(order.getOrderId());
+                                patient_DOB = person.getBirthdate();
+                                patient_identifier = Context.getPatientService().getPatient(Integer.parseInt(order.getPatientid())).getPatientIdentifier().toString();
                             }
                         }
                     }
@@ -63,6 +67,9 @@ public class SearchOrderViewFragmentController {
                             drugorders drugOrderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(drugOrderMain.getOrderId());
                             drugOrdersExtension.add(drugOrderExtension);
                         }
+                        model.addAttribute("patient_DOB", patient_DOB);
+                        model.addAttribute("patient_identifier",patient_identifier);
+                        
                         model.addAttribute("drugOrdersMain", drugOrdersMain);
                         model.addAttribute("drugOrdersExtension", drugOrdersExtension);
                     }

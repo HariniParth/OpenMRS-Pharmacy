@@ -6,6 +6,7 @@
 package org.openmrs.module.pharmacy.fragment.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import org.openmrs.DrugOrder;
@@ -29,6 +30,7 @@ public class CurrentDrugOrdersFragmentController {
         ArrayList<Patient> patientWithOrders = new ArrayList<Patient>();
         
         HashMap<Integer,String> patientNames = new HashMap<Integer,String>();
+        HashMap<Integer,Date> patientDOB = new HashMap<Integer,Date>();
         HashMap<Integer,String> patientIdentifiers = new HashMap<Integer,String>();
         
         List<Patient> patients = Context.getPatientService().getAllPatients();
@@ -37,6 +39,7 @@ public class CurrentDrugOrdersFragmentController {
             List<Order> orders = Context.getOrderService().getAllOrdersByPatient(patient);
             int drugOrderTypeId = Context.getOrderService().getOrderTypeByName("Drug Order").getOrderTypeId();
             for(Order order : orders){
+                
                 if(order.getOrderType().getOrderTypeId() == drugOrderTypeId){
                     drugorders dorderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(order.getOrderId());
                     currentDrugOrdersExtension.add(dorderExtension);
@@ -45,9 +48,10 @@ public class CurrentDrugOrdersFragmentController {
                     currentDrugOrderMain.add(dorderMain);
                     
                     patientWithOrders.add(patient);
-                    patientNames.put(patient.getPatientId(),Context.getPersonService().getPerson(patient).getGivenName()+" "+Context.getPersonService().getPerson(patient).getFamilyName());
+                    patientNames.put(patient.getPatientId(),Context.getPersonService().getPerson(patient.getPatientId()).getGivenName()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName());
+                    patientDOB.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate());
                     
-                    patientIdentifiers.put(patient.getPatientId(),Context.getPatientService().getPatientByExample(patient).getPatientIdentifier().getIdentifier());
+                    patientIdentifiers.put(patient.getPatientId(),patient.getPatientIdentifier().toString());
                 }
             }
         }
@@ -56,6 +60,7 @@ public class CurrentDrugOrdersFragmentController {
         model.addAttribute("currentDrugOrdersMain", currentDrugOrderMain);
         model.addAttribute("patientsWithOrder", patientWithOrders);
         model.addAttribute("patientNames", patientNames);
+        model.addAttribute("patientDOB", patientDOB);
         model.addAttribute("patientIdentifiers", patientIdentifiers);
     }
     

@@ -7,6 +7,8 @@
     
     <form method="post">
         
+        <input type="hidden" id="pharma_action_order_id" value="${pharma_order_id}" name="pharma_action_order_id" readonly />
+        
         <div class="fields" id="view_order_detail">
             <div id="order_label">
                 <label>Order Status </label>
@@ -20,32 +22,32 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
-                <label>Order ID </label>
+                <label>Patient Name</label>
             </div>
             <div id="order_value">
-                <input type="text" id="pharma_action_order_id" value="${pharma_order_id}" name="pharma_action_order_id" readonly />
+                <input type="text" id="pharma_action_patient_name" value="${pharma_patient_name}" readonly />
             </div>
         </div>
         
         <br/><br/>
-
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Patient DOB</label>
+            </div>
+            <div id="order_value">
+                <input type="text" id="pharma_action_patient_DOB" value="${pharma_patient_DOB}" readonly />
+            </div>
+        </div>
+        
+        <br/><br/>
+        
         <div class="fields" id="view_order_detail">
             <div id="order_label">
                 <label>Patient ID</label>
             </div>
             <div id="order_value">
                 <input type="text" id="pharma_action_patient_id" value="${pharma_patient_id}" readonly />
-            </div>
-        </div>
-        
-        <br/><br/>
-
-        <div class="fields" id="view_order_detail">
-            <div id="order_label">
-                <label>Patient Name</label>
-            </div>
-            <div id="order_value">
-                <input type="text" id="pharma_action_patient_name" value="${pharma_patient_name}" readonly />
             </div>
         </div>
         
@@ -125,7 +127,7 @@
         </div>
         
         <div class="fields">
-            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_start_date}','${pharma_order_details}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}')">${ ui.message("Back") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_start_date}','${pharma_order_details}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}')">${ ui.message("Back") }</button>
         </div>
 
     </form>
