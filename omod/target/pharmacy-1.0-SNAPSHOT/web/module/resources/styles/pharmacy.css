@@ -47,6 +47,10 @@ and open the template in the editor.
     padding-left: 10px;
 }
 
+#searchResults{
+    padding: 10px;
+}
+
 #view_order_detail{
     width: 100%;
 }
@@ -70,7 +74,7 @@ and open the template in the editor.
     font-weight: bold;
 }
 
-#pharmaOrderView, #pharmaActionView, #patient-search-bar{
+#pharmaOrderView, #pharmaActionView, #patient-search-bar, #searchResultsWindow{
     background: #F9F9F9;
     border: 1px solid #eee;
     color: #363463;

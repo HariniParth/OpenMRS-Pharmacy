@@ -40,3 +40,7 @@ function hidePharmaActionWindow(orderID,patientID,patientName,startDate,orderDet
     $("#pharma_pharmacist_instructions").val(pharmaInst);
     jq("#pharmaOrderViewWindow").show();
 }
+
+function closeSearchResultsWindow(){
+    jq("#searchResultsWindow").hide();
+}
