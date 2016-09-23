@@ -84,6 +84,8 @@ and open the template in the editor.
     width: 95%;
 }
 
-tr:hover{
-    background: #f3f3f3;
+#orderRow:hover {
+  background: #75b2f0;
+  color: white;
+  cursor: pointer;
 }
