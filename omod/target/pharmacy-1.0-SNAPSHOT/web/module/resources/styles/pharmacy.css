@@ -79,3 +79,11 @@ and open the template in the editor.
     border: 1px solid #eee;
     color: #363463;
 }
+
+#currentDrugOrdersTable{
+    width: 95%;
+}
+
+tr:hover{
+    background: #f3f3f3;
+}
