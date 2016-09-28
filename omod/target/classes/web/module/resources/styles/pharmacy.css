@@ -74,18 +74,19 @@ and open the template in the editor.
     font-weight: bold;
 }
 
-#pharmaOrderView, #pharmaActionView, #patient-search-bar, #searchResultsWindow{
+#pharmaOrderView, #pharmaActionView, #patient-search-bar, #searchResultsWindow, #activeOrdersWindow{
     background: #F9F9F9;
     border: 1px solid #eee;
     color: #363463;
-}
-
-#currentDrugOrdersTable{
-    width: 95%;
 }
 
 #orderRow:hover {
   background: #75b2f0;
   color: white;
   cursor: pointer;
+}
+
+#activeOrdersWindow, #searchResultsWindow{
+    overflow: auto;
+    position: relative;
 }
