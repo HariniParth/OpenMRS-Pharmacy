@@ -46,3 +46,19 @@ function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,startDa
 function closeSearchResultsWindow(){
     jq("#searchResultsWindow").hide();
 }
+
+function autoCompleteFirstName(firstNameList){
+    var list = firstNameList.replace("[","").replace("]","").split(',');
+    console.log(list);
+    $("#patient_first_name").autocomplete({
+       source : list
+    });
+}
+
+function autoCompleteLastName(lastNameList){
+    var list = lastNameList.replace("[","").replace("]","").split(',');
+    console.log(list);
+    $("#patient_last_name").autocomplete({
+       source : list
+    });
+}

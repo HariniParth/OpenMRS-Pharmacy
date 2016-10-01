@@ -7,10 +7,10 @@
         <h4 id="header" class="fields">FIND ORDERS BY PATIENT</h4>
         <div class="fields">
             <span id="orderSearchField">
-                <input id="patient_first_name" type="text" name="patient_first_name" placeholder="Enter First Name"/>
+                <input id="patient_first_name" type="text" name="patient_first_name" placeholder="Enter First Name" oninput="autoCompleteFirstName('${allFirstNames}')"/>
             </span>
             <span id="orderSearchField">
-                <input class="fields" id="patient_last_name" type="text" name="patient_last_name" placeholder="Enter Last Name"/>
+                <input class="fields" id="patient_last_name" type="text" name="patient_last_name" placeholder="Enter Last Name" oninput="autoCompleteLastName('${allLastNames}')"/>
             </span>
             <span id="orderSearchButton">
                 <button id="btn-place" type="submit">Search</button>
