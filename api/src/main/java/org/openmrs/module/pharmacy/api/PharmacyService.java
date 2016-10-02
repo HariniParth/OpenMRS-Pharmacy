@@ -28,5 +28,7 @@ public interface PharmacyService extends OpenmrsService {
      
     public Pharmacy savePharmaOrder(Pharmacy pharmaOrder);
     public Pharmacy getPharmaOrder(Integer orderID);
+    public String getPharmaComments(Integer orderID);
+    public String getPharmaMessage(Integer orderID);
     
 }

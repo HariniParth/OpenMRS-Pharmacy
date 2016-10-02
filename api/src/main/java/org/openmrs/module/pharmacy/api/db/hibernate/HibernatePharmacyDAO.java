@@ -9,9 +9,12 @@
  */
 package org.openmrs.module.pharmacy.api.db.hibernate;
 
+import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.openmrs.module.pharmacy.Pharmacy;
 import org.openmrs.module.pharmacy.api.db.PharmacyDAO;
 
@@ -47,6 +50,24 @@ public class HibernatePharmacyDAO implements PharmacyDAO {
     @Override
     public Pharmacy getPharmaOrder(Integer orderID){
         return (Pharmacy) sessionFactory.getCurrentSession().get(Pharmacy.class, orderID);
+    }
+    
+    @Override
+    public String getPharmaComments(Integer orderID){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                Pharmacy.class);
+        crit.setProjection(Projections.property("comments"));
+        List allComments = crit.list();
+        return (String) allComments.get(orderID);
+    }
+    
+    @Override
+    public String getPharmaMessage(Integer orderID){
+        Criteria crit = sessionFactory.getCurrentSession().createCriteria(
+                Pharmacy.class);
+        crit.setProjection(Projections.property("message"));
+        List allMessages = crit.list();
+        return (String) allMessages.get(orderID);
     }
 
 }

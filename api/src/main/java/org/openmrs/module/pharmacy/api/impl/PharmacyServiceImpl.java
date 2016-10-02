@@ -49,4 +49,13 @@ public class PharmacyServiceImpl extends BaseOpenmrsService implements PharmacyS
         return dao.getPharmaOrder(orderID);
     }
 
+    @Override
+    public String getPharmaComments(Integer orderID){
+        return dao.getPharmaComments(orderID);
+    }
+    
+    @Override
+    public String getPharmaMessage(Integer orderID){
+        return dao.getPharmaMessage(orderID);
+    }
 }
