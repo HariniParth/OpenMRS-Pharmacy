@@ -12,92 +12,16 @@ package org.openmrs.module.pharmacy;
 import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.BaseOpenmrsMetadata;
+import org.openmrs.module.drugorders.drugorders;
 
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
  */
-public class Pharmacy extends BaseOpenmrsObject implements Serializable {
+public class Pharmacy extends drugorders implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	private Integer id;
-        private Integer orderid;
-        private String uuid;
-        private String orderstatus;
-        private String comments;
-        private String message;
-        private Integer forwardcomments;
-        private Integer additionalmessage;
-	
-        public Pharmacy(){
-            
-        }
-        
-	@Override
-	public Integer getId() {
-		return id;
-	}
-	
-	@Override
-	public void setId(Integer id) {
-		this.id = id;
-	}
-        
-        public Integer getOrderid() {
-            return orderid;
-        }
+    private static final long serialVersionUID = 1L;
 
-        public void setOrderid(Integer orderid) {
-            this.orderid = orderid;
-        }
-	
-        @Override
-	public String getUuid() {
-		return uuid;
-	}
-        
-        @Override
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-        
-        public String getOrderstatus() {
-		return orderstatus;
-	}
+    public Pharmacy(){
 
-	public void setOrderstatus(String orderstatus) {
-		this.orderstatus = orderstatus;
-	}
-        
-        public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-        
-        public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-        
-        public Integer getForwardcomments() {
-            return forwardcomments;
-        }
-
-        public void setForwardcomments(Integer forwardcomments) {
-            this.forwardcomments = forwardcomments;
-        }
-        
-        public Integer getAdditionalmessage() {
-            return additionalmessage;
-        }
-
-        public void setAdditionalmessage(Integer additionalmessage) {
-            this.additionalmessage = additionalmessage;
-        }  
+    }
 }

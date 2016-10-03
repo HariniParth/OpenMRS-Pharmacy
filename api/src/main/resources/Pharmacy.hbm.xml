@@ -3,24 +3,8 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
-<hibernate-mapping package="org.openmrs.module.pharmacy">
+<!--
+    <hibernate-mapping package="org.openmrs.module.pharmacy">
 
-	<class name="Pharmacy"
-		table="pharmacy">
-		<id name="id" type="int" column="id" unsaved-value="0">
-			<generator class="native" />
-		</id>
-		<discriminator column="id" insert="false" />
-                <property name="orderid"  column="orderid" not-null="false"></property>
-		<property name="uuid" type="java.lang.String" column="uuid"
-			length="38" unique="true"></property>
-                <property name="orderstatus" type="java.lang.String" length="10" column="orderstatus" ></property>
-                <property name="comments" type="java.lang.String" column="comments"
-			length="255"></property> 
-                <property name="forwardcomments" column="forwardcomments" not-null="false"></property>
-                <property name="additionalmessage" column="additionalmessage" not-null="false"></property>
-                <property name="message" type="java.lang.String" column="message"
-			length="255"></property> 
-	</class>
-
-</hibernate-mapping>
+    </hibernate-mapping>
+-->

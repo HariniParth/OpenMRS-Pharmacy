@@ -7,9 +7,9 @@
 	<name>Pharmacy</name>
 	<version>1.0-SNAPSHOT</version>
 	<package>org.openmrs.module.pharmacy</package>
-	<author>${module-author}</author>
+	<author>Harini Parthasarathy</author>
 	<description>
-		helps to view and dispense drug orders
+            Provides Pharmacists the interface to view Active Drug Orders and record the actions taken on the same
 	</description>
 	<updateURL>https://modules.openmrs.org/modules/download/pharmacy/update.rdf</updateURL>
 	<require_version>1.11.4</require_version>
@@ -37,8 +37,6 @@
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-
-        Pharmacy.hbm.xml
 				
 	</mappingFiles>
 

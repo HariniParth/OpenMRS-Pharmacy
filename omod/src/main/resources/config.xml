@@ -7,9 +7,9 @@
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
 	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
-	<author>${module-author}</author>
+	<author>Harini Parthasarathy</author>
 	<description>
-		${project.parent.description}
+            Provides Pharmacists the interface to view Active Drug Orders and record the actions taken on the same
 	</description>
 	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
 	<require_version>${openMRSVersion}</require_version>
@@ -37,8 +37,6 @@
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-
-        Pharmacy.hbm.xml
 				
 	</mappingFiles>
 
