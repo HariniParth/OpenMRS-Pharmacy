@@ -52,6 +52,17 @@
         </div>
         
         <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Address</label>
+            </div>
+            <div id="order_value">
+                <input type="text" id="pharma_action_patient_address" value="${pharma_patient_address}" readonly />
+            </div>
+        </div>
+        
+        <br/><br/>
 
         <div class="fields" id="view_order_detail">
             <div id="order_label">
@@ -127,7 +138,7 @@
         </div>
         
         <div class="fields">
-            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_start_date}','${pharma_order_details}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}')">${ ui.message("Back") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_patient_address}','${pharma_start_date}','${pharma_order_details}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}')">${ ui.message("Back") }</button>
         </div>
 
     </form>

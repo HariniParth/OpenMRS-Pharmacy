@@ -10,11 +10,12 @@ $(document).ready( function() {
     jq("#pharmaOrderViewWindow").hide();
 });
 
-function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
+function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
     $("#pharma_order_id").val(orderId);
     $("#pharma_patient_id").val(patientId);
     $("#pharma_patient_name").val(patientName);
     $("#pharma_patient_dob").val(patientDOB);
+    $("#pharma_patient_address").val(patientAddress);
     $("#pharma_start_date").val(startDate);
     $("#pharma_order_details").val(drugName +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
     $("#pharma_patient_instructions").val(patientinstructions);
@@ -30,12 +31,13 @@ function showPharmaActionWindow(){
     jq("#pharmaOrderViewWindow").hide();
 }
 
-function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,startDate,orderDetails,patientInst,pharmaInst){
+function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,patientInst,pharmaInst){
     jq("#pharmaOrderActionWindow").hide();
     $("#pharma_order_id").val(orderID);
     $("#pharma_patient_id").val(patientID);
     $("#pharma_patient_name").val(patientName);
     $("#pharma_patient_dob").val(patientDOB);
+    $("#pharma_patient_address").val(patientAddress);
     $("#pharma_start_date").val(startDate);
     $("#pharma_order_details").val(orderDetails);
     $("#pharma_patient_instructions").val(patientInst);

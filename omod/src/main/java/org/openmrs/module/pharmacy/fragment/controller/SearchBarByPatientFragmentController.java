@@ -7,18 +7,9 @@ package org.openmrs.module.pharmacy.fragment.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.openmrs.Concept;
-import org.openmrs.ConceptClass;
-import org.openmrs.ConceptSearchResult;
 import org.openmrs.Patient;
-import org.openmrs.PersonName;
-import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
-import org.openmrs.ui.framework.SimpleObject;
-import org.openmrs.ui.framework.UiUtils;
-import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *

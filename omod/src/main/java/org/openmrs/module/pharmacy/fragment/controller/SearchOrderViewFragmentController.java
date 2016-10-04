@@ -39,6 +39,7 @@ public class SearchOrderViewFragmentController {
                 if("searchByPatient".equals(action)){
                     boolean patient_found = false;
                     Date patient_DOB = null;
+                    String patient_address = null;
                     String patient_identifier = null;
                     
                     List<Integer> orders = new ArrayList<Integer>();
@@ -57,6 +58,7 @@ public class SearchOrderViewFragmentController {
                                 model.addAttribute("PatientFound", patient_found);
                                 orders.add(order.getOrderId());
                                 patient_DOB = person.getBirthdate();
+                                patient_address = person.getPersonAddress().getAddress1() + " " + person.getPersonAddress().getCityVillage() + " " + person.getPersonAddress().getStateProvince() + " Zipcode:" + person.getPersonAddress().getPostalCode() + " " + person.getPersonAddress().getCountry();
                                 patient_identifier = Context.getPatientService().getPatient(Integer.parseInt(order.getPatientid())).getPatientIdentifier().toString();
                             }
                         }
@@ -71,6 +73,7 @@ public class SearchOrderViewFragmentController {
                             drugOrdersExtension.add(drugOrderExtension);
                         }
                         model.addAttribute("patient_DOB", patient_DOB);
+                        model.addAttribute("patient_address", patient_address);
                         model.addAttribute("patient_identifier",patient_identifier);
                         
                         model.addAttribute("drugOrdersMain", drugOrdersMain);

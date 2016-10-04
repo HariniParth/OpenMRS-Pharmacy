@@ -31,6 +31,7 @@ public class CurrentDrugOrdersFragmentController {
         
         HashMap<Integer,String> patientNames = new HashMap<Integer,String>();
         HashMap<Integer,Date> patientDOB = new HashMap<Integer,Date>();
+        HashMap<Integer,String> patientAddress = new HashMap<Integer,String>();
         HashMap<Integer,String> patientIdentifiers = new HashMap<Integer,String>();
         
         List<Patient> patients = Context.getPatientService().getAllPatients();
@@ -50,7 +51,7 @@ public class CurrentDrugOrdersFragmentController {
                     patientWithOrders.add(patient);
                     patientNames.put(patient.getPatientId(),Context.getPersonService().getPerson(patient.getPatientId()).getGivenName()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName());
                     patientDOB.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate());
-                    
+                    patientAddress.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry());
                     patientIdentifiers.put(patient.getPatientId(),patient.getPatientIdentifier().toString());
                 }
             }
@@ -61,6 +62,7 @@ public class CurrentDrugOrdersFragmentController {
         model.addAttribute("patientsWithOrder", patientWithOrders);
         model.addAttribute("patientNames", patientNames);
         model.addAttribute("patientDOB", patientDOB);
+        model.addAttribute("patientAddress", patientAddress);
         model.addAttribute("patientIdentifiers", patientIdentifiers);
     }
     

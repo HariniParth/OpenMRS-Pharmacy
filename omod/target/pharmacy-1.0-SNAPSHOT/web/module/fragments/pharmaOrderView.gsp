@@ -30,6 +30,13 @@
         <br/><br/>
         
         <div class="fields" id="view_order_detail">
+            <div id="order_label"><label>Address</label></div>
+            <div id="order_value"><input type="text" id="pharma_patient_address" name="pharma_patient_address" readonly /></div>
+        </div>
+
+        <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Start Date</label></div>
             <div id="order_value"><input type="text" id="pharma_start_date" name="pharma_start_date" readonly /></div>
         </div>   

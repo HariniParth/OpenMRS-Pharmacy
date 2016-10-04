@@ -18,6 +18,7 @@ public class PharmaOrderViewFragmentController {
                             @RequestParam(value = "pharma_patient_id", required = false) String pharma_patient_id,
                             @RequestParam(value = "pharma_patient_name", required = false) String pharma_patient_name,
                             @RequestParam(value = "pharma_patient_dob", required = false) String pharma_patient_DOB,
+                            @RequestParam(value = "pharma_patient_address", required = false) String pharma_patient_address,
                             @RequestParam(value = "pharma_start_date", required = false) String pharma_start_date,
                             @RequestParam(value = "pharma_order_details", required = false) String pharma_order_details,
                             @RequestParam(value = "pharma_patient_instructions", required = false) String pharma_patient_instructions,
@@ -27,6 +28,7 @@ public class PharmaOrderViewFragmentController {
         model.addAttribute("pharma_patient_id", pharma_patient_id);
         model.addAttribute("pharma_patient_name", pharma_patient_name);
         model.addAttribute("pharma_patient_DOB", pharma_patient_DOB);
+        model.addAttribute("pharma_patient_address", pharma_patient_address);
         model.addAttribute("pharma_start_date", pharma_start_date);
         model.addAttribute("pharma_order_details", pharma_order_details);
         model.addAttribute("pharma_patient_instructions", pharma_patient_instructions);
