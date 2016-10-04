@@ -10,7 +10,7 @@ $(document).ready( function() {
     jq("#pharmaOrderViewWindow").hide();
 });
 
-function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,patientinstructions,pharmacistinstructions){
+function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,patientinstructions,pharmacistinstructions){
     $("#pharma_order_id").val(orderId);
     $("#pharma_patient_id").val(patientId);
     $("#pharma_patient_name").val(patientName);
@@ -18,6 +18,7 @@ function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAdd
     $("#pharma_patient_address").val(patientAddress);
     $("#pharma_start_date").val(startDate);
     $("#pharma_order_details").val(drugName +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
+    $("#pharma_order_refill").val(numRefills);
     $("#pharma_patient_instructions").val(patientinstructions);
     $("#pharma_pharmacist_instructions").val(pharmacistinstructions);
     jq("#pharmaOrderViewWindow").show();
@@ -31,7 +32,7 @@ function showPharmaActionWindow(){
     jq("#pharmaOrderViewWindow").hide();
 }
 
-function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,patientInst,pharmaInst){
+function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,numRefill,patientInst,pharmaInst){
     jq("#pharmaOrderActionWindow").hide();
     $("#pharma_order_id").val(orderID);
     $("#pharma_patient_id").val(patientID);
@@ -40,6 +41,7 @@ function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patient
     $("#pharma_patient_address").val(patientAddress);
     $("#pharma_start_date").val(startDate);
     $("#pharma_order_details").val(orderDetails);
+    $("#pharma_order_refill").val(numRefill);
     $("#pharma_patient_instructions").val(patientInst);
     $("#pharma_pharmacist_instructions").val(pharmaInst);
     jq("#pharmaOrderViewWindow").show();

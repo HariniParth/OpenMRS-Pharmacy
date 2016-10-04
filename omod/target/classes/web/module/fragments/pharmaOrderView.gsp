@@ -47,6 +47,13 @@
             <div id="order_label"><label>Order/s</label></div>
             <div id="order_value"><input type="text" id="pharma_order_details" name="pharma_order_details" readonly /></div>
         </div> 
+        
+        <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label"><label>Refills</label></div>
+            <div id="order_value"><input type="text" id="pharma_order_refill" name="pharma_order_refill" readonly /></div>
+        </div> 
 
         <br/><br/><br/>
 
