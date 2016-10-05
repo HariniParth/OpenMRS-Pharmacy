@@ -7,10 +7,12 @@ package org.openmrs.module.pharmacy.fragment.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.DrugOrder;
 import org.openmrs.Person;
+import org.openmrs.Provider;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
@@ -41,6 +43,8 @@ public class SearchOrderViewFragmentController {
                     Date patient_DOB = null;
                     String patient_address = null;
                     String patient_identifier = null;
+                    String provider_identifier = null;
+                    HashMap<Integer,String> providerIdentifiers = new HashMap<Integer,String>();
                     
                     List<Integer> orders = new ArrayList<Integer>();
                     ArrayList<DrugOrder> drugOrdersMain = new ArrayList<DrugOrder>();
@@ -71,10 +75,16 @@ public class SearchOrderViewFragmentController {
                             
                             drugorders drugOrderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(drugOrderMain.getOrderId());
                             drugOrdersExtension.add(drugOrderExtension);
+                            
+                            Provider provider = Context.getOrderService().getOrder(drugOrderMain.getOrderId()).getOrderer();
+                            provider_identifier = provider.getPerson().getGivenName() + " " + provider.getPerson().getFamilyName() + ", " + StringUtils.capitalize(provider.getIdentifier());
+                            providerIdentifiers.put(order, provider_identifier);
                         }
+                        
                         model.addAttribute("patient_DOB", patient_DOB);
                         model.addAttribute("patient_address", patient_address);
-                        model.addAttribute("patient_identifier",patient_identifier);
+                        model.addAttribute("patient_identifier", patient_identifier);
+                        model.addAttribute("providerIdentifiers",providerIdentifiers);
                         
                         model.addAttribute("drugOrdersMain", drugOrdersMain);
                         model.addAttribute("drugOrdersExtension", drugOrdersExtension);

@@ -96,9 +96,20 @@
         </div> 
 
         <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
+                <label>Provider</label>
+            </div>
+            <div id="order_value">
+                <input type="text" id="pharma_order_provider" value="${order_provider}" readonly />
+            </div>
+        </div> 
+
+        <br/><br/>
 
         <div class="fields" id="view_order_detail">
-            <label>Physician instructions for</label>
+            <label>Instructions for</label>
         </div>
 
         <div class="fields" id="view_order_detail">
@@ -149,7 +160,7 @@
         </div>
         
         <div class="fields">
-            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_patient_address}','${pharma_start_date}','${pharma_order_details}','${pharma_order_refill}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}')">${ ui.message("Back") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_patient_address}','${pharma_start_date}','${pharma_order_details}','${pharma_order_refill}','${order_provider}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}')">${ ui.message("Back") }</button>
         </div>
 
     </form>

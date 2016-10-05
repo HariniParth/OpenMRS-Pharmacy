@@ -16,6 +16,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.page.PageModel;
+import org.springframework.util.StringUtils;
 
 /**
  *
@@ -33,6 +34,7 @@ public class CurrentDrugOrdersFragmentController {
         HashMap<Integer,Date> patientDOB = new HashMap<Integer,Date>();
         HashMap<Integer,String> patientAddress = new HashMap<Integer,String>();
         HashMap<Integer,String> patientIdentifiers = new HashMap<Integer,String>();
+        HashMap<Integer,String> providerIdentifiers = new HashMap<Integer,String>();
         
         List<Patient> patients = Context.getPatientService().getAllPatients();
         for(Patient patient : patients){
@@ -53,6 +55,7 @@ public class CurrentDrugOrdersFragmentController {
                     patientDOB.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate());
                     patientAddress.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry());
                     patientIdentifiers.put(patient.getPatientId(),patient.getPatientIdentifier().toString());
+                    providerIdentifiers.put(order.getOrderId(), order.getOrderer().getPerson().getGivenName() + " " + order.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(order.getOrderer().getIdentifier()));
                 }
             }
         }
@@ -64,6 +67,7 @@ public class CurrentDrugOrdersFragmentController {
         model.addAttribute("patientDOB", patientDOB);
         model.addAttribute("patientAddress", patientAddress);
         model.addAttribute("patientIdentifiers", patientIdentifiers);
+        model.addAttribute("providerIdentifiers", providerIdentifiers);
     }
     
 }
