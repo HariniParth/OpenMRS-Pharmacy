@@ -58,6 +58,13 @@
         <br/><br/>
         
         <div class="fields" id="view_order_detail">
+            <div id="order_label"><label>Interval (days)</label></div>
+            <div id="order_value"><input type="text" id="pharma_order_refillInterval" name="pharma_order_refillInterval" readonly /></div>
+        </div> 
+
+        <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Provider</label></div>
             <div id="order_value"><input type="text" id="order_provider" name="order_provider" readonly /></div>
         </div>

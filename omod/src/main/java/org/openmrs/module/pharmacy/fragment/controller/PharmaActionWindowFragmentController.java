@@ -22,6 +22,7 @@ public class PharmaActionWindowFragmentController {
                             @RequestParam(value = "pharma_start_date", required = false) String pharma_start_date,
                             @RequestParam(value = "pharma_order_details", required = false) String pharma_order_details,
                             @RequestParam(value = "pharma_order_refill", required = false) String pharma_order_refill,
+                            @RequestParam(value = "pharma_order_refillInterval", required = false) String pharma_order_refillInterval,
                             @RequestParam(value = "order_provider", required = false) String order_provider,
                             @RequestParam(value = "pharma_patient_instructions", required = false) String pharma_patient_instructions,
                             @RequestParam(value = "pharma_pharmacist_instructions", required = false) String pharma_pharmacist_instructions){
@@ -34,6 +35,7 @@ public class PharmaActionWindowFragmentController {
         model.addAttribute("pharma_start_date", pharma_start_date);
         model.addAttribute("pharma_order_details", pharma_order_details);
         model.addAttribute("pharma_order_refill", pharma_order_refill);
+        model.addAttribute("pharma_order_refillInterval", pharma_order_refillInterval);
         model.addAttribute("order_provider", order_provider);
         model.addAttribute("pharma_patient_instructions", pharma_patient_instructions);
         model.addAttribute("pharma_pharmacist_instructions", pharma_pharmacist_instructions);
