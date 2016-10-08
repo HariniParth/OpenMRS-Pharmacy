@@ -5,7 +5,10 @@
  */
 package org.openmrs.module.pharmacy.page.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import org.apache.commons.lang.StringUtils;
+import org.openmrs.DrugOrder;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
@@ -65,8 +68,16 @@ public class PharmacyPageController {
                     drugorder.setMessage(additionalMessage);
                     
                     if (!(pharma_order_status.equals("Hold"))) {
-                        drugorder.setOrderstatus(pharma_order_status);
-                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
+                        
+                        DrugOrder order = (DrugOrder) Context.getOrderService().getOrder(pharma_action_order_id);
+                        Date dispatchDate = Calendar.getInstance().getTime();
+                        
+                        if (pharma_order_status.equals("Dispatch") && order.getNumRefills() > 0){
+                            drugorder.setLastdispatchdate(dispatchDate);
+                        } else {
+                            drugorder.setOrderstatus(pharma_order_status);
+                            Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
+                        }
                     }
 
                     Context.getService(drugordersService.class).saveDrugOrder(drugorder);

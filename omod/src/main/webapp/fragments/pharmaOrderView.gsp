@@ -58,6 +58,13 @@
         <br/><br/>
         
         <div class="fields" id="view_order_detail">
+            <div id="order_label"><label>Last Dispatch</label></div>
+            <div id="order_value"><input type="text" id="pharma_last_dispatch_date" name="pharma_last_dispatch_date" readonly /></div>
+        </div>   
+
+        <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Interval (days)</label></div>
             <div id="order_value"><input type="text" id="pharma_order_refillInterval" name="pharma_order_refillInterval" readonly /></div>
         </div> 

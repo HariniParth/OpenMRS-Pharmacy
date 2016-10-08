@@ -10,7 +10,7 @@ $(document).ready( function() {
     jq("#pharmaOrderViewWindow").hide();
 });
 
-function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,refillInterval,providerInfo,patientinstructions,pharmacistinstructions){
+function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,lastDispatchDate,refillInterval,providerInfo,patientinstructions,pharmacistinstructions){
     $("#pharma_order_id").val(orderId);
     $("#pharma_patient_id").val(patientId);
     $("#pharma_patient_name").val(patientName);
@@ -19,6 +19,7 @@ function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAdd
     $("#pharma_start_date").val(startDate);
     $("#pharma_order_details").val(drugName +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
     $("#pharma_order_refill").val(numRefills);
+    $("#pharma_last_dispatch_date").val(lastDispatchDate);
     $("#pharma_order_refillInterval").val(refillInterval);
     $("#order_provider").val(providerInfo);
     $("#pharma_patient_instructions").val(patientinstructions);
@@ -34,7 +35,7 @@ function showPharmaActionWindow(){
     jq("#pharmaOrderViewWindow").hide();
 }
 
-function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,numRefill,refillInterval,providerInfo,patientInst,pharmaInst){
+function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,numRefill,lastDispatchDate,refillInterval,providerInfo,patientInst,pharmaInst){
     jq("#pharmaOrderActionWindow").hide();
     $("#pharma_order_id").val(orderID);
     $("#pharma_patient_id").val(patientID);
@@ -44,6 +45,7 @@ function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patient
     $("#pharma_start_date").val(startDate);
     $("#pharma_order_details").val(orderDetails);
     $("#pharma_order_refill").val(numRefill);
+    $("#pharma_last_dispatch_date").val(lastDispatchDate);
     $("#pharma_order_refillInterval").val(refillInterval);
     $("#order_provider").val(providerInfo);
     $("#pharma_patient_instructions").val(patientInst);

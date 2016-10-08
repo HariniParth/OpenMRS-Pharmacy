@@ -99,6 +99,17 @@
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">
+                <label>Last Dispatch</label>
+            </div>
+            <div id="order_value">
+                <input type="text" id="pharma_action_last_dispatch_date" value="${pharma_last_dispatch_date}" readonly />
+            </div>
+        </div>  
+        
+        <br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <div id="order_label">
                 <label>Interval</label>
             </div>
             <div id="order_value">
@@ -171,7 +182,7 @@
         </div>
         
         <div class="fields">
-            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_patient_address}','${pharma_start_date}','${pharma_order_details}','${pharma_order_refill}','${pharma_order_refillInterval}','${order_provider}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}')">${ ui.message("Back") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_patient_address}','${pharma_start_date}','${pharma_order_details}','${pharma_order_refill}','${pharma_last_dispatch_date}','${pharma_order_refillInterval}','${order_provider}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}')">${ ui.message("Back") }</button>
         </div>
 
     </form>
