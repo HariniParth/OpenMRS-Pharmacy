@@ -69,11 +69,9 @@ public class PharmacyPageController {
                     
                     if (!(pharma_order_status.equals("Hold"))) {
                         
-                        DrugOrder order = (DrugOrder) Context.getOrderService().getOrder(pharma_action_order_id);
-                        Date dispatchDate = Calendar.getInstance().getTime();
-                        
-                        if (pharma_order_status.equals("Dispatch") && order.getNumRefills() > 0){
-                            drugorder.setLastdispatchdate(dispatchDate);
+                        if (pharma_order_status.equals("Dispatch") && drugorder.getRefill() > 0){
+                            drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
+                            drugorder.setRefill(drugorder.getRefill() - 1);
                         } else {
                             drugorder.setOrderstatus(pharma_order_status);
                             Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
