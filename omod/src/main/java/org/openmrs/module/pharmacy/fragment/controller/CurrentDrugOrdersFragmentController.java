@@ -26,8 +26,8 @@ public class CurrentDrugOrdersFragmentController {
     
     public void controller(PageModel model){
         
+        HashMap<Integer,DrugOrder> currentDrugOrderMain = new HashMap<Integer,DrugOrder>();
         ArrayList<drugorders> currentDrugOrdersExtension = new ArrayList<drugorders>();
-        ArrayList<DrugOrder> currentDrugOrderMain = new ArrayList<DrugOrder>();
         ArrayList<Patient> patientWithOrders = new ArrayList<Patient>();
         
         HashMap<Integer,String> patientNames = new HashMap<Integer,String>();
@@ -48,7 +48,7 @@ public class CurrentDrugOrdersFragmentController {
                     currentDrugOrdersExtension.add(dorderExtension);
                     
                     DrugOrder dorderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
-                    currentDrugOrderMain.add(dorderMain);
+                    currentDrugOrderMain.put(order.getOrderId(),dorderMain);
                     
                     patientWithOrders.add(patient);
                     patientNames.put(patient.getPatientId(),Context.getPersonService().getPerson(patient.getPatientId()).getGivenName()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName());
