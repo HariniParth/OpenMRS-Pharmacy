@@ -1,9 +1,9 @@
 org/openmrs/module/pharmacy/web/controller/PharmacyManageController.class
 org/openmrs/module/pharmacy/fragment/controller/PharmaActionWindowFragmentController.class
 org/openmrs/module/pharmacy/fragment/controller/CurrentDrugOrdersFragmentController.class
+org/openmrs/module/pharmacy/fragment/controller/CurrentMedPlansFragmentController.class
 org/openmrs/module/pharmacy/fragment/controller/SearchBarByPatientFragmentController.class
 org/openmrs/module/pharmacy/extension/html/AdminList.class
 org/openmrs/module/pharmacy/page/controller/PharmacyPageController.class
 org/openmrs/module/pharmacy/fragment/controller/SearchOrderViewFragmentController.class
 org/openmrs/module/pharmacy/fragment/controller/PharmaOrderViewFragmentController.class
-org/openmrs/module/pharmacy/fragment/controller/currentMedPlansFragmentController.class

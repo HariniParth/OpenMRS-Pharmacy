@@ -1,6 +1,6 @@
 /home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/web/controller/PharmacyManageController.java
 /home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/page/controller/PharmacyPageController.java
-/home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/fragment/controller/currentMedPlansFragmentController.java
+/home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/fragment/controller/CurrentMedPlansFragmentController.java
 /home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/fragment/controller/CurrentDrugOrdersFragmentController.java
 /home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/fragment/controller/PharmaOrderViewFragmentController.java
 /home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/fragment/controller/PharmaActionWindowFragmentController.java

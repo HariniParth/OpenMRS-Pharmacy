@@ -13,7 +13,22 @@
             </tr>
         </thead>
         <tbody>
-            
+            <% patientPlanOrdersMain.each { patientPlanOrderMain -> %>
+                <% patientPlanOrderMain.value.each { patientPlanOrder -> %>
+                    <tr>
+                        <td>${ patientPlanOrderMain.key }</td>
+                        <td>${ patientPlanOrder.key }</td>
+                        <td>
+                            <% patientPlanOrder.value.each { patientPlan -> %>
+                                <div>
+                                    <span id="order_label">${ patientPlanOrdersExtn.get(patientPlan.orderId).drugname.getDisplayString() }</span>
+                                    <span id="order_value">${ patientPlanOrdersExtn.get(patientPlan.orderId).startdate }</span>
+                                </div>
+                            <% } %>
+                        </td>
+                    </tr>   
+                <% } %>
+            <% } %>
         </tbody>
     </table>
 </div>
