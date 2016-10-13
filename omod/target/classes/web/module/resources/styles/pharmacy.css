@@ -81,9 +81,15 @@ and open the template in the editor.
 }
 
 #orderRow:hover {
-  background: #75b2f0;
-  color: white;
-  cursor: pointer;
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
+}
+
+#medRow:hover{
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
 }
 
 #activeOrdersWindow, #searchResultsWindow{
