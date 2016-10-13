@@ -45,17 +45,19 @@ public class CurrentDrugOrdersFragmentController {
                 
                 if(order.getOrderType().getOrderTypeId() == drugOrderTypeId){
                     drugorders dorderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(order.getOrderId());
-                    currentDrugOrdersExtension.add(dorderExtension);
                     
-                    DrugOrder dorderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
-                    currentDrugOrderMain.put(order.getOrderId(),dorderMain);
-                    
-                    patientWithOrders.add(patient);
-                    patientNames.put(patient.getPatientId(),Context.getPersonService().getPerson(patient.getPatientId()).getGivenName()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName());
-                    patientDOB.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate());
-                    patientAddress.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry());
-                    patientIdentifiers.put(patient.getPatientId(),patient.getPatientIdentifier().toString());
-                    providerIdentifiers.put(order.getOrderId(), order.getOrderer().getPerson().getGivenName() + " " + order.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(order.getOrderer().getIdentifier()));
+                    if(dorderExtension.getOrderstatus().equals("Active") || dorderExtension.getOrderstatus().equals("Hold")){
+                        currentDrugOrdersExtension.add(dorderExtension);
+                        DrugOrder dorderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
+                        currentDrugOrderMain.put(order.getOrderId(),dorderMain);
+
+                        patientWithOrders.add(patient);
+                        patientNames.put(patient.getPatientId(),Context.getPersonService().getPerson(patient.getPatientId()).getGivenName()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName());
+                        patientDOB.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate());
+                        patientAddress.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry());
+                        patientIdentifiers.put(patient.getPatientId(),patient.getPatientIdentifier().toString());
+                        providerIdentifiers.put(order.getOrderId(), order.getOrderer().getPerson().getGivenName() + " " + order.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(order.getOrderer().getIdentifier()));
+                    }
                 }
             }
         }
