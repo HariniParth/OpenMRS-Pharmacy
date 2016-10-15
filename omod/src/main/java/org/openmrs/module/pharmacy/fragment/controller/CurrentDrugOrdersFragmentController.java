@@ -46,7 +46,7 @@ public class CurrentDrugOrdersFragmentController {
                 if(order.getOrderType().getOrderTypeId() == drugOrderTypeId){
                     drugorders dorderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(order.getOrderId());
                     
-                    if(dorderExtension.getOrderstatus().equals("Active") || dorderExtension.getOrderstatus().equals("Hold")){
+                    if(dorderExtension.getOrderstatus().equals("Active") || dorderExtension.getOrderstatus().equals("Active-Group") || dorderExtension.getOrderstatus().equals("Hold")){
                         currentDrugOrdersExtension.add(dorderExtension);
                         DrugOrder dorderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
                         currentDrugOrderMain.put(order.getOrderId(),dorderMain);
