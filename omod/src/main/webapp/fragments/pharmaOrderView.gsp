@@ -2,9 +2,13 @@
     ui.includeCss("pharmacy", "pharmacy.css")
 %>
 
-<div id="pharmaOrderView">
+<div id="pharmaOrderView" class="dialog">
+    
     <form method="post">
-        <h4 class="heading">${ ui.message("Record Action") }</h4>
+        
+        <div class="dialog-header">
+            <h3 id="dialog-heading">${ ui.message("Record Action") }</h3>
+        </div><br/>
 
         <input type="hidden" id="pharma_order_id" name="pharma_order_id" readonly />
         
@@ -94,11 +98,13 @@
 
         <br/><br/>
 
-        <div class="fields"><input class="confirm right" id="btn-dispatch" name="action" value="Dispatch" type="submit" onclick="showPharmaActionWindow()" /></div>
-        <br/><br/>
-        <div class="fields"><input class="confirm right" id="btn-hold" name="action" value="Hold" type="submit" onclick="showPharmaActionWindow()" /></div>
-        <br/><br/>
+        <div class="fields"><input class="confirm right" id="btn-dispatch" name="action" value="Dispatch" type="submit" onclick="showPharmaActionWindow()" /></div><br/><br/>
+        
+        <div class="fields"><input class="confirm right" id="btn-hold" name="action" value="Hold" type="submit" onclick="showPharmaActionWindow()" /></div><br/><br/>
+        
         <div class="fields"><input class="confirm right" id="btn-drop" name="action" value="Drop" type="submit" onclick="showPharmaActionWindow()" />
+        
         <input class="cancel" type="button" id="btn-place" value="Close" onclick="hidePharmaOrderView()" /></div>
+    
     </form>
 </div>

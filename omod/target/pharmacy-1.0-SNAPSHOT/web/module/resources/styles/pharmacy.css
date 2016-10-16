@@ -20,12 +20,12 @@ and open the template in the editor.
 }
 
 .info-body #pharmaOrderViewWindow{
-    width: 40%;
+    width: 38%;
     float: right;
 }
 
 .info-body #pharmaOrderActionWindow{
-    width: 40%;
+    width: 38%;
     float: right;
 }
 
@@ -65,8 +65,8 @@ and open the template in the editor.
     float: right;
 }
 
-.heading{
-    text-align: center;
+.dialog .dialog-header{
+    text-align: center !important;
 }
 
 #header{
