@@ -32,7 +32,7 @@ function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAdd
             orderList = orderList + value;
         }
     });
-    $("#associatedOrders").text(orderList);
+    $("#associatedOrders").val(orderList);
     
     jq("#pharmaOrderViewWindow").show();
 }
@@ -45,7 +45,7 @@ function showPharmaActionWindow(){
     jq("#pharmaOrderViewWindow").hide();
 }
 
-function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,numRefill,lastDispatchDate,refillInterval,providerInfo,patientInst,pharmaInst){
+function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,numRefill,lastDispatchDate,refillInterval,providerInfo,patientInst,pharmaInst,orderList){
     jq("#pharmaOrderActionWindow").hide();
     $("#pharma_order_id").val(orderID);
     $("#pharma_patient_id").val(patientID);
@@ -60,6 +60,7 @@ function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patient
     $("#order_provider").val(providerInfo);
     $("#pharma_patient_instructions").val(patientInst);
     $("#pharma_pharmacist_instructions").val(pharmaInst);
+    $("#associatedOrders").val(orderList);
     jq("#pharmaOrderViewWindow").show();
 }
 

@@ -100,7 +100,7 @@
         
         <div class="fields" id="view_order_detail">
             <label>Associated Orders (if any)</label>
-            <label id="associatedOrders"></label>
+            <input type="text" id="associatedOrders" name="associatedOrders" readonly />
         </div>    
 
         <br/><br/>
