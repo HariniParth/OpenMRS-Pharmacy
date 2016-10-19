@@ -21,16 +21,20 @@
                 </thead>
                 <tbody>
                     <% drugOrdersMain.each { dorder_main -> %>
-                        <% drugOrdersExtension.each { dorder_extension -> %>
-                            <% if((dorder_main.orderId.equals(dorder_extension.orderId)) && ((dorder_extension.orderstatus).equals("Active") || (dorder_extension.orderstatus).equals("Active-Plan") || (dorder_extension.orderstatus).equals("Active-Group") || (dorder_extension.orderstatus).equals("Hold"))) { %>
+                    
+                        <% if(((drugOrdersExtension.get(dorder_main.key).orderstatus).equals("Active") || (drugOrdersExtension.get(dorder_main.key).orderstatus).equals("Active-Plan") || (drugOrdersExtension.get(dorder_main.key).orderstatus).equals("Active-Group") || (drugOrdersExtension.get(dorder_main.key).orderstatus).equals("Hold"))) { %>
 
-                                <tr id="orderRow" onclick="viewPharmaOrderView('${ dorder_main.orderId }','${ patient_identifier }','${ patient_first_name } ${ patient_last_name }','${ patient_DOB }','${ patient_address }','${ dorder_extension.startdate }','${ dorder_extension.drugname.getDisplayString() }','${ dorder_main.route.getDisplayString() }','${ dorder_main.dose }','${ dorder_main.doseUnits.getDisplayString() }','${ dorder_main.duration }','${ dorder_main.durationUnits.getDisplayString() }','${ dorder_main.quantity }','${ dorder_main.quantityUnits.getDisplayString() }','${ dorder_main.frequency }','${ dorder_extension.refill }','${ dorder_extension.lastdispatchdate }','${ dorder_extension.refillinterval }','${ providerIdentifiers.get(dorder_main.orderId) }','${ dorder_extension.patientinstructions }','${ dorder_extension.pharmacistinstructions }')">
-                                    <td>${ patient_first_name } ${ patient_last_name }</td>
-                                    <td>${ dorder_extension.drugname.getDisplayString() }</td>
-                                    <td>${ dorder_extension.startdate }</td>
-                                    <td>${ dorder_extension.priority.getDisplayString() }</td>
-                                </tr>
+                            <% def otherOrdersInGroup = "Nil" %>
+                            <% if(drugOrdersExtension.get(dorder_main.key).orderstatus == "Active-Group") { %>
+                                <% otherOrdersInGroup = otherOrders.get(drugOrdersExtension.get(dorder_main.key).orderId) %>
                             <% } %>
+
+                            <tr id="orderRow" onclick="viewPharmaOrderView('${ dorder_main.key }','${ patient_identifier }','${ patient_first_name } ${ patient_last_name }','${ patient_DOB }','${ patient_address }','${ drugOrdersExtension.get(dorder_main.key).startdate }','${ drugOrdersExtension.get(dorder_main.key).drugname.getDisplayString() }','${ dorder_main.value.route.getDisplayString() }','${ dorder_main.value.dose }','${ dorder_main.value.doseUnits.getDisplayString() }','${ dorder_main.value.duration }','${ dorder_main.value.durationUnits.getDisplayString() }','${ dorder_main.value.quantity }','${ dorder_main.value.quantityUnits.getDisplayString() }','${ dorder_main.value.frequency }','${ drugOrdersExtension.get(dorder_main.key).refill }','${ drugOrdersExtension.get(dorder_main.key).lastdispatchdate }','${ drugOrdersExtension.get(dorder_main.key).refillinterval }','${ providerIdentifiers.get(dorder_main.key) }','${ drugOrdersExtension.get(dorder_main.key).patientinstructions }','${ drugOrdersExtension.get(dorder_main.key).pharmacistinstructions }','${ otherOrdersInGroup }')">
+                                <td>${ patient_first_name } ${ patient_last_name }</td>
+                                <td>${ drugOrdersExtension.get(dorder_main.key).drugname.getDisplayString() }</td>
+                                <td>${ drugOrdersExtension.get(dorder_main.key).startdate }</td>
+                                <td>${ drugOrdersExtension.get(dorder_main.key).priority.getDisplayString() }</td>
+                            </tr>
                         <% } %>
                     <% } %>
                 </tbody>

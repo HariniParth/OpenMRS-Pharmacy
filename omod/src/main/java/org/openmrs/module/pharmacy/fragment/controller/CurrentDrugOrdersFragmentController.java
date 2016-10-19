@@ -29,6 +29,7 @@ public class CurrentDrugOrdersFragmentController {
         HashMap<Integer,DrugOrder> currentDrugOrderMain = new HashMap<Integer,DrugOrder>();
         ArrayList<drugorders> currentDrugOrdersExtension = new ArrayList<drugorders>();
         ArrayList<Patient> patientWithOrders = new ArrayList<Patient>();
+        HashMap<Integer,List<String>> otherOrders = new HashMap<Integer,List<String>>();
         
         HashMap<Integer,String> patientNames = new HashMap<Integer,String>();
         HashMap<Integer,Date> patientDOB = new HashMap<Integer,Date>();
@@ -51,6 +52,15 @@ public class CurrentDrugOrdersFragmentController {
                         DrugOrder dorderMain = (DrugOrder) Context.getOrderService().getOrder(order.getOrderId());
                         currentDrugOrderMain.put(order.getOrderId(),dorderMain);
 
+                        if(dorderExtension.getOrderstatus().equals("Active-Group")){
+                            List<drugorders> otherOrdersInGroup = Context.getService(drugordersService.class).getDrugOrdersByGroupID(dorderExtension.getGroupid());
+                            ArrayList<String> otherOrdersDrugName = new ArrayList<String>();
+                            for(drugorders otherOrder : otherOrdersInGroup){
+                                otherOrdersDrugName.add(otherOrder.getDrugname().getDisplayString());
+                            }
+                            otherOrders.put(dorderExtension.getOrderId(),otherOrdersDrugName);
+                        }
+                        
                         patientWithOrders.add(patient);
                         patientNames.put(patient.getPatientId(),Context.getPersonService().getPerson(patient.getPatientId()).getGivenName()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName());
                         patientDOB.put(patient.getPatientId(), Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate());
@@ -65,6 +75,7 @@ public class CurrentDrugOrdersFragmentController {
         model.addAttribute("currentDrugOrdersExtension", currentDrugOrdersExtension);
         model.addAttribute("currentDrugOrdersMain", currentDrugOrderMain);
         model.addAttribute("patientsWithOrder", patientWithOrders);
+        model.addAttribute("otherOrders", otherOrders);
         model.addAttribute("patientNames", patientNames);
         model.addAttribute("patientDOB", patientDOB);
         model.addAttribute("patientAddress", patientAddress);

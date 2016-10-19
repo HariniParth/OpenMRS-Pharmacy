@@ -47,9 +47,10 @@ public class SearchOrderViewFragmentController {
                     HashMap<Integer,String> providerIdentifiers = new HashMap<Integer,String>();
                     
                     List<Integer> orders = new ArrayList<Integer>();
-                    ArrayList<DrugOrder> drugOrdersMain = new ArrayList<DrugOrder>();
-                    ArrayList<drugorders> drugOrdersExtension = new ArrayList<drugorders>();
-                                
+                    HashMap<Integer,DrugOrder> drugOrdersMain = new HashMap<Integer,DrugOrder>();
+                    HashMap<Integer,drugorders> drugOrdersExtension = new HashMap<Integer,drugorders>();
+                    HashMap<Integer,List<String>> otherOrders = new HashMap<Integer,List<String>>();
+                    
                     if(!(first_name).equals("") && !(last_name).equals("")){
                         
                         List<drugorders> allOrders = Context.getService(drugordersService.class).getAllDrugOrders();
@@ -71,10 +72,19 @@ public class SearchOrderViewFragmentController {
                     if(patient_found){
                         for(Integer order : orders){
                             DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order);
-                            drugOrdersMain.add(drugOrderMain);
+                            drugOrdersMain.put(order,drugOrderMain);
                             
                             drugorders drugOrderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(drugOrderMain.getOrderId());
-                            drugOrdersExtension.add(drugOrderExtension);
+                            drugOrdersExtension.put(order,drugOrderExtension);
+                            
+                            if(drugOrderExtension.getOrderstatus().equals("Active-Group")){
+                                List<drugorders> otherOrdersInGroup = Context.getService(drugordersService.class).getDrugOrdersByGroupID(drugOrderExtension.getGroupid());
+                                ArrayList<String> otherOrdersDrugName = new ArrayList<String>();
+                                for(drugorders otherOrder : otherOrdersInGroup){
+                                    otherOrdersDrugName.add(otherOrder.getDrugname().getDisplayString());
+                                }
+                                otherOrders.put(drugOrderExtension.getOrderId(),otherOrdersDrugName);
+                            }
                             
                             Provider provider = Context.getOrderService().getOrder(drugOrderMain.getOrderId()).getOrderer();
                             provider_identifier = provider.getPerson().getGivenName() + " " + provider.getPerson().getFamilyName() + ", " + StringUtils.capitalize(provider.getIdentifier());
@@ -88,6 +98,7 @@ public class SearchOrderViewFragmentController {
                         
                         model.addAttribute("drugOrdersMain", drugOrdersMain);
                         model.addAttribute("drugOrdersExtension", drugOrdersExtension);
+                        model.addAttribute("otherOrders", otherOrders);
                     }
                     
                     if(!patient_found){

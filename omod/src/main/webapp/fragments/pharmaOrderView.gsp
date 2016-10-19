@@ -96,6 +96,13 @@
             <div id="order_value"><input type="text" id="pharma_pharmacist_instructions" name="pharma_pharmacist_instructions" readonly /></div>
         </div>    
 
+        <br/><br/><br/>
+        
+        <div class="fields" id="view_order_detail">
+            <label>Associated Orders (if any)</label>
+            <label id="associatedOrders"></label>
+        </div>    
+
         <br/><br/>
 
         <div class="fields"><input class="confirm right" id="btn-dispatch" name="action" value="Dispatch" type="submit" onclick="showPharmaActionWindow()" /></div><br/><br/>
