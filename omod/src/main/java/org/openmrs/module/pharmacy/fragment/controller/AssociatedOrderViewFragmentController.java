@@ -13,7 +13,9 @@ import org.openmrs.DrugOrder;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
+import org.openmrs.module.drugorders.api.drugordersdiseasesService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.drugorders.drugordersdiseases;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,6 +49,16 @@ public class AssociatedOrderViewFragmentController {
                         for(drugorders oExtn : orderExtn){
                             associatedOrderMain.put(oExtn.getOrderId(),(DrugOrder) Context.getOrderService().getOrder(oExtn.getOrderId()));
                         }
+                    } else if(Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(Integer.parseInt(orderId)) != null){
+                        
+                        List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociateddiagnosis(), drugorder.getPatientid());
+                        List<drugorders> orderExtn = new ArrayList<drugorders>();
+                        
+                        for(drugordersdiseases planOrder : planOrderList){
+                            associatedOrderMain.put(planOrder.getOrderid(),(DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderid()));
+                            orderExtn.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderid()));
+                        }
+                        associatedOrderExtn.put(Integer.SIZE, orderExtn);
                     }
                 }
             }
