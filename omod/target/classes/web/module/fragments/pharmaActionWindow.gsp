@@ -28,7 +28,7 @@
                 <label>Patient Name</label>
             </div>
             <div id="order_value">
-                <input type="text" id="pharma_action_patient_name" value="${pharma_patient_name}" readonly />
+                <input type="text" id="pharma_action_patient_name" value="${pharma_patient_name}" name="pharma_action_patient_name" readonly />
             </div>
         </div>
         
@@ -39,7 +39,7 @@
                 <label>Patient DOB</label>
             </div>
             <div id="order_value">
-                <input type="text" id="pharma_action_patient_DOB" value="${pharma_patient_DOB}" readonly />
+                <input type="text" id="pharma_action_patient_DOB" value="${pharma_patient_DOB}" name="pharma_action_patient_DOB" readonly />
             </div>
         </div>
         
@@ -50,7 +50,7 @@
                 <label>Patient ID</label>
             </div>
             <div id="order_value">
-                <input type="text" id="pharma_action_patient_id" value="${pharma_patient_id}" readonly />
+                <input type="text" id="pharma_action_patient_id" value="${pharma_patient_id}" name="pharma_action_patient_id" readonly />
             </div>
         </div>
         
@@ -61,7 +61,7 @@
                 <label>Address</label>
             </div>
             <div id="order_value">
-                <input type="text" id="pharma_action_patient_address" value="${pharma_patient_address}" readonly />
+                <input type="text" id="pharma_action_patient_address" value="${pharma_patient_address}" name="pharma_action_patient_address" readonly />
             </div>
         </div>
         
@@ -127,7 +127,7 @@
                 <label>Provider</label>
             </div>
             <div id="order_value">
-                <input type="text" id="pharma_order_provider" value="${order_provider}" readonly />
+                <input type="text" id="pharma_order_provider" value="${order_provider}" name="pharma_order_provider" readonly />
             </div>
         </div> 
 

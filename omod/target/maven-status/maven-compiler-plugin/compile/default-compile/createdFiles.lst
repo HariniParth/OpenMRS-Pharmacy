@@ -5,5 +5,6 @@ org/openmrs/module/pharmacy/fragment/controller/CurrentMedPlansFragmentControlle
 org/openmrs/module/pharmacy/fragment/controller/SearchBarByPatientFragmentController.class
 org/openmrs/module/pharmacy/extension/html/AdminList.class
 org/openmrs/module/pharmacy/page/controller/PharmacyPageController.class
+org/openmrs/module/pharmacy/fragment/controller/AssociatedOrderViewFragmentController.class
 org/openmrs/module/pharmacy/fragment/controller/SearchOrderViewFragmentController.class
 org/openmrs/module/pharmacy/fragment/controller/PharmaOrderViewFragmentController.class

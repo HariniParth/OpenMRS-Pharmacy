@@ -28,6 +28,8 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
 <div class="info-body">
 
     <div id="currentDrugOrdersWindow">
+        ${ ui.includeFragment("pharmacy", "associatedOrderView") }
+        
         ${ ui.includeFragment("pharmacy", "searchOrderView") }
         
         <p class="fields"><strong>Individual Drug Orders</strong></p><br/>
