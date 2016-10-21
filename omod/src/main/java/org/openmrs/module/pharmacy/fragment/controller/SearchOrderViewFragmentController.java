@@ -16,7 +16,9 @@ import org.openmrs.Provider;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
+import org.openmrs.module.drugorders.api.drugordersdiseasesService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.drugorders.drugordersdiseases;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -84,6 +86,17 @@ public class SearchOrderViewFragmentController {
                                     otherOrdersDrugName.add(otherOrder.getDrugname().getDisplayString());
                                 }
                                 otherOrders.put(drugOrderExtension.getOrderId(),otherOrdersDrugName);
+                            } 
+                            
+                            else if(drugOrderExtension.getOrderstatus().equals("Active-Plan")){
+                                List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugOrderExtension.getAssociateddiagnosis(), drugOrderExtension.getPatientid());
+                                ArrayList<String> otherOrdersDrugName = new ArrayList<String>();
+
+                                for(drugordersdiseases planOrder : planOrderList){
+                                    drugorders otherOrder = Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderid());
+                                    otherOrdersDrugName.add(otherOrder.getDrugname().getDisplayString());
+                                }
+                                otherOrders.put(drugOrderExtension.getOrderId(), otherOrdersDrugName);
                             }
                             
                             Provider provider = Context.getOrderService().getOrder(drugOrderMain.getOrderId()).getOrderer();

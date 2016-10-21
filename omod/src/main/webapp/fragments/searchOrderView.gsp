@@ -25,7 +25,7 @@
                         <% if(((drugOrdersExtension.get(dorder_main.key).orderstatus).equals("Active") || (drugOrdersExtension.get(dorder_main.key).orderstatus).equals("Active-Plan") || (drugOrdersExtension.get(dorder_main.key).orderstatus).equals("Active-Group") || (drugOrdersExtension.get(dorder_main.key).orderstatus).equals("Hold"))) { %>
 
                             <% def otherOrdersInGroup = "Nil" %>
-                            <% if(drugOrdersExtension.get(dorder_main.key).orderstatus == "Active-Group") { %>
+                            <% if(drugOrdersExtension.get(dorder_main.key).orderstatus == "Active-Group" || drugOrdersExtension.get(dorder_main.key).orderstatus == "Active-Plan") { %>
                                 <% otherOrdersInGroup = otherOrders.get(drugOrdersExtension.get(dorder_main.key).orderId) %>
                             <% } %>
 
