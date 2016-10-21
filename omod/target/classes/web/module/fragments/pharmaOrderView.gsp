@@ -99,6 +99,28 @@
         <br/><br/><br/>
         
         <div class="fields" id="view_order_detail">
+            <label>Additional Information 
+                <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
+                <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
+            </label>
+        </div>
+        
+        <div id="additionalInformation">
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label>Diagnosis</label></div>
+                <div id="order_value"><input type="text" id="pharma_order_diagnosis" name="pharma_order_diagnosis" readonly /></div>
+            </div>
+            
+            <br/><br/>
+            
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label>Allergy Note</label></div>
+                <div id="order_value"><input type="text" id="pharma_order_allergic" name="pharma_order_allergic" readonly /></div>
+            </div>
+            <br/><br/>
+        </div>
+        
+        <div class="fields" id="view_order_detail">
             <label>Associated Orders (if any)</label>
             <input type="text" id="associatedOrders" name="associatedOrders" readonly />
         </div>    
@@ -115,3 +137,19 @@
     
     </form>
 </div>
+
+<script type="text/javascript">    
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().parent().next("#additionalInformation").show();
+        jq(this).hide();
+        jq(this).next(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().parent().next("#additionalInformation").hide();
+        jq(this).hide();
+        jq(this).prev(".icon-plus-sign").show();
+    });
+</script>

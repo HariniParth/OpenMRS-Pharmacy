@@ -160,9 +160,31 @@
         <br/><br/><br/>
         
         <div class="fields" id="view_order_detail">
+            <label>Additional Information 
+                <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
+                <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
+            </label>
+        </div>
+        
+        <div id="additionalInformation">
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label>Diagnosis</label></div>
+                <div id="order_value"><input type="text" id="pharma_action_order_diagnosis" value="${pharma_order_diagnosis}" readonly /></div>
+            </div>
+            
+            <br/><br/>
+            
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label>Allergy Note</label></div>
+                <div id="order_value"><input type="text" id="pharma_action_order_allergic" value="${pharma_order_allergic}" readonly /></div>
+            </div>
+            <br/><br/>
+        </div>
+        
+        <div class="fields" id="view_order_detail">
             <label>Associated Orders (if any)</label>
             <input type="text" id="associatedOrders" name="associatedOrders" value="${associatedOrders}" readonly />
-        </div>
+        </div><br/>
         
         <div class="fields">
             <label>Enter Comments</label>
@@ -190,8 +212,24 @@
         </div>
         
         <div class="fields">
-            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_patient_address}','${pharma_start_date}','${pharma_order_details}','${pharma_order_refill}','${pharma_last_dispatch_date}','${pharma_order_refillInterval}','${order_provider}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}','${associatedOrders}')">${ ui.message("Back") }</button>
+            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_patient_address}','${pharma_start_date}','${pharma_order_details}','${pharma_order_refill}','${pharma_last_dispatch_date}','${pharma_order_refillInterval}','${order_provider}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}','${pharma_order_diagnosis}','${pharma_order_allergic}','${associatedOrders}')">${ ui.message("Back") }</button>
         </div>
 
     </form>
 </div>
+
+<script type="text/javascript">
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().parent().next("#additionalInformation").show();
+        jq(this).hide();
+        jq(this).next(".icon-minus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().parent().next("#additionalInformation").hide();
+        jq(this).hide();
+        jq(this).prev(".icon-plus-sign").show();
+    });
+</script>

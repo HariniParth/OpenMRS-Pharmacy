@@ -10,7 +10,7 @@ $(document).ready( function() {
     jq("#pharmaOrderViewWindow").hide();
 });
 
-function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,lastDispatchDate,refillInterval,providerInfo,patientinstructions,pharmacistinstructions,associatedOrders){
+function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,lastDispatchDate,refillInterval,providerInfo,patientinstructions,pharmacistinstructions,diagnosis,isAllergic,associatedOrders){
     $("#pharma_order_id").val(orderId);
     $("#pharma_patient_id").val(patientId);
     $("#pharma_patient_name").val(patientName);
@@ -24,6 +24,11 @@ function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAdd
     $("#order_provider").val(providerInfo);
     $("#pharma_patient_instructions").val(patientinstructions);
     $("#pharma_pharmacist_instructions").val(pharmacistinstructions);
+    $("#pharma_order_diagnosis").val(diagnosis);
+    if(isAllergic !== "null")
+        $("#pharma_order_allergic").val(isAllergic);
+    else
+        $("#pharma_order_allergic").val("Nil");
     
     var associatedOrderList = associatedOrders.replace("[","").replace("]","").split(',');
     var orderList = "";
@@ -34,18 +39,22 @@ function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAdd
     });
     $("#associatedOrders").val(orderList);
     
+    document.getElementById("pharmaOrderViewWindow").style.display = 'block';
     jq("#pharmaOrderViewWindow").show();
 }
 
 function hidePharmaOrderView(){
     jq("#pharmaOrderViewWindow").hide();
+    jq("#additionalInformation").hide();
+    jq(".icon-plus-sign.edit-action").show();
+    jq(".icon-minus-sign.edit-action").hide();
 }
 
 function showPharmaActionWindow(){
     jq("#pharmaOrderViewWindow").hide();
 }
 
-function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,numRefill,lastDispatchDate,refillInterval,providerInfo,patientInst,pharmaInst,orderList){
+function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,numRefill,lastDispatchDate,refillInterval,providerInfo,patientInst,pharmaInst,diagnosis,isAllergic,orderList){
     jq("#pharmaOrderActionWindow").hide();
     $("#pharma_order_id").val(orderID);
     $("#pharma_patient_id").val(patientID);
@@ -60,6 +69,11 @@ function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patient
     $("#order_provider").val(providerInfo);
     $("#pharma_patient_instructions").val(patientInst);
     $("#pharma_pharmacist_instructions").val(pharmaInst);
+    $("#pharma_order_diagnosis").val(diagnosis);
+    if(isAllergic !== "Nil")
+        $("#pharma_order_allergic").val(isAllergic);
+    else
+        $("#pharma_order_allergic").val("Nil");
     $("#associatedOrders").val(orderList);
     jq("#pharmaOrderViewWindow").show();
 }
