@@ -72,18 +72,14 @@ function closeAssociatedOrdersWindow(){
     jq("#associatedOrdersTableWrapper").hide();
 }
 
-function autoCompleteFirstName(firstNameList){
-    var list = firstNameList.replace("[","").replace("]","").split(',');
+function autoCompletePatientName(patientNameList){
+    var list = patientNameList.replace("[","").replace("]","").split(',');
     console.log(list);
-    $("#patient_first_name").autocomplete({
-       source : list
-    });
-}
-
-function autoCompleteLastName(lastNameList){
-    var list = lastNameList.replace("[","").replace("]","").split(',');
-    console.log(list);
-    $("#patient_last_name").autocomplete({
-       source : list
+    $("#patient_full_name").autocomplete({
+       source : list,
+       select : function( event , ui ) {
+           $("#patient_full_name").val(ui.item.label);
+           $("#searchByPatient").submit();
+       }
     });
 }

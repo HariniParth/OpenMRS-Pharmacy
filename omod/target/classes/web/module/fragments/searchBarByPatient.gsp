@@ -3,19 +3,9 @@
 %>
 
 <div id="patient-search-bar">
-    <form method="post">
-        <h3 class="fields">FIND ORDERS BY PATIENT</h3>
-        <div class="fields">
-            <span id="orderSearchField">
-                <input id="patient_first_name" type="text" name="patient_first_name" placeholder="Enter First Name" oninput="autoCompleteFirstName('${allFirstNames}')"/>
-            </span>
-            <span id="orderSearchField">
-                <input class="fields" id="patient_last_name" type="text" name="patient_last_name" placeholder="Enter Last Name" oninput="autoCompleteLastName('${allLastNames}')"/>
-            </span>
-            <span id="orderSearchButton">
-                <button id="btn-place" type="submit">Search</button>
-            </span><br/><br/>
-        </div>
-        <input type="hidden" name="action" value="searchByPatient"/>
+    <form method="post" id="searchByPatient">
+        <h3 class="fields">FIND ORDERS BY PATIENT
+            <input id="patient_full_name" type="text" name="patient_full_name" placeholder="Enter Patient Name" oninput="autoCompletePatientName('${allPatientNames}')" />
+        </h3>
     </form>
 </div>

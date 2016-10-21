@@ -29,23 +29,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SearchOrderViewFragmentController {
     
     
-    public void controller(PageModel model,@RequestParam(value = "patient_first_name", required = false) String patient_first_name,
-                            @RequestParam(value = "patient_last_name", required = false) String patient_last_name,
+    public void controller(PageModel model,@RequestParam(value = "patient_full_name", required = false) String patient_full_name,
                             @RequestParam(value = "action", required = false) String action){
        
-        String first_name = patient_first_name.replace(" ", "");
-        String last_name = patient_last_name.replace(" ", "");
-        model.addAttribute("patient_first_name", first_name);
-        model.addAttribute("patient_last_name", last_name);
+        String patient_name = patient_full_name.trim();
+        model.addAttribute("patient_name", patient_name);
                                 
-        if(StringUtils.isNotBlank(action)){
+        if(!(patient_name).equals("")){
             try {
-                if("searchByPatient".equals(action)){
                     boolean patient_found = false;
                     Date patient_DOB = null;
                     String patient_address = null;
                     String patient_identifier = null;
-                    String provider_identifier = null;
+                    String provider_identifier;
                     HashMap<Integer,String> providerIdentifiers = new HashMap<Integer,String>();
                     
                     List<Integer> orders = new ArrayList<Integer>();
@@ -53,21 +49,18 @@ public class SearchOrderViewFragmentController {
                     HashMap<Integer,drugorders> drugOrdersExtension = new HashMap<Integer,drugorders>();
                     HashMap<Integer,List<String>> otherOrders = new HashMap<Integer,List<String>>();
                     
-                    if(!(first_name).equals("") && !(last_name).equals("")){
+                    List<drugorders> allOrders = Context.getService(drugordersService.class).getAllDrugOrders();
                         
-                        List<drugorders> allOrders = Context.getService(drugordersService.class).getAllDrugOrders();
-                        
-                        for(drugorders order : allOrders){
-                            Person person = Context.getPersonService().getPerson(Integer.parseInt(order.getPatientid()));
-                            
-                            if(person.getGivenName().equals(first_name) && person.getFamilyName().equals(last_name)){
-                                patient_found = true;
-                                model.addAttribute("PatientFound", patient_found);
-                                orders.add(order.getOrderId());
-                                patient_DOB = person.getBirthdate();
-                                patient_address = person.getPersonAddress().getAddress1() + " " + person.getPersonAddress().getCityVillage() + " " + person.getPersonAddress().getStateProvince() + " Zipcode:" + person.getPersonAddress().getPostalCode() + " " + person.getPersonAddress().getCountry();
-                                patient_identifier = Context.getPatientService().getPatient(Integer.parseInt(order.getPatientid())).getPatientIdentifier().toString();
-                            }
+                    for(drugorders order : allOrders){
+                        Person person = Context.getPersonService().getPerson(Integer.parseInt(order.getPatientid()));
+
+                        if((person.getGivenName()+" "+person.getFamilyName()).equals(patient_name)){
+                            patient_found = true;
+                            model.addAttribute("PatientFound", patient_found);
+                            orders.add(order.getOrderId());
+                            patient_DOB = person.getBirthdate();
+                            patient_address = person.getPersonAddress().getAddress1() + " " + person.getPersonAddress().getCityVillage() + " " + person.getPersonAddress().getStateProvince() + " Zipcode:" + person.getPersonAddress().getPostalCode() + " " + person.getPersonAddress().getCountry();
+                            patient_identifier = Context.getPatientService().getPatient(Integer.parseInt(order.getPatientid())).getPatientIdentifier().toString();
                         }
                     }
                     
@@ -117,7 +110,6 @@ public class SearchOrderViewFragmentController {
                     if(!patient_found){
                         model.addAttribute("PatientFound", patient_found);
                     }
-                }
             }
             catch (NumberFormatException e){
                 System.out.println(e.toString());

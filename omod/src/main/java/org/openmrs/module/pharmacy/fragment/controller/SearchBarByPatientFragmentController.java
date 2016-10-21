@@ -19,17 +19,14 @@ public class SearchBarByPatientFragmentController {
     
     public void controller(PageModel model) {
         
-        List<String> allFirstNames = new ArrayList<String>();
-        List<String> allLastNames = new ArrayList<String>();
+        List<String> allPatientNames = new ArrayList<String>();
         
         List<Patient> allPatients = Context.getPatientService().getAllPatients();
         for(Patient patient : allPatients){
-            allFirstNames.add(Context.getPersonService().getPerson(patient.getPatientId()).getGivenName());
-            allLastNames.add(Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName());
+            allPatientNames.add(Context.getPersonService().getPerson(patient.getPatientId()).getGivenName()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName());
         }
         
-        model.addAttribute("allFirstNames", allFirstNames);
-        model.addAttribute("allLastNames", allLastNames);
+        model.addAttribute("allPatientNames", allPatientNames);
     }
         
 }

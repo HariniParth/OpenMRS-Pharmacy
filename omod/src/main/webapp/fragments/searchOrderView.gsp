@@ -3,7 +3,7 @@
     ui.includeJavascript("pharmacy", "dataTables.js")
 %>
 
-<% if(!(patient_first_name).equals("") && !(patient_last_name).equals("")) { %>
+<% if(!(patient_name).equals("")) { %>
     <div id="searchResultsWindow">
         
         <% if(PatientFound) { %>
@@ -29,8 +29,8 @@
                                 <% otherOrdersInGroup = otherOrders.get(drugOrdersExtension.get(dorder_main.key).orderId) %>
                             <% } %>
 
-                            <tr id="orderRow" onclick="viewPharmaOrderView('${ dorder_main.key }','${ patient_identifier }','${ patient_first_name } ${ patient_last_name }','${ patient_DOB }','${ patient_address }','${ drugOrdersExtension.get(dorder_main.key).startdate }','${ drugOrdersExtension.get(dorder_main.key).drugname.getDisplayString() }','${ dorder_main.value.route.getDisplayString() }','${ dorder_main.value.dose }','${ dorder_main.value.doseUnits.getDisplayString() }','${ dorder_main.value.duration }','${ dorder_main.value.durationUnits.getDisplayString() }','${ dorder_main.value.quantity }','${ dorder_main.value.quantityUnits.getDisplayString() }','${ dorder_main.value.frequency }','${ drugOrdersExtension.get(dorder_main.key).refill }','${ drugOrdersExtension.get(dorder_main.key).lastdispatchdate }','${ drugOrdersExtension.get(dorder_main.key).refillinterval }','${ providerIdentifiers.get(dorder_main.key) }','${ drugOrdersExtension.get(dorder_main.key).patientinstructions }','${ drugOrdersExtension.get(dorder_main.key).pharmacistinstructions }','${ otherOrdersInGroup }')">
-                                <td>${ patient_first_name } ${ patient_last_name }</td>
+                            <tr id="orderRow" onclick="viewPharmaOrderView('${ dorder_main.key }','${ patient_identifier }','${ patient_name }','${ patient_DOB }','${ patient_address }','${ drugOrdersExtension.get(dorder_main.key).startdate }','${ drugOrdersExtension.get(dorder_main.key).drugname.getDisplayString() }','${ dorder_main.value.route.getDisplayString() }','${ dorder_main.value.dose }','${ dorder_main.value.doseUnits.getDisplayString() }','${ dorder_main.value.duration }','${ dorder_main.value.durationUnits.getDisplayString() }','${ dorder_main.value.quantity }','${ dorder_main.value.quantityUnits.getDisplayString() }','${ dorder_main.value.frequency }','${ drugOrdersExtension.get(dorder_main.key).refill }','${ drugOrdersExtension.get(dorder_main.key).lastdispatchdate }','${ drugOrdersExtension.get(dorder_main.key).refillinterval }','${ providerIdentifiers.get(dorder_main.key) }','${ drugOrdersExtension.get(dorder_main.key).patientinstructions }','${ drugOrdersExtension.get(dorder_main.key).pharmacistinstructions }','${ otherOrdersInGroup }')">
+                                <td>${ patient_name }</td>
                                 <td>${ drugOrdersExtension.get(dorder_main.key).drugname.getDisplayString() }</td>
                                 <td>${ drugOrdersExtension.get(dorder_main.key).startdate }</td>
                                 <td>${ drugOrdersExtension.get(dorder_main.key).priority.getDisplayString() }</td>
