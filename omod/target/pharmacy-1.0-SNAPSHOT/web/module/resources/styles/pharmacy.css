@@ -86,7 +86,7 @@ and open the template in the editor.
     cursor: pointer;
 }
 
-#medRow:hover{
+#medRow:hover span{
     background: #75b2f0;
     color: white;
     cursor: pointer;
@@ -95,4 +95,9 @@ and open the template in the editor.
 #activeOrdersWindow, #searchResultsWindow{
     overflow: auto;
     position: relative;
+}
+
+#associatedOrdersTableWrapper .dataTables_wrapper, #searchResultsWindow .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{
+   _height: 152px;
+   min-height: 152px;
 }

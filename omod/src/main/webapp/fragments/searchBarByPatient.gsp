@@ -4,7 +4,7 @@
 
 <div id="patient-search-bar">
     <form method="post">
-        <h4 id="header" class="fields">FIND ORDERS BY PATIENT</h4>
+        <h3 class="fields">FIND ORDERS BY PATIENT</h3>
         <div class="fields">
             <span id="orderSearchField">
                 <input id="patient_first_name" type="text" name="patient_first_name" placeholder="Enter First Name" oninput="autoCompleteFirstName('${allFirstNames}')"/>

@@ -10,7 +10,7 @@
             <span class="searchResults"><strong>Search Results</strong>
             <i class="icon-remove-sign edit-action pull-right" onclick="closeSearchResultsWindow()" title="${ ui.message("Close") }"></i></span><br/><br/>
 
-            <table id="searchResultsTable">
+            <table id="searchOrdersTable">
                 <thead>
                     <tr>
                         <th id="patientSort">Patient Name</th>
@@ -51,7 +51,7 @@
 <% } %>
 
 <script>
-    jq('#searchResultsTable').dataTable({
+    jq('#searchOrdersTable').dataTable({
         "sPaginationType": "full_numbers",
         "bPaginate": true,
         "bAutoWidth": false,

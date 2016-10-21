@@ -22,21 +22,26 @@
 
 ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
 
-<h3 id="header">${ ui.message("ACTIVE DRUG ORDERS") }</h3>
-<p>${ ui.message("Click on an order item to record action") }</p><br/>
+<div>
+    <h3>
+        <i class="icon-medicine"></i>
+        <strong>${ ui.message("ACTIVE DRUG ORDERS") }</strong>
+    </h3>
+    ${ ui.message("Click on an order item to record action") }
+</div><br/>
 
 <div class="info-body">
 
     <div id="currentDrugOrdersWindow">
-        ${ ui.includeFragment("pharmacy", "associatedOrderView") }
+        <p class="fields">${ ui.includeFragment("pharmacy", "associatedOrderView") }</p>
         
-        ${ ui.includeFragment("pharmacy", "searchOrderView") }
+        <p class="fields">${ ui.includeFragment("pharmacy", "searchOrderView") }</p>
         
         <p class="fields"><strong>Individual Drug Orders</strong></p><br/>
-        ${ ui.includeFragment("pharmacy", "currentDrugOrders") }
+        ${ ui.includeFragment("pharmacy", "currentDrugOrders") } <br/>
         
         <p class="fields"><strong>Medication Plan Orders</strong></p><br/>
-        ${ ui.includeFragment("pharmacy", "currentMedPlans") }
+        ${ ui.includeFragment("pharmacy", "currentMedPlans") } <br/>
     </div>
     
     <div id="pharmaOrderViewWindow">

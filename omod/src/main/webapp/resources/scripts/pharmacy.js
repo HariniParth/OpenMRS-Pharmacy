@@ -68,6 +68,10 @@ function closeSearchResultsWindow(){
     jq("#searchResultsWindow").hide();
 }
 
+function closeAssociatedOrdersWindow(){
+    jq("#associatedOrdersTableWrapper").hide();
+}
+
 function autoCompleteFirstName(firstNameList){
     var list = firstNameList.replace("[","").replace("]","").split(',');
     console.log(list);
