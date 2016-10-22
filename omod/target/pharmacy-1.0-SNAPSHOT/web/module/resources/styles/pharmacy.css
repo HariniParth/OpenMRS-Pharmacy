@@ -80,13 +80,13 @@ and open the template in the editor.
     color: #363463;
 }
 
-#orderRow:hover {
+.orderRow:hover {
     background: #75b2f0;
     color: white;
     cursor: pointer;
 }
 
-#medRow:hover span{
+.medRow:hover span{
     background: #75b2f0;
     color: white;
     cursor: pointer;

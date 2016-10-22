@@ -48,6 +48,8 @@ function hidePharmaOrderView(){
     jq("#additionalInformation").hide();
     jq(".icon-plus-sign.edit-action").show();
     jq(".icon-minus-sign.edit-action").hide();
+    jq(".orderRow").css({'background-color':'','color':''});
+    jq(".medRow span").css({'background-color':'','color':''});
 }
 
 function showPharmaActionWindow(){
