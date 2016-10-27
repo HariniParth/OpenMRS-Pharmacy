@@ -90,10 +90,12 @@ public class CurrentMedPlansFragmentController {
                     }
                     if(otherOrders.size() == 1)
                         otherOrders.add("Nil");
-                    mainOrder.put(planName, orderMain);
-                    otherOrdersPlans.put(planName, otherOrders);
-                    patientPlanOrdersMain.put(patient.getGivenName()+" "+patient.getFamilyName(), mainOrder);
                     
+                    if(orderMain.size() > 0){
+                        mainOrder.put(planName, orderMain);
+                        otherOrdersPlans.put(planName, otherOrders);
+                        patientPlanOrdersMain.put(patient.getGivenName()+" "+patient.getFamilyName(), mainOrder);
+                    }
                 }
                 
                 patientDOB.put(patient.getPatientId(),patient.getBirthdate());
