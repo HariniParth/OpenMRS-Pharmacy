@@ -45,7 +45,7 @@
         
         <br/><br/>
         
-        <div class="fields" id="view_order_detail">
+        <div class="hidden" id="view_order_detail">
             <div id="order_label">
                 <label>Patient ID</label>
             </div>
@@ -53,8 +53,6 @@
                 <input type="text" id="pharma_action_patient_id" value="${pharma_patient_id}" name="pharma_action_patient_id" readonly />
             </div>
         </div>
-        
-        <br/><br/>
         
         <div class="fields" id="view_order_detail">
             <div id="order_label">

@@ -26,12 +26,10 @@
 
         <br/><br/>
         
-        <div class="fields" id="view_order_detail">
+        <div class="hidden" id="view_order_detail">
             <div id="order_label"><label>Patient ID</label></div>
             <div id="order_value"><input type="text" id="pharma_patient_id" name="pharma_patient_id" readonly /></div>
         </div>
-
-        <br/><br/>
         
         <div class="fields" id="view_order_detail">
             <div id="order_label"><label>Address</label></div>
