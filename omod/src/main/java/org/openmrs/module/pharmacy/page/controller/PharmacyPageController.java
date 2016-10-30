@@ -6,9 +6,7 @@
 package org.openmrs.module.pharmacy.page.controller;
 
 import java.util.Calendar;
-import java.util.Date;
 import org.apache.commons.lang.StringUtils;
-import org.openmrs.DrugOrder;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
@@ -31,22 +29,20 @@ public class PharmacyPageController {
             @RequestParam(value = "commentCheckbox", required = false) String commentCheckbox,
             @RequestParam(value = "messageCheckbox", required = false) String messageCheckbox) {
 
+        String order_status = "";
         model.addAttribute("pharma_order_id", pharma_order_id);
         model.addAttribute("pharma_action_order_id", pharma_action_order_id);
 
         if (StringUtils.isNotBlank(action)) {
             try {
                 if ("Dispatch".equals(action)) {
-                    String order_status = "Dispatch";
-                    model.addAttribute("order_status", order_status);
+                    order_status = "Dispatch";
                 }
                 if ("Hold".equals(action)) {
-                    String order_status = "Hold";
-                    model.addAttribute("order_status", order_status);
+                    order_status = "Hold";
                 }
                 if ("Drop".equals(action)) {
-                    String order_status = "Drop";
-                    model.addAttribute("order_status", order_status);
+                    order_status = "Drop";
                 }
                 if ("OK".equals(action)) {
 
@@ -85,5 +81,6 @@ public class PharmacyPageController {
                 System.out.println(e.toString());
             }
         }
+        model.addAttribute("order_status", order_status);
     }
 }
