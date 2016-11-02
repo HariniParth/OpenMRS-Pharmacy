@@ -25,7 +25,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
 <div>
     <h3>
         <i class="icon-medicine"></i>
-        <strong>${ ui.message("ACTIVE DRUG ORDERS") }</strong>
+        <strong>${ ui.message("ACTIVE DRUG ORDERS") } <label id="selectedPatient"></label></strong>
     </h3>
     ${ ui.message("Click on an order item to record action") }
 </div><br/>

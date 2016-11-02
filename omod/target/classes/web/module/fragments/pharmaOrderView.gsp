@@ -131,7 +131,7 @@
         
         <div class="fields"><input class="confirm right" id="btn-drop" name="action" value="Drop" type="submit" onclick="showPharmaActionWindow()" />
         
-        <input class="cancel" id="btn-place" value="Close" type="submit" onclick="hidePharmaOrderView()" /></div>
+        <input class="cancel" id="btn-place" value="Close" type="submit" /></div>
     
     </form>
 </div>

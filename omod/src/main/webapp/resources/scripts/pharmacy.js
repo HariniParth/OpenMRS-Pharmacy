@@ -11,6 +11,18 @@ $(document).ready( function() {
 });
 
 function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,lastDispatchDate,refillInterval,providerInfo,patientinstructions,pharmacistinstructions,diagnosis,isAllergic,associatedOrders){
+    
+    jq(this).on('click', function () {
+        var $rowsNo = $('#currentDrugOrdersTable tbody tr').filter(function () {
+            return $.trim($(this).find('td').eq(0).text()) !== patientName;
+        }).hide();
+    
+        var $rowsNo = $('#currentMedPlansTable tbody tr').filter(function () {
+            return $.trim($(this).find('td').eq(0).text()) !== patientName;
+        }).hide();
+    });
+    
+    $("#selectedPatient").text("- "+patientName);
     $("#pharma_order_id").val(orderId);
     $("#pharma_patient_id").val(patientId);
     $("#pharma_patient_name").val(patientName);
@@ -41,15 +53,6 @@ function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAdd
     
     document.getElementById("pharmaOrderViewWindow").style.display = 'block';
     jq("#pharmaOrderViewWindow").show();
-}
-
-function hidePharmaOrderView(){
-    jq("#pharmaOrderViewWindow").hide();
-    jq("#additionalInformation").hide();
-    jq(".icon-plus-sign.edit-action").show();
-    jq(".icon-minus-sign.edit-action").hide();
-    jq(".orderRow").css({'background-color':'','color':''});
-    jq(".medRow span").css({'background-color':'','color':''});
 }
 
 function showPharmaActionWindow(){

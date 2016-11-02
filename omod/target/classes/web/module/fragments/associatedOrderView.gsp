@@ -46,6 +46,7 @@
         "bLengthChange": true,
         "bSort": true,
         "bJQueryUI": true,
+        "bInfo": false,
         "bFilter": false
 
     });
