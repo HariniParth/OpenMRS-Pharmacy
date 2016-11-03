@@ -1,6 +1,7 @@
 <%
     ui.includeCss("pharmacy", "pharmacy.css")
     ui.includeJavascript("pharmacy", "dataTables.js")
+    def last_dispatch_date = "";
 %>
 
 <div id="activeOrdersWindow">
@@ -20,7 +21,13 @@
                     <% otherOrdersInGroup = otherOrders.get(currentDrugOrderExtension.orderId) %>
                 <% } %>
                 
-                <tr class="orderRow" onclick="viewPharmaOrderView('${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).orderId }','${patientIdentifiers.get(currentDrugOrderExtension.patientid.toInteger())}','${patientNames.get(currentDrugOrderExtension.patientid.toInteger())}','${patientDOB.get(currentDrugOrderExtension.patientid.toInteger())}','${patientAddress.get(currentDrugOrderExtension.patientid.toInteger())}','${ currentDrugOrderExtension.startdate }','${ currentDrugOrderExtension.drugname.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).route.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).dose }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).duration }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).quantity }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).frequency }','${ currentDrugOrderExtension.refill }','${ currentDrugOrderExtension.lastdispatchdate }','${ currentDrugOrderExtension.refillinterval }','${providerIdentifiers.get(currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).orderId)}','${ currentDrugOrderExtension.patientinstructions }','${ currentDrugOrderExtension.pharmacistinstructions }','${ currentDrugOrderExtension.associateddiagnosis.getDisplayString() }','${ currentDrugOrderExtension.isallergicorderreasons }','${ otherOrdersInGroup }')">
+                <% if(currentDrugOrderExtension.lastdispatchdate != null) { %>
+                    <% last_dispatch_date = currentDrugOrderExtension.lastdispatchdate.format('yyyy-MM-dd'); %>
+                <% } else { %>
+                    <% last_dispatch_date = currentDrugOrderExtension.lastdispatchdate; %>
+                <% } %>
+                
+                <tr class="orderRow" onclick="viewPharmaOrderView('${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).orderId }','${patientIdentifiers.get(currentDrugOrderExtension.patientid.toInteger())}','${patientNames.get(currentDrugOrderExtension.patientid.toInteger())}','${patientDOB.get(currentDrugOrderExtension.patientid.toInteger()).format('yyyy-MM-dd')}','${patientAddress.get(currentDrugOrderExtension.patientid.toInteger())}','${ currentDrugOrderExtension.startdate.format('yyyy-MM-dd') }','${ currentDrugOrderExtension.drugname.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).route.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).dose }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).duration }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).quantity }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).frequency }','${ currentDrugOrderExtension.refill }','${ last_dispatch_date }','${ currentDrugOrderExtension.refillinterval }','${providerIdentifiers.get(currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).orderId)}','${ currentDrugOrderExtension.patientinstructions }','${ currentDrugOrderExtension.pharmacistinstructions }','${ currentDrugOrderExtension.associateddiagnosis.getDisplayString() }','${ currentDrugOrderExtension.isallergicorderreasons }','${ otherOrdersInGroup }')">
                     <td>
                         ${ patientNames.get(currentDrugOrderExtension.patientid.toInteger()) }
                     </td>
@@ -28,7 +35,7 @@
                         ${ currentDrugOrderExtension.drugname.getDisplayString().toUpperCase().capitalize() }
                     </td>
                     <td>
-                        ${ currentDrugOrderExtension.startdate }
+                        ${ currentDrugOrderExtension.startdate.format('yyyy-MM-dd') }
                     </td>
                     <td>
                         ${ currentDrugOrderExtension.priority.getDisplayString() }

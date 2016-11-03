@@ -1,6 +1,7 @@
 <%
     ui.includeCss("pharmacy", "pharmacy.css")
     ui.includeJavascript("pharmacy", "dataTables.js")
+    def last_dispatch_date = "";
 %>
 
 <% if(!(patient_name).equals("")) { %>
@@ -29,10 +30,16 @@
                                 <% otherOrdersInGroup = otherOrders.get(drugOrdersExtension.get(dorder_main.key).orderId) %>
                             <% } %>
 
-                            <tr class="orderRow" onclick="viewPharmaOrderView('${ dorder_main.key }','${ patient_identifier }','${ patient_name }','${ patient_DOB }','${ patient_address }','${ drugOrdersExtension.get(dorder_main.key).startdate }','${ drugOrdersExtension.get(dorder_main.key).drugname.getDisplayString() }','${ dorder_main.value.route.getDisplayString() }','${ dorder_main.value.dose }','${ dorder_main.value.doseUnits.getDisplayString() }','${ dorder_main.value.duration }','${ dorder_main.value.durationUnits.getDisplayString() }','${ dorder_main.value.quantity }','${ dorder_main.value.quantityUnits.getDisplayString() }','${ dorder_main.value.frequency }','${ drugOrdersExtension.get(dorder_main.key).refill }','${ drugOrdersExtension.get(dorder_main.key).lastdispatchdate }','${ drugOrdersExtension.get(dorder_main.key).refillinterval }','${ providerIdentifiers.get(dorder_main.key) }','${ drugOrdersExtension.get(dorder_main.key).patientinstructions }','${ drugOrdersExtension.get(dorder_main.key).pharmacistinstructions }','${ drugOrdersExtension.get(dorder_main.key).associateddiagnosis.getDisplayString() }','${ drugOrdersExtension.get(dorder_main.key).isallergicorderreasons }','${ otherOrdersInGroup }')">
+                            <% if(drugOrdersExtension.get(dorder_main.key).lastdispatchdate != null) { %>
+                                <% last_dispatch_date = drugOrdersExtension.get(dorder_main.key).lastdispatchdate.format('yyyy-MM-dd'); %>
+                            <% } else { %>
+                                <% last_dispatch_date = drugOrdersExtension.get(dorder_main.key).lastdispatchdate; %>
+                            <% } %>
+                            
+                            <tr class="orderRow" onclick="viewPharmaOrderView('${ dorder_main.key }','${ patient_identifier }','${ patient_name }','${ patient_DOB.format('yyyy-MM-dd') }','${ patient_address }','${ drugOrdersExtension.get(dorder_main.key).startdate.format('yyyy-MM-dd') }','${ drugOrdersExtension.get(dorder_main.key).drugname.getDisplayString() }','${ dorder_main.value.route.getDisplayString() }','${ dorder_main.value.dose }','${ dorder_main.value.doseUnits.getDisplayString() }','${ dorder_main.value.duration }','${ dorder_main.value.durationUnits.getDisplayString() }','${ dorder_main.value.quantity }','${ dorder_main.value.quantityUnits.getDisplayString() }','${ dorder_main.value.frequency }','${ drugOrdersExtension.get(dorder_main.key).refill }','${ last_dispatch_date }','${ drugOrdersExtension.get(dorder_main.key).refillinterval }','${ providerIdentifiers.get(dorder_main.key) }','${ drugOrdersExtension.get(dorder_main.key).patientinstructions }','${ drugOrdersExtension.get(dorder_main.key).pharmacistinstructions }','${ drugOrdersExtension.get(dorder_main.key).associateddiagnosis.getDisplayString() }','${ drugOrdersExtension.get(dorder_main.key).isallergicorderreasons }','${ otherOrdersInGroup }')">
                                 <td>${ patient_name }</td>
                                 <td>${ drugOrdersExtension.get(dorder_main.key).drugname.getDisplayString() }</td>
-                                <td>${ drugOrdersExtension.get(dorder_main.key).startdate }</td>
+                                <td>${ drugOrdersExtension.get(dorder_main.key).startdate.format('yyyy-MM-dd') }</td>
                                 <td>${ drugOrdersExtension.get(dorder_main.key).priority.getDisplayString() }</td>
                             </tr>
                         <% } %>

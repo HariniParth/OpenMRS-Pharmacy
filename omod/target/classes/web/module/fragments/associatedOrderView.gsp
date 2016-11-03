@@ -1,6 +1,7 @@
 <%
     ui.includeCss("pharmacy", "pharmacy.css")
     ui.includeJavascript("pharmacy", "dataTables.js")
+    def last_dispatch_date = "";
 %>
 
 <% if(associatedOrderExtn.size() > 0) { %>
@@ -23,10 +24,16 @@
                     <% associatedExtn.value.each { orderExtn -> %>
                         <% if(orderExtn.orderstatus == "Active-Group" || orderExtn.orderstatus == "Active-Plan") { %>
 
-                            <tr class="orderRow" onclick="viewPharmaOrderView('${ orderExtn.orderId }','${ patientID }','${ patientName }','${ patientDOB }','${ patientAddress }','${ orderExtn.startdate }','${ orderExtn.drugname.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).route.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).dose }','${ associatedOrderMain.get(orderExtn.orderId).doseUnits.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).duration }','${ associatedOrderMain.get(orderExtn.orderId).durationUnits.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).quantity }','${ associatedOrderMain.get(orderExtn.orderId).quantityUnits.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).frequency }','${ orderExtn.refill }','${ orderExtn.lastdispatchdate }','${ orderExtn.refillinterval }','${ provider }','${ orderExtn.patientinstructions }','${ orderExtn.pharmacistinstructions }','${ orderExtn.associateddiagnosis.getDisplayString() }','${ orderExtn.isallergicorderreasons }','${ associatedOrders }')">
+                            <% if(orderExtn.lastdispatchdate != null) { %>
+                                <% last_dispatch_date = orderExtn.lastdispatchdate.format('yyyy-MM-dd'); %>
+                            <% } else { %>
+                                <% last_dispatch_date = orderExtn.lastdispatchdate; %>
+                            <% } %>
+                                
+                            <tr class="orderRow" onclick="viewPharmaOrderView('${ orderExtn.orderId }','${ patientID }','${ patientName }','${ patientDOB }','${ patientAddress }','${ orderExtn.startdate.format('yyyy-MM-dd') }','${ orderExtn.drugname.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).route.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).dose }','${ associatedOrderMain.get(orderExtn.orderId).doseUnits.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).duration }','${ associatedOrderMain.get(orderExtn.orderId).durationUnits.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).quantity }','${ associatedOrderMain.get(orderExtn.orderId).quantityUnits.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).frequency }','${ orderExtn.refill }','${ last_dispatch_date }','${ orderExtn.refillinterval }','${ provider }','${ orderExtn.patientinstructions }','${ orderExtn.pharmacistinstructions }','${ orderExtn.associateddiagnosis.getDisplayString() }','${ orderExtn.isallergicorderreasons }','${ associatedOrders }')">
                                 <td>${ patientName }</td>
                                 <td>${ orderExtn.drugname.getDisplayString() }</td>
-                                <td>${ orderExtn.startdate }</td>
+                                <td>${ orderExtn.startdate.format('yyyy-MM-dd') }</td>
                                 <td>${ orderExtn.priority.getDisplayString() }</td>
                             </tr>
 
