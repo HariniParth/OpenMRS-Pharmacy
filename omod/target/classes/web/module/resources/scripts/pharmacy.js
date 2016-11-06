@@ -8,6 +8,18 @@
 
 $(document).ready( function() {
     jq("#pharmaOrderViewWindow").hide();
+    
+    var selectedPatient = $("#pharma_action_patient_name").val();
+    
+    if(selectedPatient !== undefined){
+        var $rowsNo = $('#currentDrugOrdersTable tbody tr').filter(function () {
+            return $.trim($(this).find('td').eq(0).text()) !== selectedPatient;
+        }).hide();
+    
+        var $rowsNo = $('#currentMedPlansTable tbody tr').filter(function () {
+            return $.trim($(this).find('td').eq(0).text()) !== selectedPatient;
+        }).hide();
+    }
 });
 
 function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,lastDispatchDate,refillInterval,providerInfo,patientinstructions,pharmacistinstructions,diagnosis,isAllergic,associatedOrders){
