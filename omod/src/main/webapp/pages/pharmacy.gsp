@@ -37,11 +37,14 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
         
         <p class="fields">${ ui.includeFragment("pharmacy", "searchOrderView") }</p>
         
-        <p class="fields"><strong>Individual Drug Orders</strong></p><br/>
-        ${ ui.includeFragment("pharmacy", "currentDrugOrders") } <br/>
+        <div id="currentOrdersWindow">
+            <p class="fields"><strong>ALL INDIVIDUAL DRUG ORDERS</strong></p><br/>
+            ${ ui.includeFragment("pharmacy", "currentDrugOrders") } <br/>
+
+            <p class="fields"><strong>ALL MEDICATION PLAN ORDERS</strong></p><br/>
+            ${ ui.includeFragment("pharmacy", "currentMedPlans") } <br/>
+        </div>
         
-        <p class="fields"><strong>Medication Plan Orders</strong></p><br/>
-        ${ ui.includeFragment("pharmacy", "currentMedPlans") } <br/>
     </div>
     
     <div id="pharmaOrderViewWindow">

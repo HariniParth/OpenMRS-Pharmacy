@@ -92,11 +92,6 @@ and open the template in the editor.
     cursor: pointer;
 }
 
-#activeOrdersWindow, #searchResultsWindow{
-    overflow: auto;
-    position: relative;
-}
-
 #associatedOrdersTableWrapper .dataTables_wrapper, #searchResultsWindow .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{
    _height: 152px;
    min-height: 152px;
@@ -104,4 +99,20 @@ and open the template in the editor.
 
 .icon-minus-sign.edit-action, #additionalInformation, #pharmaOrderViewWindow{
     display: none;
+}
+
+#line-break{
+    width: 100%;
+    border: 2px solid;
+}
+
+#planDrugName{
+    float: left;
+    width: 60%;
+    overflow: hidden;
+}
+
+#planDrugDate{
+    float: right;
+    width: 40%;
 }

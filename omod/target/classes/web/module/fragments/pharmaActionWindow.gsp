@@ -190,21 +190,20 @@
         
         <div class="fields">
             <input type="textarea" maxlength="50" id="comments" name="comments"/>
-        </div>
+        </div><br/>
         
-        <div class="fields">
+        <div class="fields" id="view_order_detail">
             <input type="checkbox" name="commentCheckbox" value="1" />Forward message to ordering physician<br/>
-        </div>
+        </div><br/>
         
-        <div class="fields">
-            <input type="checkbox" name="messageCheckbox" value="1" />Send another message to ordering physician<br/>
-        </div>
+        <div class="fields" id="view_order_detail">
+            <input type="checkbox" name="messageCheckbox" value="1" />Another message to ordering physician<br/>
+        </div><br/>
         
         <div class="fields">
             <input type="textarea" maxlength="50" id="additionalMessage" name="additionalMessage"/>
-        </div>
+        </div><br/>
         
-        <br/>
         <div class="fields">
             <input class="confirm right" id="btn-confirm" type="submit" name="action" value="OK" onclick="showPharmaActionWindow()" />
         </div>

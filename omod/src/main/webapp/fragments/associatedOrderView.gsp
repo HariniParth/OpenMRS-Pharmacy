@@ -7,7 +7,7 @@
 <% if(associatedOrderExtn.size() > 0) { %>
 
     <div id="associatedOrdersTableWrapper">
-        <strong>Associated Drug Orders</strong>
+        <strong>ASSOCIATED ORDERS - ${ patientName }</strong>
         <i class="icon-remove-sign edit-action pull-right" onclick="closeAssociatedOrdersWindow()" title="${ ui.message("Close") }"></i></span><br/><br/>
         
         <table id="associatedOrdersTable">
@@ -42,7 +42,8 @@
                 <% } %>
             </tbody>
         </table>
-    </div><br/>
+        <br/><br/><div id="line-break"></div><br/><br/>
+    </div>
 <% } %>
 
 <script>
