@@ -12,11 +12,23 @@ $(document).ready( function() {
     var selectedPatient = $("#pharma_action_patient_name").val();
     
     if(selectedPatient !== undefined){
+        $("#selectedPatient").text("- "+selectedPatient);
+        var selectedDrug = $("#pharma_action_order_details").val().replace(/(\w+).*/,"$1").toUpperCase();
+            
         var $rowsNo = $('#currentDrugOrdersTable tbody tr').filter(function () {
+            if($.trim($(this).find('td').eq(0).text()) === selectedPatient && $.trim($(this).find('td').eq(1).text()) === selectedDrug){
+                $(this).css({"background": "#75b2f0","color": "white"});
+            }
             return $.trim($(this).find('td').eq(0).text()) !== selectedPatient;
         }).hide();
     
         var $rowsNo = $('#currentMedPlansTable tbody tr').filter(function () {
+            var $rowsPlan = $('.medRow').filter(function () {
+                if($(this).find('#order_label').text() === selectedDrug){
+                    $(this).children("span").css({"background": "#75b2f0","color": "white"});
+                }
+            });
+        
             return $.trim($(this).find('td').eq(0).text()) !== selectedPatient;
         }).hide();
     }
