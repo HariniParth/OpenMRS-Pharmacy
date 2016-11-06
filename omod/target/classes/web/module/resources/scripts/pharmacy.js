@@ -32,6 +32,10 @@ $(document).ready( function() {
             return $.trim($(this).find('td').eq(0).text()) !== selectedPatient;
         }).hide();
     }
+    
+    if($("#searchOrders").val() !== undefined){
+        jq("#currentOrdersWindow").hide();
+    }
 });
 
 function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,lastDispatchDate,refillInterval,providerInfo,patientinstructions,pharmacistinstructions,diagnosis,isAllergic,associatedOrders){
@@ -109,6 +113,7 @@ function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patient
 
 function closeSearchResultsWindow(){
     jq("#searchResultsWindow").hide();
+    jq("#currentOrdersWindow").show();
 }
 
 function closeAssociatedOrdersWindow(){

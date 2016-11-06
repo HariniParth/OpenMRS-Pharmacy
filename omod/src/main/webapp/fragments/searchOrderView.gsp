@@ -8,7 +8,7 @@
     <div id="searchResultsWindow">
         
         <% if(PatientFound) { %>
-            <span class="searchResults"><strong>SEARCH RESULTS - ${ patient_name }</strong>
+        <span class="searchResults"><strong>SEARCH RESULTS <span id="searchOrders">- ${ patient_name }</span></strong>
             <i class="icon-remove-sign edit-action pull-right" onclick="closeSearchResultsWindow()" title="${ ui.message("Close") }"></i></span><br/><br/>
 
             <table id="searchOrdersTable">
@@ -46,7 +46,6 @@
                     <% } %>
                 </tbody>
             </table>
-            <br/><div id="line-break"></div>
             
         <% } else { %>
             <span class="searchResults"><strong>Search Results</strong>
