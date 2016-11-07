@@ -24,7 +24,7 @@ $(document).ready( function() {
     
         var $rowsNo = $('#currentMedPlansTable tbody tr').filter(function () {
             var $rowsPlan = $('.medRow').filter(function () {
-                if($(this).find('#order_label').text() === selectedDrug){
+                if($(this).find('#planDrugName').text() === selectedDrug){
                     $(this).children("span").css({"background": "#75b2f0","color": "white"});
                 }
             });
