@@ -6,10 +6,12 @@
 package org.openmrs.module.pharmacy.page.controller;
 
 import java.util.Calendar;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.uicommons.util.InfoErrorMessageUtil;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class PharmacyPageController {
 
-    public void controller(PageModel model,
+    public void controller(PageModel model, HttpSession session,
             @RequestParam(value = "pharma_order_id", required = false) String pharma_order_id,
             @RequestParam(value = "pharma_order_status", required = false) String pharma_order_status,
             @RequestParam(value = "pharma_action_order_id", required = false) Integer pharma_action_order_id,
@@ -75,7 +77,8 @@ public class PharmacyPageController {
                     }
 
                     Context.getService(drugordersService.class).saveDrugOrder(drugorder);
-
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - "+pharma_order_status);
+                    
                 }
             } catch (Exception e) {
                 System.out.println(e.toString());
