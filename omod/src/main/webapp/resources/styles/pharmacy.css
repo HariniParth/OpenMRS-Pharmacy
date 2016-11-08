@@ -92,7 +92,7 @@ and open the template in the editor.
     cursor: pointer;
 }
 
-#associatedOrdersTableWrapper .dataTables_wrapper, #searchResultsWindow .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{
+#associatedOrdersTableWrapper .dataTables_wrapper, #otherOrdersTableWrapper .dataTables_wrapper, #searchResultsWindow .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{
    _height: 152px;
    min-height: 152px;
 }

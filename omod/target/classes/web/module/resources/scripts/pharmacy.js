@@ -116,8 +116,8 @@ function closeSearchResultsWindow(){
     jq("#currentOrdersWindow").show();
 }
 
-function closeAssociatedOrdersWindow(){
-    jq("#associatedOrdersTableWrapper").hide();
+function closeAllOrdersWindow(){
+    jq("#allOrdersTableWrapper").hide();
 }
 
 function autoCompletePatientName(patientNameList){
