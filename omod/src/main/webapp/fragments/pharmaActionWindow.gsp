@@ -189,7 +189,7 @@
         </div>
         
         <div class="fields">
-            <input type="textarea" maxlength="50" id="comments" name="comments"/>
+            <input type="textarea" maxlength="100" id="comments" name="comments"/>
         </div><br/>
         
         <div class="fields" id="view_order_detail">
@@ -201,7 +201,7 @@
         </div><br/>
         
         <div class="fields">
-            <input type="textarea" maxlength="50" id="additionalMessage" name="additionalMessage"/>
+            <input type="textarea" maxlength="100" id="additionalMessage" name="additionalMessage"/>
         </div><br/>
         
         <div class="fields">
