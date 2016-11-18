@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th id="patientSort">Patient Name</th>
+                <th id="patientSort">Patient DOB</th>
                 <th id="planSort">Plan Name</th>
                 <th id="detailsSort">Details</th>
             </tr>
@@ -17,8 +18,12 @@
             <% patientPlanOrdersMain.each { patientPlanOrderMain -> %>
                 <% patientPlanOrderMain.value.each { patientPlanOrder -> %>
                     <tr>
-                        <td>${ patientPlanOrderMain.key }</td>
+                        <td>${ patientName.get(patientPlanOrderMain.key) }</td>
+                        
+                        <td>${ patientDOB.get(patientPlanOrderMain.key).format('yyyy-MM-dd') }</td>
+                        
                         <td>${ patientPlanOrder.key.toUpperCase() }</td>
+                        
                         <td>
                             <% patientPlanOrder.value.each { patientPlan -> %>
                             
@@ -28,7 +33,7 @@
                                     <% last_dispatch_date = patientPlanOrdersExtn.get(patientPlan.orderId).lastdispatchdate; %>
                                 <% } %>
                 
-                                <div class="medRow" onclick="viewPharmaOrderView('${ patientPlan.orderId }','${ patientPlanOrdersExtn.get(patientPlan.orderId).patientid }','${ patientPlanOrderMain.key }','${ patientDOB.get(patientPlanOrdersExtn.get(patientPlan.orderId).patientid.toInteger()).format('yyyy-MM-dd') }','${ patientAddress.get(patientPlanOrdersExtn.get(patientPlan.orderId).patientid.toInteger()) }','${ patientPlanOrdersExtn.get(patientPlan.orderId).startdate.format('yyyy-MM-dd') }','${ patientPlanOrdersExtn.get(patientPlan.orderId).drugname.getDisplayString() }','${ patientPlan.route.getDisplayString() }','${ patientPlan.dose }','${ patientPlan.doseUnits.getDisplayString() }','${ patientPlan.duration }','${ patientPlan.durationUnits.getDisplayString() }','${ patientPlan.quantity }','${ patientPlan.quantityUnits.getDisplayString() }','${ patientPlan.frequency }','${ patientPlanOrdersExtn.get(patientPlan.orderId).refill }','${ last_dispatch_date }','${ patientPlanOrdersExtn.get(patientPlan.orderId).refillinterval }','${ providerIdentifiers.get(patientPlan.orderId) }','${ patientPlanOrdersExtn.get(patientPlan.orderId).patientinstructions }','${ patientPlanOrdersExtn.get(patientPlan.orderId).pharmacistinstructions }','${ patientPlanOrdersExtn.get(patientPlan.orderId).associateddiagnosis.getDisplayString() }','${ patientPlanOrdersExtn.get(patientPlan.orderId).isallergicorderreasons }','${ otherOrdersByPatients.get(patientPlanOrdersExtn.get(patientPlan.orderId).patientid.toInteger()).get(patientPlanOrder.key) }')">
+                                <div class="medRow" onclick="viewPharmaOrderView('${ patientPlan.orderId }','${ patientPlanOrdersExtn.get(patientPlan.orderId).patientid }','${ patientName.get(patientPlanOrderMain.key) }','${ patientDOB.get(patientPlanOrderMain.key).format('yyyy-MM-dd') }','${ patientAddress.get(patientPlanOrdersExtn.get(patientPlan.orderId).patientid.toInteger()) }','${ patientPlanOrdersExtn.get(patientPlan.orderId).startdate.format('yyyy-MM-dd') }','${ patientPlanOrdersExtn.get(patientPlan.orderId).drugname.getDisplayString() }','${ patientPlan.route.getDisplayString() }','${ patientPlan.dose }','${ patientPlan.doseUnits.getDisplayString() }','${ patientPlan.duration }','${ patientPlan.durationUnits.getDisplayString() }','${ patientPlan.quantity }','${ patientPlan.quantityUnits.getDisplayString() }','${ patientPlan.frequency }','${ patientPlanOrdersExtn.get(patientPlan.orderId).refill }','${ last_dispatch_date }','${ patientPlanOrdersExtn.get(patientPlan.orderId).refillinterval }','${ providerIdentifiers.get(patientPlan.orderId) }','${ patientPlanOrdersExtn.get(patientPlan.orderId).patientinstructions }','${ patientPlanOrdersExtn.get(patientPlan.orderId).pharmacistinstructions }','${ patientPlanOrdersExtn.get(patientPlan.orderId).associateddiagnosis.getDisplayString() }','${ patientPlanOrdersExtn.get(patientPlan.orderId).isallergicorderreasons }','${ otherOrdersByPatients.get(patientPlanOrdersExtn.get(patientPlan.orderId).patientid.toInteger()).get(patientPlanOrder.key) }')">
                                     <span id="planDrugName">${ patientPlanOrdersExtn.get(patientPlan.orderId).drugname.getDisplayString().toUpperCase() }</span>
                                     <span id="planDrugDate">${ patientPlanOrdersExtn.get(patientPlan.orderId).startdate.format('yyyy-MM-dd') }</span>
                                 </div>

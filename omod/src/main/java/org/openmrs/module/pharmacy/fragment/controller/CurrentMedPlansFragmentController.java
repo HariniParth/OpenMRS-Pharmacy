@@ -31,11 +31,19 @@ public class CurrentMedPlansFragmentController {
         
         List<Patient> patients = Context.getPatientService().getAllPatients();
         
-        HashMap<String,List<String>> patientPlans = new HashMap<String,List<String>>();
-        HashMap<String,HashMap<String,List<DrugOrder>>> patientPlanOrdersMain = new HashMap<String,HashMap<String,List<DrugOrder>>>();
+        //Storing list of Med Plan Names ordered for the patient
+        HashMap<Integer,List<String>> patientPlans = new HashMap<Integer,List<String>>();
+        
+        //Storing all the Med Plan Orders by Patient by Plan - Drug Order data
+        HashMap<Integer,HashMap<String,List<DrugOrder>>> patientPlanOrdersMain = new HashMap<Integer,HashMap<String,List<DrugOrder>>>();
+        
+        //Storing all the Med Plan Orders by Patient by Plan - Drug Order Extension data
         HashMap<Integer,drugorders> patientPlanOrdersExtn = new HashMap<Integer,drugorders>();
+        
+        //Storing all the related Orders of the selected Order (other Orders in same Plan)
         HashMap<Integer,HashMap<String,List<String>>> otherOrdersByPatients = new HashMap<Integer,HashMap<String,List<String>>>();
         
+        HashMap<Integer,String> patientName = new HashMap<Integer,String>();
         HashMap<Integer,Date> patientDOB = new HashMap<Integer,Date>();
         HashMap<Integer,String> patientAddress = new HashMap<Integer,String>();
         HashMap<Integer,String> patientIdentifiers = new HashMap<Integer,String>();
@@ -52,7 +60,7 @@ public class CurrentMedPlansFragmentController {
                         planNames.add(plan.getDiseaseid().getDisplayString());
                     }
                 }
-                patientPlans.put(patient.getGivenName()+" "+patient.getFamilyName(), planNames);
+                patientPlans.put(patient.getPatientId(), planNames);
             }
             
             if(planNames.size() > 0){
@@ -94,10 +102,11 @@ public class CurrentMedPlansFragmentController {
                     if(orderMain.size() > 0){
                         mainOrder.put(planName, orderMain);
                         otherOrdersPlans.put(planName, otherOrders);
-                        patientPlanOrdersMain.put(patient.getGivenName()+" "+patient.getFamilyName(), mainOrder);
+                        patientPlanOrdersMain.put(patient.getPatientId(), mainOrder);
                     }
                 }
                 
+                patientName.put(patient.getPatientId(), patient.getGivenName()+" "+patient.getFamilyName());
                 patientDOB.put(patient.getPatientId(),patient.getBirthdate());
                 patientAddress.put(patient.getPatientId(), patient.getPersonAddress().getAddress1()+" "+patient.getPersonAddress().getCityVillage()+" "+patient.getPersonAddress().getStateProvince()+"Zipcode: "+patient.getPersonAddress().getPostalCode()+" "+patient.getPersonAddress().getCountry());
                 patientIdentifiers.put(patient.getPatientId(), patient.getPatientIdentifier().toString());
@@ -108,6 +117,7 @@ public class CurrentMedPlansFragmentController {
         model.addAttribute("patientPlans", patientPlans);
         model.addAttribute("patientPlanOrdersMain", patientPlanOrdersMain);
         model.addAttribute("patientPlanOrdersExtn", patientPlanOrdersExtn);
+        model.addAttribute("patientName", patientName);
         model.addAttribute("patientDOB", patientDOB);
         model.addAttribute("patientAddress", patientAddress);
         model.addAttribute("patientIdentifiers", patientIdentifiers);

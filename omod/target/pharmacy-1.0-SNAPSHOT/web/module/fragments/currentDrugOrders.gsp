@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th id="patientSort">Patient Name</th>
+                <th id="patientSort">Patient DOB</th>
                 <th id="drugSort">Drug Name</th>
                 <th id="dateSort">Start Date</th>
                 <th id="prioritySort">Priority</th>
@@ -30,6 +31,9 @@
                 <tr class="orderRow" onclick="viewPharmaOrderView('${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).orderId }','${ currentDrugOrderExtension.patientid }','${ patientNames.get(currentDrugOrderExtension.patientid.toInteger()) }','${ patientDOB.get(currentDrugOrderExtension.patientid.toInteger()).format('yyyy-MM-dd') }','${ patientAddress.get(currentDrugOrderExtension.patientid.toInteger()) }','${ currentDrugOrderExtension.startdate.format('yyyy-MM-dd') }','${ currentDrugOrderExtension.drugname.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).route.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).dose }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).doseUnits.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).duration }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).durationUnits.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).quantity }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).quantityUnits.getDisplayString() }','${ currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).frequency }','${ currentDrugOrderExtension.refill }','${ last_dispatch_date }','${ currentDrugOrderExtension.refillinterval }','${ providerIdentifiers.get(currentDrugOrdersMain.get(currentDrugOrderExtension.orderId).orderId) }','${ currentDrugOrderExtension.patientinstructions }','${ currentDrugOrderExtension.pharmacistinstructions }','${ currentDrugOrderExtension.associateddiagnosis.getDisplayString() }','${ currentDrugOrderExtension.isallergicorderreasons }','${ otherOrdersInGroup }')">
                     <td>
                         ${ patientNames.get(currentDrugOrderExtension.patientid.toInteger()) }
+                    </td>
+                    <td>
+                        ${ patientDOB.get(currentDrugOrderExtension.patientid.toInteger()).format('yyyy-MM-dd') }
                     </td>
                     <td>
                         ${ currentDrugOrderExtension.drugname.getDisplayString().toUpperCase().capitalize() }
