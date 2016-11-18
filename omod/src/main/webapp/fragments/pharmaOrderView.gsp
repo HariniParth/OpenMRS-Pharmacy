@@ -127,11 +127,11 @@
 
         <div class="fields"><input class="confirm right" id="btn-dispatch" name="action" value="Dispatch" type="submit" onclick="showPharmaActionWindow()" /></div><br/><br/>
         
-        <div class="fields"><input class="confirm right" id="btn-hold" name="action" value="Hold" type="submit" onclick="showPharmaActionWindow()" /></div><br/><br/>
+        <div class="fields"><input class="confirm right" id="btn-hold" name="action" value="On Hold" type="submit" onclick="showPharmaActionWindow()" /></div><br/><br/>
         
-        <div class="fields"><input class="confirm right" id="btn-drop" name="action" value="Drop" type="submit" onclick="showPharmaActionWindow()" />
+        <div class="fields"><input class="confirm right" id="btn-drop" name="action" value="Discard" type="submit" onclick="showPharmaActionWindow()" />
         
-        <input class="cancel" id="btn-place" value="Close" type="submit" /></div>
+        <input class="cancel" id="btn-place" value="Cancel" type="submit" /></div>
     
     </form>
 </div>

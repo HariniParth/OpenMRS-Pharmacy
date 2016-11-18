@@ -40,11 +40,11 @@ public class PharmacyPageController {
                 if ("Dispatch".equals(action)) {
                     order_status = "Dispatch";
                 }
-                if ("Hold".equals(action)) {
-                    order_status = "Hold";
+                if ("On Hold".equals(action)) {
+                    order_status = "On Hold";
                 }
-                if ("Drop".equals(action)) {
-                    order_status = "Drop";
+                if ("Discard".equals(action)) {
+                    order_status = "Discard";
                 }
                 if ("OK".equals(action)) {
 
@@ -65,7 +65,7 @@ public class PharmacyPageController {
                     drugorder.setComments(comments);
                     drugorder.setMessage(additionalMessage);
                     
-                    if (!(pharma_order_status.equals("Hold"))) {
+                    if (!(pharma_order_status.equals("On Hold"))) {
                         
                         if (pharma_order_status.equals("Dispatch") && drugorder.getRefill() > 0){
                             drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
