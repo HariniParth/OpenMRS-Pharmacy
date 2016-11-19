@@ -205,11 +205,11 @@
         </div><br/>
         
         <div class="fields">
-            <input class="confirm right" id="btn-confirm" type="submit" name="action" value="OK" onclick="showPharmaActionWindow()" />
+            <input class="confirm right" id="btn-place" type="submit" name="action" value="OK" onclick="showPharmaActionWindow()" />
         </div>
         
         <div class="fields">
-            <button class="cancel" id="btn-place" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_patient_address}','${pharma_start_date}','${pharma_order_details}','${pharma_order_refill}','${pharma_last_dispatch_date}','${pharma_order_refillInterval}','${order_provider}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}','${pharma_order_diagnosis}','${pharma_order_allergic}','${associatedOrders}')">${ ui.message("Back") }</button>
+            <input class="cancel" id="btn-place" value="Back" type="button" onclick="hidePharmaActionWindow('${pharma_order_id}','${pharma_patient_id}','${pharma_patient_name}','${pharma_patient_DOB}','${pharma_patient_address}','${pharma_start_date}','${pharma_order_details}','${pharma_order_refill}','${pharma_last_dispatch_date}','${pharma_order_refillInterval}','${order_provider}','${pharma_patient_instructions}','${pharma_pharmacist_instructions}','${pharma_order_diagnosis}','${pharma_order_allergic}','${associatedOrders}')" />
         </div>
 
     </form>

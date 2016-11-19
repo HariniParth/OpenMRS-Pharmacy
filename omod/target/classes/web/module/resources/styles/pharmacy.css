@@ -120,3 +120,8 @@ and open the template in the editor.
 #currentDrugOrdersTable, #currentMedPlansTable, #associatedOrdersTable, #searchOrdersTable, #allOrdersTable{
     font-size: 13px;
 }
+
+input[type=submit], input[type=button]{
+    width: 90px;
+    height: 35px;
+}
