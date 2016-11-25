@@ -47,15 +47,15 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
         
     </div>
     
-    <div id="pharmaOrderViewWindow">
+    <div id="pharmaOrderViewWindow" class="dialog">
         ${ ui.includeFragment("pharmacy", "pharmaOrderView") }
     </div>
 
-    <div id="pharmaOrderActionWindow">
-        <% if(!(pharma_order_id).equals("") && !order_status.equals("")) { %>
+    <% if(!(pharma_order_id).equals("") && !order_status.equals("")) { %>
+        <div id="pharmaOrderActionWindow" class="dialog">
             ${ ui.includeFragment("pharmacy", "pharmaActionWindow") }
-        <% } %>
-    </div>
+        </div>
+    <% } %>
 </div>
 
 <script type="text/javascript">

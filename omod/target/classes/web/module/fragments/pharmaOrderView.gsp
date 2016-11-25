@@ -2,7 +2,7 @@
     ui.includeCss("pharmacy", "pharmacy.css")
 %>
 
-<div id="pharmaOrderView" class="dialog">
+<div id="pharmaOrderView">
     
     <form method="post">
         

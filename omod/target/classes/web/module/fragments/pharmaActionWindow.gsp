@@ -2,7 +2,7 @@
     ui.includeCss("pharmacy", "pharmacy.css")
 %>
 
-<div id="pharmaActionView" class="dialog">
+<div id="pharmaActionView">
     
     <div class="dialog-header">
         <h3 id="dialog-heading">${ ui.message("Confirm Action") }</h3>
