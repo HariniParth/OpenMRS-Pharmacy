@@ -125,3 +125,8 @@ input[type=submit], input[type=button]{
     width: 90px;
     height: 35px;
 }
+
+.pageLinks:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
