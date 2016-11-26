@@ -117,7 +117,7 @@ and open the template in the editor.
     width: 40%;
 }
 
-#currentDrugOrdersTable, #currentMedPlansTable, #associatedOrdersTable, #searchOrdersTable, #allOrdersTable{
+#currentDrugOrdersTable, #currentMedPlansTable, #associatedOrdersTable, #searchOrdersTable, #allOrdersTable, #currentPlanGroupTable, #currentGroupOrdersTable{
     font-size: 13px;
 }
 

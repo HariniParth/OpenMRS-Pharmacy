@@ -31,6 +31,32 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
     ${ ui.message("Click on an order item to record action") }
 </div><br/>
 
+<div class="info-body">
+
+    <div id="currentDrugOrdersWindow">
+        
+        <p class="fields">${ ui.includeFragment("pharmacy", "searchOrderView") }</p>
+        
+        <div id="currentOrdersWindow">
+            <p class="fields"><strong>GROUP DRUG ORDERS</strong></p><br/>
+            ${ ui.includeFragment("pharmacy", "currentGroupOrders") } <br/>
+
+            <p class="fields"><strong>GROUP PLAN ORDERS</strong></p><br/>
+            ${ ui.includeFragment("pharmacy", "currentPlanGroupOrders") } <br/>
+        </div>
+        
+    </div>
+    
+    <div id="pharmaOrderViewWindow" class="dialog">
+        ${ ui.includeFragment("pharmacy", "pharmaGroupView") }
+    </div>
+ 
+    <div id="pharmaOrderActionWindow" class="dialog">
+        ${ ui.includeFragment("pharmacy", "pharmaGroupActionWindow") }
+    </div>
+
+</div>
+
 <script type="text/javascript">
     jq(function() {
         emr.updateBreadcrumbs();
