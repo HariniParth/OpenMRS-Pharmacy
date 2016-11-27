@@ -57,7 +57,7 @@ public class CurrentPlanGroupOrdersFragmentController {
                 for(String planName : planNames) {
                     Concept planConcept = Context.getConceptService().getConceptByName(planName);
                     
-                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(planConcept, Integer.toString(patient.getPatientId()));
+                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(planConcept, patient);
                     
                     List<drugorders> drugorders = new ArrayList<drugorders>();
                     

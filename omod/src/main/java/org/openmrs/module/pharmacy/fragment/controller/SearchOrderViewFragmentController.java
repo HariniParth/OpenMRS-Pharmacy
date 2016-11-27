@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  *
  * @author harini-geek
+ * This Fragment lists the Active Orders placed for the Patient according to Search Results
  */
 public class SearchOrderViewFragmentController {
     
@@ -49,6 +50,7 @@ public class SearchOrderViewFragmentController {
                     HashMap<Integer,drugorders> drugOrdersExtension = new HashMap<Integer,drugorders>();
                     HashMap<Integer,List<String>> otherOrders = new HashMap<Integer,List<String>>();
                     
+                    //Find if there are any Active Orders for the given Patient. If yes, record Patient's ID and Demographic details
                     List<drugorders> allOrders = Context.getService(drugordersService.class).getAllDrugOrders();
                         
                     for(drugorders order : allOrders){
@@ -64,6 +66,7 @@ public class SearchOrderViewFragmentController {
                         }
                     }
                     
+                    //If Patient is found, retrieve the DrugOrder Main and Extension data
                     if(patient_found){
                         for(Integer order : orders){
                             DrugOrder drugOrderMain = (DrugOrder) Context.getOrderService().getOrder(order);
@@ -72,6 +75,7 @@ public class SearchOrderViewFragmentController {
                             drugorders drugOrderExtension = Context.getService(drugordersService.class).getDrugOrderByOrderID(drugOrderMain.getOrderId());
                             drugOrdersExtension.put(order,drugOrderExtension);
                             
+                            //Retrieve the list of other Orders placed as a Group with the selected Order
                             if(drugOrderExtension.getOrderstatus().equals("Active-Group")){
                                 List<drugorders> otherOrdersInGroup = Context.getService(drugordersService.class).getDrugOrdersByGroupID(drugOrderExtension.getGroupid());
                                 ArrayList<String> otherOrdersDrugName = new ArrayList<String>();
@@ -81,8 +85,9 @@ public class SearchOrderViewFragmentController {
                                 otherOrders.put(drugOrderExtension.getOrderId(),otherOrdersDrugName);
                             } 
                             
+                            //Retrieve the list of other Orders placed as a Med Plan Order with the selected Order
                             else if(drugOrderExtension.getOrderstatus().equals("Active-Plan")){
-                                List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugOrderExtension.getAssociateddiagnosis(), drugOrderExtension.getPatientid());
+                                List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugOrderExtension.getAssociateddiagnosis(), Context.getPatientService().getPatient(Integer.parseInt(drugOrderExtension.getPatientid())));
                                 ArrayList<String> otherOrdersDrugName = new ArrayList<String>();
 
                                 for(drugordersdiseases planOrder : planOrderList){
