@@ -16,7 +16,7 @@
         <tbody>
             <% patientPlanOrders.each { patientPlanOrder -> %>
                 <% patientPlanOrder.value.each { order -> %>
-                    <tr>
+                    <tr class="groupRow">
                         <td>${ patientName.get(patientPlanOrder.key) }</td>
                         
                         <td>${ patientDOB.get(patientPlanOrder.key).format('yyyy-MM-dd') }</td>
@@ -50,5 +50,11 @@
         "bInfo": false,
         "bFilter": false
 
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".groupRow").click(function(){
+        jq(this).css({"background": "#75b2f0","color": "white"});
     });
 </script>
