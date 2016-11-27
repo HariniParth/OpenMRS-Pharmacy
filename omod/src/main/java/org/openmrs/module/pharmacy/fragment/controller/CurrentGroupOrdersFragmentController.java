@@ -28,6 +28,9 @@ public class CurrentGroupOrdersFragmentController {
         //Storing all the Group Orders by Patient
         HashMap<Integer,HashMap<Integer,List<drugorders>>> patientGroupOrders = new HashMap<Integer,HashMap<Integer,List<drugorders>>>();
 
+        //Storing all the Single Orders by Patient
+        HashMap<Integer,drugorders> patientSingleOrders = new HashMap<Integer,drugorders>();
+
         //Storing Patient Names by Patient ID
         HashMap<Integer,String> patientName = new HashMap<Integer,String>();
        
@@ -41,18 +44,11 @@ public class CurrentGroupOrdersFragmentController {
             
             for(drugorders patientOrders : allPatientOrders){
                 
-                if(!patientGroups.containsKey(patientOrders.getGroupid()) || !patientGroups.containsKey(patientOrders.getOrderId())){
-                    
-                    if(patientOrders.getOrderstatus().equals("Active") || patientOrders.getOrderstatus().equals("Active-Group")){
-                        
-                        if(patientOrders.getGroupid() != null){
-                            patientGroups.put(patientOrders.getGroupid(),Context.getService(drugordersService.class).getDrugOrdersByGroupID(patientOrders.getGroupid()));
-                        } else {
-                            List<drugorders> drugorders = new ArrayList<drugorders>();
-                            drugorders.add(patientOrders);
-                            patientGroups.put(patientOrders.getOrderId(),drugorders);
-                        }
-                    }
+                if(!patientGroups.containsKey(patientOrders.getGroupid()) && patientOrders.getOrderstatus().equals("Active-Group")){
+                    patientGroups.put(patientOrders.getGroupid(),Context.getService(drugordersService.class).getDrugOrdersByGroupID(patientOrders.getGroupid()));
+                }
+                else if (patientOrders.getOrderstatus().equals("Active")){
+                    patientSingleOrders.put(Integer.parseInt(patientOrders.getPatientid()), patientOrders);
                 }
             }
             
@@ -62,6 +58,7 @@ public class CurrentGroupOrdersFragmentController {
         }
         
         model.addAttribute("patientPlanOrders", patientGroupOrders);
+        model.addAttribute("patientSingleOrders", patientSingleOrders);
         model.addAttribute("patientName", patientName);
         model.addAttribute("patientDOB", patientDOB);
     }

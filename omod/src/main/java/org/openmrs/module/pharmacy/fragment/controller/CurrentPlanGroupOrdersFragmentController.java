@@ -39,7 +39,7 @@ public class CurrentPlanGroupOrdersFragmentController {
 
         for(Patient patient : patients){
             
-            List<drugordersdiseases> plans = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPatient(Integer.toString(patient.getPatientId()));
+            List<drugordersdiseases> plans = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPatient(patient);
             List<String> planNames = new ArrayList<String>();
             
             if(plans.size() > 0){

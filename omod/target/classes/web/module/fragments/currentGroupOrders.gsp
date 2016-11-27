@@ -32,6 +32,25 @@
                     </tr>   
                 <% } %>
             <% } %>
+            
+            <% patientSingleOrders.each { patientSingleOrder -> %>
+                <tr>
+                    <td>${ patientName.get(patientSingleOrder.key) }</td>
+
+                    <td>${ patientDOB.get(patientSingleOrder.key).format('yyyy-MM-dd') }</td>
+
+                    <td>
+                        <% patientSingleOrder.value.each { o -> %>
+
+                            <div>
+                                <span>${ o.drugname.getDisplayString().toUpperCase() }</span>
+                                <span class="pull-right">${ o.startdate.format('yyyy-MM-dd') }</span>
+                            </div>
+                        <% } %>
+                    </td>
+                </tr> 
+            <% } %>
+            
         </tbody>
     </table>
 </div>

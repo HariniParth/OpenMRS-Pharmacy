@@ -35,7 +35,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
 
     <div id="currentDrugOrdersWindow">
         
-        <p class="fields">${ ui.includeFragment("pharmacy", "searchOrderView") }</p>
+        <p class="fields">${ ui.includeFragment("pharmacy", "searchGroupView") }</p>
         
         <div id="currentOrdersWindow">
             <p class="fields"><strong>GROUP DRUG ORDERS</strong></p><br/>
