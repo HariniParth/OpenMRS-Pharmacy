@@ -5,7 +5,6 @@
  */
 package org.openmrs.module.pharmacy.fragment.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +56,7 @@ public class CurrentGroupOrdersFragmentController {
             patientDOB.put(patient.getPatientId(), patient.getBirthdate());
         }
         
-        model.addAttribute("patientPlanOrders", patientGroupOrders);
+        model.addAttribute("patientGroupOrders", patientGroupOrders);
         model.addAttribute("patientSingleOrders", patientSingleOrders);
         model.addAttribute("patientName", patientName);
         model.addAttribute("patientDOB", patientDOB);

@@ -25,10 +25,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PharmaGroupViewFragmentController {
     
     public void controller(PageModel model,@RequestParam(value = "planPatient", required = false) String planPatient,
-                            @RequestParam(value = "planName", required = false) String planName){
+                            @RequestParam(value = "planName", required = false) String planName,
+                            @RequestParam(value = "groupID", required = false) String groupID,
+                            @RequestParam(value = "orderID", required = false) String orderID){
         
         model.addAttribute("planPatient", planPatient);
         model.addAttribute("planName", planName);
+        model.addAttribute("groupID", groupID);
+        model.addAttribute("orderID", orderID);
         
         Patient patient;
         Date patientDOB = null;
@@ -55,6 +59,40 @@ public class PharmaGroupViewFragmentController {
                     groupOrderMain.put(dorder.getOrderId(), DOrder);
                 }
             }
+        }
+        
+        if(!groupID.equals("")){
+            //Fetch the list of Drug Orders associated with the given Group Order ID
+            List<drugorders> drugorders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(Integer.parseInt(groupID));
+            
+            for(drugorders drugorder : drugorders){
+                
+                groupOrderExtn.put(drugorder.getOrderId(), drugorder);
+                DrugOrder DrugOrder = (DrugOrder) Context.getOrderService().getOrder(drugorder.getOrderId());
+                groupOrderMain.put(DrugOrder.getOrderId(), DrugOrder);
+            }
+            
+            patient = Context.getPatientService().getPatient(Integer.parseInt(drugorders.get(0).getPatientid()));
+            patientName = Context.getPersonService().getPerson(patient.getPatientId()).getGivenName() + " " + Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName();
+            patientDOB = Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate();
+            patientAddress = Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry();
+        
+        }
+        
+        if(!orderID.equals("")){
+            //Fetch the Drug Order associated with the given Order ID
+            int order = Integer.parseInt(orderID);
+            drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(order);
+            groupOrderExtn.put(order, drugorder);
+            
+            DrugOrder DrugOrder = (DrugOrder) Context.getOrderService().getOrder(order);
+            groupOrderMain.put(order, DrugOrder);
+            
+            patient = Context.getPatientService().getPatient(Integer.parseInt(drugorder.getPatientid()));
+            patientName = Context.getPersonService().getPerson(patient.getPatientId()).getGivenName() + " " + Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName();
+            patientDOB = Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate();
+            patientAddress = Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry();
+        
         }
         
         model.addAttribute("groupOrderMain", groupOrderMain);

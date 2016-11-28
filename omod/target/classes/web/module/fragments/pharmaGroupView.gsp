@@ -2,7 +2,7 @@
     ui.includeCss("pharmacy", "pharmacy.css")
 %>
 
-<% if(!(planPatient).equals("") && !(planName).equals("")) { %>
+<% if((!(planPatient).equals("") && !(planName).equals("")) || !groupID.equals("") || !orderID.equals("")) { %>
     <div id="pharmaGroupView">
 
         <form method="post">
