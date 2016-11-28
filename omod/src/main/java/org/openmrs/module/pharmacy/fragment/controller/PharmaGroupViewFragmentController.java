@@ -27,6 +27,9 @@ public class PharmaGroupViewFragmentController {
     public void controller(PageModel model,@RequestParam(value = "planPatient", required = false) String planPatient,
                             @RequestParam(value = "planName", required = false) String planName){
         
+        model.addAttribute("planPatient", planPatient);
+        model.addAttribute("planName", planName);
+        
         Patient patient;
         Date patientDOB = null;
         String patientName = null, patientAddress = null;
@@ -59,6 +62,6 @@ public class PharmaGroupViewFragmentController {
         model.addAttribute("patientName", patientName);
         model.addAttribute("patientDOB", patientDOB);
         model.addAttribute("patientAddress", patientAddress);
-        model.addAttribute("planName", planName);
+        
     }
 }
