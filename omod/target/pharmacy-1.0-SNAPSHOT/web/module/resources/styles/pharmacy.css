@@ -19,12 +19,7 @@ and open the template in the editor.
     float: left;
 }
 
-.info-body #pharmaOrderViewWindow{
-    width: 38%;
-    float: right;
-}
-
-.info-body #pharmaOrderActionWindow{
+.info-body #pharmaOrderViewWindow, .info-body #pharmaOrderActionWindow, .info-body #pharmaGroupViewWindow, .info-body #pharmaGroupActionWindow{
     width: 38%;
     float: right;
 }
@@ -58,6 +53,10 @@ and open the template in the editor.
 #order_label{
     width: 30%;
     float: left;
+}
+
+#order_label label{
+    font-weight: bold;
 }
 
 #order_value{
@@ -135,4 +134,11 @@ input[type=submit], input[type=button]{
 .pageLinks:hover{
     cursor: pointer;
     text-decoration: underline;
+}
+
+.groups{
+    overflow: hidden;
+    width: 90%;
+    margin: auto;
+    background-color: gainsboro;
 }

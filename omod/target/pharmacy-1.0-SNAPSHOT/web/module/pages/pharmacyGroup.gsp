@@ -47,11 +47,11 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
         
     </div>
     
-    <div id="pharmaOrderViewWindow" class="dialog">
+    <div id="pharmaGroupViewWindow" class="dialog">
         ${ ui.includeFragment("pharmacy", "pharmaGroupView") }
     </div>
  
-    <div id="pharmaOrderActionWindow" class="dialog">
+    <div id="pharmaGroupActionWindow" class="dialog">
         ${ ui.includeFragment("pharmacy", "pharmaGroupActionWindow") }
     </div>
 

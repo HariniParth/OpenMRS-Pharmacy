@@ -152,3 +152,9 @@ function autoCompletePatientName(patientNameList){
        }
     });
 }
+
+function selectedMedPlanGroup(planPatient, planName){
+    $("#planPatient").val(planPatient);
+    $("#planName").val(planName);
+    $("#medPlanGroupForm").submit();
+}
