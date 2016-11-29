@@ -157,14 +157,17 @@ function selectedMedPlanGroup(planPatient, planName){
     $("#planPatient").val(planPatient);
     $("#planName").val(planName);
     $("#medPlanGroupForm").submit();
+    $("#searchGroupForm").submit();
 }
 
 function selectedGroupOrder(groupID){
     $("#groupID").val(groupID);
     $("#individualGroupForm").submit();
+    $("#searchGroupForm").submit();
 }
 
 function selectedSingleOrder(orderID){
     $("#orderID").val(orderID);
     $("#individualGroupForm").submit();
+    $("#searchGroupForm").submit();
 }

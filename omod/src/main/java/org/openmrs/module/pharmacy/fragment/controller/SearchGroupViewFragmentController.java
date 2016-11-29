@@ -35,13 +35,13 @@ public class SearchGroupViewFragmentController {
         
         HashMap<Integer,drugorders> SingleOrders = new HashMap<Integer,drugorders>();
         HashMap<Integer,List<drugorders>> GroupOrders = new HashMap<Integer,List<drugorders>>();
-        HashMap<Integer,List<drugorders>> PlanOrders = new HashMap<Integer,List<drugorders>>();
+        HashMap<String,List<drugorders>> PlanOrders = new HashMap<String,List<drugorders>>();
 
         if(!(patient_name).equals("")){
             try {
                 boolean patient_found = false;
                 Patient selectedPatient = null;
-
+                
                 List<Patient> patients = Context.getPatientService().getAllPatients();
                 
                 for(Patient patient : patients){
@@ -51,6 +51,7 @@ public class SearchGroupViewFragmentController {
                         patient_DOB = patient.getBirthdate();
                         patient_found = true;
                         model.addAttribute("PatientFound", patient_found);
+                        model.addAttribute("patient_ID", selectedPatient.getPatientId());
                     }
                     if(patient_found)
                         break;
@@ -81,7 +82,7 @@ public class SearchGroupViewFragmentController {
                                 drugorders.add(drugorder);
                         }
                         
-                        PlanOrders.put(plan.getDiseaseid().getConceptId(), drugorders);
+                        PlanOrders.put(plan.getDiseaseid().getDisplayString(), drugorders);
                     }
                 }
                 
