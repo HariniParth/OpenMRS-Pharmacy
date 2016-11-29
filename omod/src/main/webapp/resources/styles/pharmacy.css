@@ -142,3 +142,16 @@ input[type=submit], input[type=button]{
     margin: auto;
     background-color: gainsboro;
 }
+
+form select, .form select {
+    min-width: 10px !important;
+    min-height: 5px !important;
+    display: inline !important;
+    margin-top: 0px !important;
+    padding: 0px !important;
+}
+
+form #activeOrdersWindow label, .form #activeOrdersWindow label {
+    text-align: right !important;
+    margin-top: 0px !important;
+}
