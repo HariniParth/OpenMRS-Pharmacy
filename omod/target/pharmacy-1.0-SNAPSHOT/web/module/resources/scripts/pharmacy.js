@@ -44,6 +44,18 @@ $(document).ready( function() {
         }).hide();
     }
     
+    var selectedGroupPatient = $("#group_order_patient_name").val();
+    
+    if(selectedGroupPatient !== undefined){
+        var $rowsNo = $('#currentGroupOrdersTable tbody tr').filter(function () {
+            return $.trim($(this).find('td').eq(0).text()) !== selectedGroupPatient;
+        }).hide();
+        
+        var $rowsNo = $('#currentPlanGroupTable tbody tr').filter(function () {
+            return $.trim($(this).find('td').eq(0).text()) !== selectedGroupPatient;
+        }).hide();
+    }
+    
     if($("#searchOrders").val() !== undefined){
         jq("#currentOrdersWindow").hide();
     }
