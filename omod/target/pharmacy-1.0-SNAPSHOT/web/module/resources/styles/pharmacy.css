@@ -106,11 +106,6 @@ and open the template in the editor.
     display: none;
 }
 
-#line-break{
-    width: 100%;
-    border: 2px solid;
-}
-
 #planDrugName{
     float: left;
     width: 60%;
@@ -137,10 +132,11 @@ input[type=submit], input[type=button]{
 }
 
 .groups{
-    overflow: hidden;
+    overflow: scroll;
+    max-height: 300px;
     width: 90%;
     margin: auto;
-    background-color: gainsboro;
+    border: 2px solid gainsboro;
 }
 
 form select, .form select {
