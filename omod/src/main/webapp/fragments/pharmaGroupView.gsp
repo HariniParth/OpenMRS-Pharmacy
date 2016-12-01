@@ -42,7 +42,7 @@
                 <div class="groups"><br/>
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Order</label></div>
-                        <div id="order_value"><input type="text" id="group_order_order_details" name="group_order_order_details" value="${ groupOrderExtn.get(groupOrder.key).drugname.getDisplayString() } ${ groupOrder.value.route.getDisplayString() } ${ groupOrder.value.dose } ${ groupOrder.value.doseUnits.getDisplayString() } ${ groupOrder.value.duration } ${ groupOrder.value.durationUnits.getDisplayString() } ${ groupOrder.value.quantity } ${ groupOrder.value.quantityUnits.getDisplayString() } ${ groupOrder.value.frequency }" readonly /></div>
+                        <div id="order_value"><input type="text" id="group_order_order_details" name="group_order_order_details" value="${ groupOrderExtn.get(groupOrder.key).drugname.getDisplayString() }, ${ groupOrder.value.route.getDisplayString() } ${ groupOrder.value.dose } ${ groupOrder.value.doseUnits.getDisplayString() } ${ groupOrder.value.duration } ${ groupOrder.value.durationUnits.getDisplayString() } ${ groupOrder.value.quantity } ${ groupOrder.value.quantityUnits.getDisplayString() } ${ groupOrder.value.frequency }" readonly /></div>
                     </div>
 
                     <br/><br/>

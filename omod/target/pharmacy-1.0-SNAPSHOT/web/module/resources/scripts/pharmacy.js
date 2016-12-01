@@ -47,11 +47,24 @@ $(document).ready( function() {
     var selectedGroupPatient = $("#group_order_patient_name").val();
     
     if(selectedGroupPatient !== undefined){
+        
         var $rowsNo = $('#currentGroupOrdersTable tbody tr').filter(function () {
+            
+            var selectedDrug = $("#group_order_order_details").first().val().split(",");
+            
+            if($.trim($(this).find('td').eq(2).find('div').find('span').first().text()) === selectedDrug[0].toUpperCase()){
+                $(this).css({"background": "#75b2f0","color": "white"});
+            }
             return $.trim($(this).find('td').eq(0).text()) !== selectedGroupPatient;
         }).hide();
         
+        var selectedDiagnosis = $("#group_order_order_diagnosis").val().toUpperCase();
+        
         var $rowsNo = $('#currentPlanGroupTable tbody tr').filter(function () {
+            
+            if($(this).find('td').eq(2).text() === selectedDiagnosis){
+                $(this).css({"background": "#75b2f0","color": "white"});
+            }
             return $.trim($(this).find('td').eq(0).text()) !== selectedGroupPatient;
         }).hide();
     }
