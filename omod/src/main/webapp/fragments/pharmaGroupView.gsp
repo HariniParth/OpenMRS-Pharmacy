@@ -3,7 +3,7 @@
 %>
 
 <% if((!(planPatient).equals("") && !(planName).equals("")) || !groupID.equals("") || !orderID.equals("")) { %>
-    <div id="pharmaGroupView">
+    <div id="pharmaGroupView" class="dialog">
 
         <form method="post">
 
@@ -122,14 +122,48 @@
 
             <br/><br/><br/>         
 
-            <div class="fields"><input class="confirm right" id="btn-place" value="Dispatch" type="button" onclick="showPharmaConfirmationSection()" /></div><br/><br/>
+            <span id="pharmaGroupButtons">
+                <div class="fields"><input class="confirm right" id="btn-place" value="Dispatch" type="button" onclick="showPharmaConfirmationSection('Dispatch')" /></div><br/><br/>
 
-            <div class="fields"><input class="confirm right" id="btn-place" value="On Hold" type="button" onclick="showPharmaConfirmationSection()" /></div><br/><br/>
+                <div class="fields"><input class="confirm right" id="btn-place" value="On Hold" type="button" onclick="showPharmaConfirmationSection('On Hold')" /></div><br/><br/>
 
-            <div class="fields"><input class="confirm right" id="btn-place" value="Discard" type="button" onclick="showPharmaConfirmationSection()" />
+                <div class="fields"><input class="confirm right" id="btn-place" value="Discard" type="button" onclick="showPharmaConfirmationSection('Discard')" />
 
-            <input class="cancel" id="btn-place" value="Cancel" type="button" onclick="closePharmaGroupViewWindow()" /></div>
+                <input class="cancel" id="btn-place" value="Cancel" type="submit" /></div>
+            </span>
+            
+            <span id="pharmaGroupActionButtons">
+                <input type="hidden" id="pharmaGroupAction" name="pharmaGroupAction" />
+                
+                <div class="fields">
+                    <label>Enter Comments (Optional)</label>
+                </div>
 
+                <div class="fields">
+                    <input type="textarea" maxlength="100" id="comments" name="comments"/>
+                </div><br/>
+
+                <div class="fields" id="view_order_detail">
+                    <input type="checkbox" name="commentCheckbox" value="1" />Forward message to ordering physician<br/>
+                </div><br/>
+
+                <div class="fields" id="view_order_detail">
+                    <input type="checkbox" name="messageCheckbox" value="1" />Another message to ordering physician<br/>
+                </div><br/>
+
+                <div class="fields">
+                    <input type="textarea" maxlength="100" id="additionalMessage" name="additionalMessage"/>
+                </div><br/>
+
+                <div class="fields">
+                    <input class="confirm right" id="btn-place" type="submit" name="action" value="OK" onclick="showPharmaActionWindow()" />
+                </div>
+
+                <div class="fields">
+                    <input class="cancel" id="btn-place" value="Back" type="button" onclick="showPharmaOrderViewSection()" />
+                </div>
+            </span>
+            
         </form>
     </div>
 <% } %>

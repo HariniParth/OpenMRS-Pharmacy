@@ -76,6 +76,9 @@ $(document).ready( function() {
 
 function clearHighlights(){
     
+    jq(".groupRow").each(function(){
+        jq(this).css({'background-color':'','color':''});
+    });
     jq(".orderRow").each(function(){
         jq(this).css({'background-color':'','color':''});
     });
@@ -195,4 +198,17 @@ function selectedSingleOrder(orderID){
     $("#orderID").val(orderID);
     $("#individualGroupForm").submit();
     $("#searchGroupForm").submit();
+}
+
+function showPharmaConfirmationSection(action){
+    $("#pharmaGroupAction").val(action);
+    jq("#pharmaGroupButtons").hide();
+    jq("#pharmaGroupActionButtons").show();
+    document.getElementById("pharmaGroupActionButtons").style.display = 'block';
+}
+
+function showPharmaOrderViewSection(){
+    jq("#pharmaGroupActionButtons").hide();
+    jq("#pharmaGroupButtons").show();
+    document.getElementById("#pharmaGroupButtons").style.display = 'block';
 }

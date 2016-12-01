@@ -19,7 +19,7 @@ and open the template in the editor.
     float: left;
 }
 
-.info-body #pharmaOrderViewWindow, .info-body #pharmaOrderActionWindow, .info-body #pharmaGroupViewWindow, .info-body #pharmaGroupActionWindow{
+.info-body #pharmaOrderViewWindow, .info-body #pharmaOrderActionWindow, .info-body #pharmaGroupViewWindow{
     width: 38%;
     float: right;
 }
@@ -102,7 +102,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, #additionalInformation, #pharmaOrderViewWindow{
+.icon-minus-sign.edit-action, #additionalInformation, #pharmaOrderViewWindow, #pharmaGroupActionButtons{
     display: none;
 }
 
