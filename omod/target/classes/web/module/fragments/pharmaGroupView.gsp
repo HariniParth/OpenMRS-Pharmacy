@@ -2,6 +2,7 @@
     ui.includeCss("pharmacy", "pharmacy.css")
     def list_of_orders = "";
     def provider_name = "";
+    def last_dispatch_date = "";
 %>
 
 <% if((!(planPatient).equals("") && !(planName).equals("")) || !groupID.equals("") || !orderID.equals("")) { %>
@@ -109,6 +110,12 @@
                     </div><br/>
                 </div><br/>
                 
+                <% if(groupOrderExtn.get(groupOrder.key).lastdispatchdate != null) { %>
+                    <% last_dispatch_date = groupOrderExtn.get(groupOrder.key).lastdispatchdate.format('yyyy-MM-dd'); %>
+                <% } else { %>
+                    <% last_dispatch_date = groupOrderExtn.get(groupOrder.key).lastdispatchdate; %>
+                <% } %>
+                
                 <% provider_name = provider.get(groupOrder.key) %>
             <% } %>
 
@@ -116,7 +123,7 @@
             
             <div class="fields" id="view_order_detail">
                 <div id="order_label"><label>Last Dispatch</label></div>
-                <div id="order_value"><input type="text" id="group_order_last_dispatch_date" name="group_order_last_dispatch_date" readonly /></div>
+                <div id="order_value"><input type="text" id="group_order_last_dispatch_date" name="group_order_last_dispatch_date" value="${ last_dispatch_date }" readonly /></div>
             </div>   
 
             <br/><br/>
