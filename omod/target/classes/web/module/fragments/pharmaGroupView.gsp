@@ -1,5 +1,6 @@
 <%
     ui.includeCss("pharmacy", "pharmacy.css")
+    def list_of_orders = "";
 %>
 
 <% if((!(planPatient).equals("") && !(planName).equals("")) || !groupID.equals("") || !orderID.equals("")) { %>
@@ -38,7 +39,8 @@
             <br/><br/><br/>
 
             <% groupOrderMain.each { groupOrder -> %>
-
+                <% list_of_orders = list_of_orders + groupOrder.key + "," %>
+                
                 <div class="groups"><br/>
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Order</label></div>
@@ -108,6 +110,8 @@
 
             <% } %>
 
+            <input type="hidden" id="group_order_ID" name="group_order_ID" value="${ list_of_orders }" readonly />
+            
             <div class="fields" id="view_order_detail">
                 <div id="order_label"><label>Last Dispatch</label></div>
                 <div id="order_value"><input type="text" id="group_order_last_dispatch_date" name="group_order_last_dispatch_date" readonly /></div>
@@ -140,23 +144,23 @@
                 </div>
 
                 <div class="fields">
-                    <input type="textarea" maxlength="100" id="comments" name="comments"/>
+                    <input type="textarea" maxlength="100" id="groupComments" name="groupComments"/>
                 </div><br/>
 
                 <div class="fields" id="view_order_detail">
-                    <input type="checkbox" name="commentCheckbox" value="1" />Forward message to ordering physician<br/>
+                    <input type="checkbox" name="commentbox" value="1" />Forward message to ordering physician<br/>
                 </div><br/>
 
                 <div class="fields" id="view_order_detail">
-                    <input type="checkbox" name="messageCheckbox" value="1" />Another message to ordering physician<br/>
+                    <input type="checkbox" name="messagebox" value="1" />Another message to ordering physician<br/>
                 </div><br/>
 
                 <div class="fields">
-                    <input type="textarea" maxlength="100" id="additionalMessage" name="additionalMessage"/>
+                    <input type="textarea" maxlength="100" id="groupMessage" name="groupMessage"/>
                 </div><br/>
 
                 <div class="fields">
-                    <input class="confirm right" id="btn-place" type="submit" name="action" value="OK" onclick="showPharmaActionWindow()" />
+                    <input class="confirm right" id="btn-place" type="submit" name="action" value="Record" onclick="showPharmaActionWindow()" />
                 </div>
 
                 <div class="fields">
