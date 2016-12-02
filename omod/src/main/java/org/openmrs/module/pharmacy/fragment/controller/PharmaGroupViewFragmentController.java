@@ -16,6 +16,7 @@ import org.openmrs.module.drugorders.api.drugordersdiseasesService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.module.drugorders.drugordersdiseases;
 import org.openmrs.ui.framework.page.PageModel;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -37,6 +38,7 @@ public class PharmaGroupViewFragmentController {
         Patient patient;
         Date patientDOB = null;
         String patientName = null, patientAddress = null;
+        HashMap<Integer,String> provider = new HashMap<Integer,String>();
         HashMap<Integer,DrugOrder> groupOrderMain = new HashMap<Integer,DrugOrder>();
         HashMap<Integer,drugorders> groupOrderExtn = new HashMap<Integer,drugorders>();
         
@@ -57,6 +59,7 @@ public class PharmaGroupViewFragmentController {
                     groupOrderExtn.put(dorder.getOrderId(), dorder);
                     DrugOrder DOrder = (DrugOrder) Context.getOrderService().getOrder(dorder.getOrderId());
                     groupOrderMain.put(dorder.getOrderId(), DOrder);
+                    provider.put(dorder.getOrderId(), DOrder.getOrderer().getPerson().getGivenName() + " " + DOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DOrder.getOrderer().getIdentifier()));                    
                 }
             }
         }
@@ -70,6 +73,7 @@ public class PharmaGroupViewFragmentController {
                 groupOrderExtn.put(drugorder.getOrderId(), drugorder);
                 DrugOrder DrugOrder = (DrugOrder) Context.getOrderService().getOrder(drugorder.getOrderId());
                 groupOrderMain.put(DrugOrder.getOrderId(), DrugOrder);
+                provider.put(DrugOrder.getOrderId(), DrugOrder.getOrderer().getPerson().getGivenName() + " " + DrugOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DrugOrder.getOrderer().getIdentifier()));
             }
             
             patient = Context.getPatientService().getPatient(Integer.parseInt(drugorders.get(0).getPatientid()));
@@ -92,7 +96,7 @@ public class PharmaGroupViewFragmentController {
             patientName = Context.getPersonService().getPerson(patient.getPatientId()).getGivenName() + " " + Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName();
             patientDOB = Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate();
             patientAddress = Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry();
-        
+            provider.put(DrugOrder.getOrderId(), DrugOrder.getOrderer().getPerson().getGivenName() + " " + DrugOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DrugOrder.getOrderer().getIdentifier()));
         }
         
         model.addAttribute("groupOrderMain", groupOrderMain);
@@ -100,6 +104,7 @@ public class PharmaGroupViewFragmentController {
         model.addAttribute("patientName", patientName);
         model.addAttribute("patientDOB", patientDOB);
         model.addAttribute("patientAddress", patientAddress);
+        model.addAttribute("provider", provider);
         
     }
 }

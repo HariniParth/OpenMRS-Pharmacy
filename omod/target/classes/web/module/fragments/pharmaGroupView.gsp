@@ -1,6 +1,7 @@
 <%
     ui.includeCss("pharmacy", "pharmacy.css")
     def list_of_orders = "";
+    def provider_name = "";
 %>
 
 <% if((!(planPatient).equals("") && !(planName).equals("")) || !groupID.equals("") || !orderID.equals("")) { %>
@@ -107,7 +108,8 @@
 
                     </div><br/>
                 </div><br/>
-
+                
+                <% provider_name = provider.get(groupOrder.key) %>
             <% } %>
 
             <input type="hidden" id="group_order_ID" name="group_order_ID" value="${ list_of_orders }" readonly />
@@ -121,7 +123,7 @@
 
             <div class="fields" id="view_order_detail">
                 <div id="order_label"><label>Provider</label></div>
-                <div id="order_value"><input type="text" id="group_order_order_provider" name="group_order_order_provider" readonly /></div>
+                <div id="order_value"><input type="text" id="group_order_order_provider" name="group_order_order_provider" value="${ provider_name }" readonly /></div>
             </div>
 
             <br/><br/><br/>         
