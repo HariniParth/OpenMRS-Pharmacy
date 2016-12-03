@@ -5,6 +5,7 @@
  */
 package org.openmrs.module.pharmacy.fragment.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -43,8 +44,18 @@ public class CurrentGroupOrdersFragmentController {
             
             for(drugorders patientOrders : allPatientOrders){
                 
+                //For the given Patient, fetch all the Group Orders
                 if(!patientGroups.containsKey(patientOrders.getGroupid()) && patientOrders.getOrderstatus().equals("Active-Group")){
-                    patientGroups.put(patientOrders.getGroupid(),Context.getService(drugordersService.class).getDrugOrdersByGroupID(patientOrders.getGroupid()));
+                    List<drugorders> groupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(patientOrders.getGroupid());
+                    List<drugorders> activeGroupOrders = new ArrayList<drugorders>();
+                    
+                    //Filter the Orders in the Group that are currently Active
+                    for(drugorders order : groupOrders){
+                        if(order.getOrderstatus().equals("Active-Group")){
+                            activeGroupOrders.add(order);
+                        }
+                    }
+                    patientGroups.put(patientOrders.getGroupid(),activeGroupOrders);
                 }
                 else if (patientOrders.getOrderstatus().equals("Active")){
                     patientSingleOrders.put(Integer.parseInt(patientOrders.getPatientid()), patientOrders);

@@ -70,10 +70,13 @@ public class PharmaGroupViewFragmentController {
             
             for(drugorders drugorder : drugorders){
                 
-                groupOrderExtn.put(drugorder.getOrderId(), drugorder);
-                DrugOrder DrugOrder = (DrugOrder) Context.getOrderService().getOrder(drugorder.getOrderId());
-                groupOrderMain.put(DrugOrder.getOrderId(), DrugOrder);
-                provider.put(DrugOrder.getOrderId(), DrugOrder.getOrderer().getPerson().getGivenName() + " " + DrugOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DrugOrder.getOrderer().getIdentifier()));
+                if(drugorder.getOrderstatus().equals("Active-Group")){
+                    
+                    groupOrderExtn.put(drugorder.getOrderId(), drugorder);
+                    DrugOrder DrugOrder = (DrugOrder) Context.getOrderService().getOrder(drugorder.getOrderId());
+                    groupOrderMain.put(DrugOrder.getOrderId(), DrugOrder);
+                    provider.put(DrugOrder.getOrderId(), DrugOrder.getOrderer().getPerson().getGivenName() + " " + DrugOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DrugOrder.getOrderer().getIdentifier()));
+                }
             }
             
             patient = Context.getPatientService().getPatient(Integer.parseInt(drugorders.get(0).getPatientid()));
