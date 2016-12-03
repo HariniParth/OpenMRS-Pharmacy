@@ -29,7 +29,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
             <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacyGroup")}';">Display By Group >></span>
         </strong>
     </h3>
-    ${ ui.message("Click on an order item to record action") }
+    Click on an order to view allowed <strong>Refills</strong> and <strong>Last-Dispatch-Date</strong>
 </div><br/>
 
 <div class="info-body">

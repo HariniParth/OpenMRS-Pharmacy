@@ -185,11 +185,11 @@
         </div><br/>
         
         <div class="fields">
-            <label>Enter Comments</label>
+            <label>Comments (Optional)</label>
         </div>
         
         <div class="fields">
-            <input type="textarea" maxlength="100" id="comments" name="comments"/>
+            <input type="textarea" maxlength="100" id="comments" name="comments" placeholder="Enter Comments on the Order"/>
         </div><br/>
         
         <div class="fields" id="view_order_detail">
@@ -201,7 +201,7 @@
         </div><br/>
         
         <div class="fields">
-            <input type="textarea" maxlength="100" id="additionalMessage" name="additionalMessage"/>
+            <input type="textarea" maxlength="100" id="additionalMessage" name="additionalMessage" placeholder="Enter Additional Message for Orderer"/>
         </div><br/>
         
         <div class="fields">

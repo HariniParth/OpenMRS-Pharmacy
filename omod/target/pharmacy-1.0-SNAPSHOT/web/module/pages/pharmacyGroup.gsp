@@ -24,11 +24,11 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
 <div>
     <h3>
         <i class="icon-medicine"></i>
-        <strong>${ ui.message("ACTIVE DRUG ORDERS") }
+        <strong>${ ui.message("ACTIVE DRUG ORDERS") } <label id="selectedGroupPatient"></label>
             <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacy")}';">Display By Order >></span>
         </strong>
     </h3>
-    ${ ui.message("Click on an order item to record action") }
+    Click on an order to view allowed <strong>Refills</strong> and <strong>Last-Dispatch-Date</strong>
 </div><br/>
 
 <div class="info-body">

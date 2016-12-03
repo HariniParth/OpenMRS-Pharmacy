@@ -149,11 +149,11 @@
                 <input type="hidden" id="pharmaGroupAction" name="pharmaGroupAction" />
                 
                 <div class="fields">
-                    <label>Enter Comments (Optional)</label>
+                    <label>Comments (Optional)</label>
                 </div>
 
                 <div class="fields">
-                    <input type="textarea" maxlength="100" id="groupComments" name="groupComments"/>
+                    <input type="textarea" maxlength="100" id="groupComments" name="groupComments" placeholder="Enter Comments on the Order"/>
                 </div><br/>
 
                 <div class="fields" id="view_order_detail">
@@ -165,7 +165,7 @@
                 </div><br/>
 
                 <div class="fields">
-                    <input type="textarea" maxlength="100" id="groupMessage" name="groupMessage"/>
+                    <input type="textarea" maxlength="100" id="groupMessage" name="groupMessage" placeholder="Enter Additional Message for Orderer"/>
                 </div><br/>
 
                 <div class="fields">

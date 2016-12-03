@@ -47,6 +47,7 @@ $(document).ready( function() {
     var selectedGroupPatient = $("#group_order_patient_name").val();
     
     if(selectedGroupPatient !== undefined){
+        $("#selectedGroupPatient").text("- "+selectedGroupPatient);
         
         var $rowsNo = $('#currentGroupOrdersTable tbody tr').filter(function () {
             
