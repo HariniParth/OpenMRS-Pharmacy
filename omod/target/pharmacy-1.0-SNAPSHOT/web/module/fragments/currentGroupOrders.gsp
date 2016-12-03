@@ -14,7 +14,12 @@
                 <tr>
                     <th id="patientSort">Patient Name</th>
                     <th id="patientSort">Patient DOB</th>
-                    <th id="detailsSort">Drug Name <span class="pull-right">Start Date</span></th>
+                    
+                    <th id="detailsSort">
+                        <span id="groupDrug">Drug Name</span>
+                        <span id="groupDate">Start-Date</span>
+                        <span id="groupPrio">Priority</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -29,9 +34,11 @@
                                 <% order.value.each { o -> %>
 
                                     <div>
-                                        <span>${ o.drugname.getDisplayString().toUpperCase() }</span>
-                                        <span class="pull-right">${ o.startdate.format('yyyy-MM-dd') }</span>
+                                        <span id="groupDrug">${ o.drugname.getDisplayString().toUpperCase() }</span>
+                                        <span id="groupDate">${ o.startdate.format('yyyy-MM-dd') }</span>
+                                        <span id="groupPrio">${ o.priority.getDisplayString() }</span>
                                     </div>
+                                    
                                 <% } %>
                             </td>
                         </tr>   
@@ -46,8 +53,9 @@
 
                         <td>
                             <div>
-                                <span>${ patientSingleOrder.value.drugname.getDisplayString().toUpperCase() }</span>
-                                <span class="pull-right">${ patientSingleOrder.value.startdate.format('yyyy-MM-dd') }</span>
+                                <span id="groupDrug">${ patientSingleOrder.value.drugname.getDisplayString().toUpperCase() }</span>
+                                <span id="groupDate">${ patientSingleOrder.value.startdate.format('yyyy-MM-dd') }</span>
+                                <span id="groupPrio">${ patientSingleOrder.value.priority.getDisplayString() }</span>
                             </div>
                         </td>
                     </tr> 

@@ -23,7 +23,12 @@
                         <tr>
                             <th id="patientSort">Patient Name</th>
                             <th id="patientSort">Patient DOB</th>
-                            <th id="detailsSort">Drug Name <span class="pull-right">Start Date</span></th>
+                            
+                            <th id="detailsSort">
+                                <span id="groupDrug">Drug Name</span>
+                                <span id="groupDate">Start-Date</span>
+                                <span id="groupPrio">Priority</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,10 +38,13 @@
                                 <td>${ patient_DOB.format('yyyy-MM-dd') }</td>
                                 <td>
                                     <% PlanOrder.value.each { order -> %>
+                                    
                                         <div>
-                                            <span>${ order.drugname.getDisplayString().toUpperCase() }</span>
-                                            <span class="pull-right">${ order.startdate.format('yyyy-MM-dd') }</span>
+                                            <span id="groupDrug">${ order.drugname.getDisplayString().toUpperCase() }</span>
+                                            <span id="groupDate">${ order.startdate.format('yyyy-MM-dd') }</span>
+                                            <span id="groupPrio">${ order.priority.getDisplayString() }</span>
                                         </div>
+                                        
                                     <% } %>
                                 </td>
                             </tr> 
@@ -48,10 +56,13 @@
                                 <td>${ patient_DOB.format('yyyy-MM-dd') }</td>
                                 <td>
                                     <% GroupOrder.value.each { order -> %>
+                                    
                                         <div>
-                                            <span>${ order.drugname.getDisplayString().toUpperCase() }</span>
-                                            <span class="pull-right">${ order.startdate.format('yyyy-MM-dd') }</span>
+                                            <span id="groupDrug">${ order.drugname.getDisplayString().toUpperCase() }</span>
+                                            <span id="groupDate">${ order.startdate.format('yyyy-MM-dd') }</span>
+                                            <span id="groupPrio">${ order.priority.getDisplayString() }</span>
                                         </div>
+                                        
                                     <% } %>
                                 </td>
                             </tr> 
@@ -65,9 +76,11 @@
 
                                 <td>
                                     <div>
-                                        <span>${ order.value.drugname.getDisplayString().toUpperCase() }</span>
-                                        <span class="pull-right">${ order.value.startdate.format('yyyy-MM-dd') }</span>
+                                        <span id="groupDrug">${ order.value.drugname.getDisplayString().toUpperCase() }</span>
+                                        <span id="groupDate">${ order.value.startdate.format('yyyy-MM-dd') }</span>
+                                        <span id="groupPrio">${ order.value.priority.getDisplayString() }</span>
                                     </div>
+                                    
                                 </td>
                             </tr> 
                         <% } %>       

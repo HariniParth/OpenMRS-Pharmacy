@@ -151,3 +151,17 @@ form #activeOrdersWindow label, .form #activeOrdersWindow label, form #searchRes
     text-align: right !important;
     margin-top: 0px !important;
 }
+
+#groupDrug{
+    width: 50%;
+    float: left;
+}
+
+#groupDate{
+    width: 30%;
+}
+
+#groupPrio{
+    width: 20%;
+    float: right;
+}
