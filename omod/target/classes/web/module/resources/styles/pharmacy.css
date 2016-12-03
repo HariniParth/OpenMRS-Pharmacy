@@ -147,7 +147,7 @@ form select, .form select {
     padding: 0px !important;
 }
 
-form #activeOrdersWindow label, .form #activeOrdersWindow label {
+form #activeOrdersWindow label, .form #activeOrdersWindow label, form #searchResultsWindow label, .form #searchResultsWindow label {
     text-align: right !important;
     margin-top: 0px !important;
 }
