@@ -46,14 +46,14 @@
                 <div class="groups"><br/>
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Order</label></div>
-                        <div id="order_value"><input type="text" id="group_order_order_details" name="group_order_order_details" value="${ groupOrderExtn.get(groupOrder.key).drugname.getDisplayString() }, ${ groupOrder.value.route.getDisplayString() } ${ groupOrder.value.dose } ${ groupOrder.value.doseUnits.getDisplayString() } ${ groupOrder.value.duration } ${ groupOrder.value.durationUnits.getDisplayString() } ${ groupOrder.value.quantity } ${ groupOrder.value.quantityUnits.getDisplayString() } ${ groupOrder.value.frequency }" readonly /></div>
+                        <div id="order_value"><input type="text" class="group_order_order_details" name="group_order_order_details" value="${ groupOrderExtn.get(groupOrder.key).drugname.getDisplayString() }, ${ groupOrder.value.route.getDisplayString() } ${ groupOrder.value.dose } ${ groupOrder.value.doseUnits.getDisplayString() } ${ groupOrder.value.duration } ${ groupOrder.value.durationUnits.getDisplayString() } ${ groupOrder.value.quantity } ${ groupOrder.value.quantityUnits.getDisplayString() } ${ groupOrder.value.frequency }" readonly /></div>
                     </div>
 
                     <br/><br/>
 
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Start Date</label></div>
-                        <div id="order_value"><input type="text" id="group_order_start_date" name="group_order_start_date" value="${ groupOrderExtn.get(groupOrder.key).startdate.format('yyyy-MM-dd') }" readonly /></div>
+                        <div id="order_value"><input type="text" class="group_order_start_date" name="group_order_start_date" value="${ groupOrderExtn.get(groupOrder.key).startdate.format('yyyy-MM-dd') }" readonly /></div>
                     </div>   
 
                     <br/><br/>
@@ -62,14 +62,14 @@
 
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Patient</label></div>
-                        <div id="order_value"><input type="text" id="group_order_patient_instructions" name="group_order_patient_instructions" value="${ groupOrderExtn.get(groupOrder.key).patientinstructions }" readonly /></div>
+                        <div id="order_value"><input type="text" class="group_order_patient_instructions" name="group_order_patient_instructions" value="${ groupOrderExtn.get(groupOrder.key).patientinstructions }" readonly /></div>
                     </div>     
 
                     <br/><br/>
 
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Pharmacist</label></div>
-                        <div id="order_value"><input type="text" id="group_order_pharmacist_instructions" name="group_order_pharmacist_instructions" value="${ groupOrderExtn.get(groupOrder.key).pharmacistinstructions }" readonly /></div>
+                        <div id="order_value"><input type="text" class="group_order_pharmacist_instructions" name="group_order_pharmacist_instructions" value="${ groupOrderExtn.get(groupOrder.key).pharmacistinstructions }" readonly /></div>
                     </div>    
 
                     <br/><br/>
@@ -84,27 +84,27 @@
                     <div id="additionalInformation">
                         <div class="fields" id="view_order_detail">
                             <div id="order_label"><label>Diagnosis</label></div>
-                            <div id="order_value"><input type="text" id="group_order_order_diagnosis" name="group_order_order_diagnosis" value="${ groupOrderExtn.get(groupOrder.key).associateddiagnosis.getDisplayString() }" readonly /></div>
+                            <div id="order_value"><input type="text" class="group_order_order_diagnosis" name="group_order_order_diagnosis" value="${ groupOrderExtn.get(groupOrder.key).associateddiagnosis.getDisplayString() }" readonly /></div>
                         </div>
 
                         <br/><br/>
 
                         <div class="fields" id="view_order_detail">
                             <div id="order_label"><label>Allergy Note</label></div>
-                            <div id="order_value"><input type="text" id="group_order_order_allergic" name="group_order_order_allergic" value="${ groupOrderExtn.get(groupOrder.key).isallergicorderreasons }" readonly /></div>
+                            <div id="order_value"><input type="text" class="group_order_order_allergic" name="group_order_order_allergic" value="${ groupOrderExtn.get(groupOrder.key).isallergicorderreasons }" readonly /></div>
                         </div>
                         <br/><br/>
 
                         <div class="fields" id="view_order_detail">
                             <div id="order_label"><label>Refills</label></div>
-                            <div id="order_value"><input type="text" id="group_order_order_refill" name="group_order_order_refill" value="${ groupOrderExtn.get(groupOrder.key).refill }" readonly /></div>
+                            <div id="order_value"><input type="text" class="group_order_order_refill" name="group_order_order_refill" value="${ groupOrderExtn.get(groupOrder.key).refill }" readonly /></div>
                         </div> 
 
                         <br/><br/>
 
                         <div class="fields" id="view_order_detail">
                             <div id="order_label"><label>Interval (days)</label></div>
-                            <div id="order_value"><input type="text" id="group_order_order_refillInterval" name="group_order_order_refillInterval" value="${ groupOrderExtn.get(groupOrder.key).refillinterval }" readonly /></div>
+                            <div id="order_value"><input type="text" class="group_order_order_refillInterval" name="group_order_order_refillInterval" value="${ groupOrderExtn.get(groupOrder.key).refillinterval }" readonly /></div>
                         </div>  
 
                     </div><br/>
