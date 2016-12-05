@@ -74,7 +74,8 @@ public class CurrentPlanGroupOrdersFragmentController {
                             drugorders.add(dOrderExtn);
                         }
                     }
-                    patientOrders.put(planName, drugorders);
+                    if(drugorders.size() > 0)
+                        patientOrders.put(planName, drugorders);
                 }
                 
                 patientName.put(patient.getPatientId(), patient.getGivenName()+" "+patient.getFamilyName());
