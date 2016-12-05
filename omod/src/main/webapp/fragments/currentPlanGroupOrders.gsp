@@ -58,9 +58,3 @@
 
     });
 </script>
-
-<script type="text/javascript">    
-    jq(".groupRow").click(function(){
-        jq(this).css({"background": "#75b2f0","color": "white"});
-    });
-</script>
