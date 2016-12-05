@@ -64,7 +64,15 @@ public class PharmacyGroupPageController {
                                 drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
                                 drugorder.setRefill(drugorder.getRefill() - 1);
                             } else {
-                                drugorder.setOrderstatus(groupAction);
+                                if(drugorder.getOrderstatus().equals("Active"))
+                                    drugorder.setOrderstatus("Non-Active");
+                                
+                                else if(drugorder.getOrderstatus().equals("Active-Group"))
+                                    drugorder.setOrderstatus("Non-Active-Group");
+                                
+                                else if(drugorder.getOrderstatus().equals("Active-Plan"))
+                                    drugorder.setOrderstatus("Non-Active-Plan");
+                                
                                 Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
                             }
                         }
