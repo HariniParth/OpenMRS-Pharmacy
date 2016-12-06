@@ -25,7 +25,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
     <h3>
         <i class="icon-medicine"></i>
         <strong>${ ui.message("ACTIVE DRUG ORDERS") } <label id="selectedGroupPatient"></label>
-            <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacy")}';">Display By Order >></span>
+            <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacySingle")}';">Display By Order >></span>
         </strong>
     </h3>
     Click on an order to view allowed <strong>Refills</strong> and <strong>Last-Dispatch-Date</strong>

@@ -13,3 +13,4 @@ org/openmrs/module/pharmacy/fragment/controller/CurrentMedPlansFragmentControlle
 org/openmrs/module/pharmacy/page/controller/PharmacyGroupPageController.class
 org/openmrs/module/pharmacy/page/controller/PharmacyPageController.class
 org/openmrs/module/pharmacy/fragment/controller/AssociatedOrderViewFragmentController.class
+org/openmrs/module/pharmacy/page/controller/PharmacySinglePageController.class
