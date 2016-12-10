@@ -11,7 +11,7 @@
                 <th id="patientSort">Patient Name</th>
                 <th id="patientSort">Patient DOB</th>
                 <th id="planSort">Plan Name</th>
-                <th id="detailsSort">Details</th>
+                <th id="detailsSort">Drug Name <span id="planDrugDate">Start Date</span></th>
             </tr>
         </thead>
         <tbody>
