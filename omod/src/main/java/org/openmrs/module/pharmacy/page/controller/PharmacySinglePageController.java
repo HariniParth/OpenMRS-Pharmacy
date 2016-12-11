@@ -82,6 +82,9 @@ public class PharmacySinglePageController {
 
                             Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
                         }
+                        
+                    } else {
+                        drugorder.setOnHold(1);
                     }
 
                     Context.getService(drugordersService.class).saveDrugOrder(drugorder);
