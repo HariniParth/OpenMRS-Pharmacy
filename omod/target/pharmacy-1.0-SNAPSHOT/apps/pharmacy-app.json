@@ -9,7 +9,7 @@
                 "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
                 "type": "link",
                 "label": "Pharmacy",
-                "url": "pharmacy/pharmacyGroup.page",
+                "url": "pharmacy/pharmacyPatient.page",
                 "icon": "icon-signin",
                 "requiredPrivilege": "App: some random privilege"
             }
