@@ -8,15 +8,21 @@
 <script type="text/javascript">
     var breadcrumbs = [
         { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
-        { label: "${ ui.message("Pharmacy") }" }
+        { label: "${ ui.message("Pharmacy") }" , link: '${ui.pageLink("pharmacy", "pharmacyPatient")}'},
+        { label: "${ ui.format(patient.familyName) }, ${ ui.format(patient.givenName) }"}
     ];
+     
+    var patient = { id: ${ patient.id } };
+
 </script>
+ 
+${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
 
 <div>
     <h3>
         <i class="icon-medicine"></i>
         <strong>${ ui.message("ACTIVE DRUG ORDERS") } <label id="selectedPatient"></label>
-            <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacyGroup")}';">Display By Group >></span>
+            <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacyGroup", [patientId: patient.patientId])}';">Display By Group >></span>
         </strong>
     </h3>
     Click on an order to view allowed <strong>Refills</strong> and <strong>Last-Dispatch-Date</strong>

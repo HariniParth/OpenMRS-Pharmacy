@@ -28,7 +28,8 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
         
         <tbody>
             <% allPatients.each { patient -> %>
-                <tr class="patientRow">
+                <tr class="patientRow" onclick="location.href='${ ui.pageLink("pharmacy", "pharmacyGroup", [patientId: patient.patientId]) }';">
+                    
                     <td>${ patient.givenName } ${ patient.familyName }</td>
                     <td>${ patient.birthdate.format('yyyy-MM-dd') }</td>
                     <td>${ patient.age }</td>
