@@ -79,6 +79,12 @@ and open the template in the editor.
     color: #363463;
 }
 
+.patientRow:hover {
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
+}
+
 .orderRow:hover {
     background: #75b2f0;
     color: white;
@@ -164,4 +170,14 @@ form #activeOrdersWindow label, .form #activeOrdersWindow label, form #searchRes
 #groupPrio{
     width: 20%;
     float: right;
+}
+
+#clear{
+    font-size: 12px;
+    color: blue;
+    float: right;
+}
+
+#clear:hover{
+    cursor: pointer;
 }

@@ -182,11 +182,11 @@ function autoCompletePatientName(patientNameList){
     var list = patientNameList.replace("[","").replace("]","").split(',');
     console.log(list);
     $("#patient_full_name").autocomplete({
-       source : list,
-       select : function( event , ui ) {
-           $("#patient_full_name").val(ui.item.label);
-           $("#searchByPatient").submit();
-       }
+        source : list,
+        select : function( event , ui ) {
+            $("#patient_full_name").val(ui.item.label);
+            $("#searchByPatient").submit();
+        }
     });
 }
 
@@ -220,4 +220,9 @@ function showPharmaOrderViewSection(){
     jq("#pharmaGroupActionButtons").hide();
     jq("#pharmaGroupButtons").show();
     document.getElementById("#pharmaGroupButtons").style.display = 'block';
+}
+
+function clearPatientTableFIlters(){
+    $("#patient_full_name").val("");
+    $("#searchByPatient").submit();
 }
