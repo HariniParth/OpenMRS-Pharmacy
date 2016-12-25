@@ -108,7 +108,6 @@ function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAdd
         }).hide();
     });
     
-    $("#selectedPatient").text("- "+patientName);
     $("#pharma_order_id").val(orderId);
     $("#pharma_patient_id").val(patientId);
     $("#pharma_patient_name").val(patientName);

@@ -158,17 +158,22 @@ form #activeOrdersWindow label, .form #activeOrdersWindow label {
     margin-top: 0px !important;
 }
 
-#groupDrug{
-    width: 50%;
+.groupDrug{
+    width: 25%;
     float: left;
 }
 
-#groupDate{
-    width: 30%;
+.groupSDate{
+    width: 25%;
 }
 
-#groupPrio{
-    width: 20%;
+.groupRefill{
+    padding-left: 20px;
+    width: 25%;
+}
+
+.groupDDate{
+    width: 25%;
     float: right;
 }
 

@@ -16,16 +16,15 @@
 
 </script>
  
-${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
+${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) } <br/>
 
 <div>
     <h3>
         <i class="icon-medicine"></i>
-        <strong>${ ui.message("ACTIVE DRUG ORDERS") } <label id="selectedPatient"></label>
+        <strong>${ ui.message("ACTIVE DRUG ORDERS") }
             <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacyGroup", [patientId: patient.patientId])}';">Display By Group >></span>
         </strong>
     </h3>
-    Click on an order to view allowed <strong>Refills</strong> and <strong>Last-Dispatch-Date</strong>
 </div><br/>
 
 <div class="info-body">

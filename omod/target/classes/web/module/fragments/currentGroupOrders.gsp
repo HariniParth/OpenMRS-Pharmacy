@@ -1,6 +1,7 @@
 <%
     ui.includeCss("pharmacy", "pharmacy.css")
     ui.includeJavascript("pharmacy", "dataTables.js")
+    def last_dispatch_date = "";
 %>
 
 <form method="post" id="individualGroupForm">
@@ -12,52 +13,55 @@
         <table id="currentGroupOrdersTable">
             <thead>
                 <tr>
-                    <th id="patientSort">Patient Name</th>
-                    <th id="patientSort">Patient DOB</th>
-                    
-                    <th id="detailsSort">
-                        <span id="groupDrug">Drug Name</span>
-                        <span id="groupDate">Start-Date</span>
-                        <span id="groupPrio">Priority</span>
-                    </th>
+                    <th>Plan Name/Group</th>
+                    <th>Drug(s)</th>
+                    <th>Start Date</th>
+                    <th>Refills</th>
+                    <th>Last Dispatch</th>
                 </tr>
             </thead>
             <tbody>
                 <% patientGroupOrders.each { patientGroupOrder -> %>
-                    <% patientGroupOrder.value.each { order -> %>
-                        <tr class="groupRow" onclick="selectedGroupOrder('${ order.key }')">
-                            <td>${ patientName.get(patientGroupOrder.key) }</td>
+                    <tr class="groupRow" onclick="selectedGroupOrder('${ patientGroupOrder.key }')">
+                        <td></td>
+                        <td colspan="4">
+                            <% patientGroupOrder.value.each { order -> %>
+                                
+                                <div>
+                                    <span class="groupDrug">${ order.drugname.getDisplayString() }</span>
+                                    <span class="groupSDate">${ order.startdate.format('yyyy-MM-dd') }</span>
+                                    <span class="groupRefill">${ order.refill }</span>
 
-                            <td>${ patientDOB.get(patientGroupOrder.key).format('yyyy-MM-dd') }</td>
+                                    <% if(order.lastdispatchdate != null) { %>
+                                        <% last_dispatch_date = order.lastdispatchdate.format('yyyy-MM-dd'); %>
+                                    <% } else { %>
+                                        <% last_dispatch_date = order.lastdispatchdate; %>
+                                    <% } %>
 
-                            <td>
-                                <% order.value.each { o -> %>
-
-                                    <div>
-                                        <span id="groupDrug">${ o.drugname.getDisplayString().toUpperCase() }</span>
-                                        <span id="groupDate">${ o.startdate.format('yyyy-MM-dd') }</span>
-                                        <span id="groupPrio">${ o.priority.getDisplayString() }</span>
-                                    </div>
-                                    
-                                <% } %>
-                            </td>
-                        </tr>   
-                    <% } %>
+                                    <span class="groupDDate">${ last_dispatch_date }</span>
+                                </div>
+                            
+                            <% } %>
+                        </td>
+                    </tr>
                 <% } %>
 
                 <% patientSingleOrders.each { patientSingleOrder -> %>
-                    <tr class="groupRow" onclick="selectedSingleOrder('${ patientSingleOrder.value.orderId }')">
-                        <td>${ patientName.get(patientSingleOrder.key) }</td>
-
-                        <td>${ patientDOB.get(patientSingleOrder.key).format('yyyy-MM-dd') }</td>
-
-                        <td>
-                            <div>
-                                <span id="groupDrug">${ patientSingleOrder.value.drugname.getDisplayString().toUpperCase() }</span>
-                                <span id="groupDate">${ patientSingleOrder.value.startdate.format('yyyy-MM-dd') }</span>
-                                <span id="groupPrio">${ patientSingleOrder.value.priority.getDisplayString() }</span>
-                            </div>
-                        </td>
+                    <tr class="groupRow" onclick="selectedSingleOrder('${ patientSingleOrder.orderId }')">
+                        
+                        <td></td>
+                        <td>${ patientSingleOrder.drugname.getDisplayString() }</td>
+                        <td>${ patientSingleOrder.startdate.format('yyyy-MM-dd') }</td>
+                        <td>${ patientSingleOrder.refill }</td>
+                        
+                        <% if(patientSingleOrder.lastdispatchdate != null) { %>
+                            <% last_dispatch_date = patientSingleOrder.lastdispatchdate.format('yyyy-MM-dd'); %>
+                        <% } else { %>
+                            <% last_dispatch_date = patientSingleOrder.lastdispatchdate; %>
+                        <% } %>
+                            
+                        <td>${ last_dispatch_date }</td>
+                        
                     </tr> 
                 <% } %>
 
