@@ -5,14 +5,6 @@
 %>
 
 <script type="text/javascript">
-    //var OPENMRS_CONTEXT_PATH = 'openmrs';
-    window.sessionContext = window.sessionContext || {
-        locale: "en_GB"
-    };
-    window.translations = window.translations || {};
-</script>
-
-<script type="text/javascript">
     var breadcrumbs = [
         { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
         { label: "${ ui.message("Pharmacy") }"}
@@ -34,9 +26,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
 <div class="info-body">
 
     <div id="currentDrugOrdersWindow">
-        
-        <p class="fields">${ ui.includeFragment("pharmacy", "searchGroupView") }</p>
-        
+                
         <div id="currentOrdersWindow">
             <p class="fields"><strong>GROUP DRUG ORDERS</strong></p><br/>
             ${ ui.includeFragment("pharmacy", "currentGroupOrders") } <br/>
@@ -52,9 +42,3 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
     </div>
 
 </div>
-
-<script type="text/javascript">
-    jq(function() {
-        emr.updateBreadcrumbs();
-    });
-</script>

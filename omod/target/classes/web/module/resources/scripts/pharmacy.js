@@ -169,11 +169,6 @@ function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patient
     jq("#pharmaOrderViewWindow").show();
 }
 
-function closeSearchResultsWindow(){
-    jq("#searchResultsWindow").hide();
-    jq("#currentOrdersWindow").show();
-}
-
 function closeAllOrdersWindow(){
     jq("#allOrdersTableWrapper").hide();
 }

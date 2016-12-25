@@ -73,7 +73,7 @@ and open the template in the editor.
     font-weight: bold;
 }
 
-#pharmaOrderView, #pharmaActionView, #patient-search-bar, #searchResultsWindow, #activeOrdersWindow{
+#pharmaOrderView, #pharmaActionView, #patient-search-bar, #activeOrdersWindow{
     background: #F9F9F9;
     border: 1px solid #eee;
     color: #363463;
@@ -103,7 +103,7 @@ and open the template in the editor.
     cursor: pointer;
 }
 
-#associatedOrdersTableWrapper .dataTables_wrapper, #otherOrdersTableWrapper .dataTables_wrapper, #searchResultsWindow .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{
+#associatedOrdersTableWrapper .dataTables_wrapper, #otherOrdersTableWrapper .dataTables_wrapper, .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{
    _height: 152px;
    min-height: 152px;
 }
@@ -123,7 +123,7 @@ and open the template in the editor.
     width: 40%;
 }
 
-#currentDrugOrdersTable, #currentMedPlansTable, #associatedOrdersTable, #searchOrdersTable, #allOrdersTable, #currentPlanGroupTable, #currentGroupOrdersTable, #searchGroupOrdersTable{
+#currentDrugOrdersTable, #currentMedPlansTable, #associatedOrdersTable, #allOrdersTable, #currentPlanGroupTable, #currentGroupOrdersTable {
     font-size: 13px;
 }
 
@@ -153,7 +153,7 @@ form select, .form select {
     padding: 0px !important;
 }
 
-form #activeOrdersWindow label, .form #activeOrdersWindow label, form #searchResultsWindow label, .form #searchResultsWindow label {
+form #activeOrdersWindow label, .form #activeOrdersWindow label {
     text-align: right !important;
     margin-top: 0px !important;
 }
