@@ -18,8 +18,6 @@ $(document).ready( function() {
         });        
     });
     
-    jq("#pharmaOrderViewWindow").hide();
-    
     var selectedPatient = $("#pharma_action_patient_name").val();
     
     if(selectedPatient !== undefined){
@@ -107,65 +105,6 @@ function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAdd
             return $.trim($(this).find('td').eq(0).text()) !== patientName;
         }).hide();
     });
-    
-    $("#pharma_order_id").val(orderId);
-    $("#pharma_patient_id").val(patientId);
-    $("#pharma_patient_name").val(patientName);
-    $("#pharma_patient_dob").val(patientDOB);
-    $("#pharma_patient_address").val(patientAddress);
-    $("#pharma_start_date").val(startDate);
-    $("#pharma_order_details").val(drugName +" "+dose+" "+doseUnits+" "+route+" "+duration+" "+durationUnits+" "+quantity+" "+quantityUnits+" "+frequency);
-    $("#pharma_order_refill").val(numRefills);
-    $("#pharma_last_dispatch_date").val(lastDispatchDate);
-    $("#pharma_order_refillInterval").val(refillInterval);
-    $("#order_provider").val(providerInfo);
-    $("#pharma_patient_instructions").val(patientinstructions);
-    $("#pharma_pharmacist_instructions").val(pharmacistinstructions);
-    $("#pharma_order_diagnosis").val(diagnosis);
-    if(isAllergic !== "null")
-        $("#pharma_order_allergic").val(isAllergic);
-    else
-        $("#pharma_order_allergic").val("Nil");
-    
-    var associatedOrderList = associatedOrders.replace("[","").replace("]","").split(',');
-    var orderList = "";
-    $.each(associatedOrderList,function(index,value){
-        if(!value.includes(drugName)){
-            orderList = orderList + value;
-        }
-    });
-    $("#associatedOrders").val(orderList);
-    
-    document.getElementById("pharmaOrderViewWindow").style.display = 'block';
-    jq("#pharmaOrderViewWindow").show();
-}
-
-function showPharmaActionWindow(){
-    jq("#pharmaOrderViewWindow").hide();
-}
-
-function hidePharmaActionWindow(orderID,patientID,patientName,patientDOB,patientAddress,startDate,orderDetails,numRefill,lastDispatchDate,refillInterval,providerInfo,patientInst,pharmaInst,diagnosis,isAllergic,orderList){
-    jq("#pharmaOrderActionWindow").hide();
-    $("#pharma_order_id").val(orderID);
-    $("#pharma_patient_id").val(patientID);
-    $("#pharma_patient_name").val(patientName);
-    $("#pharma_patient_dob").val(patientDOB);
-    $("#pharma_patient_address").val(patientAddress);
-    $("#pharma_start_date").val(startDate);
-    $("#pharma_order_details").val(orderDetails);
-    $("#pharma_order_refill").val(numRefill);
-    $("#pharma_last_dispatch_date").val(lastDispatchDate);
-    $("#pharma_order_refillInterval").val(refillInterval);
-    $("#order_provider").val(providerInfo);
-    $("#pharma_patient_instructions").val(patientInst);
-    $("#pharma_pharmacist_instructions").val(pharmaInst);
-    $("#pharma_order_diagnosis").val(diagnosis);
-    if(isAllergic !== "Nil")
-        $("#pharma_order_allergic").val(isAllergic);
-    else
-        $("#pharma_order_allergic").val("Nil");
-    $("#associatedOrders").val(orderList);
-    jq("#pharmaOrderViewWindow").show();
 }
 
 function closeAllOrdersWindow(){
@@ -193,14 +132,17 @@ function selectedMedPlanGroup(planPatient, planName){
 
 function selectedGroupOrder(groupID){
     $("#groupID").val(groupID);
-    $("#individualGroupForm").submit();
-    $("#searchGroupForm").submit();
+    $("#groupOrdersForm").submit();
 }
 
 function selectedSingleOrder(orderID){
     $("#orderID").val(orderID);
-    $("#individualGroupForm").submit();
-    $("#searchGroupForm").submit();
+    $("#groupOrdersForm").submit();
+}
+
+function selectedOrder(orderID){
+    $("#singleID").val(orderID);
+    $("#individualOrderForm").submit();
 }
 
 function showPharmaConfirmationSection(action){

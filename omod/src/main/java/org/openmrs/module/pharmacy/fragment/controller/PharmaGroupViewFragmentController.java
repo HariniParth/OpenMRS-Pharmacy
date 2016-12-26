@@ -5,7 +5,6 @@
  */
 package org.openmrs.module.pharmacy.fragment.controller;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import org.openmrs.DrugOrder;
@@ -25,31 +24,21 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class PharmaGroupViewFragmentController {
     
-    public void controller(PageModel model,@RequestParam(value = "planPatient", required = false) String planPatient,
+    public void controller(PageModel model, @RequestParam("patientId") Patient patient,
                             @RequestParam(value = "planName", required = false) String planName,
                             @RequestParam(value = "groupID", required = false) String groupID,
                             @RequestParam(value = "orderID", required = false) String orderID){
         
-        model.addAttribute("planPatient", planPatient);
         model.addAttribute("planName", planName);
         model.addAttribute("groupID", groupID);
         model.addAttribute("orderID", orderID);
         
-        Patient patient;
-        Date patientDOB = null;
-        String patientName = null, patientAddress = null;
         HashMap<Integer,String> provider = new HashMap<Integer,String>();
         HashMap<Integer,DrugOrder> groupOrderMain = new HashMap<Integer,DrugOrder>();
         HashMap<Integer,drugorders> groupOrderExtn = new HashMap<Integer,drugorders>();
         
-        if(!planPatient.equals("") && !planName.equals("")){
-            
-            //Fetch the Patient's personal details
-            patient = Context.getPatientService().getPatient(Integer.parseInt(planPatient));
-            patientName = Context.getPersonService().getPerson(patient.getPatientId()).getGivenName() + " " + Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName();
-            patientDOB = Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate();
-            patientAddress = Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry();
-        
+        if(!planName.equals("")){
+
             //Get the list of Med Plan Orders ordered for this Patient to treat this Disease
             List<drugordersdiseases> plans = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(Context.getConceptService().getConceptByName(planName), patient);
             for(drugordersdiseases plan : plans){
@@ -78,12 +67,6 @@ public class PharmaGroupViewFragmentController {
                     provider.put(DrugOrder.getOrderId(), DrugOrder.getOrderer().getPerson().getGivenName() + " " + DrugOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DrugOrder.getOrderer().getIdentifier()));
                 }
             }
-            
-            patient = Context.getPatientService().getPatient(Integer.parseInt(drugorders.get(0).getPatientid()));
-            patientName = Context.getPersonService().getPerson(patient.getPatientId()).getGivenName() + " " + Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName();
-            patientDOB = Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate();
-            patientAddress = Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry();
-        
         }
         
         if(!orderID.equals("")){
@@ -95,18 +78,11 @@ public class PharmaGroupViewFragmentController {
             DrugOrder DrugOrder = (DrugOrder) Context.getOrderService().getOrder(order);
             groupOrderMain.put(order, DrugOrder);
             
-            patient = Context.getPatientService().getPatient(Integer.parseInt(drugorder.getPatientid()));
-            patientName = Context.getPersonService().getPerson(patient.getPatientId()).getGivenName() + " " + Context.getPersonService().getPerson(patient.getPatientId()).getFamilyName();
-            patientDOB = Context.getPersonService().getPerson(patient.getPatientId()).getBirthdate();
-            patientAddress = Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getAddress1()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCityVillage()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getStateProvince()+" Zipcode: "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getPostalCode()+" "+Context.getPersonService().getPerson(patient.getPatientId()).getPersonAddress().getCountry();
             provider.put(DrugOrder.getOrderId(), DrugOrder.getOrderer().getPerson().getGivenName() + " " + DrugOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DrugOrder.getOrderer().getIdentifier()));
         }
         
         model.addAttribute("groupOrderMain", groupOrderMain);
         model.addAttribute("groupOrderExtn", groupOrderExtn);
-        model.addAttribute("patientName", patientName);
-        model.addAttribute("patientDOB", patientDOB);
-        model.addAttribute("patientAddress", patientAddress);
         model.addAttribute("provider", provider);
         
     }

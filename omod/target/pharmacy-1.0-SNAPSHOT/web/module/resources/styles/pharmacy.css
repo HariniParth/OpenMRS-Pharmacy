@@ -108,7 +108,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, #additionalInformation, #pharmaOrderViewWindow, #pharmaGroupActionButtons{
+.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons{
     display: none;
 }
 

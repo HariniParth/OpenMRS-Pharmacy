@@ -31,11 +31,11 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) } <br/>
     <div id="currentDrugOrdersWindow">
                 
         <div id="currentOrdersWindow">
-            <p class="fields"><strong>GROUP DRUG ORDERS</strong></p><br/>
-            ${ ui.includeFragment("pharmacy", "currentGroupOrders") } <br/>
+            
+            <br/> ${ ui.includeFragment("pharmacy", "currentGroupOrders") } <br/>
 
-            <p class="fields"><strong>GROUP PLAN ORDERS</strong></p><br/>
-            ${ ui.includeFragment("pharmacy", "currentPlanGroupOrders") } <br/>
+            <br/> ${ ui.includeFragment("pharmacy", "currentPlanGroupOrders") } <br/>
+            
         </div>
         
     </div>

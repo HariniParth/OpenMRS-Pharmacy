@@ -22,7 +22,7 @@
             <tbody>
                 <% patientOrders.each { order -> %>
 
-                    <tr class="orderRow" onclick="selectedSingleOrder('${ order.orderId }')">
+                    <tr class="orderRow" onclick="selectedOrder('${ order.orderId }')">
                         <td></td>
                         <td>${ order.drugname.getDisplayString() }</td>
                         <td>${ order.startdate.format('yyyy-MM-dd') }</td>

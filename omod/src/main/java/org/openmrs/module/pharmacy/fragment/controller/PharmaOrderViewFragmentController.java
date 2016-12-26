@@ -5,7 +5,14 @@
  */
 package org.openmrs.module.pharmacy.fragment.controller;
 
+import java.util.List;
+import org.openmrs.DrugOrder;
+import org.openmrs.Patient;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.drugorders.api.drugordersService;
+import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.ui.framework.page.PageModel;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -14,39 +21,37 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class PharmaOrderViewFragmentController {
     
-    public void controller(PageModel model,@RequestParam(value = "pharma_order_id", required = false) String pharma_order_id,
-                            @RequestParam(value = "pharma_patient_id", required = false) String pharma_patient_id,
-                            @RequestParam(value = "pharma_patient_name", required = false) String pharma_patient_name,
-                            @RequestParam(value = "pharma_patient_dob", required = false) String pharma_patient_DOB,
-                            @RequestParam(value = "pharma_patient_address", required = false) String pharma_patient_address,
-                            @RequestParam(value = "pharma_start_date", required = false) String pharma_start_date,
-                            @RequestParam(value = "pharma_order_details", required = false) String pharma_order_details,
-                            @RequestParam(value = "pharma_order_refill", required = false) String pharma_order_refill,
-                            @RequestParam(value = "pharma_last_dispatch_date", required = false) String pharma_last_dispatch_date,
-                            @RequestParam(value = "pharma_order_refillInterval", required = false) String pharma_order_refillInterval,
-                            @RequestParam(value = "order_provider", required = false) String order_provider,
-                            @RequestParam(value = "pharma_patient_instructions", required = false) String pharma_patient_instructions,
-                            @RequestParam(value = "pharma_pharmacist_instructions", required = false) String pharma_pharmacist_instructions,
-                            @RequestParam(value = "pharma_order_diagnosis", required = false) String pharma_order_diagnosis,
-                            @RequestParam(value = "pharma_order_allergic", required = false) String pharma_order_allergic,
-                            @RequestParam(value = "associatedOrders", required = false) String associatedOrders){
+    public void controller(PageModel model, @RequestParam(value = "singleID", required = false) String orderID,
+                            @RequestParam("patientId") Patient patient){
+
+        model.addAttribute("singleID", orderID);
         
-        model.addAttribute("pharma_order_id", pharma_order_id);
-        model.addAttribute("pharma_patient_id", pharma_patient_id);
-        model.addAttribute("pharma_patient_name", pharma_patient_name);
-        model.addAttribute("pharma_patient_DOB", pharma_patient_DOB);
-        model.addAttribute("pharma_patient_address", pharma_patient_address);
-        model.addAttribute("pharma_start_date", pharma_start_date);
-        model.addAttribute("pharma_order_details", pharma_order_details);
-        model.addAttribute("pharma_order_refill", pharma_order_refill);
-        model.addAttribute("pharma_last_dispatch_date", pharma_last_dispatch_date);
-        model.addAttribute("pharma_order_refillInterval", pharma_order_refillInterval);
-        model.addAttribute("order_provider", order_provider);
-        model.addAttribute("pharma_patient_instructions", pharma_patient_instructions);
-        model.addAttribute("pharma_pharmacist_instructions", pharma_pharmacist_instructions);
-        model.addAttribute("pharma_order_diagnosis", pharma_order_diagnosis);
-        model.addAttribute("pharma_order_allergic", pharma_order_allergic);
+        DrugOrder orderMain = null;
+        drugorders orderExtn = null;
+        String provider = "";
+        String associatedOrders = "";
+        
+        if(!orderID.equals("")){
+            
+            int order = Integer.parseInt(orderID);
+            
+            orderMain = (DrugOrder) Context.getOrderService().getOrder(order);
+            
+            orderExtn = Context.getService(drugordersService.class).getDrugOrderByOrderID(order);
+            
+            provider = orderMain.getOrderer().getPerson().getGivenName() + " " + orderMain.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(orderMain.getOrderer().getIdentifier());
+        
+            if(orderExtn.getOrderstatus().equals("Active-Group")){
+                List<drugorders> otherOrdersInGroup = Context.getService(drugordersService.class).getDrugOrdersByGroupID(orderExtn.getGroupid());
+                for(drugorders otherOrder : otherOrdersInGroup){
+                    associatedOrders = associatedOrders + otherOrder.getDrugname().getDisplayString() + " ";
+                }
+            }
+        }
+        
+        model.addAttribute("orderMain", orderMain);
+        model.addAttribute("orderExtn", orderExtn);
+        model.addAttribute("provider", provider);
         model.addAttribute("associatedOrders", associatedOrders);
-        
     }
 }

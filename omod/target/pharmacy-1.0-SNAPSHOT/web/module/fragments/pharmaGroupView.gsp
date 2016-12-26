@@ -5,7 +5,7 @@
     def last_dispatch_date = "";
 %>
 
-<% if((!(planPatient).equals("") && !(planName).equals("")) || !groupID.equals("") || !orderID.equals("")) { %>
+<% if(!(planName).equals("") || !groupID.equals("") || !orderID.equals("")) { %>
     <div id="pharmaGroupView" class="dialog">
 
         <form method="post">
@@ -13,32 +13,6 @@
             <div class="dialog-header">
                 <h3 id="dialog-heading">${ ui.message("Record Action") }</h3>
             </div><br/>
-
-            <div class="fields" id="view_order_detail">
-                <div id="order_label"><label>Patient Name</label></div>
-                <div id="order_value"><input type="text" id="group_order_patient_name" name="group_order_patient_name" value="${ patientName }" readonly /></div>
-            </div>
-
-            <br/><br/>
-
-            <div class="fields" id="view_order_detail">
-                <div id="order_label"><label>Patient DOB</label></div>
-                <div id="order_value"><input type="text" id="group_order_patient_dob" name="group_order_patient_dob" value="${ patientDOB.format('yyyy-MM-dd') }" readonly /></div>
-            </div>
-
-            <br/><br/>
-
-            <div class="hidden" id="view_order_detail">
-                <div id="order_label"><label>Patient ID</label></div>
-                <div id="order_value"><input type="text" id="group_order_patient_id" name="group_order_patient_id" readonly /></div>
-            </div>
-
-            <div class="fields" id="view_order_detail">
-                <div id="order_label"><label>Address</label></div>
-                <div id="order_value"><input type="text" id="group_order_patient_address" name="group_order_patient_address" value="${ patientAddress }" readonly /></div>
-            </div>
-
-            <br/><br/><br/>
 
             <% groupOrderMain.each { groupOrder -> %>
                 <% list_of_orders = list_of_orders + groupOrder.key + "," %>
@@ -169,7 +143,7 @@
                 </div><br/>
 
                 <div class="fields">
-                    <input class="confirm right" id="btn-place" type="submit" name="action" value="Record" onclick="showPharmaActionWindow()" />
+                    <input class="confirm right" id="btn-place" type="submit" name="action" value="Record" />
                 </div>
 
                 <div class="fields">

@@ -1,140 +1,153 @@
 <%
     ui.includeCss("pharmacy", "pharmacy.css")
+    def last_dispatch_date = "";
 %>
 
-<div id="pharmaOrderView">
-    
-    <form method="post">
-        
-        <div class="dialog-header">
-            <h3 id="dialog-heading">${ ui.message("Record Action") }</h3>
-        </div><br/>
+<% if(!singleID.equals("")) { %>
+    <div id="pharmaOrderView" class="dialog">
 
-        <input type="hidden" id="pharma_order_id" name="pharma_order_id" readonly />
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Patient Name</label></div>
-            <div id="order_value"><input type="text" id="pharma_patient_name" name="pharma_patient_name" readonly /></div>
-        </div>
+        <form method="post">
 
-        <br/><br/>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Patient DOB</label></div>
-            <div id="order_value"><input type="text" id="pharma_patient_dob" name="pharma_patient_dob" readonly /></div>
-        </div>
+            <div class="dialog-header">
+                <h3 id="dialog-heading">${ ui.message("Record Action") }</h3>
+            </div><br/>
 
-        <br/><br/>
-        
-        <div class="hidden" id="view_order_detail">
-            <div id="order_label"><label>Patient ID</label></div>
-            <div id="order_value"><input type="text" id="pharma_patient_id" name="pharma_patient_id" readonly /></div>
-        </div>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Address</label></div>
-            <div id="order_value"><input type="text" id="pharma_patient_address" name="pharma_patient_address" readonly /></div>
-        </div>
-
-        <br/><br/>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Start Date</label></div>
-            <div id="order_value"><input type="text" id="pharma_start_date" name="pharma_start_date" readonly /></div>
-        </div>   
-
-        <br/><br/>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Order/s</label></div>
-            <div id="order_value"><input type="text" id="pharma_order_details" name="pharma_order_details" readonly /></div>
-        </div> 
-        
-        <br/><br/>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Refills</label></div>
-            <div id="order_value"><input type="text" id="pharma_order_refill" name="pharma_order_refill" readonly /></div>
-        </div> 
-
-        <br/><br/>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Last Dispatch</label></div>
-            <div id="order_value"><input type="text" id="pharma_last_dispatch_date" name="pharma_last_dispatch_date" readonly /></div>
-        </div>   
-
-        <br/><br/>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Interval (days)</label></div>
-            <div id="order_value"><input type="text" id="pharma_order_refillInterval" name="pharma_order_refillInterval" readonly /></div>
-        </div> 
-
-        <br/><br/>
-        
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Provider</label></div>
-            <div id="order_value"><input type="text" id="order_provider" name="order_provider" readonly /></div>
-        </div>
-        
-        <br/><br/><br/>
-
-        <div class="fields" id="view_order_detail"><label>Instructions for</label></div>
-
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Patient</label></div>
-            <div id="order_value"><input type="text" id="pharma_patient_instructions" name="pharma_patient_instructions" readonly /></div>
-        </div>     
-
-        <br/><br/>
-
-        <div class="fields" id="view_order_detail">
-            <div id="order_label"><label>Pharmacist</label></div>
-            <div id="order_value"><input type="text" id="pharma_pharmacist_instructions" name="pharma_pharmacist_instructions" readonly /></div>
-        </div>    
-
-        <br/><br/><br/>
-        
-        <div class="fields" id="view_order_detail">
-            <label>Additional Information 
-                <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
-                <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
-            </label>
-        </div>
-        
-        <div id="additionalInformation">
             <div class="fields" id="view_order_detail">
-                <div id="order_label"><label>Diagnosis</label></div>
-                <div id="order_value"><input type="text" id="pharma_order_diagnosis" name="pharma_order_diagnosis" readonly /></div>
-            </div>
+                <div id="order_label"><label>Order/s</label></div>
+                <div id="order_value"><input type="text" id="pharma_order_details" name="pharma_order_details" value="${ orderExtn.drugname.getDisplayString() } ${ orderMain.route.getDisplayString() } ${ orderMain.dose } ${ orderMain.doseUnits.getDisplayString() } ${ orderMain.duration } ${ orderMain.durationUnits.getDisplayString() } ${ orderMain.quantity } ${ orderMain.quantityUnits.getDisplayString() } ${ orderMain.frequency }" readonly /></div>
+            </div> 
+
+            <br/><br/>
+
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label>Start Date</label></div>
+                <div id="order_value"><input type="text" id="pharma_start_date" name="pharma_start_date" value="${ orderExtn.startdate.format('yyyy-MM-dd') }" readonly /></div>
+            </div>   
+
+            <br/><br/>
             
+            <div class="fields" id="view_order_detail"><label>Instructions for</label></div>
+
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label>Patient</label></div>
+                <div id="order_value"><input type="text" id="pharma_patient_instructions" name="pharma_patient_instructions" value="${ orderExtn.patientinstructions }" readonly /></div>
+            </div>     
+
+            <br/><br/>
+
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label>Pharmacist</label></div>
+                <div id="order_value"><input type="text" id="pharma_pharmacist_instructions" name="pharma_pharmacist_instructions" value="${ orderExtn.pharmacistinstructions }" readonly /></div>
+            </div>    
+
+            <br/><br/>
+
+            <div class="fields" id="view_order_detail">
+                <label>Additional Information 
+                    <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
+                    <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
+                </label>
+            </div>
+                    
+            <div id="additionalInformation">
+                <div class="fields" id="view_order_detail">
+                    <div id="order_label"><label>Diagnosis</label></div>
+                    <div id="order_value"><input type="text" id="pharma_order_diagnosis" name="pharma_order_diagnosis" value="${ orderExtn.associateddiagnosis.getDisplayString() }" readonly /></div>
+                </div>
+
+                <br/><br/>
+
+                <div class="fields" id="view_order_detail">
+                    <div id="order_label"><label>Allergy Note</label></div>
+                    <div id="order_value"><input type="text" id="pharma_order_allergic" name="pharma_order_allergic" value="${ orderExtn.isallergicorderreasons }" readonly /></div>
+                </div>
+                <br/><br/>
+                
+                <div class="fields" id="view_order_detail">
+                    <div id="order_label"><label>Refills</label></div>
+                    <div id="order_value"><input type="text" id="pharma_order_refill" name="pharma_order_refill" value="${ orderExtn.refill }" readonly /></div>
+                </div> 
+
+                <br/><br/>
+            
+                <div class="fields" id="view_order_detail">
+                    <div id="order_label"><label>Interval (days)</label></div>
+                    <div id="order_value"><input type="text" id="pharma_order_refillInterval" name="pharma_order_refillInterval" value="${ orderExtn.refillinterval }" readonly /></div>
+                </div> <br/>
+            </div><br/>
+            
+            <% if(orderExtn.lastdispatchdate != null) { %>
+                <% last_dispatch_date = orderExtn.lastdispatchdate.format('yyyy-MM-dd'); %>
+            <% } else { %>
+                <% last_dispatch_date = orderExtn.lastdispatchdate; %>
+            <% } %>
+
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label>Last Dispatch</label></div>
+                <div id="order_value"><input type="text" id="pharma_last_dispatch_date" name="pharma_last_dispatch_date" value="${ last_dispatch_date }" readonly /></div>
+            </div>   
+
+            <br/><br/>
+
+            <div class="fields" id="view_order_detail">
+                <div id="order_label"><label>Provider</label></div>
+                <div id="order_value"><input type="text" id="order_provider" name="order_provider" value="${ provider }" readonly /></div>
+            </div>
+
             <br/><br/>
             
             <div class="fields" id="view_order_detail">
-                <div id="order_label"><label>Allergy Note</label></div>
-                <div id="order_value"><input type="text" id="pharma_order_allergic" name="pharma_order_allergic" readonly /></div>
-            </div>
+                <label>Associated Orders (if any)</label>
+                <input type="text" id="associatedOrders" name="associatedOrders" value="${ associatedOrders }" readonly />
+            </div>    
+
             <br/><br/>
-        </div>
-        
-        <div class="fields" id="view_order_detail">
-            <label>Associated Orders (if any)</label>
-            <input type="text" id="associatedOrders" name="associatedOrders" readonly />
-        </div>    
 
-        <br/><br/>
+            <span id="pharmaGroupButtons">
+                <div class="fields"><input class="confirm right" id="btn-place" value="Dispatch" type="button" onclick="showPharmaConfirmationSection('Dispatch')" /></div><br/><br/>
 
-        <div class="fields"><input class="confirm right" id="btn-dispatch" name="action" value="Dispatch" type="submit" onclick="showPharmaActionWindow()" /></div><br/><br/>
-        
-        <div class="fields"><input class="confirm right" id="btn-hold" name="action" value="On Hold" type="submit" onclick="showPharmaActionWindow()" /></div><br/><br/>
-        
-        <div class="fields"><input class="confirm right" id="btn-drop" name="action" value="Discard" type="submit" onclick="showPharmaActionWindow()" />
-        
-        <input class="cancel" id="btn-place" value="Cancel" type="submit" /></div>
-    
-    </form>
-</div>
+                <div class="fields"><input class="confirm right" id="btn-place" value="On Hold" type="button" onclick="showPharmaConfirmationSection('On Hold')" /></div><br/><br/>
+
+                <div class="fields"><input class="confirm right" id="btn-place" value="Discard" type="button" onclick="showPharmaConfirmationSection('Discard')" />
+
+                <input class="cancel" id="btn-place" value="Cancel" type="submit" /></div>
+            </span>
+            
+            <span id="pharmaGroupActionButtons">
+                <input type="hidden" id="pharmaGroupAction" name="pharmaSingleAction" />
+                
+                <div class="fields">
+                    <label>Comments (Optional)</label>
+                </div>
+
+                <div class="fields">
+                    <input type="textarea" maxlength="100" id="comments" name="comments" placeholder="Enter Comments on the Order"/>
+                </div><br/>
+
+                <div class="fields" id="view_order_detail">
+                    <input type="checkbox" name="commentCheckbox" value="1" />Forward message to ordering physician<br/>
+                </div><br/>
+
+                <div class="fields" id="view_order_detail">
+                    <input type="checkbox" name="messageCheckbox" value="1" />Another message to ordering physician<br/>
+                </div><br/>
+
+                <div class="fields">
+                    <input type="textarea" maxlength="100" id="additionalMessage" name="additionalMessage" placeholder="Enter Additional Message for Orderer"/>
+                </div><br/>
+
+                <div class="fields">
+                    <input class="confirm right" id="btn-place" type="submit" name="action" value="Confirm" />
+                </div>
+
+                <div class="fields">
+                    <input class="cancel" id="btn-place" value="Back" type="button" onclick="showPharmaOrderViewSection()" />
+                </div>
+            </span>
+            
+        </form>
+    </div>
+<% } %>
 
 <script type="text/javascript">    
     jq(".icon-plus-sign").click(function(){

@@ -4,7 +4,7 @@
     def last_dispatch_date = "";
 %>
 
-<form method="post" id="individualGroupForm">
+<form method="post" id="groupOrdersForm">
     
     <input type="hidden" id="orderID" name="orderID" />
     <input type="hidden" id="groupID" name="groupID" />

@@ -2,7 +2,6 @@
     ui.decorateWith("appui", "standardEmrPage");
     ui.includeCss("pharmacy", "pharmacy.css")
     ui.includeJavascript("pharmacy", "pharmacy.js")
-    def isSelected = 0;
 %>
 
 <script type="text/javascript">
@@ -33,22 +32,17 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) } <br/>
         <p class="fields">${ ui.includeFragment("pharmacy", "associatedOrderView") }</p>
                 
         <div id="currentOrdersWindow">
-            <p class="fields"><strong>ALL INDIVIDUAL DRUG ORDERS</strong></p><br/>
-            ${ ui.includeFragment("pharmacy", "currentDrugOrders") } <br/>
 
-            <p class="fields"><strong>ALL MEDICATION PLAN ORDERS</strong></p><br/>
-            ${ ui.includeFragment("pharmacy", "currentMedPlans") } <br/>
+            <br/> ${ ui.includeFragment("pharmacy", "currentDrugOrders") } <br/>
+
+            <br/> ${ ui.includeFragment("pharmacy", "currentMedPlans") } <br/>
+            
         </div>
         
     </div>
     
-    <div id="pharmaOrderViewWindow" class="dialog">
+    <div id="pharmaOrderViewWindow">
         ${ ui.includeFragment("pharmacy", "pharmaOrderView") }
     </div>
 
-    <% if(!(pharma_order_id).equals("") && !order_status.equals("")) { %>
-        <div id="pharmaOrderActionWindow" class="dialog">
-            ${ ui.includeFragment("pharmacy", "pharmaActionWindow") }
-        </div>
-    <% } %>
 </div>
