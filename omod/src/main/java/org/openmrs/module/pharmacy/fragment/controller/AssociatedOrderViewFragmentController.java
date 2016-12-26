@@ -25,13 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class AssociatedOrderViewFragmentController {
     
-    public void controller(PageModel model,@RequestParam(value = "pharma_action_order_id", required = false) String orderId,
-                            @RequestParam(value = "pharma_action_patient_name", required = false) String patientName,
-                            @RequestParam(value = "pharma_action_patient_DOB", required = false) String patientDOB,
-                            @RequestParam(value = "pharma_action_patient_id", required = false) String patientID,
-                            @RequestParam(value = "pharma_action_patient_address", required = false) String patientAddress,
-                            @RequestParam(value = "pharma_order_provider", required = false) String provider,
-                            @RequestParam(value = "action", required = false) String action){
+    public void controller(PageModel model,@RequestParam(value = "action", required = false) String action,
+                            @RequestParam(value = "pharmaOrderID", required = false) String pharmaOrderID){
     
         HashMap<Integer,List<drugorders>> associatedOrderExtn = new HashMap<Integer,List<drugorders>>();
         HashMap<Integer,DrugOrder> associatedOrderMain = new HashMap<Integer,DrugOrder>();
@@ -40,11 +35,11 @@ public class AssociatedOrderViewFragmentController {
         HashMap<Integer,DrugOrder> allOrdersMain = new HashMap<Integer,DrugOrder>();
         
         HashMap<Integer,List<String>> otherOrders = new HashMap<Integer,List<String>>();
-        
+                
         if (StringUtils.isNotBlank(action)) {
             try {
-                if ("OK".equals(action)) {
-                    drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(Integer.parseInt(orderId));
+                if ("Confirm".equals(action)) {
+                    drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID));
                     if(drugorder.getGroupid() != null){
                         
                         //Fetch all Orders that were ordered as a group with the recorded Order
@@ -56,7 +51,7 @@ public class AssociatedOrderViewFragmentController {
                             otherOrders.put(oExtn.getOrderId(), pullAssociatedGroupOrders(oExtn));
                         }
                         
-                    } else if(Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(Integer.parseInt(orderId)) != null){
+                    } else if(Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID)) != null){
                         
                         //Fetch all Orders that were ordered as a part of Med Plan with the recorded OrderInteger
                         List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociateddiagnosis(), Context.getPatientService().getPatient(Integer.parseInt(drugorder.getPatientid())));
@@ -73,7 +68,7 @@ public class AssociatedOrderViewFragmentController {
                     } 
                         
                     //Fetch all other Orders placed for the given Patient that are not a part of the same group as recorded Order
-                    List<drugorders> allExtn = Context.getService(drugordersService.class).getDrugOrdersByPatient(Context.getPatientService().getPatient(Integer.parseInt(patientID)));
+                    List<drugorders> allExtn = Context.getService(drugordersService.class).getDrugOrdersByPatient(Context.getPatientService().getPatient(Integer.parseInt(pharmaOrderID)));
                     
                     for(drugorders extn : allExtn){
                         if(!associatedOrderMain.containsKey(extn.getOrderId())){
@@ -102,12 +97,6 @@ public class AssociatedOrderViewFragmentController {
         model.addAttribute("allOrdersExtn", allOrdersExtn);
         model.addAttribute("allOrdersMain", allOrdersMain);
         model.addAttribute("otherOrders", otherOrders);
-        
-        model.addAttribute("patientName", patientName);
-        model.addAttribute("patientDOB", patientDOB);
-        model.addAttribute("patientID", patientID);
-        model.addAttribute("patientAddress", patientAddress);
-        model.addAttribute("provider", provider);
     }
     
     public ArrayList<String> pullAssociatedGroupOrders(drugorders drugorder){

@@ -21,19 +21,29 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class PharmaOrderViewFragmentController {
     
-    public void controller(PageModel model, @RequestParam(value = "singleID", required = false) String orderID,
+    public void controller(PageModel model, @RequestParam(value = "singleID", required = false) String singleID,
+                            @RequestParam(value = "assocID", required = false) String assocID,
+                            @RequestParam(value = "otherID", required = false) String otherID,
                             @RequestParam("patientId") Patient patient){
 
-        model.addAttribute("singleID", orderID);
+        model.addAttribute("singleID", singleID);
+        model.addAttribute("assocID", assocID);
+        model.addAttribute("otherID", otherID);
         
         DrugOrder orderMain = null;
         drugorders orderExtn = null;
         String provider = "";
         String associatedOrders = "";
         
-        if(!orderID.equals("")){
+        if(!singleID.equals("") || !assocID.equals("") || !otherID.equals("")){
             
-            int order = Integer.parseInt(orderID);
+            int order = 0;
+            if(!singleID.equals(""))
+                order = Integer.parseInt(singleID);
+            if(!assocID.equals(""))
+                order = Integer.parseInt(assocID);
+            if(!otherID.equals(""))
+                order = Integer.parseInt(otherID);
             
             orderMain = (DrugOrder) Context.getOrderService().getOrder(order);
             

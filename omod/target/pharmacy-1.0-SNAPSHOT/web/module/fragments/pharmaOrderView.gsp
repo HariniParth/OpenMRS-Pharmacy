@@ -3,7 +3,7 @@
     def last_dispatch_date = "";
 %>
 
-<% if(!singleID.equals("")) { %>
+<% if(!singleID.equals("") || !assocID.equals("") || !otherID.equals("")) { %>
     <div id="pharmaOrderView" class="dialog">
 
         <form method="post">
@@ -11,6 +11,8 @@
             <div class="dialog-header">
                 <h3 id="dialog-heading">${ ui.message("Record Action") }</h3>
             </div><br/>
+            
+            <input type="hidden" id="pharmaOrderID" name="pharmaOrderID" value="${ orderExtn.orderId }" />
 
             <div class="fields" id="view_order_detail">
                 <div id="order_label"><label>Order/s</label></div>
@@ -114,7 +116,7 @@
             </span>
             
             <span id="pharmaGroupActionButtons">
-                <input type="hidden" id="pharmaGroupAction" name="pharmaSingleAction" />
+                <input type="hidden" id="pharmaSingleAction" name="pharmaSingleAction" />
                 
                 <div class="fields">
                     <label>Comments (Optional)</label>

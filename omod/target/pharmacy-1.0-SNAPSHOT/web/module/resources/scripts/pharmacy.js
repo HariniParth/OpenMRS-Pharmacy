@@ -145,8 +145,19 @@ function selectedOrder(orderID){
     $("#individualOrderForm").submit();
 }
 
+function associatedOrder(orderID){
+    $("#assocID").val(orderID);
+    $("#associatedOrderForm").submit();
+}
+
+function otherOrder(orderID){
+    $("#otherID").val(orderID);
+    $("#otherOrderForm").submit();
+}
+
 function showPharmaConfirmationSection(action){
     $("#pharmaGroupAction").val(action);
+    $("#pharmaSingleAction").val(action);
     jq("#pharmaGroupButtons").hide();
     jq("#pharmaGroupActionButtons").show();
     document.getElementById("pharmaGroupActionButtons").style.display = 'block';

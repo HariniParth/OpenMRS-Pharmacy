@@ -8,6 +8,7 @@ package org.openmrs.module.pharmacy.page.controller;
 import java.util.Calendar;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
+import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
@@ -22,9 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PharmacySinglePageController {
 
     public void controller(PageModel model, HttpSession session,
-            @RequestParam(value = "pharma_order_id", required = false) String pharma_order_id,
-            @RequestParam(value = "pharma_order_status", required = false) String pharma_order_status,
-            @RequestParam(value = "pharma_action_order_id", required = false) Integer pharma_action_order_id,
+            @RequestParam(value = "pharmaOrderID", required = false) String pharmaOrderID,
+            @RequestParam(value = "pharmaSingleAction", required = false) String pharmaSingleAction,
             @RequestParam(value = "comments", required = false) String comments,
             @RequestParam(value = "additionalMessage", required = false) String additionalMessage,
             @RequestParam(value = "action", required = false) String action,
@@ -32,23 +32,14 @@ public class PharmacySinglePageController {
             @RequestParam(value = "messageCheckbox", required = false) String messageCheckbox) {
 
         String order_status = "";
-        model.addAttribute("pharma_order_id", pharma_order_id);
-        model.addAttribute("pharma_action_order_id", pharma_action_order_id);
-
+        model.addAttribute("pharmaOrderID", pharmaOrderID);
+        model.addAttribute("pharmaSingleAction", pharmaSingleAction);
+        System.out.println("Here pharmaSingleAction "+pharmaSingleAction);
         if (StringUtils.isNotBlank(action)) {
             try {
-                if ("Dispatch".equals(action)) {
-                    order_status = "Dispatch";
-                }
-                if ("On Hold".equals(action)) {
-                    order_status = "On Hold";
-                }
-                if ("Discard".equals(action)) {
-                    order_status = "Discard";
-                }
-                if ("OK".equals(action)) {
+                if ("Confirm".equals(action)) {
 
-                    drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(pharma_action_order_id);
+                    drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID));
                     
                     if (!(commentCheckbox.equals("1"))) {
                         drugorder.setForwardcomments(0);
@@ -65,10 +56,10 @@ public class PharmacySinglePageController {
                     drugorder.setComments(comments);
                     drugorder.setMessage(additionalMessage);
                     
-                    if (!(pharma_order_status.equals("On Hold"))) {
+                    if (!(pharmaSingleAction.equals("On Hold"))) {
                         
-                        if (pharma_order_status.equals("Dispatch") && drugorder.getRefill() > 0){
-                            drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
+                        if (pharmaSingleAction.equals("Dispatch") && drugorder.getRefill() > 0){
+                            drugorder.setLastdispatchdate(Calendar.getInstance().getTime());System.out.println("Refill "+drugorder.getRefill());
                             drugorder.setRefill(drugorder.getRefill() - 1);
                         } else {
                             if(drugorder.getOrderstatus().equals("Active"))
@@ -88,10 +79,12 @@ public class PharmacySinglePageController {
                     }
 
                     Context.getService(drugordersService.class).saveDrugOrder(drugorder);
-                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - "+pharma_order_status);
+                    InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - "+pharmaSingleAction);
                     
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
+                System.out.println(e.toString());
+            } catch (APIException e) {
                 System.out.println(e.toString());
             }
         }

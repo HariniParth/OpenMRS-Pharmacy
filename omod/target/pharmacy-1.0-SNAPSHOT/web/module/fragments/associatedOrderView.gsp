@@ -7,90 +7,101 @@
 <div id="allOrdersTableWrapper">
     
     <% if(associatedOrderExtn.size() > 0 || allOrdersExtn.size() > 0) { %>
-        <strong>${ patientName }</strong>
+        
         <i class="icon-remove-sign edit-action pull-right" onclick="closeAllOrdersWindow()" title="${ ui.message("Close") }"></i></span><br/><br/>
         
         <% if(associatedOrderExtn.size() > 0) { %>
 
-            <div id="associatedOrdersTableWrapper">
-                <strong>ASSOCIATED ORDERS</strong><br/><br/>
+            <form method="post" id="associatedOrderForm">
+    
+                <input type="hidden" id="assocID" name="assocID" />
+                
+                <div id="associatedOrdersTableWrapper">
+                    <strong>ASSOCIATED ORDERS</strong><br/><br/>
 
-                <table id="associatedOrdersTable">
-                    <thead>
-                        <tr>
-                            <th id="patientSort">Patient Name</th>
-                            <th id="DOBSort">Patient DOB</th>
-                            <th id="drugSort">Drug Name</th>
-                            <th id="dateSort">Start Date</th>
-                            <th id="prioritySort">Priority</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% associatedOrderExtn.each { associatedExtn -> %>
-                            <% associatedExtn.value.each { orderExtn -> %>
-                                <% if(orderExtn.orderstatus == "Active-Group" || orderExtn.orderstatus == "Active-Plan") { %>
+                    <table id="associatedOrdersTable">
+                        <thead>
+                            <tr>
+                                <th>Plan Name/Group</th>
+                                <th>Drug(s)</th>
+                                <th>Start Date</th>
+                                <th>Refills</th>
+                                <th>Last Dispatch</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% associatedOrderExtn.each { associatedExtn -> %>
+                                <% associatedExtn.value.each { orderExtn -> %>
+                                    <% if(orderExtn.orderstatus == "Active-Group" || orderExtn.orderstatus == "Active-Plan") { %>
 
-                                    <% if(orderExtn.lastdispatchdate != null) { %>
-                                        <% last_dispatch_date = orderExtn.lastdispatchdate.format('yyyy-MM-dd'); %>
+                                        <% if(orderExtn.lastdispatchdate != null) { %>
+                                            <% last_dispatch_date = orderExtn.lastdispatchdate.format('yyyy-MM-dd'); %>
+                                        <% } else { %>
+                                            <% last_dispatch_date = orderExtn.lastdispatchdate; %>
+                                        <% } %>
+
+                                        <tr class="orderRow" onclick="associatedOrder('${ orderExtn.orderId }')">
+                                            <td></td>
+                                            <td>${ orderExtn.drugname.getDisplayString() }</td>
+                                            <td>${ orderExtn.startdate.format('yyyy-MM-dd') }</td>
+                                            <td>${ orderExtn.refill }</td>
+                                            <td>${ last_dispatch_date }</td>
+                                        </tr>
+
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                        </tbody>
+                    </table><br/>
+                </div>
+            </form>
+        <% } %>
+
+        <% if(allOrdersExtn.size() > 0) { %>
+        
+            <form method="post" id="otherOrderForm">
+    
+                <input type="hidden" id="otherID" name="otherID" />
+                
+                <div id="otherOrdersTableWrapper">
+                    <strong>OTHER DRUG ORDERS</strong><br/><br/>
+
+                    <table id="allOrdersTable">
+                        <thead>
+                            <tr>
+                                <th>Plan Name/Group</th>
+                                <th>Drug(s)</th>
+                                <th>Start Date</th>
+                                <th>Refills</th>
+                                <th>Last Dispatch</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% allOrdersExtn.each { extn -> %>
+                                <% if(extn.value.orderstatus == "Active" || extn.value.orderstatus == "Active-Group" || extn.value.orderstatus == "Active-Plan") { %>
+
+                                    <% if(extn.value.lastdispatchdate != null) { %>
+                                        <% last_dispatch_date = extn.value.lastdispatchdate.format('yyyy-MM-dd'); %>
                                     <% } else { %>
-                                        <% last_dispatch_date = orderExtn.lastdispatchdate; %>
+                                        <% last_dispatch_date = extn.value.lastdispatchdate; %>
                                     <% } %>
 
-                                    <tr class="orderRow" onclick="viewPharmaOrderView('${ orderExtn.orderId }','${ patientID }','${ patientName }','${ patientDOB }','${ patientAddress }','${ orderExtn.startdate.format('yyyy-MM-dd') }','${ orderExtn.drugname.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).route.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).dose }','${ associatedOrderMain.get(orderExtn.orderId).doseUnits.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).duration }','${ associatedOrderMain.get(orderExtn.orderId).durationUnits.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).quantity }','${ associatedOrderMain.get(orderExtn.orderId).quantityUnits.getDisplayString() }','${ associatedOrderMain.get(orderExtn.orderId).frequency }','${ orderExtn.refill }','${ last_dispatch_date }','${ orderExtn.refillinterval }','${ provider }','${ orderExtn.patientinstructions }','${ orderExtn.pharmacistinstructions }','${ orderExtn.associateddiagnosis.getDisplayString() }','${ orderExtn.isallergicorderreasons }','${ otherOrders.get(orderExtn.orderId) }')">
-                                        <td>${ patientName }</td>
-                                        <td>${ patientDOB }</td>
-                                        <td>${ orderExtn.drugname.getDisplayString() }</td>
-                                        <td>${ orderExtn.startdate.format('yyyy-MM-dd') }</td>
-                                        <td>${ orderExtn.priority.getDisplayString() }</td>
+                                    <tr class="orderRow" onclick="otherOrder('${ extn.value.orderId }')">
+                                        <td></td>
+                                        <td>${ extn.value.drugname.getDisplayString() }</td>
+                                        <td>${ extn.value.startdate.format('yyyy-MM-dd') }</td>
+                                        <td>${ extn.value.refill }</td>
+                                        <td>${ last_dispatch_date }</td>
                                     </tr>
 
                                 <% } %>
                             <% } %>
-                        <% } %>
-                    </tbody>
-                </table><br/>
-            </div>
-        <% } %>
-
-        <% if(allOrdersExtn.size() > 0) { %>
-            <div id="otherOrdersTableWrapper">
-                <strong>OTHER DRUG ORDERS</strong><br/><br/>
-
-                <table id="allOrdersTable">
-                    <thead>
-                        <tr>
-                            <th id="patientSort">Patient Name</th>
-                            <th id="DOBSort">Patient DOB</th>
-                            <th id="drugSort">Drug Name</th>
-                            <th id="dateSort">Start Date</th>
-                            <th id="prioritySort">Priority</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% allOrdersExtn.each { extn -> %>
-                            <% if(extn.value.orderstatus == "Active" || extn.value.orderstatus == "Active-Group" || extn.value.orderstatus == "Active-Plan") { %>
-                                
-                                <% if(extn.value.lastdispatchdate != null) { %>
-                                    <% last_dispatch_date = extn.value.lastdispatchdate.format('yyyy-MM-dd'); %>
-                                <% } else { %>
-                                    <% last_dispatch_date = extn.value.lastdispatchdate; %>
-                                <% } %>
-
-                                <tr class="orderRow" onclick="viewPharmaOrderView('${ extn.key }','${ patientID }','${ patientName }','${ patientDOB }','${ patientAddress }','${ extn.value.startdate.format('yyyy-MM-dd') }','${ extn.value.drugname.getDisplayString() }','${ allOrdersMain.get(extn.value.orderId).route.getDisplayString() }','${ allOrdersMain.get(extn.value.orderId).dose }','${ allOrdersMain.get(extn.value.orderId).doseUnits.getDisplayString() }','${ allOrdersMain.get(extn.value.orderId).duration }','${ allOrdersMain.get(extn.value.orderId).durationUnits.getDisplayString() }','${ allOrdersMain.get(extn.value.orderId).quantity }','${ allOrdersMain.get(extn.value.orderId).quantityUnits.getDisplayString() }','${ allOrdersMain.get(extn.value.orderId).frequency }','${ extn.value.refill }','${ last_dispatch_date }','${ extn.value.refillinterval }','${ provider }','${ extn.value.patientinstructions }','${ extn.value.pharmacistinstructions }','${ extn.value.associateddiagnosis.getDisplayString() }','${ extn.value.isallergicorderreasons }','${ otherOrders.get(extn.key) }')">
-                                    <td>${ patientName }</td>
-                                    <td>${ patientDOB }</td>
-                                    <td>${ extn.value.drugname.getDisplayString() }</td>
-                                    <td>${ extn.value.startdate.format('yyyy-MM-dd') }</td>
-                                    <td>${ extn.value.priority.getDisplayString() }</td>
-                                </tr>
-                                
-                            <% } %>
-                        <% } %>
-                    </tbody>
-                </table><br/>
-            </div>
-        <% } %>
-  <br/> <% } %>
+                        </tbody>
+                    </table><br/>
+                </div>
+            </form>
+        <% } %> <br/>
+    <% } %>
 </div>
 
 <script>
