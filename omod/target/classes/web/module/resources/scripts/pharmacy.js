@@ -17,68 +17,6 @@ $(document).ready( function() {
             }
         });        
     });
-    
-    var selectedPatient = $("#pharma_action_patient_name").val();
-    
-    if(selectedPatient !== undefined){
-        $("#selectedPatient").text("- "+selectedPatient);
-        var selectedDrug = $("#pharma_action_order_details").val().replace(/(\w+).*/,"$1").toUpperCase();
-            
-        var $rowsNo = $('#currentDrugOrdersTable tbody tr').filter(function () {
-            if($.trim($(this).find('td').eq(0).text()) === selectedPatient && $.trim($(this).find('td').eq(2).text()) === selectedDrug){
-                $(this).css({"background": "#75b2f0","color": "white"});
-            }
-            return $.trim($(this).find('td').eq(0).text()) !== selectedPatient;
-        }).hide();
-    
-        var $rowsNo = $('#currentMedPlansTable tbody tr').filter(function () {
-            var $rowsPlan = $('.medRow').filter(function () {
-                if($(this).find('#planDrugName').text() === selectedDrug){
-                    $(this).children("span").css({"background": "#75b2f0","color": "white"});
-                }
-            });
-        
-            return $.trim($(this).find('td').eq(0).text()) !== selectedPatient;
-        }).hide();
-    }
-    
-    var selectedGroupPatient = $("#group_order_patient_name").val();
-    
-    if(selectedGroupPatient !== undefined){
-        $("#selectedGroupPatient").text("- "+selectedGroupPatient);
-        
-        var $rowsNo = $('#currentGroupOrdersTable tbody tr').filter(function () {
-            
-            var givenDrug = $.trim($(this).find('td').eq(2).find('div').find('span').first().text());
-            var matching = false;
-            
-            $(".group_order_order_details").each(function(){
-                var selectedDrug = $(this).val().split(",")[0].toUpperCase();
-                
-                if(selectedDrug === givenDrug)
-                    matching = true;
-            });
-            
-            if(matching){
-                $(this).css({"background": "#75b2f0","color": "white"});
-            }
-            return $.trim($(this).find('td').eq(0).text()) !== selectedGroupPatient;
-        }).hide();
-        
-        var selectedDiagnosis = $(".group_order_order_diagnosis").val().toUpperCase();
-        
-        var $rowsNo = $('#currentPlanGroupTable tbody tr').filter(function () {
-            
-            if($(this).find('td').eq(2).text() === selectedDiagnosis){
-                $(this).css({"background": "#75b2f0","color": "white"});
-            }
-            return $.trim($(this).find('td').eq(0).text()) !== selectedGroupPatient;
-        }).hide();
-    }
-    
-    if($("#searchOrders").val() !== undefined){
-        jq("#currentOrdersWindow").hide();
-    }
 });
 
 function clearHighlights(){
@@ -91,19 +29,6 @@ function clearHighlights(){
     });
     jq(".medRow").each(function(){
         jq(this).children("span").css({'background-color':'','color':''});
-    });
-}
-
-function viewPharmaOrderView(orderId,patientId,patientName,patientDOB,patientAddress,startDate,drugName,route,dose,doseUnits,duration,durationUnits,quantity,quantityUnits,frequency,numRefills,lastDispatchDate,refillInterval,providerInfo,patientinstructions,pharmacistinstructions,diagnosis,isAllergic,associatedOrders){
-    
-    jq(this).on('click', function () {
-        var $rowsNo = $('#currentDrugOrdersTable tbody tr').filter(function () {
-            return $.trim($(this).find('td').eq(0).text()) !== patientName;
-        }).hide();
-    
-        var $rowsNo = $('#currentMedPlansTable tbody tr').filter(function () {
-            return $.trim($(this).find('td').eq(0).text()) !== patientName;
-        }).hide();
     });
 }
 
