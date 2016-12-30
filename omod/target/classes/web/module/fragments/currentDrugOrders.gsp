@@ -24,7 +24,7 @@
 
                     <tr class="orderRow" onclick="selectedOrder('${ order.orderId }')">
                         <td></td>
-                        <td>${ order.drugname.getDisplayString() }</td>
+                        <td>${ order.drugname.getDisplayString().toUpperCase() }</td>
                         <td>${ order.startdate.format('yyyy-MM-dd') }</td>
                         <td>${ order.refill }</td>
                         
@@ -54,11 +54,5 @@
         "bInfo": false,
         "bFilter": false
 
-    });
-</script>
-
-<script type="text/javascript">    
-    jq(".orderRow").click(function(){
-        jq(this).css({"background": "#75b2f0","color": "white"});
     });
 </script>

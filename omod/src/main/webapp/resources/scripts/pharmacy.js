@@ -15,9 +15,25 @@ $(document).ready( function() {
                 $(this).hide();
                 clearHighlights();
             }
-        });        
+            else {
+                highlight();
+            }
+        });
     });
+    highlight();
 });
+
+function highlight(){
+    var selectedOrder = $("#pharma_order_details").val().replace(/(\w+).*/,"$1").toUpperCase();
+    
+    if(selectedOrder !== undefined){
+        var $rowsNo = $('#currentDrugOrdersTable tbody tr').filter(function () {
+            if($.trim($(this).find('td').eq(1).text()) === selectedOrder){
+                $(this).css({"background": "#75b2f0","color": "white"});
+            }
+        });
+    }
+}
 
 function clearHighlights(){
     
