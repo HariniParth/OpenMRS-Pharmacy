@@ -42,6 +42,10 @@ and open the template in the editor.
     padding-left: 10px;
 }
 
+.additionalInfo{
+    padding-left: 20px;
+}
+
 #searchResults{
     padding: 10px;
 }
@@ -108,7 +112,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons{
+.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel{
     display: none;
 }
 
@@ -143,6 +147,17 @@ input[type=submit], input[type=button]{
     width: 90%;
     margin: auto;
     border: 2px solid gainsboro;
+}
+
+#singleOrder{
+    width: 90%;
+    margin: auto;
+    border: 2px dashed gainsboro;
+}
+
+#printLabel #labelBorder{
+    width: 100%;
+    border: 1px dashed gainsboro;
 }
 
 form select, .form select {
@@ -185,4 +200,9 @@ form #activeOrdersWindow label, .form #activeOrdersWindow label {
 
 #clear:hover{
     cursor: pointer;
+}
+
+#selectedAction, #printLabel{
+    color: red;
+    font-weight: bold;
 }

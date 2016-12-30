@@ -81,6 +81,16 @@ function otherOrder(orderID){
 }
 
 function showPharmaConfirmationSection(action){
+    
+    if(action === "Dispatch"){
+        jq("#printLabel").show();
+        document.getElementById("printLabel").style.display = 'block';
+    }
+        
+    $("#selectedAction").text(action);
+    jq("#statusLabel").show();
+    document.getElementById("statusLabel").style.display = 'block';
+    
     $("#pharmaGroupAction").val(action);
     $("#pharmaSingleAction").val(action);
     jq("#pharmaGroupButtons").hide();
@@ -89,6 +99,9 @@ function showPharmaConfirmationSection(action){
 }
 
 function showPharmaOrderViewSection(){
+    
+    jq("#printLabel").hide();
+    jq("#statusLabel").hide();
     jq("#pharmaGroupActionButtons").hide();
     jq("#pharmaGroupButtons").show();
     document.getElementById("#pharmaGroupButtons").style.display = 'block';
