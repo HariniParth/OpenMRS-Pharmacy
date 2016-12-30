@@ -43,9 +43,6 @@ function clearHighlights(){
     jq(".orderRow").each(function(){
         jq(this).css({'background-color':'','color':''});
     });
-    jq(".medRow").each(function(){
-        jq(this).children("span").css({'background-color':'','color':''});
-    });
 }
 
 function closeAllOrdersWindow(){
@@ -62,13 +59,6 @@ function autoCompletePatientName(patientNameList){
             $("#searchByPatient").submit();
         }
     });
-}
-
-function selectedMedPlanGroup(planPatient, planName){
-    $("#planPatient").val(planPatient);
-    $("#planName").val(planName);
-    $("#medPlanGroupForm").submit();
-    $("#searchGroupForm").submit();
 }
 
 function selectedGroupOrder(groupID){

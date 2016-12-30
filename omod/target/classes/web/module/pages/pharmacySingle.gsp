@@ -32,11 +32,7 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) } <br/>
         <p class="fields">${ ui.includeFragment("pharmacy", "associatedOrderView") }</p>
                 
         <div id="currentOrdersWindow">
-
             <br/> ${ ui.includeFragment("pharmacy", "currentDrugOrders") } <br/>
-
-            <br/> ${ ui.includeFragment("pharmacy", "currentMedPlans") } <br/>
-            
         </div>
         
     </div>

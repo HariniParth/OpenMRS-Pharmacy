@@ -95,12 +95,6 @@ and open the template in the editor.
     cursor: pointer;
 }
 
-.medRow:hover span{
-    background: #75b2f0;
-    color: white;
-    cursor: pointer;
-}
-
 .groupRow:hover{
     background: #75b2f0;
     color: white;
@@ -116,18 +110,7 @@ and open the template in the editor.
     display: none;
 }
 
-#planDrugName{
-    float: left;
-    width: 60%;
-    overflow: hidden;
-}
-
-#planDrugDate{
-    float: right;
-    width: 40%;
-}
-
-#currentDrugOrdersTable, #currentMedPlansTable, #associatedOrdersTable, #allOrdersTable, #currentPlanGroupTable, #currentGroupOrdersTable {
+#currentDrugOrdersTable, #associatedOrdersTable, #allOrdersTable, #currentGroupOrdersTable {
     font-size: 13px;
 }
 
