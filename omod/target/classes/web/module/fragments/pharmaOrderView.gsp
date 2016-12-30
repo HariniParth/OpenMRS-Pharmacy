@@ -36,8 +36,8 @@
 
                 <br/><br/><br/>
                 
-                <span id="printLabel"><span class="fields">Click Confirm to print label</span><br/><br/>
-                    <div id="labelBorder"></div><br/>
+                <span class="printLabel"><span class="fields">Click Confirm to print label</span><br/><br/>
+                    <div class="labelBorder"></div><br/>
                 </span>
 
                 <div class="fields" id="view_order_detail">

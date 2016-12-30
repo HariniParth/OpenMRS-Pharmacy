@@ -17,7 +17,7 @@
             <% groupOrderMain.each { groupOrder -> %>
                 <% list_of_orders = list_of_orders + groupOrder.key + "," %>
                 
-                <div class="groups"><br/>
+                <div class="groups">
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Order</label></div>
                         <div id="order_value"><input type="text" class="group_order_order_details" name="group_order_order_details" value="${ groupOrderExtn.get(groupOrder.key).drugname.getDisplayString() }, ${ groupOrder.value.route.getDisplayString() } ${ groupOrder.value.dose } ${ groupOrder.value.doseUnits.getDisplayString() } ${ groupOrder.value.duration } ${ groupOrder.value.durationUnits.getDisplayString() } ${ groupOrder.value.quantity } ${ groupOrder.value.quantityUnits.getDisplayString() } ${ groupOrder.value.frequency }" readonly /></div>
@@ -31,22 +31,24 @@
                     </div>   
 
                     <br/><br/>
-
-                    <div class="fields" id="view_order_detail"><label>Instructions</label></div>
-
+                    
                     <div class="fields" id="view_order_detail">
-                        <div id="order_label"><label>Patient</label></div>
+                        <div id="order_label"><label>Patient Instructions</label></div>
                         <div id="order_value"><input type="text" class="group_order_patient_instructions" name="group_order_patient_instructions" value="${ groupOrderExtn.get(groupOrder.key).patientinstructions }" readonly /></div>
                     </div>     
 
-                    <br/><br/>
+                    <br/><br/><br/>
+                    
+                    <span class="printLabel"><span class="fields">Click Confirm to print label</span><br/><br/>
+                        <div class="labelBorder"></div><br/>
+                    </span>
 
                     <div class="fields" id="view_order_detail">
-                        <div id="order_label"><label>Pharmacist</label></div>
+                        <div id="order_label"><label>Pharmacist Instructions</label></div>
                         <div id="order_value"><input type="text" class="group_order_pharmacist_instructions" name="group_order_pharmacist_instructions" value="${ groupOrderExtn.get(groupOrder.key).pharmacistinstructions }" readonly /></div>
                     </div>    
 
-                    <br/><br/>
+                    <br/><br/><br/>
 
                     <div class="fields" id="view_order_detail">
                         <label>Additional Information 
@@ -76,38 +78,41 @@
 
                         <br/><br/>
 
+                        <% if(groupOrderExtn.get(groupOrder.key).lastdispatchdate != null) { %>
+                            <% last_dispatch_date = groupOrderExtn.get(groupOrder.key).lastdispatchdate.format('yyyy-MM-dd'); %>
+                        <% } else { %>
+                            <% last_dispatch_date = groupOrderExtn.get(groupOrder.key).lastdispatchdate; %>
+                        <% } %>
+
+                        <div class="fields" id="view_order_detail">
+                            <div id="order_label"><label>Last Given</label></div>
+                            <div id="order_value"><input type="text" id="group_order_last_dispatch_date" name="group_order_last_dispatch_date" value="${ last_dispatch_date }" readonly /></div>
+                        </div>   
+
+                        <br/><br/>
+                        
                         <div class="fields" id="view_order_detail">
                             <div id="order_label"><label>Interval (days)</label></div>
                             <div id="order_value"><input type="text" class="group_order_order_refillInterval" name="group_order_order_refillInterval" value="${ groupOrderExtn.get(groupOrder.key).refillinterval }" readonly /></div>
                         </div>  
 
+                        <br/><br/>
+                        
                     </div><br/>
                 </div><br/>
-                
-                <% if(groupOrderExtn.get(groupOrder.key).lastdispatchdate != null) { %>
-                    <% last_dispatch_date = groupOrderExtn.get(groupOrder.key).lastdispatchdate.format('yyyy-MM-dd'); %>
-                <% } else { %>
-                    <% last_dispatch_date = groupOrderExtn.get(groupOrder.key).lastdispatchdate; %>
-                <% } %>
-                
                 <% provider_name = provider.get(groupOrder.key) %>
             <% } %>
 
             <input type="hidden" id="group_order_ID" name="group_order_ID" value="${ list_of_orders }" readonly />
             
-            <div class="fields" id="view_order_detail">
-                <div id="order_label"><label>Last Dispatch</label></div>
-                <div id="order_value"><input type="text" id="group_order_last_dispatch_date" name="group_order_last_dispatch_date" value="${ last_dispatch_date }" readonly /></div>
-            </div>   
-
-            <br/><br/>
-
-            <div class="fields" id="view_order_detail">
+            <div class="additionalInfo" id="view_order_detail">
                 <div id="order_label"><label>Provider</label></div>
                 <div id="order_value"><input type="text" id="group_order_order_provider" name="group_order_order_provider" value="${ provider_name }" readonly /></div>
             </div>
 
-            <br/><br/><br/>         
+            <br/><br/>
+            
+            <label class="fields" id="statusLabel"><br/>Order Status: <span id="selectedAction"></span></label><br/>
 
             <span id="pharmaGroupButtons">
                 <div class="fields"><input class="confirm right" id="btn-place" value="Dispatch" type="button" onclick="showPharmaConfirmationSection('Dispatch')" /></div><br/><br/>
