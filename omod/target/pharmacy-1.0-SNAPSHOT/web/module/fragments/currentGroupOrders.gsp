@@ -28,7 +28,7 @@
                             <% patientGroupOrder.value.each { order -> %>
                                 
                                 <div>
-                                    <span class="groupDrug">${ order.drugname.getDisplayString() }</span>
+                                    <span class="groupDrug">${ order.drugname.getDisplayString().toUpperCase() }</span>
                                     <span class="groupSDate">${ order.startdate.format('yyyy-MM-dd') }</span>
                                     <span class="groupRefill">${ order.refill }</span>
 
@@ -47,10 +47,10 @@
                 <% } %>
 
                 <% patientSingleOrders.each { patientSingleOrder -> %>
-                    <tr class="groupRow" onclick="selectedSingleOrder('${ patientSingleOrder.orderId }')">
+                    <tr class="singleRow" onclick="selectedSingleOrder('${ patientSingleOrder.orderId }')">
                         
                         <td></td>
-                        <td>${ patientSingleOrder.drugname.getDisplayString() }</td>
+                        <td>${ patientSingleOrder.drugname.getDisplayString().toUpperCase() }</td>
                         <td>${ patientSingleOrder.startdate.format('yyyy-MM-dd') }</td>
                         <td>${ patientSingleOrder.refill }</td>
                         

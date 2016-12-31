@@ -15,12 +15,23 @@ $(document).ready( function() {
                 $(this).hide();
                 clearHighlights();
             }
-            else {
-                highlight();
-            }
+            else if(document.getElementById('pharma_order_details')){
+                    highlight();
+                }
+            else if(document.getElementsByClassName('group_order_order_details')){
+                    highlightGroup();
+                }
         });
     });
-    highlight();
+    
+    if(document.getElementById('pharma_order_details')){
+        highlight();
+    }
+    
+    if(document.getElementsByClassName('group_order_order_details')){
+        highlightGroup();
+    }
+    
 });
 
 function highlight(){
@@ -35,9 +46,48 @@ function highlight(){
     }
 }
 
+function highlightGroup(){
+    var $rowsN1 = $('#currentGroupOrdersTable tbody .singleRow').filter(function () {
+            
+        var givenDrug = $.trim($(this).find('td').eq(1).text());
+        var matching = false;
+
+        $(".group_order_order_details").each(function(){
+            var selectedDrug = $(this).val().split(",")[0].toUpperCase();
+
+            if(selectedDrug === givenDrug)
+                matching = true;
+        });
+
+        if(matching){
+            $(this).css({"background": "#75b2f0","color": "white"});
+        }
+    });
+    
+    var $rowsN2 = $('#currentGroupOrdersTable tbody .groupRow').filter(function () {
+            
+        var givenDrug = $.trim($(this).find('td').eq(1).find('div').find('span').first().text());
+        var matching = false;
+
+        $(".group_order_order_details").each(function(){
+            var selectedDrug = $(this).val().split(",")[0].toUpperCase();
+
+            if(selectedDrug === givenDrug)
+                matching = true;
+        });
+
+        if(matching){
+            $(this).css({"background": "#75b2f0","color": "white"});
+        }
+    });
+}
+
 function clearHighlights(){
     
     jq(".groupRow").each(function(){
+        jq(this).css({'background-color':'','color':''});
+    });
+    jq(".singleRow").each(function(){
         jq(this).css({'background-color':'','color':''});
     });
     jq(".orderRow").each(function(){

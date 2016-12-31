@@ -101,6 +101,12 @@ and open the template in the editor.
     cursor: pointer;
 }
 
+.singleRow:hover{
+    background: #75b2f0;
+    color: white;
+    cursor: pointer;
+}
+
 #associatedOrdersTableWrapper .dataTables_wrapper, #otherOrdersTableWrapper .dataTables_wrapper, .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{
    _height: 152px;
    min-height: 152px;
