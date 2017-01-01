@@ -61,7 +61,11 @@ public class PharmacySinglePageController {
                         if (pharmaSingleAction.equals("Dispatch") && drugorder.getRefill() > 0){
                             drugorder.setLastdispatchdate(Calendar.getInstance().getTime());System.out.println("Refill "+drugorder.getRefill());
                             drugorder.setRefill(drugorder.getRefill() - 1);
-                        } else {
+                        }
+                        else if (pharmaSingleAction.equals("Discard")){
+                            drugorder.setDiscontinued(1);
+                        }
+                        else {
                             if(drugorder.getOrderstatus().equals("Active"))
                                 drugorder.setOrderstatus("Non-Active");
 

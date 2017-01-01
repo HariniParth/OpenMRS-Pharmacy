@@ -63,7 +63,11 @@ public class PharmacyGroupPageController {
                             if (groupAction.equals("Dispatch") && drugorder.getRefill() > 0){
                                 drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
                                 drugorder.setRefill(drugorder.getRefill() - 1);
-                            } else {
+                            } 
+                            else if (groupAction.equals("Discard")){
+                                drugorder.setDiscontinued(1);
+                            }
+                            else {
                                 if(drugorder.getOrderstatus().equals("Active"))
                                     drugorder.setOrderstatus("Non-Active");
                                 
