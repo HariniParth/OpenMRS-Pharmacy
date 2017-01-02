@@ -5,9 +5,25 @@
  */
 package org.openmrs.module.pharmacy.page.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintException;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.Copies;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
+import org.openmrs.DrugOrder;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
@@ -32,9 +48,7 @@ public class PharmacySinglePageController {
             @RequestParam(value = "messageCheckbox", required = false) String messageCheckbox) {
 
         String order_status = "";
-        model.addAttribute("pharmaOrderID", pharmaOrderID);
-        model.addAttribute("pharmaSingleAction", pharmaSingleAction);
-        System.out.println("Here pharmaSingleAction "+pharmaSingleAction);
+        
         if (StringUtils.isNotBlank(action)) {
             try {
                 if ("Confirm".equals(action)) {
@@ -61,6 +75,7 @@ public class PharmacySinglePageController {
                         if (pharmaSingleAction.equals("Dispatch") && drugorder.getRefill() > 0){
                             drugorder.setLastdispatchdate(Calendar.getInstance().getTime());System.out.println("Refill "+drugorder.getRefill());
                             drugorder.setRefill(drugorder.getRefill() - 1);
+                            printOrder(drugorder.getOrderId());
                         }
                         else if (pharmaSingleAction.equals("Discard")){
                             drugorder.setDiscontinued(1);
@@ -76,6 +91,8 @@ public class PharmacySinglePageController {
                                 drugorder.setOrderstatus("Non-Active-Plan");
 
                             Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
+                        
+                            printOrder(drugorder.getOrderId());
                         }
                         
                     } else {
@@ -92,6 +109,42 @@ public class PharmacySinglePageController {
                 System.out.println(e.toString());
             }
         }
+        
         model.addAttribute("order_status", order_status);
+    }
+    
+    void printOrder(int orderID){
+        
+        try {
+            DrugOrder order = (DrugOrder) Context.getOrderService().getOrder(orderID);
+            drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
+            
+            PrintService service = PrintServiceLookup.lookupDefaultPrintService();
+            
+            String OrderDetails = drugorder.getDrugname().getDisplayString() + " " + order.getDose() + " " + order.getDoseUnits().getDisplayString() + " " +
+                    order.getDuration() + " " + order.getDurationUnits().getDisplayString() + " " + order.getQuantity() + " " + order.getQuantityUnits() + "\n" +
+                    "Route: " + order.getRoute().getDisplayString() + " " + "Frequency: " + order.getFrequency().getName() + "\n" +
+                    "Start Date: " + drugorder.getStartdate().toString() + "\n" +
+                    "Patient Instructions: " + drugorder.getPatientinstructions();
+            
+            InputStream is = new ByteArrayInputStream(OrderDetails.getBytes());
+            
+            PrintRequestAttributeSet  pras = new HashPrintRequestAttributeSet();
+            pras.add(new Copies(1));
+            
+            if(service != null){
+                DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
+                Doc doc = new SimpleDoc(is, flavor, null);
+                DocPrintJob job = service.createPrintJob();
+
+                job.print(doc, pras);
+            }
+            is.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PharmacySinglePageController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PrintException ex) {
+            Logger.getLogger(PharmacySinglePageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
