@@ -111,6 +111,11 @@ function autoCompletePatientName(patientNameList){
     });
 }
 
+function selectedPlanOrder(planID){
+    $("#planID").val(planID);
+    $("#groupOrdersForm").submit();
+}
+
 function selectedGroupOrder(groupID){
     $("#groupID").val(groupID);
     $("#groupOrdersForm").submit();

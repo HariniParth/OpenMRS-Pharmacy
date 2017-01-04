@@ -25,11 +25,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PharmaGroupViewFragmentController {
     
     public void controller(PageModel model, @RequestParam("patientId") Patient patient,
-                            @RequestParam(value = "planName", required = false) String planName,
+                            @RequestParam(value = "planID", required = false) String planID,
                             @RequestParam(value = "groupID", required = false) String groupID,
                             @RequestParam(value = "orderID", required = false) String orderID){
         
-        model.addAttribute("planName", planName);
+        model.addAttribute("planID", planID);
         model.addAttribute("groupID", groupID);
         model.addAttribute("orderID", orderID);
         
@@ -37,10 +37,10 @@ public class PharmaGroupViewFragmentController {
         HashMap<Integer,DrugOrder> groupOrderMain = new HashMap<Integer,DrugOrder>();
         HashMap<Integer,drugorders> groupOrderExtn = new HashMap<Integer,drugorders>();
         
-        if(!planName.equals("")){
+        if(!planID.equals("")){
 
             //Get the list of Med Plan Orders ordered for this Patient to treat this Disease
-            List<drugordersdiseases> plans = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(Context.getConceptService().getConceptByName(planName), patient);
+            List<drugordersdiseases> plans = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlan(Integer.parseInt(planID));
             for(drugordersdiseases plan : plans){
                 
                 drugorders dorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid());

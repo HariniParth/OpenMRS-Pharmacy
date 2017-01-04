@@ -10,7 +10,9 @@ import org.openmrs.DrugOrder;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
+import org.openmrs.module.drugorders.api.drugordersdiseasesService;
 import org.openmrs.module.drugorders.drugorders;
+import org.openmrs.module.drugorders.drugordersdiseases;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,6 +58,15 @@ public class PharmaOrderViewFragmentController {
                 for(drugorders otherOrder : otherOrdersInGroup){
                     associatedOrders = associatedOrders + otherOrder.getDrugname().getDisplayString() + " ";
                 }
+            }
+            
+            if(orderExtn.getOrderstatus().equals("Active-Plan")){
+                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(orderExtn.getOrderId());
+                List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlan(planOrder.getPlanid());
+                for(drugordersdiseases plan : planOrders){
+                    associatedOrders = associatedOrders + Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()).getDrugname().getDisplayString() + " ";
+                }
+                
             }
         }
         

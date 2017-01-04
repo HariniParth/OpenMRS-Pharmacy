@@ -27,7 +27,7 @@ public class CurrentDrugOrdersFragmentController {
         List<drugorders> patientOrders = new ArrayList<drugorders>();
         
         for(drugorders order : allOrders){
-            if(order.getOrderstatus().equals("Active") || order.getOrderstatus().equals("Active-Group")){
+            if(order.getOrderstatus().equals("Active") || order.getOrderstatus().equals("Active-Group") || order.getOrderstatus().equals("Active-Plan")){
                 patientOrders.add(order);
             } 
         }

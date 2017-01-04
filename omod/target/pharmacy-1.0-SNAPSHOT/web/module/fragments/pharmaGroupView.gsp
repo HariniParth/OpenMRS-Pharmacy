@@ -5,7 +5,7 @@
     def last_dispatch_date = "";
 %>
 
-<% if(!(planName).equals("") || !groupID.equals("") || !orderID.equals("")) { %>
+<% if(!planID.equals("") || !groupID.equals("") || !orderID.equals("")) { %>
     <div id="pharmaGroupView" class="dialog">
 
         <form method="post">

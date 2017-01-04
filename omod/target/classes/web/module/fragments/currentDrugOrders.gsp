@@ -23,7 +23,8 @@
                 <% patientOrders.each { order -> %>
 
                     <tr class="orderRow <% if(order.discontinued == 1) { %> discontinued <% } %>" onclick="selectedOrder('${ order.orderId }')">
-                        <td></td>
+                        
+                        <td><% if(order.orderstatus == "Active-Plan") { %> ${ order.associateddiagnosis.getDisplayString().toUpperCase() } <% } %></td>
                         <td>${ order.drugname.getDisplayString().toUpperCase() }</td>
                         <td>${ order.startdate.format('yyyy-MM-dd') }</td>
                         <td>${ order.refill }</td>

@@ -217,7 +217,7 @@ form #activeOrdersWindow label, .form #activeOrdersWindow label {
     color: #363463;
 }
 
-.orderRow.discontinued, .singleRow.discontinued, .groupElement.discontinued > div > div{
+.orderRow.discontinued > td:not(:first-child), .singleRow.discontinued, .groupElement.discontinued > div > div{
     text-decoration: line-through;
 }
 
