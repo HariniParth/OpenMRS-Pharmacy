@@ -66,7 +66,7 @@ function highlightGroup(){
     
     var $rowsN2 = $('#currentGroupOrdersTable tbody .groupRow').filter(function () {
             
-        var givenDrug = $.trim($(this).find('td').eq(1).find('div').find('span').first().text());
+        var givenDrug = $.trim($(this).find('td').eq(1).find('div').children('div').first().children('div').first().text());
         var matching = false;
 
         $(".group_order_order_details").each(function(){

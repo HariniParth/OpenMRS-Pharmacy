@@ -22,7 +22,7 @@
             <tbody>
                 <% patientOrders.each { order -> %>
 
-                    <tr class="orderRow" onclick="selectedOrder('${ order.orderId }')">
+                    <tr class="orderRow <% if(order.discontinued == 1) { %> discontinued <% } %>" onclick="selectedOrder('${ order.orderId }')">
                         <td></td>
                         <td>${ order.drugname.getDisplayString().toUpperCase() }</td>
                         <td>${ order.startdate.format('yyyy-MM-dd') }</td>
@@ -51,8 +51,8 @@
         "bLengthChange": true,
         "bSort": true,
         "bJQueryUI": true,
-        "bInfo": false,
-        "bFilter": false
+        "bInfo": true,
+        "bFilter": true
 
     });
 </script>

@@ -156,26 +156,41 @@ form select, .form select {
 }
 
 form #activeOrdersWindow label, .form #activeOrdersWindow label {
-    text-align: right !important;
+    text-align: initial !important;
     margin-top: 0px !important;
 }
 
-.groupDrug{
-    width: 25%;
+.groupElement{
+    width: 100%;
+}
+
+.groupElement .d1{
+    width: 50%;
     float: left;
 }
 
-.groupSDate{
-    width: 25%;
+.groupElement .d2{
+    width: 50%;
+    float: right;
 }
 
-.groupRefill{
-    padding-left: 20px;
-    width: 25%;
+.d1 .g1{
+    width: 40%;
+    float: left;
 }
 
-.groupDDate{
-    width: 25%;
+.d1 .g2{
+    width: 60%;
+    float: right;
+}
+
+ .d2 .g3{
+    width: 40%;
+    float: left;
+}
+
+.d2 .g4{
+    width: 60%;
     float: right;
 }
 
@@ -196,4 +211,16 @@ form #activeOrdersWindow label, .form #activeOrdersWindow label {
 
 .printLabel span{
     font-size: 12px;
+}
+
+.orderRow td{
+    color: #363463;
+}
+
+.orderRow.discontinued, .singleRow.discontinued, .groupElement.discontinued > div > div{
+    text-decoration: line-through;
+}
+
+.groupElement{
+    overflow: hidden;
 }
