@@ -48,13 +48,11 @@ public class PharmacyGroupPageController {
             @RequestParam(value = "messagebox", required = false) String messagebox) {
 
         if (StringUtils.isNotBlank(action)) {
-
             try {
                 if ("Record".equals(action)) {
                     String orderList[] = group_order_ID.split(",");
-
                     for (String order : orderList) {
-
+                        
                         int orderID = Integer.parseInt(order);
                         drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
 
@@ -73,36 +71,14 @@ public class PharmacyGroupPageController {
                         drugorder.setComments(groupComments);
                         drugorder.setMessage(groupMessage);
 
-                        if (!(groupAction.equals("On Hold"))) {
-
-                            if (groupAction.equals("Dispatch") && drugorder.getRefill() > 0) {
-                                drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
-                                drugorder.setRefill(drugorder.getRefill() - 1);
-                                printOrder(drugorder.getOrderId());
-                            } 
-                            else if (groupAction.equals("Discard")) {
+                        if(groupAction.equals("Discard")) {
                                 drugorder.setDiscontinued(1);
-                            } 
-                            else {
-                                if (drugorder.getOrderstatus().equals("Active")) {
-                                    drugorder.setOrderstatus("Non-Active");
-                                } else if (drugorder.getOrderstatus().equals("Active-Group")) {
-                                    drugorder.setOrderstatus("Non-Active-Group");
-                                } else if (drugorder.getOrderstatus().equals("Active-Plan")) {
-                                    drugorder.setOrderstatus("Non-Active-Plan");
-                                }
-                                Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
-                            
-                                printOrder(drugorder.getOrderId());
-                            }
-
-                        } else {
-                            drugorder.setOnHold(1);
+                        } else 
+                            if(groupAction.equals("On Hold")){
+                                drugorder.setOnHold(1);
                         }
-
+                        
                         Context.getService(drugordersService.class).saveDrugOrder(drugorder);
-                        InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - " + groupAction);
-
                     }
                 }
             } catch (NumberFormatException e) {
@@ -110,6 +86,37 @@ public class PharmacyGroupPageController {
             } catch (APIException e) {
                 System.out.println(e.toString());
             }
+            InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - " + groupAction);
+        }
+        
+        
+        if(StringUtils.isNotBlank(groupAction)){
+            
+            String orderList[] = group_order_ID.split(",");
+            for (String order : orderList){
+                
+                int orderID = Integer.parseInt(order);
+                drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
+                
+                if (groupAction.equals("Dispatch") && drugorder.getRefill() > 0) {
+                    drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
+                    drugorder.setRefill(drugorder.getRefill() - 1);
+                } 
+                else {
+                    if (drugorder.getOrderstatus().equals("Active")) {
+                        drugorder.setOrderstatus("Non-Active");
+                    } else if (drugorder.getOrderstatus().equals("Active-Group")) {
+                        drugorder.setOrderstatus("Non-Active-Group");
+                    } else if (drugorder.getOrderstatus().equals("Active-Plan")) {
+                        drugorder.setOrderstatus("Non-Active-Plan");
+                    }
+                    
+                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
+                }
+                printOrder(drugorder.getOrderId());
+                Context.getService(drugordersService.class).saveDrugOrder(drugorder);
+            }
+            InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - " + groupAction);
         }
 
         model.addAttribute("group_order_status", groupAction);

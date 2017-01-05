@@ -8,7 +8,7 @@
 <% if(!planID.equals("") || !groupID.equals("") || !orderID.equals("")) { %>
     <div id="pharmaGroupView" class="dialog">
 
-        <form method="post">
+        <form method="post" id="groupActionForm">
 
             <div class="dialog-header">
                 <h3 id="dialog-heading">${ ui.message("Record Action") }</h3>
@@ -109,7 +109,8 @@
             <br/><br/>
             
             <label class="fields" id="statusLabel"><br/>Order Status: <span id="selectedAction"></span></label><br/>
-
+            <label class="fields" id="printLabel">Click <a href="#" onclick="submitDispatch()">here</a> to Print Label<br/><br/></label>
+            
             <span id="pharmaGroupButtons">
                 <div class="fields"><input class="confirm right" id="btn-place" value="Dispatch" type="button" onclick="showPharmaConfirmationSection('Dispatch')" /></div><br/><br/>
 
@@ -120,10 +121,13 @@
                 <input class="cancel" id="btn-place" value="Cancel" type="submit" /></div>
             </span>
             
-            <div id="printLabel">
-                <div class="fields" id="view_order_detail">
-                    <span class="pull-left" onclick="showPharmaOrderViewSection()">Back</span>
-                    <span class="pull-right">Click <span id="printHere"><a href="#" onclick="" >here</a></span> to print label</span></span>
+            <div id="cancelButtons">
+                <div class="fields">
+                    <input class="confirm right" id="btn-place" type="button" value="Cancel" onclick="closePharmaGroupView()" />
+                </div>
+
+                <div class="fields">
+                    <input class="cancel left" id="btn-place" type="button" value="Back" onclick="showPharmaOrderViewSection()" />
                 </div>
             </div>
                     

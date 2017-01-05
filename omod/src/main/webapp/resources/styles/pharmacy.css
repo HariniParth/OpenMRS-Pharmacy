@@ -112,7 +112,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel{
+.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #cancelButtons{
     display: none;
 }
 
@@ -202,15 +202,6 @@ form #activeOrdersWindow label, .form #activeOrdersWindow label {
 #selectedAction{
     color: red;
     font-weight: bold;
-}
-
-#printLabel > *{
-    color: red;
-    font-weight: bold;
-}
-
-#printHere{
-    text-decoration: underline;
 }
 
 .orderRow td{

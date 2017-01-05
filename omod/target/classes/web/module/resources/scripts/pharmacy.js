@@ -158,15 +158,21 @@ function showPharmaConfirmationSection(action){
     
     if(action === "Dispatch"){
         jq("#printLabel").show();
+        jq("#cancelButtons").show();
         document.getElementsByClassName("printLabel").style.display = 'block';
     }
 }
 
 function showPharmaOrderViewSection(){
     
+    $("#selectedAction").text("");
+    $("#pharmaSingleAction").text("");
+    
     jq("#printLabel").hide();
     jq("#statusLabel").hide();
+    jq("#cancelButtons").hide();
     jq("#pharmaGroupActionButtons").hide();
+    
     jq("#pharmaGroupButtons").show();
     document.getElementById("#pharmaGroupButtons").style.display = 'block';
 }
@@ -174,4 +180,22 @@ function showPharmaOrderViewSection(){
 function clearPatientTableFIlters(){
     $("#patient_full_name").val("");
     $("#searchByPatient").submit();
+}
+
+function submitDispatch(){
+    $("#groupActionForm").submit();
+}
+
+function confirmDispatch(){
+    $("#orderActionForm").submit();
+}
+
+function closePharmaGroupView(){
+    jq("#pharmaGroupView").hide();
+    clearHighlights();
+}
+
+function closePharmaOrderView(){
+    jq("#pharmaOrderView").hide();
+    clearHighlights();
 }
