@@ -102,22 +102,39 @@
             <input type="hidden" id="group_order_ID" name="group_order_ID" value="${ list_of_orders }" readonly />
             
             <div class="additionalInfo" id="view_order_detail">
-                <div id="order_label"><label>Provider</label></div>
+                <div id="order_label"><label>Orderer</label></div>
                 <div id="order_value"><input type="text" id="group_order_order_provider" name="group_order_order_provider" value="${ provider_name }" readonly /></div>
             </div>
 
             <br/><br/>
+            
+            <div class="additionalInfo" id="contactLabel">
+                <label>Contact Orderer 
+                    <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
+                    <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
+                </label>
+            </div>
+            
+            <div class="additionalInfo" id="ordererContact">
+                <div class="fields" id="view_order_detail">
+                    <div id="order_label"><label>Phone</label></div>
+                    <div id="order_value"><input type="text" id="orderer_phone" name="orderer_phone" value="" readonly /></div>
+                </div>
+                <br/><br/>
+                <div class="fields" id="view_order_detail">
+                    <div id="order_label"><label>Email</label></div>
+                    <div id="order_value"><input type="text" id="orderer_email" name="orderer_email" value="" readonly /></div>
+                </div>
+                <br/><br/>
+            </div>
             
             <label class="fields" id="statusLabel"><br/>Order Status: <span id="selectedAction"></span></label><br/>
             <label class="fields" id="printLabel">Click <a href="#" onclick="submitDispatch()">here</a> to Print Label<br/><br/></label>
             
             <span id="pharmaGroupButtons">
                 <div class="fields"><input class="confirm right" id="btn-place" value="Dispatch" type="button" onclick="showPharmaConfirmationSection('Dispatch')" /></div><br/><br/>
-
                 <div class="fields"><input class="confirm right" id="btn-place" value="On Hold" type="button" onclick="showPharmaConfirmationSection('On Hold')" /></div><br/><br/>
-
                 <div class="fields"><input class="confirm right" id="btn-place" value="Discard" type="button" onclick="showPharmaConfirmationSection('Discard')" />
-
                 <input class="cancel" id="btn-place" value="Cancel" type="submit" /></div>
             </span>
             
@@ -125,39 +142,32 @@
                 <div class="fields">
                     <input class="confirm right" id="btn-place" type="button" value="Cancel" onclick="closePharmaGroupView()" />
                 </div>
-
                 <div class="fields">
                     <input class="cancel left" id="btn-place" type="button" value="Back" onclick="showPharmaOrderViewSection()" />
                 </div>
             </div>
                     
             <span id="pharmaGroupActionButtons">
-                <input type="hidden" id="pharmaGroupAction" name="pharmaGroupAction" />
                 
+                <input type="hidden" id="pharmaGroupAction" name="pharmaGroupAction" />
                 <div class="fields">
                     <label>Comments (Optional)</label>
                 </div>
-
                 <div class="fields">
                     <input type="textarea" maxlength="100" id="groupComments" name="groupComments" placeholder="Enter Comments on the Order"/>
                 </div><br/>
-
                 <div class="fields" id="view_order_detail">
                     <input type="checkbox" name="commentbox" value="1" />Forward message to ordering physician<br/>
                 </div><br/>
-
                 <div class="fields" id="view_order_detail">
                     <input type="checkbox" name="messagebox" value="1" />Another message to ordering physician<br/>
                 </div><br/>
-
                 <div class="fields">
                     <input type="textarea" maxlength="100" id="groupMessage" name="groupMessage" placeholder="Enter Additional Message for Orderer"/>
                 </div><br/>
-
                 <div class="fields">
                     <input class="confirm right" id="btn-place" type="submit" name="action" value="Record" />
                 </div>
-
                 <div class="fields">
                     <input class="cancel" id="btn-place" value="Back" type="button" onclick="showPharmaOrderViewSection()" />
                 </div>
@@ -173,11 +183,23 @@
         jq(this).hide();
         jq(this).next(".icon-minus-sign").show();
     });
-</script>
-
-<script type="text/javascript">
+    
     jq(".icon-minus-sign").click(function(){
         jq(this).parent().parent().next("#additionalInformation").hide();
+        jq(this).hide();
+        jq(this).prev(".icon-plus-sign").show();
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".icon-plus-sign").click(function(){
+        jq(this).parent().parent().next("#ordererContact").show();
+        jq(this).hide();
+        jq(this).next(".icon-minus-sign").show();
+    });
+    
+    jq(".icon-minus-sign").click(function(){
+        jq(this).parent().parent().next("#ordererContact").hide();
         jq(this).hide();
         jq(this).prev(".icon-plus-sign").show();
     });

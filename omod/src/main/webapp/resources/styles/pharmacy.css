@@ -112,7 +112,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #cancelButtons{
+.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #cancelButtons, #contactLabel, #ordererContact{
     display: none;
 }
 

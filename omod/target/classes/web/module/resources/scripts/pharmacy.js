@@ -152,6 +152,9 @@ function showPharmaConfirmationSection(action){
     jq("#pharmaGroupButtons").hide();
     
     if(action === "On Hold" || action === "Discard"){
+        jq("#contactLabel").show();
+        document.getElementById("contactLabel").style.display = 'block';
+        
         jq("#pharmaGroupActionButtons").show();
         document.getElementById("pharmaGroupActionButtons").style.display = 'block';
     }
@@ -170,6 +173,7 @@ function showPharmaOrderViewSection(){
     
     jq("#printLabel").hide();
     jq("#statusLabel").hide();
+    jq("#contactLabel").hide();
     jq("#cancelButtons").hide();
     jq("#pharmaGroupActionButtons").hide();
     
