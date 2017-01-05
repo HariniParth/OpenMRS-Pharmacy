@@ -36,10 +36,6 @@
 
                 <br/><br/><br/>
                 
-                <span class="printLabel"><span class="fields">Click Confirm to print label</span><br/><br/>
-                    <div class="labelBorder"></div><br/>
-                </span>
-
                 <div class="fields" id="view_order_detail">
                     <div id="order_label"><label>Pharmacist Instructions</label></div>
                     <div id="order_value"><input type="text" id="pharma_pharmacist_instructions" name="pharma_pharmacist_instructions" value="${ orderExtn.pharmacistinstructions }" readonly /></div>
@@ -123,6 +119,13 @@
 
                 <input class="cancel" id="btn-place" value="Cancel" type="submit" /></div>
             </span>
+            
+            <div id="printLabel">
+                <div class="fields" id="view_order_detail">
+                    <span class="pull-left" onclick="showPharmaOrderViewSection()">Back</span>
+                    <span class="pull-right">Click <span id="printHere"><a href="#" onclick="" >here</a> to Print</span></span>
+                </div>
+            </div>
             
             <span id="pharmaGroupActionButtons">
                 <input type="hidden" id="pharmaSingleAction" name="pharmaSingleAction" />

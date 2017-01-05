@@ -112,7 +112,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, .printLabel{
+.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel{
     display: none;
 }
 
@@ -140,11 +140,6 @@ input[type=submit], input[type=button]{
     width: 90%;
     margin: auto;
     border: 2px dashed gainsboro;
-}
-
-.printLabel .labelBorder{
-    width: 100%;
-    border: 1px dashed gainsboro;
 }
 
 form select, .form select {
@@ -204,13 +199,18 @@ form #activeOrdersWindow label, .form #activeOrdersWindow label {
     cursor: pointer;
 }
 
-#selectedAction, .printLabel{
+#selectedAction{
     color: red;
     font-weight: bold;
 }
 
-.printLabel span{
-    font-size: 12px;
+#printLabel > *{
+    color: red;
+    font-weight: bold;
+}
+
+#printHere{
+    text-decoration: underline;
 }
 
 .orderRow td{

@@ -150,18 +150,21 @@ function showPharmaConfirmationSection(action){
     $("#pharmaGroupAction").val(action);
     $("#pharmaSingleAction").val(action);
     jq("#pharmaGroupButtons").hide();
-    jq("#pharmaGroupActionButtons").show();
-    document.getElementById("pharmaGroupActionButtons").style.display = 'block';
+    
+    if(action === "On Hold" || action === "Discard"){
+        jq("#pharmaGroupActionButtons").show();
+        document.getElementById("pharmaGroupActionButtons").style.display = 'block';
+    }
     
     if(action === "Dispatch"){
-        jq(".printLabel").show();
+        jq("#printLabel").show();
         document.getElementsByClassName("printLabel").style.display = 'block';
     }
 }
 
 function showPharmaOrderViewSection(){
     
-    jq(".printLabel").hide();
+    jq("#printLabel").hide();
     jq("#statusLabel").hide();
     jq("#pharmaGroupActionButtons").hide();
     jq("#pharmaGroupButtons").show();
