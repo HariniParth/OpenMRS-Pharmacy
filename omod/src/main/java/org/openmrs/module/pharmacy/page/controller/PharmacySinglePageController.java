@@ -89,11 +89,11 @@ public class PharmacySinglePageController {
         }
         
         
-        if (StringUtils.isNotBlank(pharmaSingleAction)){
+        if (StringUtils.isNotBlank(pharmaSingleAction) && pharmaSingleAction.equals("Dispatch")){
             
             drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID));
             
-            if (pharmaSingleAction.equals("Dispatch") && drugorder.getRefill() > 0){
+            if (drugorder.getRefill() > 0){
                 drugorder.setLastdispatchdate(Calendar.getInstance().getTime());System.out.println("Refill "+drugorder.getRefill());
                 drugorder.setRefill(drugorder.getRefill() - 1);
             }

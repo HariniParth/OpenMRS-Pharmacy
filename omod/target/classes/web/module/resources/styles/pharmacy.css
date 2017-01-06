@@ -212,6 +212,10 @@ form #activeOrdersWindow label, .form #activeOrdersWindow label {
     text-decoration: line-through;
 }
 
+.orderRow.onhold > td:not(:first-child), .singleRow.onhold, .groupElement.onhold > div > div{
+    color: orangered;
+}
+
 .groupElement{
     overflow: hidden;
 }

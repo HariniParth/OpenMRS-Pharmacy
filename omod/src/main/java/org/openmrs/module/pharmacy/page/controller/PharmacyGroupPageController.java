@@ -90,7 +90,7 @@ public class PharmacyGroupPageController {
         }
         
         
-        if(StringUtils.isNotBlank(groupAction)){
+        if(StringUtils.isNotBlank(groupAction) && groupAction.equals("Dispatch")){
             
             String orderList[] = group_order_ID.split(",");
             for (String order : orderList){
@@ -98,7 +98,7 @@ public class PharmacyGroupPageController {
                 int orderID = Integer.parseInt(order);
                 drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
                 
-                if (groupAction.equals("Dispatch") && drugorder.getRefill() > 0) {
+                if (drugorder.getRefill() > 0) {
                     drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
                     drugorder.setRefill(drugorder.getRefill() - 1);
                 } 
