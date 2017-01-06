@@ -42,7 +42,17 @@ public class CurrentGroupOrdersFragmentController {
             } else
                 if(order.getOrderstatus().equals("Active-Group")){
                     if(!patientGroupOrders.containsKey(order.getGroupid())){
-                        patientGroupOrders.put(order.getGroupid(), Context.getService(drugordersService.class).getDrugOrdersByGroupID(order.getGroupid()));
+                        
+                        List<drugorders> allGroupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(order.getGroupid());
+                        
+                        List<drugorders> activeGroupOrders = new ArrayList<drugorders>();
+                        
+                        for(drugorders groupOrder : allGroupOrders){
+                            if(groupOrder.getOrderstatus().equals("Active-Group")){
+                                activeGroupOrders.add(groupOrder);
+                            }
+                        }
+                        patientGroupOrders.put(order.getGroupid(), activeGroupOrders);
                     }
             } else
                 if(order.getOrderstatus().equals("Active-Plan")){
