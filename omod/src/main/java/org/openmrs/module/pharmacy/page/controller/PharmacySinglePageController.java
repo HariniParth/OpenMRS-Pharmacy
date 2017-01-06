@@ -70,11 +70,16 @@ public class PharmacySinglePageController {
                     drugorder.setComments(comments);
                     drugorder.setMessage(additionalMessage);
                     
+                    //Change Order Status when Pharmacist performs a new action on the Order
                     if(pharmaSingleAction.equals("Discard")){
-                            drugorder.setDiscontinued(1);
-                    } else 
-                        if(pharmaSingleAction.equals("On Hold")){
+                        drugorder.setDiscontinued(1);
+                        if(drugorder.getOnHold() == 1)
+                            drugorder.setOnHold(0);
+                    } 
+                    if(pharmaSingleAction.equals("On Hold")){
                         drugorder.setOnHold(1);
+                        if(drugorder.getDiscontinued() == 1)
+                            drugorder.setDiscontinued(0);
                     }
 
                     Context.getService(drugordersService.class).saveDrugOrder(drugorder);
@@ -92,6 +97,12 @@ public class PharmacySinglePageController {
         if (StringUtils.isNotBlank(pharmaSingleAction) && pharmaSingleAction.equals("Dispatch")){
             
             drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID));
+            
+            //Change Order Status when Pharmacist performs a new action on the Order
+            if(drugorder.getDiscontinued() == 1)
+                drugorder.setDiscontinued(0);
+            else if(drugorder.getOnHold() == 1)
+                drugorder.setOnHold(0);
             
             if (drugorder.getRefill() > 0){
                 drugorder.setLastdispatchdate(Calendar.getInstance().getTime());System.out.println("Refill "+drugorder.getRefill());

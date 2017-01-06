@@ -71,11 +71,16 @@ public class PharmacyGroupPageController {
                         drugorder.setComments(groupComments);
                         drugorder.setMessage(groupMessage);
 
+                        //Change Order Status when Pharmacist performs a new action on the Order
                         if(groupAction.equals("Discard")) {
-                                drugorder.setDiscontinued(1);
-                        } else 
-                            if(groupAction.equals("On Hold")){
-                                drugorder.setOnHold(1);
+                            drugorder.setDiscontinued(1);
+                            if(drugorder.getOnHold() == 1)
+                                drugorder.setOnHold(0);
+                        }
+                        if(groupAction.equals("On Hold")){
+                            drugorder.setOnHold(1);
+                            if(drugorder.getDiscontinued() == 1)
+                                drugorder.setDiscontinued(0);
                         }
                         
                         Context.getService(drugordersService.class).saveDrugOrder(drugorder);
@@ -97,6 +102,12 @@ public class PharmacyGroupPageController {
                 
                 int orderID = Integer.parseInt(order);
                 drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
+                
+                //Change Order Status when Pharmacist performs a new action on the Order
+                if(drugorder.getDiscontinued() == 1)
+                    drugorder.setDiscontinued(0);
+                else if(drugorder.getOnHold() == 1)
+                    drugorder.setOnHold(0);
                 
                 if (drugorder.getRefill() > 0) {
                     drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
