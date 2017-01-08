@@ -24,11 +24,15 @@ import javax.print.attribute.standard.Copies;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.DrugOrder;
+import org.openmrs.Patient;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.allergyapi.Allergies;
+import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.module.uicommons.util.InfoErrorMessageUtil;
+import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,6 +43,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PharmacySinglePageController {
 
     public void controller(PageModel model, HttpSession session,
+            @RequestParam("patientId") Patient patient, @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "pharmaOrderID", required = false) String pharmaOrderID,
             @RequestParam(value = "pharmaSingleAction", required = false) String pharmaSingleAction,
             @RequestParam(value = "comments", required = false) String comments,
@@ -47,7 +52,8 @@ public class PharmacySinglePageController {
             @RequestParam(value = "commentCheckbox", required = false) String commentCheckbox,
             @RequestParam(value = "messageCheckbox", required = false) String messageCheckbox) {
 
-        String order_status = "";
+        Allergies allergies = patientService.getAllergies(patient);
+        model.addAttribute("allergies", allergies);
         
         if (StringUtils.isNotBlank(action)) {
             try {
@@ -126,8 +132,6 @@ public class PharmacySinglePageController {
             InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - "+pharmaSingleAction);
             
         }
-        
-        model.addAttribute("order_status", order_status);
     }
     
     void printOrder(int orderID){

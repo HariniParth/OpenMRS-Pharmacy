@@ -15,18 +15,32 @@
 
 </script>
  
-${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) } <br/>
-
-<div>
-    <h3>
-        <i class="icon-medicine"></i>
-        <strong>${ ui.message("ACTIVE DRUG ORDERS") }
-            <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacySingle", [patientId: patient.patientId])}';">Display By Order >></span>
-        </strong>
-    </h3>
-</div><br/>
+${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
 
 <div class="info-body">
+    
+    <div id="allergyList">
+        <strong>Drug Allergies:</strong>
+        <% if (allergies.allergyStatus != "See list") { %>
+            ${ ui.message(allergies.allergyStatus) }
+        <% } else { %>
+            <% allergies.each { allergy -> %>
+                ${ allergy.allergen }
+            <% } %>
+        <% } %>
+
+    </div> <br/>
+    
+    <div>
+        <div id="line-break"></div>
+        <h3>
+            <i class="icon-medicine"></i>
+            <strong>${ ui.message("ACTIVE DRUG ORDERS") }
+                <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacySingle", [patientId: patient.patientId])}';">DISPLAY BY ORDER >></span>
+            </strong>
+        </h3>
+        <div id="line-break"></div>
+    </div> <br/>
 
     <div id="currentDrugOrdersWindow">
         <div id="currentOrdersWindow">

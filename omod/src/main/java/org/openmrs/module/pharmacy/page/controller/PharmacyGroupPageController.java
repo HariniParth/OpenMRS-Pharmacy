@@ -24,11 +24,15 @@ import javax.print.attribute.standard.Copies;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.DrugOrder;
+import org.openmrs.Patient;
 import org.openmrs.api.APIException;
+import org.openmrs.module.allergyapi.api.PatientService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.allergyapi.Allergies;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
 import org.openmrs.module.uicommons.util.InfoErrorMessageUtil;
+import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,6 +43,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PharmacyGroupPageController {
 
     public void controller(PageModel model, HttpSession session,
+            @RequestParam("patientId") Patient patient, @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
             @RequestParam(value = "pharmaGroupAction", required = false) String groupAction,
             @RequestParam(value = "group_order_ID", required = false) String group_order_ID,
@@ -47,6 +52,9 @@ public class PharmacyGroupPageController {
             @RequestParam(value = "commentbox", required = false) String commentbox,
             @RequestParam(value = "messagebox", required = false) String messagebox) {
 
+        Allergies allergies = patientService.getAllergies(patient);
+        model.addAttribute("allergies", allergies);
+        
         if (StringUtils.isNotBlank(action)) {
             try {
                 if ("Record".equals(action)) {
