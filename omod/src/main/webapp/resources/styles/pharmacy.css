@@ -182,6 +182,7 @@ form select, .form select {
 .d1 .g1{
     width: 40%;
     float: left;
+    overflow-wrap: break-word;
 }
 
 .d1 .g2{
@@ -216,6 +217,10 @@ form select, .form select {
 
 .orderRow td{
     color: #363463;
+}
+
+.groupElement.discontinued .d1 .g2 span{
+    text-decoration: none !important;
 }
 
 .orderRow.discontinued > td:not(:first-child), .singleRow.discontinued, .groupElement.discontinued > div > div{

@@ -33,7 +33,7 @@
                                     
                                     <div class="d1">
                                         <div class="g1">${ order.drugname.getDisplayString().toUpperCase() }</div>
-                                        <div class="g2">&nbsp; ${ order.startdate.format('yyyy-MM-dd') }</div>
+                                        <div class="g2"><span>&nbsp;</span>${ order.startdate.format('yyyy-MM-dd') }</div>
                                     </div>
                                     
                                     <div class="d2">
@@ -67,7 +67,7 @@
                                     
                                     <div class="d1">
                                         <div class="g1">${ order.drugname.getDisplayString().toUpperCase() }</div>
-                                        <div class="g2">&nbsp; ${ order.startdate.format('yyyy-MM-dd') }</div>
+                                        <div class="g2"><span>&nbsp;</span>${ order.startdate.format('yyyy-MM-dd') }</div>
                                     </div>
                                     
                                     <div class="d2">
