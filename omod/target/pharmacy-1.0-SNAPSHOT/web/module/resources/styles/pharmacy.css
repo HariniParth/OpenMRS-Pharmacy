@@ -155,8 +155,13 @@ form select, .form select {
     padding: 0px !important;
 }
 
-form #activeOrdersWindow label, .form #activeOrdersWindow label {
-    text-align: initial !important;
+.dataTables_filter label:first-child{
+    text-align: left !important;
+    margin-top: 0px !important;
+}
+
+.dataTables_length label{
+    text-align: right !important;
     margin-top: 0px !important;
 }
 
