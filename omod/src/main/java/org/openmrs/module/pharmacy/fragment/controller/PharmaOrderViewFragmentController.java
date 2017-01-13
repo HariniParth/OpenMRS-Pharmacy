@@ -62,7 +62,7 @@ public class PharmaOrderViewFragmentController {
             
             if(orderExtn.getOrderstatus().equals("Active-Plan")){
                 drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(orderExtn.getOrderId());
-                List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlan(planOrder.getPlanid());
+                List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanid());
                 for(drugordersdiseases plan : planOrders){
                     associatedOrders = associatedOrders + Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()).getDrugname().getDisplayString() + " ";
                 }

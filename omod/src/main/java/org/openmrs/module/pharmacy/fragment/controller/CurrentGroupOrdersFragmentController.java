@@ -60,7 +60,7 @@ public class CurrentGroupOrdersFragmentController {
                     
                     if(!patientPlanOrders.containsKey(planOrder.getPlanid())){
                         
-                        List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlan(planOrder.getPlanid());
+                        List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanid());
                         
                         List<drugorders> activePlanOrders = new ArrayList<drugorders>();
                         

@@ -37,16 +37,5 @@ public class PharmacyServiceImpl extends BaseOpenmrsService implements PharmacyS
     */
     public PharmacyDAO getDao() {
 	    return dao;
-    }
-    
-    @Override
-    public Pharmacy savePharmaOrder(Pharmacy pharmaOrder){
-        return dao.savePharmaOrder(pharmaOrder);
-    }
-    
-    @Override
-    public Pharmacy getPharmaOrder(Integer orderID){
-        return dao.getPharmaOrder(orderID);
-    }
-    
+    }    
 }

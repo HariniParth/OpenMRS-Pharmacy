@@ -40,7 +40,7 @@ public class PharmaGroupViewFragmentController {
         if(!planID.equals("")){
 
             //Get the list of Med Plan Orders ordered for this Patient to treat this Disease
-            List<drugordersdiseases> plans = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlan(Integer.parseInt(planID));
+            List<drugordersdiseases> plans = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(Integer.parseInt(planID));
             for(drugordersdiseases plan : plans){
                 
                 drugorders dorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid());

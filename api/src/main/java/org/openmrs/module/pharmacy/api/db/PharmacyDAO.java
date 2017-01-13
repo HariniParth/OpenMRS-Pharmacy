@@ -9,15 +9,11 @@
  */
 package org.openmrs.module.pharmacy.api.db;
 
-import org.openmrs.module.pharmacy.Pharmacy;
 import org.openmrs.module.pharmacy.api.PharmacyService;
 
 /**
  *  Database methods for {@link PharmacyService}.
  */
 public interface PharmacyDAO {
-	
-    public Pharmacy savePharmaOrder(Pharmacy pharmaOrder);
-    public Pharmacy getPharmaOrder(Integer orderID);
     
 }
