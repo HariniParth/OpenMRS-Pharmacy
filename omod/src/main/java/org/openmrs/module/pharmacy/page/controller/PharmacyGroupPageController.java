@@ -81,14 +81,14 @@ public class PharmacyGroupPageController {
 
                         //Change Order Status when Pharmacist performs a new action on the Order
                         if(groupAction.equals("Discard")) {
-                            drugorder.setDiscontinued(1);
+                            drugorder.setForDiscard(1);
                             if(drugorder.getOnHold() == 1)
                                 drugorder.setOnHold(0);
                         }
                         if(groupAction.equals("On Hold")){
                             drugorder.setOnHold(1);
-                            if(drugorder.getDiscontinued() == 1)
-                                drugorder.setDiscontinued(0);
+                            if(drugorder.getForDiscard()== 1)
+                                drugorder.setForDiscard(0);
                         }
                         
                         Context.getService(drugordersService.class).saveDrugOrder(drugorder);
@@ -112,8 +112,8 @@ public class PharmacyGroupPageController {
                 drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
                 
                 //Change Order Status when Pharmacist performs a new action on the Order
-                if(drugorder.getDiscontinued() == 1)
-                    drugorder.setDiscontinued(0);
+                if(drugorder.getForDiscard() == 1)
+                    drugorder.setForDiscard(0);
                 else if(drugorder.getOnHold() == 1)
                     drugorder.setOnHold(0);
                 

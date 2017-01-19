@@ -29,7 +29,7 @@
                         <td colspan="4">
                             <% patientPlanOrder.value.each { order -> %>
                                 
-                                <div class="groupElement <% if(order.discontinued == 1) { %> discontinued <% } %> <% if(order.onHold == 1) { %> onhold <% } %>" title="${ ui.message(order.comments) }">
+                                <div class="groupElement <% if(order.forDiscard == 1) { %> discontinued <% } %> <% if(order.onHold == 1) { %> onhold <% } %>" title="${ ui.message(order.comments) }">
                                     
                                     <div class="d1">
                                         <div class="g1">${ order.drugname.getDisplayString().toUpperCase() }</div>
@@ -63,7 +63,7 @@
                         <td colspan="4">
                             <% patientGroupOrder.value.each { order -> %>
                                 
-                                <div class="groupElement <% if(order.discontinued == 1) { %> discontinued <% } %> <% if(order.onHold == 1) { %> onhold <% } %>" title="${ ui.message(order.comments) }">
+                                <div class="groupElement <% if(order.forDiscard == 1) { %> discontinued <% } %> <% if(order.onHold == 1) { %> onhold <% } %>" title="${ ui.message(order.comments) }">
                                     
                                     <div class="d1">
                                         <div class="g1">${ order.drugname.getDisplayString().toUpperCase() }</div>
@@ -92,7 +92,7 @@
                 <% } %>
 
                 <% patientSingleOrders.each { patientSingleOrder -> %>
-                    <tr class="singleRow <% if(patientSingleOrder.discontinued == 1) { %> discontinued <% } %> <% if(patientSingleOrder.onHold == 1) { %> onhold <% } %>" onclick="selectedSingleOrder('${ patientSingleOrder.orderId }')" title="${ ui.message(patientSingleOrder.comments) }">
+                    <tr class="singleRow <% if(patientSingleOrder.forDiscard == 1) { %> discontinued <% } %> <% if(patientSingleOrder.onHold == 1) { %> onhold <% } %>" onclick="selectedSingleOrder('${ patientSingleOrder.orderId }')" title="${ ui.message(patientSingleOrder.comments) }">
                         
                         <td></td>
                         <td>${ patientSingleOrder.drugname.getDisplayString().toUpperCase() }</td>

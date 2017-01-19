@@ -22,7 +22,7 @@
             <tbody>
                 <% patientOrders.each { order -> %>
 
-                    <tr class="orderRow <% if(order.discontinued == 1) { %> discontinued <% } %> <% if(order.onHold == 1) { %> onhold <% } %>" onclick="selectedOrder('${ order.orderId }')" title="${ ui.message(order.comments) }" >
+                    <tr class="orderRow <% if(order.forDiscard == 1) { %> discontinued <% } %> <% if(order.onHold == 1) { %> onhold <% } %>" onclick="selectedOrder('${ order.orderId }')" title="${ ui.message(order.comments) }" >
                         
                         <td><% if(order.orderstatus == "Active-Plan") { %> ${ order.associateddiagnosis.getDisplayString().toUpperCase() } <% } %></td>
                         <td>${ order.drugname.getDisplayString().toUpperCase() }</td>

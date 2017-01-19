@@ -40,7 +40,7 @@
                                             <% last_dispatch_date = orderExtn.lastdispatchdate; %>
                                         <% } %>
 
-                                        <tr class="orderRow <% if(orderExtn.discontinued == 1) { %> discontinued <% } %> <% if(orderExtn.onHold == 1) { %> onhold <% } %>" onclick="associatedOrder('${ orderExtn.orderId }')" title="${ ui.message(orderExtn.comments) }">
+                                        <tr class="orderRow <% if(orderExtn.forDiscard == 1) { %> discontinued <% } %> <% if(orderExtn.onHold == 1) { %> onhold <% } %>" onclick="associatedOrder('${ orderExtn.orderId }')" title="${ ui.message(orderExtn.comments) }">
                                             <td></td>
                                             <td>${ orderExtn.drugname.getDisplayString() }</td>
                                             <td>${ orderExtn.startdate.format('yyyy-MM-dd') }</td>
