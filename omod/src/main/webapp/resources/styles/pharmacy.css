@@ -165,6 +165,56 @@ form select, .form select {
     margin-top: 0px !important;
 }
 
+.groupHome{
+    width: 100%;
+    overflow: hidden;
+}
+
+.groupHome .d1{
+    width: 62%;
+    float: left;
+}
+
+.groupHome .d2{
+    width: 38%;
+    float: right;
+}
+
+.d1 .c1{
+    width: 40%;
+    float: left;
+    overflow-wrap: break-word;
+}
+
+.d1 .c2{
+    width: 60%;
+    float: right;
+}
+
+.d2 .c3{
+    width: 55%;
+    float: left;
+    overflow: scroll;
+    min-height: 20px;
+}
+
+.d2 .c4{
+    width: 45%;
+    float: right;
+    overflow-wrap: break-word;
+}
+
+.c2 .b1{
+    width: 50%;
+    float: left;
+    overflow-wrap: break-word;
+}
+
+.c2 .b2{
+    width: 50%;
+    float: left;
+}
+
 .groupElement{
     width: 100%;
 }
