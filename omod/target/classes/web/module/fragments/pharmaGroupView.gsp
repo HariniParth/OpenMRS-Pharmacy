@@ -156,15 +156,6 @@
                 <div class="fields">
                     <input type="textarea" maxlength="100" id="groupComments" name="groupComments" placeholder="Enter Comments on the Order"/>
                 </div><br/>
-                <div class="fields" id="view_order_detail">
-                    <input type="checkbox" name="commentbox" value="1" />Forward message to ordering physician<br/>
-                </div><br/>
-                <div class="fields" id="view_order_detail">
-                    <input type="checkbox" name="messagebox" value="1" />Another message to ordering physician<br/>
-                </div><br/>
-                <div class="fields">
-                    <input type="textarea" maxlength="100" id="groupMessage" name="groupMessage" placeholder="Enter Additional Message for Orderer"/>
-                </div><br/>
                 <div class="fields">
                     <input class="confirm right" id="btn-place" type="submit" name="action" value="Record" />
                 </div>

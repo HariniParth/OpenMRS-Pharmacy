@@ -47,10 +47,7 @@ public class PharmacyGroupPageController {
             @RequestParam(value = "action", required = false) String action,
             @RequestParam(value = "pharmaGroupAction", required = false) String groupAction,
             @RequestParam(value = "group_order_ID", required = false) String group_order_ID,
-            @RequestParam(value = "groupComments", required = false) String groupComments,
-            @RequestParam(value = "groupMessage", required = false) String groupMessage,
-            @RequestParam(value = "commentbox", required = false) String commentbox,
-            @RequestParam(value = "messagebox", required = false) String messagebox) {
+            @RequestParam(value = "groupComments", required = false) String groupComments) {
 
         Allergies allergies = patientService.getAllergies(patient);
         model.addAttribute("allergies", allergies);
@@ -64,20 +61,7 @@ public class PharmacyGroupPageController {
                         int orderID = Integer.parseInt(order);
                         drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
 
-                        if (!(commentbox.equals("1"))) {
-                            drugorder.setForwardcomments(0);
-                        } else {
-                            drugorder.setForwardcomments(1);
-                        }
-
-                        if (!(messagebox.equals("1"))) {
-                            drugorder.setAdditionalmessage(0);
-                        } else {
-                            drugorder.setAdditionalmessage(1);
-                        }
-
                         drugorder.setComments(groupComments);
-                        drugorder.setMessage(groupMessage);
 
                         //Change Order Status when Pharmacist performs a new action on the Order
                         if(groupAction.equals("Discard")) {

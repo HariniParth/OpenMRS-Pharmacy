@@ -47,10 +47,7 @@ public class PharmacySinglePageController {
             @RequestParam(value = "pharmaOrderID", required = false) String pharmaOrderID,
             @RequestParam(value = "pharmaSingleAction", required = false) String pharmaSingleAction,
             @RequestParam(value = "comments", required = false) String comments,
-            @RequestParam(value = "additionalMessage", required = false) String additionalMessage,
-            @RequestParam(value = "action", required = false) String action,
-            @RequestParam(value = "commentCheckbox", required = false) String commentCheckbox,
-            @RequestParam(value = "messageCheckbox", required = false) String messageCheckbox) {
+            @RequestParam(value = "action", required = false) String action) {
 
         Allergies allergies = patientService.getAllergies(patient);
         model.addAttribute("allergies", allergies);
@@ -60,21 +57,8 @@ public class PharmacySinglePageController {
                 if ("Confirm".equals(action)) {
 
                     drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID));
-                    
-                    if (!(commentCheckbox.equals("1"))) {
-                        drugorder.setForwardcomments(0);
-                    } else {
-                        drugorder.setForwardcomments(1);
-                    }
-
-                    if (!(messageCheckbox.equals("1"))) {
-                        drugorder.setAdditionalmessage(0);
-                    } else {
-                        drugorder.setAdditionalmessage(1);
-                    }
 
                     drugorder.setComments(comments);
-                    drugorder.setMessage(additionalMessage);
                     
                     //Change Order Status when Pharmacist performs a new action on the Order
                     if(pharmaSingleAction.equals("Discard")){
