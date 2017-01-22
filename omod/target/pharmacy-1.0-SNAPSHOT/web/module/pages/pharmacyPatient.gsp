@@ -27,9 +27,8 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
         </thead>
         
         <tbody>
-            <% allPatients.each { patient -> %>
-                <tr class="patientRow" onclick="location.href='${ ui.pageLink("pharmacy", "pharmacyGroup", [patientId: patient.patientId]) }';">
-                    
+            <% if(patient != "") { %>
+                <tr class="patientRow" onclick="location.href='${ ui.pageLink("pharmacy", "pharmacyGroup", [patientId: patient.patientId]) }';">     
                     <td>${ patient.givenName } ${ patient.familyName }</td>
                     <td>${ patient.birthdate.format('yyyy-MM-dd') }</td>
                     <td>${ patient.age }</td>
@@ -41,7 +40,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
     </table>
 </div>
 
-<br/><br/>
+<p><strong>ORDERS Hold/Discard</strong></p><br/>
 
 <div id="nonActiveTableWrapper">
     <table id="nonActiveTable">

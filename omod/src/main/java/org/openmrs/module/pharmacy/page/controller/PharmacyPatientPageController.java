@@ -34,11 +34,11 @@ public class PharmacyPatientPageController {
         if(!searchPatient.equals("")){
             for(Patient patient : allPatients){
                 if((patient.getGivenName()+" "+patient.getFamilyName()).equals(searchPatient)){
-                    model.addAttribute("allPatients", patient);
+                    model.addAttribute("patient", patient);
                 }
             }
         } else {
-            model.addAttribute("allPatients", allPatients);
+            model.addAttribute("patient", "");
         }
         
         List<drugorders> ordersOnHold = Context.getService(drugordersService.class).getOrdersOnHold();
