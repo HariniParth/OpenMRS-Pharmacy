@@ -194,8 +194,6 @@ form select, .form select {
 .d2 .c3{
     width: 55%;
     float: left;
-    overflow: scroll;
-    min-height: 20px;
 }
 
 .d2 .c4{
@@ -303,4 +301,9 @@ form select, .form select {
 
 .groupElement{
     overflow: hidden;
+}
+
+.comments:hover{
+    cursor: pointer;
+    font-weight: bold;
 }

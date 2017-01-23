@@ -49,6 +49,7 @@ public class PharmacyPatientPageController {
         HashMap<Integer, List<drugorders>> patientPlanOrders = new HashMap<Integer, List<drugorders>>();
         
         HashMap<Integer,String> ordererName = new HashMap<Integer,String>();
+        HashMap<Integer,String> patientName = new HashMap<Integer,String>();
         
         for(drugorders order: Iterables.concat(ordersOnHold, ordersForDiscard)){
             Person physician = Context.getPersonService().getPerson(Context.getOrderService().getOrder(order.getOrderId()).getOrderer().getProviderId());
@@ -89,7 +90,13 @@ public class PharmacyPatientPageController {
                     patientPlanOrders.put(planOrder.getPlanid(), activePlanOrders);
                 }
             }
+            //Store the list of Patient's name who have an Order that is On-Hold or For-Discard
+            if(!patientName.containsKey(Integer.parseInt(order.getPatientid()))){
+                Patient patient = Context.getPatientService().getPatient(Integer.parseInt(order.getPatientid()));
+                patientName.put(Integer.parseInt(order.getPatientid()), patient.getGivenName()+" "+patient.getFamilyName());
+            }
         }
+        model.addAttribute("patientName", patientName);
         model.addAttribute("ordererName", ordererName);
         model.addAttribute("patientSingles", patientSingleOrders);
         model.addAttribute("patientGroups", patientGroupOrders);
