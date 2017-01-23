@@ -6,8 +6,10 @@
 package org.openmrs.module.pharmacy.fragment.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.openmrs.Patient;
+import org.openmrs.Person;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.drugorders;
@@ -25,13 +27,17 @@ public class CurrentDrugOrdersFragmentController {
         List<drugorders> allOrders = Context.getService(drugordersService.class).getDrugOrdersByPatient(patient);
         
         List<drugorders> patientOrders = new ArrayList<drugorders>();
+        HashMap<Integer, String> OrdererName = new HashMap<Integer, String>();
         
         for(drugorders order : allOrders){
             if(order.getOrderstatus().equals("Active") || order.getOrderstatus().equals("Active-Group") || order.getOrderstatus().equals("Active-Plan")){
                 patientOrders.add(order);
+                Person person = Context.getOrderService().getOrder(order.getOrderId()).getOrderer().getPerson();
+                OrdererName.put(order.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
             } 
         }
         
+        model.addAttribute("OrdererName", OrdererName);
         model.addAttribute("patientOrders", patientOrders);
     }    
 }

@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.DrugOrder;
+import org.openmrs.Patient;
+import org.openmrs.Person;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
@@ -26,7 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AssociatedOrderViewFragmentController {
     
     public void controller(PageModel model,@RequestParam(value = "action", required = false) String action,
-                            @RequestParam(value = "pharmaOrderID", required = false) String pharmaOrderID){
+                            @RequestParam(value = "pharmaOrderID", required = false) String pharmaOrderID,
+                            @RequestParam("patientId") Patient patient){
     
         HashMap<Integer,List<drugorders>> associatedOrderExtn = new HashMap<Integer,List<drugorders>>();
         HashMap<Integer,DrugOrder> associatedOrderMain = new HashMap<Integer,DrugOrder>();
@@ -35,6 +38,7 @@ public class AssociatedOrderViewFragmentController {
         HashMap<Integer,DrugOrder> allOrdersMain = new HashMap<Integer,DrugOrder>();
         
         HashMap<Integer,List<String>> otherOrders = new HashMap<Integer,List<String>>();
+        HashMap<Integer, String> OrdererName = new HashMap<Integer, String>();
                 
         if (StringUtils.isNotBlank(action)) {
             try {
@@ -49,6 +53,9 @@ public class AssociatedOrderViewFragmentController {
                         for(drugorders oExtn : orderExtn){
                             associatedOrderMain.put(oExtn.getOrderId(),(DrugOrder) Context.getOrderService().getOrder(oExtn.getOrderId()));
                             otherOrders.put(oExtn.getOrderId(), pullAssociatedGroupOrders(oExtn));
+                        
+                            Person person = Context.getOrderService().getOrder(oExtn.getOrderId()).getOrderer().getPerson();
+                            OrdererName.put(oExtn.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
                         }
                         
                     } else if(Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID)) != null){
@@ -63,12 +70,17 @@ public class AssociatedOrderViewFragmentController {
                         }
                         associatedOrderExtn.put(Integer.SIZE, orderExtn);
                         
-                        for(drugorders extn : orderExtn)
+                        for(drugorders extn : orderExtn){
                             otherOrders.put(extn.getOrderId(), pullAssociatedPlanOrders(extn));
+                            
+                            Person person = Context.getOrderService().getOrder(extn.getOrderId()).getOrderer().getPerson();
+                            OrdererName.put(extn.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
+                        }
+                            
                     } 
                         
                     //Fetch all other Orders placed for the given Patient that are not a part of the same group as recorded Order
-                    List<drugorders> allExtn = Context.getService(drugordersService.class).getDrugOrdersByPatient(Context.getPatientService().getPatient(Integer.parseInt(pharmaOrderID)));
+                    List<drugorders> allExtn = Context.getService(drugordersService.class).getDrugOrdersByPatient(patient);
                     
                     for(drugorders extn : allExtn){
                         if(!associatedOrderMain.containsKey(extn.getOrderId())){
@@ -81,6 +93,9 @@ public class AssociatedOrderViewFragmentController {
                             otherOrders.put(extn.getOrderId(), pullAssociatedGroupOrders(extn));
                         else if(extn.getOrderstatus().equals("Active-Plan"))
                             otherOrders.put(extn.getOrderId(), pullAssociatedPlanOrders(extn));
+                        
+                        Person person = Context.getOrderService().getOrder(extn.getOrderId()).getOrderer().getPerson();
+                        OrdererName.put(extn.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
                     }
                 }
             }
@@ -97,6 +112,7 @@ public class AssociatedOrderViewFragmentController {
         model.addAttribute("allOrdersExtn", allOrdersExtn);
         model.addAttribute("allOrdersMain", allOrdersMain);
         model.addAttribute("otherOrders", otherOrders);
+        model.addAttribute("assocOrdererName", OrdererName);
     }
     
     public ArrayList<String> pullAssociatedGroupOrders(drugorders drugorder){

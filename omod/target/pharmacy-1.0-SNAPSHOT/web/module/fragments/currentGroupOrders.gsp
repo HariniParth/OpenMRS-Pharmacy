@@ -14,11 +14,12 @@
         <table id="currentGroupOrdersTable">
             <thead>
                 <tr>
-                    <th>Plan Name/Group</th>
+                    <th>Plan Name</th>
                     <th>Drug(s)</th>
                     <th>Start Date</th>
                     <th>Refills</th>
                     <th>Last Dispatch</th>
+                    <th>Orderer</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,31 +27,40 @@
                     <tr class="groupRow" onclick="selectedPlanOrder('${ patientPlanOrder.key }')">
                         
                         <td>${ planName.get(patientPlanOrder.key).getDisplayString() }</td>
-                        <td colspan="4">
+                        <td colspan="5">
                             <% patientPlanOrder.value.each { order -> %>
                                 
                                 <div class="groupElement <% if(order.forDiscard == 1) { %> discontinued <% } %> <% if(order.onHold == 1) { %> onhold <% } %>" title="${ ui.message(order.comments) }">
                                     
                                     <div class="d1">
-                                        <div class="g1">${ order.drugname.getDisplayString().toUpperCase() }</div>
+                                        <div class="g1">
+                                            <div class="c1">${ order.drugname.getDisplayString().toUpperCase() }</div>
+                                            <div class="c2"></div>
+                                        </div>
                                         <div class="g2"><span>&nbsp;</span>${ order.startdate.format('yyyy-MM-dd') }</div>
                                     </div>
                                     
                                     <div class="d2">
-                                        <div class="g3">${ order.refill }</div>
+                                        <div class="d3">
+                                            <div class="g3">${ order.refill }</div>
+                                        </div>
+                                        
+                                        <div class="d4">
+                                            <% if(order.lastdispatchdate != null) { %>
+                                                <% last_dispatch_date = order.lastdispatchdate.format('yyyy-MM-dd'); %>
+                                            <% } else { %>
+                                                <% last_dispatch_date = order.lastdispatchdate; %>
+                                            <% } %>
 
-                                        <% if(order.lastdispatchdate != null) { %>
-                                            <% last_dispatch_date = order.lastdispatchdate.format('yyyy-MM-dd'); %>
-                                        <% } else { %>
-                                            <% last_dispatch_date = order.lastdispatchdate; %>
-                                        <% } %>
-
-                                        <div class="g4">${ last_dispatch_date }</div>
-                                    </div>
+                                            <div class="g4">${ last_dispatch_date }</div>
+                                            <div class="g5">${ OrdererName.get(order.orderId) }</div>
+                                        </div>
+                                    </div><br/><br/>
                                 </div>
                             
                             <% } %>
                         </td>
+                        <td style="display: none;"></td>
                         <td style="display: none;"></td>
                         <td style="display: none;"></td>
                         <td style="display: none;"></td>
@@ -60,31 +70,40 @@
                 <% patientGroupOrders.each { patientGroupOrder -> %>
                     <tr class="groupRow" onclick="selectedGroupOrder('${ patientGroupOrder.key }')">
                         <td></td>
-                        <td colspan="4">
+                        <td colspan="5">
                             <% patientGroupOrder.value.each { order -> %>
                                 
                                 <div class="groupElement <% if(order.forDiscard == 1) { %> discontinued <% } %> <% if(order.onHold == 1) { %> onhold <% } %>" title="${ ui.message(order.comments) }">
                                     
                                     <div class="d1">
-                                        <div class="g1">${ order.drugname.getDisplayString().toUpperCase() }</div>
+                                        <div class="g1">
+                                            <div class="c1">${ order.drugname.getDisplayString().toUpperCase() }</div>
+                                            <div class="c2"></div>
+                                        </div>
                                         <div class="g2"><span>&nbsp;</span>${ order.startdate.format('yyyy-MM-dd') }</div>
                                     </div>
                                     
                                     <div class="d2">
-                                        <div class="g3">${ order.refill }</div>
+                                        <div class="d3">
+                                            <div class="g3">${ order.refill }</div>
+                                        </div>
+                                        
+                                        <div class="d4">
+                                            <% if(order.lastdispatchdate != null) { %>
+                                                <% last_dispatch_date = order.lastdispatchdate.format('yyyy-MM-dd'); %>
+                                            <% } else { %>
+                                                <% last_dispatch_date = order.lastdispatchdate; %>
+                                            <% } %>
 
-                                        <% if(order.lastdispatchdate != null) { %>
-                                            <% last_dispatch_date = order.lastdispatchdate.format('yyyy-MM-dd'); %>
-                                        <% } else { %>
-                                            <% last_dispatch_date = order.lastdispatchdate; %>
-                                        <% } %>
-
-                                        <div class="g4">${ last_dispatch_date }</div>
-                                    </div>
+                                            <div class="g4">${ last_dispatch_date }</div>
+                                            <div class="g5">${ OrdererName.get(order.orderId) }</div>
+                                        </div>
+                                    </div><br/><br/>
                                 </div>
                             
                             <% } %>
                         </td>
+                        <td style="display: none;"></td>
                         <td style="display: none;"></td>
                         <td style="display: none;"></td>
                         <td style="display: none;"></td>
@@ -106,7 +125,7 @@
                         <% } %>
                             
                         <td>${ last_dispatch_date }</td>
-                        
+                        <td>${ OrdererName.get(patientSingleOrder.orderId) }</td>
                     </tr> 
                 <% } %>
 

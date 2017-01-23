@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
+import org.openmrs.Person;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.drugordersdiseasesService;
@@ -36,43 +37,49 @@ public class CurrentGroupOrdersFragmentController {
         
         HashMap<Integer, Concept> planName = new HashMap<Integer, Concept>();
         
+        HashMap<Integer, String> OrdererName = new HashMap<Integer, String>();
+        
         for(drugorders order : allOrders){
             if(order.getOrderstatus().equals("Active")){
                 patientSingleOrders.add(order);
-            } else
-                if(order.getOrderstatus().equals("Active-Group")){
-                    if(!patientGroupOrders.containsKey(order.getGroupid())){
-                        
-                        List<drugorders> allGroupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(order.getGroupid());
-                        
-                        List<drugorders> activeGroupOrders = new ArrayList<drugorders>();
-                        
-                        for(drugorders groupOrder : allGroupOrders){
-                            if(groupOrder.getOrderstatus().equals("Active-Group")){
-                                activeGroupOrders.add(groupOrder);
-                            }
+            } 
+            else if(order.getOrderstatus().equals("Active-Group")){
+                if(!patientGroupOrders.containsKey(order.getGroupid())){
+
+                    List<drugorders> allGroupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(order.getGroupid());
+
+                    List<drugorders> activeGroupOrders = new ArrayList<drugorders>();
+
+                    for(drugorders groupOrder : allGroupOrders){
+                        if(groupOrder.getOrderstatus().equals("Active-Group")){
+                            activeGroupOrders.add(groupOrder);
                         }
-                        patientGroupOrders.put(order.getGroupid(), activeGroupOrders);
                     }
-            } else
-                if(order.getOrderstatus().equals("Active-Plan")){
-                    drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(order.getOrderId());
-                    
-                    if(!patientPlanOrders.containsKey(planOrder.getPlanid())){
-                        
-                        List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanid());
-                        
-                        List<drugorders> activePlanOrders = new ArrayList<drugorders>();
-                        
-                        for(drugordersdiseases plan : planOrders){
-                            if(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()).getOrderstatus().equals("Active-Plan")){
-                                activePlanOrders.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()));
-                            }
+                    patientGroupOrders.put(order.getGroupid(), activeGroupOrders);
+                }
+            } 
+            else if(order.getOrderstatus().equals("Active-Plan")){
+                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(order.getOrderId());
+
+                if(!patientPlanOrders.containsKey(planOrder.getPlanid())){
+
+                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanid());
+
+                    List<drugorders> activePlanOrders = new ArrayList<drugorders>();
+
+                    for(drugordersdiseases plan : planOrders){
+                        if(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()).getOrderstatus().equals("Active-Plan")){
+                            activePlanOrders.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()));
                         }
-                        
-                        patientPlanOrders.put(planOrder.getPlanid(), activePlanOrders);
-                        planName.put(planOrder.getPlanid(), planOrder.getDiseaseid());
                     }
+
+                    patientPlanOrders.put(planOrder.getPlanid(), activePlanOrders);
+                    planName.put(planOrder.getPlanid(), planOrder.getDiseaseid());
+                }
+            }
+            if(order.getOrderstatus().equals("Active") || order.getOrderstatus().equals("Active-Group") || order.getOrderstatus().equals("Active-Plan")){
+                Person person = Context.getOrderService().getOrder(order.getOrderId()).getOrderer().getPerson();
+                OrdererName.put(order.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
             }
         }
         
@@ -80,5 +87,6 @@ public class CurrentGroupOrdersFragmentController {
         model.addAttribute("patientGroupOrders", patientGroupOrders);
         model.addAttribute("patientPlanOrders", patientPlanOrders);
         model.addAttribute("planName", planName);
+        model.addAttribute("OrdererName", OrdererName);
     }
 }

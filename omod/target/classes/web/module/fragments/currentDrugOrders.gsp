@@ -12,11 +12,12 @@
         <table id="currentDrugOrdersTable">
             <thead>
                 <tr>
-                    <th>Plan Name/Group</th>
+                    <th>Plan Name</th>
                     <th>Drug(s)</th>
                     <th>Start Date</th>
                     <th>Refills</th>
                     <th>Last Dispatch</th>
+                    <th>Orderer</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,7 @@
                         <% } %>
                                     
                         <td>${ last_dispatch_date }</td>
+                        <td>${ OrdererName.get(order.orderId) }</td>
                     </tr>
                     
                 <% } %>

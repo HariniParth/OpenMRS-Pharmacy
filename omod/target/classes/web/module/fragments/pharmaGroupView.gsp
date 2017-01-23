@@ -101,31 +101,32 @@
 
             <input type="hidden" id="group_order_ID" name="group_order_ID" value="${ list_of_orders }" readonly />
             
-            <div class="additionalInfo" id="view_order_detail">
-                <div id="order_label"><label>Orderer</label></div>
-                <div id="order_value"><input type="text" id="group_order_order_provider" name="group_order_order_provider" value="${ provider_name }" readonly /></div>
-            </div>
+            <div class="hidden">
+                <div class="additionalInfo" id="view_order_detail">
+                    <div id="order_label"><label>Orderer</label></div>
+                    <div id="order_value"><input type="text" id="group_order_order_provider" name="group_order_order_provider" value="${ provider_name }" readonly /></div>
+                    <br/><br/>
+                </div>
 
-            <br/><br/>
-            
-            <div class="additionalInfo" id="contactLabel">
-                <label>Contact Orderer 
-                    <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
-                    <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
-                </label>
-            </div>
-            
-            <div class="additionalInfo" id="ordererContact">
-                <div class="fields" id="view_order_detail">
-                    <div id="order_label"><label>Phone</label></div>
-                    <div id="order_value"><input type="text" id="orderer_phone" name="orderer_phone" value="" readonly /></div>
+                <div class="additionalInfo" id="contactLabel">
+                    <label>Contact Orderer 
+                        <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
+                        <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
+                    </label>
                 </div>
-                <br/><br/>
-                <div class="fields" id="view_order_detail">
-                    <div id="order_label"><label>Email</label></div>
-                    <div id="order_value"><input type="text" id="orderer_email" name="orderer_email" value="" readonly /></div>
+
+                <div class="additionalInfo" id="ordererContact">
+                    <div class="fields" id="view_order_detail">
+                        <div id="order_label"><label>Phone</label></div>
+                        <div id="order_value"><input type="text" id="orderer_phone" name="orderer_phone" value="" readonly /></div>
+                    </div>
+                    <br/><br/>
+                    <div class="fields" id="view_order_detail">
+                        <div id="order_label"><label>Email</label></div>
+                        <div id="order_value"><input type="text" id="orderer_email" name="orderer_email" value="" readonly /></div>
+                    </div>
+                    <br/><br/>
                 </div>
-                <br/><br/>
             </div>
             
             <label class="fields" id="statusLabel"><br/>Order Status: <span id="selectedAction"></span></label><br/>
@@ -151,7 +152,7 @@
                 
                 <input type="hidden" id="pharmaGroupAction" name="pharmaGroupAction" />
                 <div class="fields">
-                    <label>Comments (Optional)</label>
+                    <label>Comments</label>
                 </div>
                 <div class="fields">
                     <input type="textarea" maxlength="100" id="groupComments" name="groupComments" placeholder="Enter Comments on the Order"/>

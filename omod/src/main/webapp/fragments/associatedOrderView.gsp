@@ -27,6 +27,7 @@
                                 <th>Start Date</th>
                                 <th>Refills</th>
                                 <th>Last Dispatch</th>
+                                <th>Orderer</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,6 +47,7 @@
                                             <td>${ orderExtn.startdate.format('yyyy-MM-dd') }</td>
                                             <td>${ orderExtn.refill }</td>
                                             <td>${ last_dispatch_date }</td>
+                                            <td>${ assocOrdererName.get(orderExtn.orderId) }</td>
                                         </tr>
 
                                     <% } %>
@@ -74,6 +76,7 @@
                                 <th>Start Date</th>
                                 <th>Refills</th>
                                 <th>Last Dispatch</th>
+                                <th>Orderer</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,12 +89,13 @@
                                         <% last_dispatch_date = extn.value.lastdispatchdate; %>
                                     <% } %>
 
-                                    <tr class="orderRow" onclick="otherOrder('${ extn.value.orderId }')">
+                                    <tr class="orderRow <% if(orderExtn.forDiscard == 1) { %> discontinued <% } %> <% if(orderExtn.onHold == 1) { %> onhold <% } %>" onclick="otherOrder('${ extn.value.orderId }')">
                                         <td></td>
                                         <td>${ extn.value.drugname.getDisplayString() }</td>
                                         <td>${ extn.value.startdate.format('yyyy-MM-dd') }</td>
                                         <td>${ extn.value.refill }</td>
                                         <td>${ last_dispatch_date }</td>
+                                        <td>${ assocOrdererName.get(extn.value.orderId) }</td>
                                     </tr>
 
                                 <% } %>

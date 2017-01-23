@@ -220,33 +220,53 @@ form select, .form select {
 }
 
 .groupElement .d1{
-    width: 50%;
+    width: 40%;
     float: left;
 }
 
 .groupElement .d2{
-    width: 50%;
+    width: 60%;
     float: right;
 }
 
 .d1 .g1{
-    width: 40%;
+    width: 45%;
+    float: left;
+}
+
+.d1 .g2{
+    width: 55%;
+    float: right;
+}
+
+.g1 .c1{
+    width: 90%;
     float: left;
     overflow-wrap: break-word;
 }
 
-.d1 .g2{
-    width: 60%;
+.g1 .c2{
+    width: 10%;
     float: right;
 }
 
- .d2 .g3{
-    width: 40%;
+ .d2 .d3{
+    width: 25%;
     float: left;
 }
 
-.d2 .g4{
+.d2 .d4{
+    width: 75%;
+    float: right;
+}
+
+ .d4 .g4{
     width: 60%;
+    float: left;
+}
+
+.d4 .g5{
+    width: 40%;
     float: right;
 }
 
