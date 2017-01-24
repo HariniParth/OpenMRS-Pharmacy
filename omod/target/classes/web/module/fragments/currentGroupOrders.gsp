@@ -37,7 +37,10 @@
                                             <div class="c1">${ order.drugname.getDisplayString().toUpperCase() }</div>
                                             <div class="c2"></div>
                                         </div>
-                                        <div class="g2"><span>&nbsp;</span>${ order.startdate.format('yyyy-MM-dd') }</div>
+                                        <div class="g2">
+                                            <div class="c3">${ order.startdate.format('yyyy-MM-dd') }</div>
+                                            <div class="c4"></div>
+                                        </div>
                                     </div>
                                     
                                     <div class="d2">
@@ -80,7 +83,10 @@
                                             <div class="c1">${ order.drugname.getDisplayString().toUpperCase() }</div>
                                             <div class="c2"></div>
                                         </div>
-                                        <div class="g2"><span>&nbsp;</span>${ order.startdate.format('yyyy-MM-dd') }</div>
+                                        <div class="g2">
+                                            <div class="c3">${ order.startdate.format('yyyy-MM-dd') }</div>
+                                            <div class="c4"></div>
+                                        </div>
                                     </div>
                                     
                                     <div class="d2">

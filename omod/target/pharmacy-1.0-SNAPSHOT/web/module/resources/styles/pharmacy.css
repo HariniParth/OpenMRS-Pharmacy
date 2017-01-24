@@ -125,6 +125,30 @@ and open the template in the editor.
     font-size: 13px;
 }
 
+#currentGroupOrdersTable td:first-child{
+    width: 20%;
+}
+
+#currentGroupOrdersTable td:nth-child(2){
+    width: 25%;
+}
+
+#currentGroupOrdersTable td:nth-child(3){
+    width: 10%;
+}
+
+#currentGroupOrdersTable td:nth-child(4){
+    width: 10%;
+}
+
+#currentGroupOrdersTable td:nth-child(5){
+    width: 10%;
+}
+
+#currentGroupOrdersTable td:nth-child(6){
+    width: 25%;
+}
+
 input[type=submit], input[type=button]{
     width: 90px;
     height: 35px;
@@ -218,22 +242,22 @@ form select, .form select {
 }
 
 .groupElement .d1{
-    width: 40%;
+    width: 43%;
     float: left;
 }
 
 .groupElement .d2{
-    width: 60%;
+    width: 57%;
     float: right;
 }
 
 .d1 .g1{
-    width: 45%;
+    width: 70%;
     float: left;
 }
 
 .d1 .g2{
-    width: 55%;
+    width: 30%;
     float: right;
 }
 
@@ -248,7 +272,18 @@ form select, .form select {
     float: right;
 }
 
- .d2 .d3{
+.g2 .c3{
+    width: 60%;
+    float: left;
+    overflow-wrap: break-word;
+}
+
+.g2 .c4{
+    width: 40%;
+    float: right;
+}
+
+.d2 .d3{
     width: 25%;
     float: left;
 }
@@ -259,12 +294,12 @@ form select, .form select {
 }
 
  .d4 .g4{
-    width: 60%;
+    width: 40%;
     float: left;
 }
 
 .d4 .g5{
-    width: 40%;
+    width: 60%;
     float: right;
 }
 
