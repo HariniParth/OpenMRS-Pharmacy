@@ -195,45 +195,45 @@ form select, .form select {
 }
 
 .groupHome .d1{
-    width: 62%;
+    width: 76%;
     float: left;
 }
 
 .groupHome .d2{
-    width: 38%;
+    width: 24%;
     float: right;
 }
 
 .d1 .c1{
-    width: 40%;
+    width: 30%;
     float: left;
     overflow-wrap: break-word;
 }
 
 .d1 .c2{
-    width: 60%;
+    width: 70%;
     float: right;
 }
 
 .d2 .c3{
-    width: 55%;
+    width: 52%;
     float: left;
 }
 
 .d2 .c4{
-    width: 45%;
+    width: 48%;
     float: right;
     overflow-wrap: break-word;
 }
 
 .c2 .b1{
-    width: 50%;
+    width: 74%;
     float: left;
     overflow-wrap: break-word;
 }
 
 .c2 .b2{
-    width: 50%;
+    width: 26%;
     float: left;
 }
 

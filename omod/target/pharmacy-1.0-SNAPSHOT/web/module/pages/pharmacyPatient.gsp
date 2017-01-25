@@ -80,11 +80,11 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                                 <div class="d2">
                                     <div class="c3">
                                         <% if(o.onHold == 1) { %>
-                                            <span class="comments">ON HOLD</span>
+                                            <span class="comments" title="${ o.comments }">ON HOLD</span>
                                         <% } %>
                                         
                                         <% if(o.forDiscard == 1) { %>
-                                            <span class="comments">DISCARD</span>
+                                            <span class="comments" title="${ o.comments }">DISCARD</span>
                                         <% } %>
                                     </div>
                                     <div class="c4">
@@ -127,11 +127,11 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                                 <div class="d2">
                                     <div class="c3">
                                         <% if(o.onHold == 1) { %>
-                                            <span class="comments">ON HOLD</span>
+                                            <span class="comments" title="${ o.comments }">ON HOLD</span>
                                         <% } %>
                                         
                                         <% if(o.forDiscard == 1) { %>
-                                            <span class="comments">DISCARD</span>
+                                            <span class="comments" title="${ o.comments }">DISCARD</span>
                                         <% } %>
                                     </div>
                                     <div class="c4">
@@ -156,11 +156,11 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                     <td>${ order.startdate.format('yyyy-MM-dd') }</td>
                     <td>
                         <% if(order.onHold == 1) { %>
-                            <span class="comments">ON HOLD</span>
+                            <span class="comments" title="${ order.comments }">ON HOLD</span>
                         <% } %>
 
                         <% if(order.forDiscard == 1) { %>
-                            <span class="comments">DISCARD</span>
+                            <span class="comments" title="${ order.comments }">DISCARD</span>
                         <% } %>
                     </td>
                     <td>${ ordererName.get(order.orderId) }</td>
