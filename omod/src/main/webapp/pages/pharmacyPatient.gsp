@@ -70,7 +70,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                                     </div>
                                     <div class="c2">
                                         <div class="b1">
-                                            ${ o.drugname.getDisplayString() }
+                                            ${ o.drugname.getDisplayString().toUpperCase() }
                                         </div>
                                         <div class="b2">
                                             ${ o.startdate.format('yyyy-MM-dd') }
@@ -117,7 +117,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                                     </div>
                                     <div class="c2">
                                         <div class="b1">
-                                            ${ o.drugname.getDisplayString() }
+                                            ${ o.drugname.getDisplayString().toUpperCase() }
                                         </div>
                                         <div class="b2">
                                             ${ o.startdate.format('yyyy-MM-dd') }
@@ -152,7 +152,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
             <% patientSingles.each { order -> %>
                 <tr>
                     <td>${ patientName.get(order.patientid.toInteger()) }</td>
-                    <td>${ order.drugname.getDisplayString() }</td>
+                    <td>${ order.drugname.getDisplayString().toUpperCase()}</td>
                     <td>${ order.startdate.format('yyyy-MM-dd') }</td>
                     <td>
                         <% if(order.onHold == 1) { %>
