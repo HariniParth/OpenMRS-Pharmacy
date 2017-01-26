@@ -149,6 +149,30 @@ and open the template in the editor.
     width: 20%;
 }
 
+#currentDrugOrdersTable td:first-child{
+    width: 15%;
+}
+
+#currentDrugOrdersTable td:nth-child(2){
+    width: 23%;
+}
+
+#currentDrugOrdersTable td:nth-child(3){
+    width: 16%;
+}
+
+#currentDrugOrdersTable td:nth-child(4){
+    width: 10%;
+}
+
+#currentDrugOrdersTable td:nth-child(5){
+    width: 16%;
+}
+
+#currentDrugOrdersTable td:nth-child(6){
+    width: 20%;
+}
+
 input[type=submit], input[type=button]{
     width: 90px;
     height: 35px;
