@@ -22,26 +22,35 @@
 
                 <br/><br/>
 
+                <span class="expiryDateField">
+                    <div class="fields" id="view_order_detail">
+                        <div id="order_label">
+                            <label>Expiry Date<span id="asterisk">*</span></label>
+                        </div>
+                        <div id="order_value">
+                            <input type="date" class="drugExpiryDate" value="${ orderExtn.drugexpirydate }" name="drugExpiryDate">
+                        </div>
+                    </div> 
+                    <br/><br/>
+                </span>
+                
                 <div class="fields" id="view_order_detail">
-                    <div id="order_label"><label>Start Date</label></div>
-                    <div id="order_value"><input type="text" id="pharma_start_date" name="pharma_start_date" value="${ orderExtn.startdate.format('yyyy-MM-dd') }" readonly /></div>
-                </div>   
-
-                <br/><br/>
+                    <p>Instructions from Physician for</p>
+                </div>
 
                 <div class="fields" id="view_order_detail">
-                    <div id="order_label"><label>Patient Instructions</label></div>
+                    <div id="order_label"><label>Patient</label></div>
                     <div id="order_value"><input type="text" id="pharma_patient_instructions" name="pharma_patient_instructions" value="${ orderExtn.patientinstructions }" readonly /></div>
                 </div>     
 
-                <br/><br/><br/>
-                
+                <br/><br/>
+                    
                 <div class="fields" id="view_order_detail">
-                    <div id="order_label"><label>Pharmacist Instructions</label></div>
+                    <div id="order_label"><label>Pharmacist</label></div>
                     <div id="order_value"><input type="text" id="pharma_pharmacist_instructions" name="pharma_pharmacist_instructions" value="${ orderExtn.pharmacistinstructions }" readonly /></div>
                 </div>    
 
-                <br/><br/><br/>
+                <br/><br/>
 
                 <div class="fields" id="view_order_detail">
                     <label>Additional Information 

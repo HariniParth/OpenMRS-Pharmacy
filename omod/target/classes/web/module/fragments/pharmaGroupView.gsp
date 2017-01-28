@@ -25,26 +25,35 @@
 
                     <br/><br/>
 
+                    <span class="expiryDateField">
+                        <div class="fields" id="view_order_detail">
+                            <div id="order_label">
+                                <label>Expiry Date<span id="asterisk">*</span></label>
+                            </div>
+                            <div id="order_value">
+                                <input type="date" class="drugExpiryDate" value="${ groupOrderExtn.get(groupOrder.key).drugexpirydate }" name="drugExpiryDate">
+                            </div>
+                        </div> 
+                        <br/><br/>
+                    </span><br/>
+                    
                     <div class="fields" id="view_order_detail">
-                        <div id="order_label"><label>Start Date</label></div>
-                        <div id="order_value"><input type="text" class="group_order_start_date" name="group_order_start_date" value="${ groupOrderExtn.get(groupOrder.key).startdate.format('yyyy-MM-dd') }" readonly /></div>
-                    </div>   
+                        <p>Instructions from Physician for</p>
+                    </div>
+                        
+                    <div class="fields" id="view_order_detail">
+                        <div id="order_label"><label>Patient</label></div>
+                        <div id="order_value"><input type="text" class="group_order_patient_instructions" name="group_order_patient_instructions" value="${ groupOrderExtn.get(groupOrder.key).patientinstructions }" readonly /></div>
+                    </div>     
 
                     <br/><br/>
                     
                     <div class="fields" id="view_order_detail">
-                        <div id="order_label"><label>Patient Instructions</label></div>
-                        <div id="order_value"><input type="text" class="group_order_patient_instructions" name="group_order_patient_instructions" value="${ groupOrderExtn.get(groupOrder.key).patientinstructions }" readonly /></div>
-                    </div>     
-
-                    <br/><br/><br/>
-                    
-                    <div class="fields" id="view_order_detail">
-                        <div id="order_label"><label>Pharmacist Instructions</label></div>
+                        <div id="order_label"><label>Pharmacist</label></div>
                         <div id="order_value"><input type="text" class="group_order_pharmacist_instructions" name="group_order_pharmacist_instructions" value="${ groupOrderExtn.get(groupOrder.key).pharmacistinstructions }" readonly /></div>
                     </div>    
 
-                    <br/><br/><br/>
+                    <br/><br/>
 
                     <div class="fields" id="view_order_detail">
                         <label>Additional Information 

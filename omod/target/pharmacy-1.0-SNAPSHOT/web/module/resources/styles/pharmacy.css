@@ -117,7 +117,7 @@ and open the template in the editor.
    min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #cancelButtons, #contactLabel, #ordererContact{
+.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #cancelButtons, #contactLabel, #ordererContact, .expiryDateField{
     display: none;
 }
 
@@ -173,6 +173,30 @@ and open the template in the editor.
     width: 20%;
 }
 
+#nonActiveTable td:first-child{
+    width: 18%;
+}
+
+#nonActiveTable td:nth-child(2){
+    width: 30%;
+}
+
+#nonActiveTable td:nth-child(3){
+    width: 14%;
+}
+
+#nonActiveTable td:nth-child(4){
+    width: 10%;
+}
+
+#nonActiveTable td:nth-child(5){
+    width: 18%;
+}
+
+#nonActiveTable td:nth-child(6){
+    width: 10%;
+}
+
 input[type=submit], input[type=button]{
     width: 90px;
     height: 35px;
@@ -218,46 +242,46 @@ form select, .form select {
     overflow: hidden;
 }
 
-.groupHome .d1{
-    width: 76%;
+.groupHome .l11{
+    width: 71%;
     float: left;
 }
 
-.groupHome .d2{
-    width: 24%;
+.groupHome .l12{
+    width: 29%;
     float: right;
 }
 
-.d1 .c1{
-    width: 30%;
+.l11 .l21{
+    width: 29%;
     float: left;
     overflow-wrap: break-word;
 }
 
-.d1 .c2{
-    width: 70%;
+.l11 .l22{
+    width: 71%;
     float: right;
 }
 
-.d2 .c3{
-    width: 52%;
+.l12 .l23{
+    width: 38%;
     float: left;
 }
 
-.d2 .c4{
-    width: 48%;
+.l12 .l24{
+    width: 62%;
     float: right;
     overflow-wrap: break-word;
 }
 
-.c2 .b1{
-    width: 74%;
+.l22 .l31{
+    width: 68%;
     float: left;
     overflow-wrap: break-word;
 }
 
-.c2 .b2{
-    width: 26%;
+.l22 .l32{
+    width: 32%;
     float: left;
 }
 
@@ -275,54 +299,54 @@ form select, .form select {
     float: right;
 }
 
-.d1 .g1{
+.groupElement .d1 .g1{
     width: 60%;
     float: left;
 }
 
-.d1 .g2{
+.groupElement .d1 .g2{
     width: 40%;
     float: right;
 }
 
-.g1 .c1{
+.groupElement .d1 .g1 .c1{
     width: 90%;
     float: left;
     overflow-wrap: break-word;
 }
 
-.g1 .c2{
+.groupElement .d1 .g1 .c2{
     width: 10%;
     float: right;
 }
 
-.g2 .c3{
+.groupElement .d1 .g2 .c3{
     width: 90%;
     float: left;
     overflow-wrap: break-word;
 }
 
-.g2 .c4{
+.groupElement .d1 .g2 .c4{
     width: 10%;
     float: right;
 }
 
-.d2 .d3{
+.groupElement .d2 .d3{
     width: 25%;
     float: left;
 }
 
-.d2 .d4{
+.groupElement .d2 .d4{
     width: 75%;
     float: right;
 }
 
- .d4 .g4{
+ .groupElement .d2 .d4 .g4{
     width: 50%;
     float: left;
 }
 
-.d4 .g5{
+.groupElement .d2 .d4 .g5{
     width: 50%;
     float: right;
 }
@@ -365,4 +389,11 @@ form select, .form select {
 .comments:hover{
     cursor: pointer;
     font-weight: bold;
+}
+
+#asterisk{
+    color: red;
+    font-size: 10px;
+    font-weight: bold;
+    vertical-align: top;
 }
