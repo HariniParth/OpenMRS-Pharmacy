@@ -151,10 +151,7 @@ function showPharmaConfirmationSection(action){
     $("#pharmaSingleAction").val(action);
     jq("#pharmaGroupButtons").hide();
     
-    if(action === "On Hold" || action === "Discard"){
-        jq("#contactLabel").show();
-        document.getElementById("contactLabel").style.display = 'block';
-        
+    if(action === "On Hold" || action === "Discard"){        
         jq("#pharmaGroupActionButtons").show();
         document.getElementById("pharmaGroupActionButtons").style.display = 'block';
     }
@@ -175,7 +172,6 @@ function showPharmaOrderViewSection(){
     
     jq("#printLabel").hide();
     jq("#statusLabel").hide();
-    jq("#contactLabel").hide();
     jq("#cancelButtons").hide();
     jq(".expiryDateField").hide();
     jq("#pharmaGroupActionButtons").hide();

@@ -41,7 +41,7 @@
                                             <% last_dispatch_date = orderExtn.lastdispatchdate; %>
                                         <% } %>
 
-                                        <tr class="orderRow <% if(orderExtn.forDiscard == 1) { %> discontinued <% } %> <% if(orderExtn.onHold == 1) { %> onhold <% } %>" onclick="associatedOrder('${ orderExtn.orderId }')" title="${ ui.message(orderExtn.comments) }">
+                                        <tr class="orderRow <% if(orderExtn.fordiscard == 1) { %> discontinued <% } %> <% if(orderExtn.onhold == 1) { %> onhold <% } %>" onclick="associatedOrder('${ orderExtn.orderId }')" title="${ ui.message(orderExtn.comments) }">
                                             <td></td>
                                             <td>${ orderExtn.drugname.getDisplayString() }</td>
                                             <td>${ orderExtn.startdate.format('yyyy-MM-dd') }</td>
@@ -89,7 +89,7 @@
                                         <% last_dispatch_date = extn.value.lastdispatchdate; %>
                                     <% } %>
 
-                                    <tr class="orderRow <% if(orderExtn.forDiscard == 1) { %> discontinued <% } %> <% if(orderExtn.onHold == 1) { %> onhold <% } %>" onclick="otherOrder('${ extn.value.orderId }')">
+                                    <tr class="orderRow <% if(orderExtn.fordiscard == 1) { %> discontinued <% } %> <% if(orderExtn.onhold == 1) { %> onhold <% } %>" onclick="otherOrder('${ extn.value.orderId }')">
                                         <td></td>
                                         <td>${ extn.value.drugname.getDisplayString() }</td>
                                         <td>${ extn.value.startdate.format('yyyy-MM-dd') }</td>

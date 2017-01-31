@@ -113,15 +113,15 @@ and open the template in the editor.
 }
 
 #associatedOrdersTableWrapper .dataTables_wrapper, #otherOrdersTableWrapper .dataTables_wrapper, .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{
-   _height: 152px;
-   min-height: 152px;
+    _height: 152px;
+    min-height: 152px;
 }
 
 .icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #cancelButtons, #contactLabel, #ordererContact, .expiryDateField{
     display: none;
 }
 
-#currentDrugOrdersTable, #associatedOrdersTable, #allOrdersTable, #currentGroupOrdersTable {
+#currentDrugOrdersTable, #associatedOrdersTable, #allOrdersTable, #currentGroupOrdersTable, #drug_name {
     font-size: 13px;
 }
 
@@ -207,10 +207,15 @@ input[type=submit], input[type=button]{
     text-decoration: underline;
 }
 
-.groups{
+.group{
+    min-height: 500px;
+    max-height: 500px;
+    overflow: scroll;
+}
+
+.groupItem{
     width: 90%;
     margin: auto;
-    border: 2px dashed gainsboro;
 }
 
 #singleOrder{
@@ -341,7 +346,7 @@ form select, .form select {
     float: right;
 }
 
- .groupElement .d2 .d4 .g4{
+.groupElement .d2 .d4 .g4{
     width: 50%;
     float: left;
 }

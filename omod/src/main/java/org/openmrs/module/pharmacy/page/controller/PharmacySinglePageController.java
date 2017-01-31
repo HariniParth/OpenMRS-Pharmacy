@@ -58,18 +58,18 @@ public class PharmacySinglePageController {
 
                     drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID));
 
-                    drugorder.setComments(comments);
+                    drugorder.setCommentfororderer(comments);
                     
                     //Change Order Status when Pharmacist performs a new action on the Order
                     if(pharmaSingleAction.equals("Discard")){
-                        drugorder.setForDiscard(1);
-                        if(drugorder.getOnHold() == 1)
-                            drugorder.setOnHold(0);
+                        drugorder.setFordiscard(1);
+                        if(drugorder.getOnhold() == 1)
+                            drugorder.setOnhold(0);
                     } 
                     if(pharmaSingleAction.equals("On Hold")){
-                        drugorder.setOnHold(1);
-                        if(drugorder.getForDiscard() == 1)
-                            drugorder.setForDiscard(0);
+                        drugorder.setOnhold(1);
+                        if(drugorder.getFordiscard() == 1)
+                            drugorder.setFordiscard(0);
                     }
 
                     Context.getService(drugordersService.class).saveDrugOrder(drugorder);
@@ -89,10 +89,10 @@ public class PharmacySinglePageController {
             drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID));
             
             //Change Order Status when Pharmacist performs a new action on the Order
-            if(drugorder.getForDiscard() == 1)
-                drugorder.setForDiscard(0);
-            else if(drugorder.getOnHold() == 1)
-                drugorder.setOnHold(0);
+            if(drugorder.getFordiscard() == 1)
+                drugorder.setFordiscard(0);
+            else if(drugorder.getOnhold() == 1)
+                drugorder.setOnhold(0);
             
             if (drugorder.getRefill() > 0){
                 drugorder.setLastdispatchdate(Calendar.getInstance().getTime());System.out.println("Refill "+drugorder.getRefill());
@@ -108,10 +108,10 @@ public class PharmacySinglePageController {
                 else if(drugorder.getOrderstatus().equals("Active-Plan"))
                     drugorder.setOrderstatus("Non-Active-Plan");
 
-                Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
+                Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderid()), "No Longer Active");
             }
             
-            printOrder(drugorder.getOrderId());
+            printOrder(drugorder.getOrderid());
             Context.getService(drugordersService.class).saveDrugOrder(drugorder);
             InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - "+pharmaSingleAction);
             

@@ -32,8 +32,8 @@ public class CurrentDrugOrdersFragmentController {
         for(drugorders order : allOrders){
             if(order.getOrderstatus().equals("Active") || order.getOrderstatus().equals("Active-Group") || order.getOrderstatus().equals("Active-Plan")){
                 patientOrders.add(order);
-                Person person = Context.getOrderService().getOrder(order.getOrderId()).getOrderer().getPerson();
-                OrdererName.put(order.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
+                Person person = Context.getOrderService().getOrder(order.getOrderid()).getOrderer().getPerson();
+                OrdererName.put(order.getOrderid(), person.getGivenName()+" "+person.getFamilyName());
             } 
         }
         

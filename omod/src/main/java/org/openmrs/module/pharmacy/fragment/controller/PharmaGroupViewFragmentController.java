@@ -45,10 +45,10 @@ public class PharmaGroupViewFragmentController {
                 
                 drugorders dorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid());
                 if(dorder.getOrderstatus().equals("Active-Plan")){
-                    groupOrderExtn.put(dorder.getOrderId(), dorder);
-                    DrugOrder DOrder = (DrugOrder) Context.getOrderService().getOrder(dorder.getOrderId());
-                    groupOrderMain.put(dorder.getOrderId(), DOrder);
-                    provider.put(dorder.getOrderId(), DOrder.getOrderer().getPerson().getGivenName() + " " + DOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DOrder.getOrderer().getIdentifier()));                    
+                    groupOrderExtn.put(dorder.getOrderid(), dorder);
+                    DrugOrder DOrder = (DrugOrder) Context.getOrderService().getOrder(dorder.getOrderid());
+                    groupOrderMain.put(dorder.getOrderid(), DOrder);
+                    provider.put(dorder.getOrderid(), DOrder.getOrderer().getPerson().getGivenName() + " " + DOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DOrder.getOrderer().getIdentifier()));                    
                 }
             }
         }
@@ -61,8 +61,8 @@ public class PharmaGroupViewFragmentController {
                 
                 if(drugorder.getOrderstatus().equals("Active-Group")){
                     
-                    groupOrderExtn.put(drugorder.getOrderId(), drugorder);
-                    DrugOrder DrugOrder = (DrugOrder) Context.getOrderService().getOrder(drugorder.getOrderId());
+                    groupOrderExtn.put(drugorder.getOrderid(), drugorder);
+                    DrugOrder DrugOrder = (DrugOrder) Context.getOrderService().getOrder(drugorder.getOrderid());
                     groupOrderMain.put(DrugOrder.getOrderId(), DrugOrder);
                     provider.put(DrugOrder.getOrderId(), DrugOrder.getOrderer().getPerson().getGivenName() + " " + DrugOrder.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(DrugOrder.getOrderer().getIdentifier()));
                 }

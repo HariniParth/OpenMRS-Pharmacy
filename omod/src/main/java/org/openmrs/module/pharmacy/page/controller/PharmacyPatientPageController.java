@@ -52,8 +52,8 @@ public class PharmacyPatientPageController {
         HashMap<Integer,String> patientName = new HashMap<Integer,String>();
         
         for(drugorders order: Iterables.concat(ordersOnHold, ordersForDiscard)){
-            Person physician = Context.getPersonService().getPerson(Context.getOrderService().getOrder(order.getOrderId()).getOrderer().getProviderId());
-            ordererName.put(order.getOrderId(), physician.getGivenName()+" "+physician.getFamilyName());
+            Person physician = Context.getPersonService().getPerson(Context.getOrderService().getOrder(order.getOrderid()).getOrderer().getProviderId());
+            ordererName.put(order.getOrderid(), physician.getGivenName()+" "+physician.getFamilyName());
             
             if(order.getOrderstatus().equals("Active")){
                 patientSingleOrders.add(order);
@@ -74,7 +74,7 @@ public class PharmacyPatientPageController {
                 }
             } 
             else if(order.getOrderstatus().equals("Active-Plan")){
-                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(order.getOrderId());
+                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(order.getOrderid());
 
                 if(!patientPlanOrders.containsKey(planOrder.getPlanid())){
 
