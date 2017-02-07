@@ -53,18 +53,18 @@ public class PharmaOrderViewFragmentController {
             
             provider = orderMain.getOrderer().getPerson().getGivenName() + " " + orderMain.getOrderer().getPerson().getFamilyName() + ", " + StringUtils.capitalize(orderMain.getOrderer().getIdentifier());
         
-            if(orderExtn.getOrderstatus().equals("Active-Group")){
-                List<drugorders> otherOrdersInGroup = Context.getService(drugordersService.class).getDrugOrdersByGroupID(orderExtn.getGroupid());
+            if(orderExtn.getOrderStatus().equals("Active-Group")){
+                List<drugorders> otherOrdersInGroup = Context.getService(drugordersService.class).getDrugOrdersByGroupID(orderExtn.getGroupId());
                 for(drugorders otherOrder : otherOrdersInGroup){
-                    associatedOrders = associatedOrders + otherOrder.getDrugname().getDisplayString() + " ";
+                    associatedOrders = associatedOrders + otherOrder.getDrugName().getDisplayString() + " ";
                 }
             }
             
-            if(orderExtn.getOrderstatus().equals("Active-Plan")){
-                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(orderExtn.getOrderid());
-                List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanid());
+            if(orderExtn.getOrderStatus().equals("Active-Plan")){
+                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(orderExtn.getOrderId());
+                List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanId());
                 for(drugordersdiseases plan : planOrders){
-                    associatedOrders = associatedOrders + Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()).getDrugname().getDisplayString() + " ";
+                    associatedOrders = associatedOrders + Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()).getDrugName().getDisplayString() + " ";
                 }
                 
             }

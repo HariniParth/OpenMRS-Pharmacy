@@ -61,18 +61,18 @@ public class PharmacyGroupPageController {
                         int orderID = Integer.parseInt(order);
                         drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
 
-                        drugorder.setCommentfororderer(groupComments);
+                        drugorder.setCommentForOrderer(groupComments);
 
                         //Change Order Status when Pharmacist performs a new action on the Order
                         if(groupAction.equals("Discard")) {
-                            drugorder.setFordiscard(1);
-                            if(drugorder.getOnhold() == 1)
-                                drugorder.setOnhold(0);
+                            drugorder.setForDiscard(1);
+                            if(drugorder.getOnHold() == 1)
+                                drugorder.setOnHold(0);
                         }
                         if(groupAction.equals("On Hold")){
-                            drugorder.setOnhold(1);
-                            if(drugorder.getFordiscard()== 1)
-                                drugorder.setFordiscard(0);
+                            drugorder.setOnHold(1);
+                            if(drugorder.getForDiscard()== 1)
+                                drugorder.setForDiscard(0);
                         }
                         
                         Context.getService(drugordersService.class).saveDrugOrder(drugorder);
@@ -96,27 +96,27 @@ public class PharmacyGroupPageController {
                 drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
                 
                 //Change Order Status when Pharmacist performs a new action on the Order
-                if(drugorder.getFordiscard() == 1)
-                    drugorder.setFordiscard(0);
-                else if(drugorder.getOnhold() == 1)
-                    drugorder.setOnhold(0);
+                if(drugorder.getForDiscard() == 1)
+                    drugorder.setForDiscard(0);
+                else if(drugorder.getOnHold() == 1)
+                    drugorder.setOnHold(0);
                 
                 if (drugorder.getRefill() > 0) {
-                    drugorder.setLastdispatchdate(Calendar.getInstance().getTime());
+                    drugorder.setLastDispatchDate(Calendar.getInstance().getTime());
                     drugorder.setRefill(drugorder.getRefill() - 1);
                 } 
                 else {
-                    if (drugorder.getOrderstatus().equals("Active")) {
-                        drugorder.setOrderstatus("Non-Active");
-                    } else if (drugorder.getOrderstatus().equals("Active-Group")) {
-                        drugorder.setOrderstatus("Non-Active-Group");
-                    } else if (drugorder.getOrderstatus().equals("Active-Plan")) {
-                        drugorder.setOrderstatus("Non-Active-Plan");
+                    if (drugorder.getOrderStatus().equals("Active")) {
+                        drugorder.setOrderStatus("Non-Active");
+                    } else if (drugorder.getOrderStatus().equals("Active-Group")) {
+                        drugorder.setOrderStatus("Non-Active-Group");
+                    } else if (drugorder.getOrderStatus().equals("Active-Plan")) {
+                        drugorder.setOrderStatus("Non-Active-Plan");
                     }
                     
-                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderid()), "No Longer Active");
+                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
                 }
-                printOrder(drugorder.getOrderid());
+                printOrder(drugorder.getOrderId());
                 Context.getService(drugordersService.class).saveDrugOrder(drugorder);
             }
             InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - " + groupAction);
@@ -133,11 +133,11 @@ public class PharmacyGroupPageController {
             
             PrintService service = PrintServiceLookup.lookupDefaultPrintService();
             
-            String OrderDetails = drugorder.getDrugname().getDisplayString() + " " + order.getDose() + " " + order.getDoseUnits().getDisplayString() + " " +
+            String OrderDetails = drugorder.getDrugName().getDisplayString() + " " + order.getDose() + " " + order.getDoseUnits().getDisplayString() + " " +
                     order.getDuration() + " " + order.getDurationUnits().getDisplayString() + " " + order.getQuantity() + " " + order.getQuantityUnits() + "\n" +
                     "Route: " + order.getRoute().getDisplayString() + " " + "Frequency: " + order.getFrequency().getName() + "\n" +
-                    "Start Date: " + drugorder.getStartdate().toString() + "\n" +
-                    "Patient Instructions: " + drugorder.getPatientinstructions();
+                    "Start Date: " + drugorder.getStartDate().toString() + "\n" +
+                    "Patient Instructions: " + drugorder.getPatientInstructions();
             
             InputStream is = new ByteArrayInputStream(OrderDetails.getBytes());
             

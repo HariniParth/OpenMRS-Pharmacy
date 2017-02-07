@@ -40,46 +40,46 @@ public class CurrentGroupOrdersFragmentController {
         HashMap<Integer, String> OrdererName = new HashMap<Integer, String>();
         
         for(drugorders order : allOrders){
-            if(order.getOrderstatus().equals("Active")){
+            if(order.getOrderStatus().equals("Active")){
                 patientSingleOrders.add(order);
             } 
-            else if(order.getOrderstatus().equals("Active-Group")){
-                if(!patientGroupOrders.containsKey(order.getGroupid())){
+            else if(order.getOrderStatus().equals("Active-Group")){
+                if(!patientGroupOrders.containsKey(order.getGroupId())){
 
-                    List<drugorders> allGroupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(order.getGroupid());
+                    List<drugorders> allGroupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(order.getGroupId());
 
                     List<drugorders> activeGroupOrders = new ArrayList<drugorders>();
 
                     for(drugorders groupOrder : allGroupOrders){
-                        if(groupOrder.getOrderstatus().equals("Active-Group")){
+                        if(groupOrder.getOrderStatus().equals("Active-Group")){
                             activeGroupOrders.add(groupOrder);
                         }
                     }
-                    patientGroupOrders.put(order.getGroupid(), activeGroupOrders);
+                    patientGroupOrders.put(order.getGroupId(), activeGroupOrders);
                 }
             } 
-            else if(order.getOrderstatus().equals("Active-Plan")){
-                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(order.getOrderid());
+            else if(order.getOrderStatus().equals("Active-Plan")){
+                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(order.getOrderId());
 
-                if(!patientPlanOrders.containsKey(planOrder.getPlanid())){
+                if(!patientPlanOrders.containsKey(planOrder.getPlanId())){
 
-                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanid());
+                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanId());
 
                     List<drugorders> activePlanOrders = new ArrayList<drugorders>();
 
                     for(drugordersdiseases plan : planOrders){
-                        if(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()).getOrderstatus().equals("Active-Plan")){
-                            activePlanOrders.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()));
+                        if(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()).getOrderStatus().equals("Active-Plan")){
+                            activePlanOrders.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()));
                         }
                     }
 
-                    patientPlanOrders.put(planOrder.getPlanid(), activePlanOrders);
-                    planName.put(planOrder.getPlanid(), planOrder.getDiseaseid());
+                    patientPlanOrders.put(planOrder.getPlanId(), activePlanOrders);
+                    planName.put(planOrder.getPlanId(), planOrder.getDiseaseId());
                 }
             }
-            if(order.getOrderstatus().equals("Active") || order.getOrderstatus().equals("Active-Group") || order.getOrderstatus().equals("Active-Plan")){
-                Person person = Context.getOrderService().getOrder(order.getOrderid()).getOrderer().getPerson();
-                OrdererName.put(order.getOrderid(), person.getGivenName()+" "+person.getFamilyName());
+            if(order.getOrderStatus().equals("Active") || order.getOrderStatus().equals("Active-Group") || order.getOrderStatus().equals("Active-Plan")){
+                Person person = Context.getOrderService().getOrder(order.getOrderId()).getOrderer().getPerson();
+                OrdererName.put(order.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
             }
         }
         

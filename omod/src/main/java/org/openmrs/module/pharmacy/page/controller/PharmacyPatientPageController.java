@@ -52,48 +52,48 @@ public class PharmacyPatientPageController {
         HashMap<Integer,String> patientName = new HashMap<Integer,String>();
         
         for(drugorders order: Iterables.concat(ordersOnHold, ordersForDiscard)){
-            Person physician = Context.getPersonService().getPerson(Context.getOrderService().getOrder(order.getOrderid()).getOrderer().getProviderId());
-            ordererName.put(order.getOrderid(), physician.getGivenName()+" "+physician.getFamilyName());
+            Person physician = Context.getPersonService().getPerson(Context.getOrderService().getOrder(order.getOrderId()).getOrderer().getProviderId());
+            ordererName.put(order.getOrderId(), physician.getGivenName()+" "+physician.getFamilyName());
             
-            if(order.getOrderstatus().equals("Active")){
+            if(order.getOrderStatus().equals("Active")){
                 patientSingleOrders.add(order);
             } 
-            else if(order.getOrderstatus().equals("Active-Group")){
-                if(!patientGroupOrders.containsKey(order.getGroupid())){
+            else if(order.getOrderStatus().equals("Active-Group")){
+                if(!patientGroupOrders.containsKey(order.getGroupId())){
 
-                    List<drugorders> allGroupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(order.getGroupid());
+                    List<drugorders> allGroupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(order.getGroupId());
 
                     List<drugorders> activeGroupOrders = new ArrayList<drugorders>();
 
                     for(drugorders groupOrder : allGroupOrders){
-                        if(groupOrder.getOrderstatus().equals("Active-Group")){
+                        if(groupOrder.getOrderStatus().equals("Active-Group")){
                             activeGroupOrders.add(groupOrder);
                         }
                     }
-                    patientGroupOrders.put(order.getGroupid(), activeGroupOrders);
+                    patientGroupOrders.put(order.getGroupId(), activeGroupOrders);
                 }
             } 
-            else if(order.getOrderstatus().equals("Active-Plan")){
-                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(order.getOrderid());
+            else if(order.getOrderStatus().equals("Active-Plan")){
+                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(order.getOrderId());
 
-                if(!patientPlanOrders.containsKey(planOrder.getPlanid())){
+                if(!patientPlanOrders.containsKey(planOrder.getPlanId())){
 
-                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanid());
+                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanId());
 
                     List<drugorders> activePlanOrders = new ArrayList<drugorders>();
 
                     for(drugordersdiseases plan : planOrders){
-                        if(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()).getOrderstatus().equals("Active-Plan")){
-                            activePlanOrders.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderid()));
+                        if(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()).getOrderStatus().equals("Active-Plan")){
+                            activePlanOrders.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()));
                         }
                     }
-                    patientPlanOrders.put(planOrder.getPlanid(), activePlanOrders);
+                    patientPlanOrders.put(planOrder.getPlanId(), activePlanOrders);
                 }
             }
             //Store the list of Patient's name who have an Order that is On-Hold or For-Discard
-            if(!patientName.containsKey(Integer.parseInt(order.getPatientid()))){
-                Patient patient = Context.getPatientService().getPatient(Integer.parseInt(order.getPatientid()));
-                patientName.put(Integer.parseInt(order.getPatientid()), patient.getGivenName()+" "+patient.getFamilyName());
+            if(!patientName.containsKey(Integer.parseInt(order.getPatientId()))){
+                Patient patient = Context.getPatientService().getPatient(Integer.parseInt(order.getPatientId()));
+                patientName.put(Integer.parseInt(order.getPatientId()), patient.getGivenName()+" "+patient.getFamilyName());
             }
         }
         model.addAttribute("patientName", patientName);

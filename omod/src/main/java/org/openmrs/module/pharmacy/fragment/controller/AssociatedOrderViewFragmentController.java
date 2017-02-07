@@ -44,37 +44,37 @@ public class AssociatedOrderViewFragmentController {
             try {
                 if ("Confirm".equals(action)) {
                     drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID));
-                    if(drugorder.getGroupid() != null){
+                    if(drugorder.getGroupId() != null){
                         
                         //Fetch all Orders that were ordered as a group with the recorded Order
-                        List<drugorders> orderExtn = Context.getService(drugordersService.class).getDrugOrdersByGroupID(drugorder.getGroupid());
-                        associatedOrderExtn.put(drugorder.getGroupid(), orderExtn);
+                        List<drugorders> orderExtn = Context.getService(drugordersService.class).getDrugOrdersByGroupID(drugorder.getGroupId());
+                        associatedOrderExtn.put(drugorder.getGroupId(), orderExtn);
                         
                         for(drugorders oExtn : orderExtn){
-                            associatedOrderMain.put(oExtn.getOrderid(),(DrugOrder) Context.getOrderService().getOrder(oExtn.getOrderid()));
-                            otherOrders.put(oExtn.getOrderid(), pullAssociatedGroupOrders(oExtn));
+                            associatedOrderMain.put(oExtn.getOrderId(),(DrugOrder) Context.getOrderService().getOrder(oExtn.getOrderId()));
+                            otherOrders.put(oExtn.getOrderId(), pullAssociatedGroupOrders(oExtn));
                         
-                            Person person = Context.getOrderService().getOrder(oExtn.getOrderid()).getOrderer().getPerson();
-                            OrdererName.put(oExtn.getOrderid(), person.getGivenName()+" "+person.getFamilyName());
+                            Person person = Context.getOrderService().getOrder(oExtn.getOrderId()).getOrderer().getPerson();
+                            OrdererName.put(oExtn.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
                         }
                         
                     } else if(Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID)) != null){
                         
                         //Fetch all Orders that were ordered as a part of Med Plan with the recorded OrderInteger
-                        List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociateddiagnosis(), Context.getPatientService().getPatient(Integer.parseInt(drugorder.getPatientid())));
+                        List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(Integer.parseInt(drugorder.getPatientId())));
                         List<drugorders> orderExtn = new ArrayList<drugorders>();
                         
                         for(drugordersdiseases planOrder : planOrderList){
-                            associatedOrderMain.put(planOrder.getOrderid(),(DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderid()));
-                            orderExtn.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderid()));
+                            associatedOrderMain.put(planOrder.getOrderId(),(DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderId()));
+                            orderExtn.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId()));
                         }
                         associatedOrderExtn.put(Integer.SIZE, orderExtn);
                         
                         for(drugorders extn : orderExtn){
-                            otherOrders.put(extn.getOrderid(), pullAssociatedPlanOrders(extn));
+                            otherOrders.put(extn.getOrderId(), pullAssociatedPlanOrders(extn));
                             
-                            Person person = Context.getOrderService().getOrder(extn.getOrderid()).getOrderer().getPerson();
-                            OrdererName.put(extn.getOrderid(), person.getGivenName()+" "+person.getFamilyName());
+                            Person person = Context.getOrderService().getOrder(extn.getOrderId()).getOrderer().getPerson();
+                            OrdererName.put(extn.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
                         }
                             
                     } 
@@ -83,19 +83,19 @@ public class AssociatedOrderViewFragmentController {
                     List<drugorders> allExtn = Context.getService(drugordersService.class).getDrugOrdersByPatient(patient);
                     
                     for(drugorders extn : allExtn){
-                        if(!associatedOrderMain.containsKey(extn.getOrderid())){
-                            allOrdersExtn.put(extn.getOrderid(), extn);
-                            DrugOrder main = (DrugOrder) Context.getOrderService().getOrder(extn.getOrderid());
+                        if(!associatedOrderMain.containsKey(extn.getOrderId())){
+                            allOrdersExtn.put(extn.getOrderId(), extn);
+                            DrugOrder main = (DrugOrder) Context.getOrderService().getOrder(extn.getOrderId());
                             allOrdersMain.put(main.getOrderId(), main);
                         }
                         
-                        if(extn.getOrderstatus().equals("Active-Group"))
-                            otherOrders.put(extn.getOrderid(), pullAssociatedGroupOrders(extn));
-                        else if(extn.getOrderstatus().equals("Active-Plan"))
-                            otherOrders.put(extn.getOrderid(), pullAssociatedPlanOrders(extn));
+                        if(extn.getOrderStatus().equals("Active-Group"))
+                            otherOrders.put(extn.getOrderId(), pullAssociatedGroupOrders(extn));
+                        else if(extn.getOrderStatus().equals("Active-Plan"))
+                            otherOrders.put(extn.getOrderId(), pullAssociatedPlanOrders(extn));
                         
-                        Person person = Context.getOrderService().getOrder(extn.getOrderid()).getOrderer().getPerson();
-                        OrdererName.put(extn.getOrderid(), person.getGivenName()+" "+person.getFamilyName());
+                        Person person = Context.getOrderService().getOrder(extn.getOrderId()).getOrderer().getPerson();
+                        OrdererName.put(extn.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
                     }
                 }
             }
@@ -119,10 +119,10 @@ public class AssociatedOrderViewFragmentController {
         
         ArrayList<String> otherOrdersDrugName = new ArrayList<String>();
         
-        List<drugorders> otherOrdersInGroup = Context.getService(drugordersService.class).getDrugOrdersByGroupID(drugorder.getGroupid());
+        List<drugorders> otherOrdersInGroup = Context.getService(drugordersService.class).getDrugOrdersByGroupID(drugorder.getGroupId());
 
         for(drugorders otherOrder : otherOrdersInGroup){
-            otherOrdersDrugName.add(otherOrder.getDrugname().getDisplayString());
+            otherOrdersDrugName.add(otherOrder.getDrugName().getDisplayString());
         }
         return otherOrdersDrugName;
     } 
@@ -131,11 +131,11 @@ public class AssociatedOrderViewFragmentController {
         
         ArrayList<String> otherOrdersDrugName = new ArrayList<String>();
 
-        List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociateddiagnosis(), Context.getPatientService().getPatient(Integer.parseInt(drugorder.getPatientid())));
+        List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(Integer.parseInt(drugorder.getPatientId())));
 
         for(drugordersdiseases planOrder : planOrderList){
-            drugorders otherOrder = Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderid());
-            otherOrdersDrugName.add(otherOrder.getDrugname().getDisplayString());
+            drugorders otherOrder = Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId());
+            otherOrdersDrugName.add(otherOrder.getDrugName().getDisplayString());
         }
         return otherOrdersDrugName;
     }
