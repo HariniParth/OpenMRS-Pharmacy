@@ -64,27 +64,27 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                                 <div class="l11">
                                     <div class="l21">
                                         <% if(name == "") { %>
-                                            <% name = patientName.get(o.patientid.toInteger()) %>
+                                            <% name = patientName.get(o.patientId.toInteger()) %>
                                             ${ name }
                                         <% } %>
                                     </div>
                                     <div class="l22">
                                         <div class="l31">
-                                            ${ o.drugname.getDisplayString().toUpperCase() }
+                                            ${ o.drugName.getDisplayString().toUpperCase() }
                                         </div>
                                         <div class="l32">
-                                            ${ o.startdate.format('yyyy-MM-dd') }
+                                            ${ o.startDate.format('yyyy-MM-dd') }
                                         </div>
                                     </div>
                                 </div>
                                 <div class="l12">
                                     <div class="l23">
                                         <% if(o.onHold == 1) { %>
-                                            <span class="comments" title="${ o.comments }"> ON HOLD</span>
+                                            <span class="comments" title="${ o.commentForOrderer }"> ON HOLD</span>
                                         <% } %>
                                         
                                         <% if(o.forDiscard == 1) { %>
-                                            <span class="comments" title="${ o.comments }"> DISCARD</span>
+                                            <span class="comments" title="${ o.commentForOrderer }"> DISCARD</span>
                                         <% } %>
                                     </div>
                                     <div class="l24">
@@ -111,27 +111,27 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                                 <div class="l11">
                                     <div class="l21">
                                         <% if(name == "") { %>
-                                            <% name = patientName.get(o.patientid.toInteger()) %>
+                                            <% name = patientName.get(o.patientId.toInteger()) %>
                                             ${ name }
                                         <% } %>
                                     </div>
                                     <div class="l22">
                                         <div class="l31">
-                                            ${ o.drugname.getDisplayString().toUpperCase() }
+                                            ${ o.drugName.getDisplayString().toUpperCase() }
                                         </div>
                                         <div class="l32">
-                                            ${ o.startdate.format('yyyy-MM-dd') }
+                                            ${ o.startDate.format('yyyy-MM-dd') }
                                         </div>
                                     </div>
                                 </div>
                                 <div class="l12">
                                     <div class="l23">
                                         <% if(o.onHold == 1) { %>
-                                            <span class="comments" title="${ o.comments }"> ON HOLD</span>
+                                            <span class="comments" title="${ o.commentForOrderer }"> ON HOLD</span>
                                         <% } %>
                                         
                                         <% if(o.forDiscard == 1) { %>
-                                            <span class="comments" title="${ o.comments }"> DISCARD</span>
+                                            <span class="comments" title="${ o.commentForOrderer }"> DISCARD</span>
                                         <% } %>
                                     </div>
                                     <div class="l24">
@@ -151,16 +151,16 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
             
             <% patientSingles.each { order -> %>
                 <tr>
-                    <td>${ patientName.get(order.patientid.toInteger()) }</td>
-                    <td>${ order.drugname.getDisplayString().toUpperCase()}</td>
-                    <td>${ order.startdate.format('yyyy-MM-dd') }</td>
+                    <td>${ patientName.get(order.patientId.toInteger()) }</td>
+                    <td>${ order.drugName.getDisplayString().toUpperCase()}</td>
+                    <td>${ order.startDate.format('yyyy-MM-dd') }</td>
                     <td>
                         <% if(order.onHold == 1) { %>
-                            <span class="comments" title="${ order.comments }">ON HOLD</span>
+                            <span class="comments" title="${ order.commentForOrderer }">ON HOLD</span>
                         <% } %>
 
                         <% if(order.forDiscard == 1) { %>
-                            <span class="comments" title="${ order.comments }">DISCARD</span>
+                            <span class="comments" title="${ order.commentForOrderer }">DISCARD</span>
                         <% } %>
                     </td>
                     <td>${ ordererName.get(order.orderId) }</td>
@@ -181,7 +181,15 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
         "bSort": true,
         "bJQueryUI": true,
         "bInfo": true,
-        "bFilter": false
+        "bFilter": false,
+        "columns": [
+            { "width": "20%" },
+            { "width": "15%" },
+            { "width": "5%"  },
+            { "width": "10%" },
+            { "width": "50%" }
+        ],
+        fixedColumns: true
 
     });
 </script>
@@ -195,7 +203,16 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
         "bSort": true,
         "bJQueryUI": true,
         "bInfo": true,
-        "bFilter": false
+        "bFilter": false,
+        "columns": [
+            { "width": "20%" },
+            { "width": "33%" },
+            { "width": "12%" },
+            { "width": "10%" },
+            { "width": "20%" },
+            { "width": "5%"  }
+        ],
+        fixedColumns: true
 
     });
 </script>

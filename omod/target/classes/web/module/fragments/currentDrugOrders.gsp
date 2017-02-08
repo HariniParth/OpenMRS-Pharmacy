@@ -23,17 +23,17 @@
             <tbody>
                 <% patientOrders.each { order -> %>
 
-                    <tr class="orderRow <% if(order.fordiscard == 1) { %> discontinued <% } %> <% if(order.onhold == 1) { %> onhold <% } %>" onclick="selectedOrder('${ order.orderId }')" title="${ ui.message(order.comments) }" >
+                    <tr class="orderRow <% if(order.forDiscard == 1) { %> discontinued <% } %> <% if(order.onHold == 1) { %> onHold <% } %>" onclick="selectedOrder('${ order.orderId }')" title="${ ui.message(order.commentForOrderer) }" >
                         
-                        <td><% if(order.orderstatus == "Active-Plan") { %> ${ order.associateddiagnosis.getDisplayString().toUpperCase() } <% } %></td>
-                        <td>${ order.drugname.getDisplayString().toUpperCase() }</td>
-                        <td>${ order.startdate.format('yyyy-MM-dd') }</td>
+                        <td><% if(order.orderStatus == "Active-Plan") { %> ${ order.associatedDiagnosis.getDisplayString().toUpperCase() } <% } %></td>
+                        <td>${ order.drugName.getDisplayString().toUpperCase() }</td>
+                        <td>${ order.startDate.format('yyyy-MM-dd') }</td>
                         <td>${ order.refill }</td>
                         
-                        <% if(order.lastdispatchdate != null) { %>
-                            <% last_dispatch_date = order.lastdispatchdate.format('yyyy-MM-dd'); %>
+                        <% if(order.lastDispatchDate != null) { %>
+                            <% last_dispatch_date = order.lastDispatchDate.format('yyyy-MM-dd'); %>
                         <% } else { %>
-                            <% last_dispatch_date = order.lastdispatchdate; %>
+                            <% last_dispatch_date = order.lastDispatchDate; %>
                         <% } %>
                                     
                         <td>${ last_dispatch_date }</td>
@@ -55,7 +55,16 @@
         "bSort": true,
         "bJQueryUI": true,
         "bInfo": true,
-        "bFilter": true
+        "bFilter": true,
+        "columns": [
+            { "width": "15%" },
+            { "width": "25%" },
+            { "width": "15%" },
+            { "width": "10%" },
+            { "width": "15%" },
+            { "width": "20%" }
+        ],
+        fixedColumns: true
 
     });
 </script>

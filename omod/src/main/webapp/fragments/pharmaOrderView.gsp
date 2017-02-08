@@ -17,7 +17,7 @@
             <div id="singleOrder">
                 <div class="fields" id="view_order_detail">
                     <div id="order_label"><label>Order(s)</label></div>
-                    <div id="order_value"><input type="text" id="pharma_order_details" name="pharma_order_details" value="${ orderExtn.drugname.getDisplayString() } ${ orderMain.route.getDisplayString() } ${ orderMain.dose } ${ orderMain.doseUnits.getDisplayString() } ${ orderMain.duration } ${ orderMain.durationUnits.getDisplayString() } ${ orderMain.quantity } ${ orderMain.quantityUnits.getDisplayString() } ${ orderMain.frequency }" readonly /></div>
+                    <div id="order_value"><input type="text" id="pharma_order_details" name="pharma_order_details" value="${ orderExtn.drugName.getDisplayString() } ${ orderMain.route.getDisplayString() } ${ orderMain.dose } ${ orderMain.doseUnits.getDisplayString() } ${ orderMain.duration } ${ orderMain.durationUnits.getDisplayString() } ${ orderMain.quantity } ${ orderMain.quantityUnits.getDisplayString() } ${ orderMain.frequency }" readonly /></div>
                 </div> 
 
                 <br/><br/>
@@ -28,7 +28,7 @@
                             <label>Expiry Date<span id="asterisk">*</span></label>
                         </div>
                         <div id="order_value">
-                            <input type="date" class="drugExpiryDate" value="${ orderExtn.drugexpirydate }" name="drugExpiryDate">
+                            <input type="date" class="drugExpiryDate" value="${ orderExtn.drugExpiryDate }" name="drugExpiryDate">
                         </div>
                     </div> 
                     <br/><br/>
@@ -40,14 +40,14 @@
 
                 <div class="fields" id="view_order_detail">
                     <div id="order_label"><label>Patient</label></div>
-                    <div id="order_value"><input type="text" id="pharma_patient_instructions" name="pharma_patient_instructions" value="${ orderExtn.patientinstructions }" readonly /></div>
+                    <div id="order_value"><input type="text" id="pharma_patient_instructions" name="pharma_patient_instructions" value="${ orderExtn.patientInstructions }" readonly /></div>
                 </div>     
 
                 <br/><br/>
                     
                 <div class="fields" id="view_order_detail">
                     <div id="order_label"><label>Pharmacist</label></div>
-                    <div id="order_value"><input type="text" id="pharma_pharmacist_instructions" name="pharma_pharmacist_instructions" value="${ orderExtn.pharmacistinstructions }" readonly /></div>
+                    <div id="order_value"><input type="text" id="pharma_pharmacist_instructions" name="pharma_pharmacist_instructions" value="${ orderExtn.pharmacistInstructions }" readonly /></div>
                 </div>    
 
                 <br/><br/>
@@ -62,14 +62,14 @@
                 <div id="additionalInformation">
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Diagnosis</label></div>
-                        <div id="order_value"><input type="text" id="pharma_order_diagnosis" name="pharma_order_diagnosis" value="${ orderExtn.associateddiagnosis.getDisplayString() }" readonly /></div>
+                        <div id="order_value"><input type="text" id="pharma_order_diagnosis" name="pharma_order_diagnosis" value="${ orderExtn.associatedDiagnosis.getDisplayString() }" readonly /></div>
                     </div>
 
                     <br/><br/>
 
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Allergy Note</label></div>
-                        <div id="order_value"><input type="text" id="pharma_order_allergic" name="pharma_order_allergic" value="${ orderExtn.isallergicorderreasons }" readonly /></div>
+                        <div id="order_value"><input type="text" id="pharma_order_allergic" name="pharma_order_allergic" value="${ orderExtn.isAllergicOrderReasons }" readonly /></div>
                     </div>
                     <br/><br/>
 
@@ -80,10 +80,10 @@
 
                     <br/><br/>
 
-                    <% if(orderExtn.lastdispatchdate != null) { %>
-                        <% last_dispatch_date = orderExtn.lastdispatchdate.format('yyyy-MM-dd'); %>
+                    <% if(orderExtn.lastDispatchDate != null) { %>
+                        <% last_dispatch_date = orderExtn.lastDispatchDate.format('yyyy-MM-dd'); %>
                     <% } else { %>
-                        <% last_dispatch_date = orderExtn.lastdispatchdate; %>
+                        <% last_dispatch_date = orderExtn.lastDispatchDate; %>
                     <% } %>
 
                     <div class="fields" id="view_order_detail">
@@ -95,7 +95,7 @@
                     
                     <div class="fields" id="view_order_detail">
                         <div id="order_label"><label>Interval (days)</label></div>
-                        <div id="order_value"><input type="text" id="pharma_order_refillInterval" name="pharma_order_refillInterval" value="${ orderExtn.refillinterval }" readonly /></div>
+                        <div id="order_value"><input type="text" id="pharma_order_refillInterval" name="pharma_order_refillInterval" value="${ orderExtn.refillInterval }" readonly /></div>
                     </div>
                         
                     <br/><br/>
