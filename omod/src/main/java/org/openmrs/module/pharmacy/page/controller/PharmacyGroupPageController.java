@@ -45,6 +45,7 @@ public class PharmacyGroupPageController {
     public void controller(PageModel model, HttpSession session,
             @RequestParam("patientId") Patient patient, @SpringBean("allergyService") PatientService patientService,
             @RequestParam(value = "action", required = false) String action,
+            @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "pharmaGroupAction", required = false) String groupAction,
             @RequestParam(value = "group_order_ID", required = false) String group_order_ID,
             @RequestParam(value = "groupComments", required = false) String groupComments) {
@@ -54,28 +55,53 @@ public class PharmacyGroupPageController {
         
         if (StringUtils.isNotBlank(action)) {
             try {
-                if ("Record".equals(action)) {
-                    String orderList[] = group_order_ID.split(",");
-                    for (String order : orderList) {
-                        
-                        int orderID = Integer.parseInt(order);
-                        drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
+                if ("Confirm".equals(action)) {
+                    if(groupCheckBox.length > 0){
+                        for(int i=0;i<groupCheckBox.length;i++){
+                            
+                            int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
+                            drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
 
-                        drugorder.setCommentForOrderer(groupComments);
+                            drugorder.setCommentForOrderer(groupComments);
 
-                        //Change Order Status when Pharmacist performs a new action on the Order
-                        if(groupAction.equals("Discard")) {
-                            drugorder.setForDiscard(1);
-                            if(drugorder.getOnHold() == 1)
-                                drugorder.setOnHold(0);
+                            //Change Order Status when Pharmacist performs a new action on the Order
+                            if(groupAction.equals("Discard")) {
+                                drugorder.setForDiscard(1);
+                                if(drugorder.getOnHold() == 1)
+                                    drugorder.setOnHold(0);
+                            }
+                            if(groupAction.equals("On Hold")){
+                                drugorder.setOnHold(1);
+                                if(drugorder.getForDiscard()== 1)
+                                    drugorder.setForDiscard(0);
+                            }
+                            if(groupAction.equals("Dispatch")){
+                                //Change Order Status when Pharmacist performs a new action on the Order
+                                if(drugorder.getForDiscard() == 1)
+                                    drugorder.setForDiscard(0);
+                                else if(drugorder.getOnHold() == 1)
+                                    drugorder.setOnHold(0);
+
+                                if (drugorder.getRefill() > 0) {
+                                    drugorder.setLastDispatchDate(Calendar.getInstance().getTime());
+                                    drugorder.setRefill(drugorder.getRefill() - 1);
+                                } 
+                                else {
+                                    if (drugorder.getOrderStatus().equals("Active")) {
+                                        drugorder.setOrderStatus("Non-Active");
+                                    } else if (drugorder.getOrderStatus().equals("Active-Group")) {
+                                        drugorder.setOrderStatus("Non-Active-Group");
+                                    } else if (drugorder.getOrderStatus().equals("Active-Plan")) {
+                                        drugorder.setOrderStatus("Non-Active-Plan");
+                                    }
+
+                                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
+                                }
+                                printOrder(drugorder.getOrderId());
+                                Context.getService(drugordersService.class).saveDrugOrder(drugorder);
+                            }
+                            Context.getService(drugordersService.class).saveDrugOrder(drugorder);
                         }
-                        if(groupAction.equals("On Hold")){
-                            drugorder.setOnHold(1);
-                            if(drugorder.getForDiscard()== 1)
-                                drugorder.setForDiscard(0);
-                        }
-                        
-                        Context.getService(drugordersService.class).saveDrugOrder(drugorder);
                     }
                 }
             } catch (NumberFormatException e) {
@@ -85,43 +111,6 @@ public class PharmacyGroupPageController {
             }
             InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - " + groupAction);
         }
-        
-        
-        if(StringUtils.isNotBlank(groupAction) && groupAction.equals("Dispatch")){
-            
-            String orderList[] = group_order_ID.split(",");
-            for (String order : orderList){
-                
-                int orderID = Integer.parseInt(order);
-                drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
-                
-                //Change Order Status when Pharmacist performs a new action on the Order
-                if(drugorder.getForDiscard() == 1)
-                    drugorder.setForDiscard(0);
-                else if(drugorder.getOnHold() == 1)
-                    drugorder.setOnHold(0);
-                
-                if (drugorder.getRefill() > 0) {
-                    drugorder.setLastDispatchDate(Calendar.getInstance().getTime());
-                    drugorder.setRefill(drugorder.getRefill() - 1);
-                } 
-                else {
-                    if (drugorder.getOrderStatus().equals("Active")) {
-                        drugorder.setOrderStatus("Non-Active");
-                    } else if (drugorder.getOrderStatus().equals("Active-Group")) {
-                        drugorder.setOrderStatus("Non-Active-Group");
-                    } else if (drugorder.getOrderStatus().equals("Active-Plan")) {
-                        drugorder.setOrderStatus("Non-Active-Plan");
-                    }
-                    
-                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
-                }
-                printOrder(drugorder.getOrderId());
-                Context.getService(drugordersService.class).saveDrugOrder(drugorder);
-            }
-            InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - " + groupAction);
-        }
-
         model.addAttribute("group_order_status", groupAction);
     }
     

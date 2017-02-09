@@ -81,10 +81,10 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                                     <div class="l23">
                                         <% if(o.onHold == 1) { %>
                                             <span class="comments" title="${ o.commentForOrderer }"> ON HOLD</span>
-                                        <% } %>
-                                        
-                                        <% if(o.forDiscard == 1) { %>
+                                        <% } else if(o.forDiscard == 1) { %>
                                             <span class="comments" title="${ o.commentForOrderer }"> DISCARD</span>
+                                        <% } else { %>
+                                            <span class="comments"> ACTIVE</span>
                                         <% } %>
                                     </div>
                                     <div class="l24">

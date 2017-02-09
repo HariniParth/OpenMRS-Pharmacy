@@ -142,11 +142,10 @@ function otherOrder(orderID){
 }
 
 function showPharmaConfirmationSection(action){
-    
-    $("#selectedAction").text(action);
     jq("#statusLabel").show();
     document.getElementById("statusLabel").style.display = 'block';
     
+    $("#selectedAction").text(action);
     $("#pharmaGroupAction").val(action);
     $("#pharmaSingleAction").val(action);
     jq("#pharmaGroupButtons").hide();

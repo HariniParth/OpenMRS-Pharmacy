@@ -24,7 +24,7 @@
                                 
                         <div id="view_order_detail">
                             <span id="drug_name">
-                                <h5><input type="checkbox" name="orderCheckBox" value="${ groupOrder.key }" ng-model="orderCheckBox" /></span>
+                                <h5><input type="checkbox" name="groupCheckBox" value="${ groupOrder.key }" ng-model="groupCheckBox" /></span>
                                     <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
                                     <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
                                     <strong>${ groupOrderExtn.get(groupOrder.key).drugName.getDisplayString() }</strong>

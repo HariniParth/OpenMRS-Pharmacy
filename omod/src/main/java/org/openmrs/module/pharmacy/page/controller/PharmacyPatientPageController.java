@@ -53,10 +53,10 @@ public class PharmacyPatientPageController {
         
         for(drugorders order: Iterables.concat(ordersOnHold, ordersForDiscard)){
             Person physician = Context.getPersonService().getPerson(Context.getOrderService().getOrder(order.getOrderId()).getOrderer().getProviderId());
-            ordererName.put(order.getOrderId(), physician.getGivenName()+" "+physician.getFamilyName());
-            
+                        
             if(order.getOrderStatus().equals("Active")){
                 patientSingleOrders.add(order);
+                ordererName.put(order.getOrderId(), physician.getGivenName()+" "+physician.getFamilyName());
             } 
             else if(order.getOrderStatus().equals("Active-Group")){
                 if(!patientGroupOrders.containsKey(order.getGroupId())){
@@ -68,6 +68,7 @@ public class PharmacyPatientPageController {
                     for(drugorders groupOrder : allGroupOrders){
                         if(groupOrder.getOrderStatus().equals("Active-Group")){
                             activeGroupOrders.add(groupOrder);
+                            ordererName.put(groupOrder.getOrderId(), physician.getGivenName()+" "+physician.getFamilyName());
                         }
                     }
                     patientGroupOrders.put(order.getGroupId(), activeGroupOrders);
@@ -85,6 +86,7 @@ public class PharmacyPatientPageController {
                     for(drugordersdiseases plan : planOrders){
                         if(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()).getOrderStatus().equals("Active-Plan")){
                             activePlanOrders.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()));
+                            ordererName.put(plan.getOrderId(), physician.getGivenName()+" "+physician.getFamilyName());
                         }
                     }
                     patientPlanOrders.put(planOrder.getPlanId(), activePlanOrders);
