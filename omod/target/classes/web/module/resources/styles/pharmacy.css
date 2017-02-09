@@ -47,8 +47,8 @@ and open the template in the editor.
     padding-left: 10px;
 }
 
-.additionalInfo{
-    padding-left: 20px;
+.additionalInformation, .expiryDateField{
+    margin-left: 40px;
 }
 
 #searchResults{
@@ -82,7 +82,13 @@ and open the template in the editor.
     font-weight: bold;
 }
 
-#pharmaOrderView, #pharmaActionView, #patient-search-bar, #activeOrdersWindow{
+#heading{
+    padding-top: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#pharmaOrderView, #pharmaGroupView, #patient-search-bar, #activeOrdersWindow{
     background: #F9F9F9;
     border: 1px solid #eee;
     color: #363463;
@@ -117,7 +123,7 @@ and open the template in the editor.
     min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, #additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #cancelButtons, #contactLabel, #ordererContact, .expiryDateField{
+.icon-minus-sign.edit-action, .additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #confirmButtons, #contactLabel, #ordererContact, .expiryDateField{
     display: none;
 }
 
@@ -136,9 +142,11 @@ input[type=submit], input[type=button]{
 }
 
 .group{
-    min-height: 500px;
-    max-height: 500px;
-    overflow: scroll;
+    min-height: 250px;
+    max-height: 250px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    white-space:nowrap
 }
 
 .groupItem{

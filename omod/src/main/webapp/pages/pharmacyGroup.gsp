@@ -35,9 +35,7 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
         <div id="line-break"></div>
         <h3>
             <i class="icon-medicine"></i>
-            <strong>${ ui.message("ACTIVE DRUG ORDERS") }
-                <span class="pageLinks pull-right" onclick="location.href='${ui.pageLink("pharmacy", "pharmacySingle", [patientId: patient.patientId])}';">DISPLAY BY ORDER >></span>
-            </strong>
+            <strong>${ ui.message("ACTIVE DRUG ORDERS") }</strong>
         </h3>
         <div id="line-break"></div>
     </div> <br/>

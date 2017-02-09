@@ -157,8 +157,8 @@ function showPharmaConfirmationSection(action){
     }
     
     if(action === "Dispatch"){
-        jq("#cancelButtons").show();
         jq("#printLabel").show();
+        jq("#confirmButtons").show();
         document.getElementById("printLabel").style.display = 'block';
         jq(".expiryDateField").show();
         document.getElementsByClassName("expiryDateField").style.display = 'block';
@@ -172,7 +172,7 @@ function showPharmaOrderViewSection(){
     
     jq("#printLabel").hide();
     jq("#statusLabel").hide();
-    jq("#cancelButtons").hide();
+    jq("#confirmButtons").hide();
     jq(".expiryDateField").hide();
     jq("#pharmaGroupActionButtons").hide();
     
