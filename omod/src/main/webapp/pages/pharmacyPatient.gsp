@@ -60,7 +60,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                 <tr>
                     <td colspan="5">
                         <% order.value.each { o -> %>                        
-                            <div class="groupHome">
+                            <div class="groupHome <% if(o.forDiscard == 1) { %> forDiscard <% } %> <% if(o.onHold == 1) { %> onHold <% } %>">
                                 <div class="l11">
                                     <div class="l21">
                                         <% if(name == "") { %>
@@ -107,7 +107,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                 <tr>
                     <td colspan="5">
                         <% order.value.each { o -> %>                            
-                            <div class="groupHome">
+                            <div class="groupHome <% if(o.forDiscard == 1) { %> forDiscard <% } %> <% if(o.onHold == 1) { %> onHold <% } %>">
                                 <div class="l11">
                                     <div class="l21">
                                         <% if(name == "") { %>
@@ -128,10 +128,10 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                                     <div class="l23">
                                         <% if(o.onHold == 1) { %>
                                             <span class="comments" title="${ o.commentForOrderer }"> ON HOLD</span>
-                                        <% } %>
-                                        
-                                        <% if(o.forDiscard == 1) { %>
+                                        <% } else if(o.forDiscard == 1) { %>
                                             <span class="comments" title="${ o.commentForOrderer }"> DISCARD</span>
+                                        <% } else { %>
+                                            <span class="comments"> ACTIVE</span>
                                         <% } %>
                                     </div>
                                     <div class="l24">
@@ -150,17 +150,17 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
             <% } %>
             
             <% patientSingles.each { order -> %>
-                <tr>
+                <tr class="singleHome <% if(order.forDiscard == 1) { %> forDiscard <% } %> <% if(order.onHold == 1) { %> onHold <% } %>">
                     <td>${ patientName.get(order.patientId.toInteger()) }</td>
                     <td>${ order.drugName.getDisplayString().toUpperCase()}</td>
                     <td>${ order.startDate.format('yyyy-MM-dd') }</td>
                     <td>
                         <% if(order.onHold == 1) { %>
-                            <span class="comments" title="${ order.commentForOrderer }">ON HOLD</span>
-                        <% } %>
-
-                        <% if(order.forDiscard == 1) { %>
-                            <span class="comments" title="${ order.commentForOrderer }">DISCARD</span>
+                            <span class="comments" title="${ order.commentForOrderer }"> ON HOLD</span>
+                        <% } else if(order.forDiscard == 1) { %>
+                            <span class="comments" title="${ order.commentForOrderer }"> DISCARD</span>
+                        <% } else { %>
+                            <span class="comments"> ACTIVE</span>
                         <% } %>
                     </td>
                     <td>${ ordererName.get(order.orderId) }</td>

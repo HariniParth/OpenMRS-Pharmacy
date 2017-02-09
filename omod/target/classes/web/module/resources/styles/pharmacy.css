@@ -315,12 +315,13 @@ form select, .form select {
     text-decoration: none !important;
 }
 
-.orderRow.discontinued > td:not(:first-child), .singleRow.discontinued, .groupElement.discontinued > div > div{
-    text-decoration: line-through;
+.groupHome.onHold > div > div:not(.l21), .singleHome.onHold td:not(:first-child), .singleRow.onHold > *, .groupElement.onHold > *{
+    color: orange;
 }
 
-.orderRow.onhold > td:not(:first-child), .singleRow.onhold, .groupElement.onhold > div > div{
+.groupHome.forDiscard > div > div:not(.l21), .groupHome.forDiscard > div > div > *, .singleHome.forDiscard > td:not(:first-child), .singleRow.forDiscard > *, .groupElement.forDiscard > div > div > *{
     color: orangered;
+    text-decoration: line-through;
 }
 
 .groupElement{
