@@ -40,6 +40,8 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
     </table>
 </div>
 
+<br/><br/> ${ ui.includeFragment("pharmacy", "removeFromHold") } <br/><br/>
+
 <p><strong>ORDERS Hold/Discard</strong></p><br/>
 
 <div id="nonActiveTableWrapper">
@@ -98,7 +100,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                     <td style="display: none;"></td>
                     <td style="display: none;"></td>
                     <td style="display: none;"></td>
-                    <td></td>
+                    <td class="notifyGroupIcon"><i class="icon-ok-circle" title="Mark Order(s) Available" onclick="showRemoveOrderHoldWindow()"></i></td>
                 </tr>
             <% } %>
             
@@ -145,7 +147,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                     <td style="display: none;"></td>
                     <td style="display: none;"></td>
                     <td style="display: none;"></td>
-                    <td></td>
+                    <td class="notifyGroupIcon"><i class="icon-ok-circle" title="Mark Order(s) Available" onclick="showRemoveOrderHoldWindow()"></i></td>
                 </tr>
             <% } %>
             
@@ -164,7 +166,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                         <% } %>
                     </td>
                     <td>${ ordererName.get(order.orderId) }</td>
-                    <td></td>
+                    <td class="notifySingleIcon"><i class="icon-ok-circle" title="Mark Order(s) Available" onclick="showRemoveOrderHoldWindow()"></i></td>
                 </tr>
             <% } %>
             
@@ -215,4 +217,38 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
         fixedColumns: true
 
     });
+</script>
+
+<script type="text/javascript">    
+    jq(".notifyGroupIcon > i").click(function(){
+        jq(this).parent().parent().children('td').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".notifySingleIcon > i").click(function(){
+        jq(this).parent().parent().children('td').slice(0, 5).css({"background": "#75b2f0","color": "white"});
+    });
+</script>
+
+<script type="text/javascript">    
+    jq(".notifyGroupIcon > i").hover(function(event){
+        if(event.type == 'mouseenter'){
+            jq(this).parent().parent().children('td').slice(0, 1).css({"background": "#75b2f0","color": "white"});
+        } else {
+            jq(this).parent().parent().children('td').slice(0, 1).css({"background": "","color": ""});
+        }
+    });
+    
+</script>
+
+<script type="text/javascript">    
+    jq(".notifySingleIcon > i").hover(function(event){
+        if(event.type == 'mouseenter'){
+            jq(this).parent().parent().children('td').slice(0, 5).css({"background": "#75b2f0","color": "white"});
+        } else {
+            jq(this).parent().parent().children('td').slice(0, 5).css({"background": "","color": ""});
+        }
+    });
+    
 </script>

@@ -93,6 +93,12 @@ function clearHighlights(){
     jq(".orderRow").each(function(){
         jq(this).css({'background-color':'','color':''});
     });
+    jq(".notifyGroupIcon").each(function(){
+        jq(this).parent().children('td').slice(0, 1).css({'background-color':'','color':''});
+    });
+    jq(".notifySingleIcon").each(function(){
+        jq(this).parent().children('td').slice(0, 5).css({'background-color':'','color':''});
+    });
 }
 
 function closeAllOrdersWindow(){
@@ -200,4 +206,13 @@ function closePharmaGroupView(){
 function closePharmaOrderView(){
     jq("#pharmaOrderView").hide();
     clearHighlights();
+}
+
+function showRemoveOrderHoldWindow(){
+    jq("#removeHold").show();
+    document.getElementById("#removeHold").style.display = 'block';
+}
+
+function closeRemoveOrderHoldWindow(){
+    jq("#removeHold").hide();
 }

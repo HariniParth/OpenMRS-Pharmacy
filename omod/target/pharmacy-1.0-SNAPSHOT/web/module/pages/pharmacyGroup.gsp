@@ -41,9 +41,7 @@ ${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient ]) }
     </div> <br/>
 
     <div id="currentDrugOrdersWindow">
-        <div id="currentOrdersWindow">
-            <br/> ${ ui.includeFragment("pharmacy", "currentGroupOrders") } <br/>
-        </div>
+        ${ ui.includeFragment("pharmacy", "currentGroupOrders") } <br/>
     </div>
     
     <div id="pharmaGroupViewWindow">
