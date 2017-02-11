@@ -220,7 +220,10 @@ function closePharmaOrderView(){
     clearHighlights();
 }
 
-function showRemoveOrderHoldWindow(){
+function showRemoveOrderHoldWindow(orderType,orderNum){
+    $("#orderType").val(orderType);
+    $("#orderNum").val(orderNum);
+    
     removeFromHoldDialog.show();
     document.getElementById("#removeHold").style.display = 'block';
 }

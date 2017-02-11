@@ -100,7 +100,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                     <td style="display: none;"></td>
                     <td style="display: none;"></td>
                     <td style="display: none;"></td>
-                    <td class="notifyGroupIcon"><i class="icon-ok-circle" title="Mark Order(s) Available" onclick="showRemoveOrderHoldWindow()"></i></td>
+                    <td class="notifyGroupIcon"><i class="icon-ok-circle" title="Mark Order(s) Available" onclick="showRemoveOrderHoldWindow('PLAN','${ order.key }')"></i></td>
                 </tr>
             <% } %>
             
@@ -147,7 +147,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                     <td style="display: none;"></td>
                     <td style="display: none;"></td>
                     <td style="display: none;"></td>
-                    <td class="notifyGroupIcon"><i class="icon-ok-circle" title="Mark Order(s) Available" onclick="showRemoveOrderHoldWindow()"></i></td>
+                    <td class="notifyGroupIcon"><i class="icon-ok-circle" title="Mark Order(s) Available" onclick="showRemoveOrderHoldWindow('GROUP','${ order.key }')"></i></td>
                 </tr>
             <% } %>
             
@@ -166,7 +166,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                         <% } %>
                     </td>
                     <td>${ ordererName.get(order.orderId) }</td>
-                    <td class="notifySingleIcon"><i class="icon-ok-circle" title="Mark Order(s) Available" onclick="showRemoveOrderHoldWindow()"></i></td>
+                    <td class="notifySingleIcon"><i class="icon-ok-circle" title="Mark Order(s) Available" onclick="showRemoveOrderHoldWindow('SINGLE','${ order.orderId }')"></i></td>
                 </tr>
             <% } %>
             

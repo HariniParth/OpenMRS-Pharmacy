@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class PharmacyPatientPageController {
     
-    public void controller(PageModel model, @RequestParam(value = "patient_full_name", required = false) String patient_full_name){
+    public void controller(PageModel model, @RequestParam(value = "patient_full_name", required = false) String patient_full_name,
+                                            @RequestParam(value = "orderType", required = false) String orderType,
+                                            @RequestParam(value = "orderNum", required = false) Integer orderNum){
         
         List<Patient> allPatients = Context.getPatientService().getAllPatients();
         
@@ -39,6 +41,31 @@ public class PharmacyPatientPageController {
             }
         } else {
             model.addAttribute("patient", "");
+        }
+        
+        if(!orderType.equals("")){
+            if(orderType.equals("SINGLE")){
+                drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderNum);
+                if(drugorder.getOnHold() == 1)
+                    drugorder.setOnHold(0);
+            } 
+            else
+                if(orderType.equals("GROUP")){
+                    List<drugorders> drugorders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(orderNum);
+                    for(drugorders drugorder : drugorders){
+                        if(drugorder.getOnHold() == 1)
+                            drugorder.setOnHold(0);
+                    }
+                }
+            else
+                if(orderType.equals("PLAN")){
+                    List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(orderNum);
+                    for(drugordersdiseases planOrder : planOrders){
+                        drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId());
+                        if(drugorder.getOnHold() == 1)
+                            drugorder.setOnHold(0);
+                    }
+                }
         }
         
         List<drugorders> ordersOnHold = Context.getService(drugordersService.class).getOrdersOnHold();
