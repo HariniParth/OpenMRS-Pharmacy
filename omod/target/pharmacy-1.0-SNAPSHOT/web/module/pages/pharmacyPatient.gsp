@@ -59,7 +59,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
         <tbody>
             <% patientPlans.each { order -> %>
                 <% def name = "" %>
-                <tr>
+                <tr class="setHome">
                     <td colspan="5">
                         <% order.value.each { o -> %>                        
                             <div class="groupHome <% if(o.forDiscard == 1) { %> forDiscard <% } %> <% if(o.onHold == 1) { %> onHold <% } %>">
@@ -106,7 +106,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
             
             <% patientGroups.each { order -> %>
                 <% def name = "" %>
-                <tr>
+                <tr class="setHome">
                     <td colspan="5">
                         <% order.value.each { o -> %>                            
                             <div class="groupHome <% if(o.forDiscard == 1) { %> forDiscard <% } %> <% if(o.onHold == 1) { %> onHold <% } %>">
@@ -229,26 +229,4 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
     jq(".notifySingleIcon > i").click(function(){
         jq(this).parent().parent().children('td').slice(0, 5).css({"background": "#75b2f0","color": "white"});
     });
-</script>
-
-<script type="text/javascript">    
-    jq(".notifyGroupIcon > i").hover(function(event){
-        if(event.type == 'mouseenter'){
-            jq(this).parent().parent().children('td').slice(0, 1).css({"background": "#75b2f0","color": "white"});
-        } else {
-            jq(this).parent().parent().children('td').slice(0, 1).css({"background": "","color": ""});
-        }
-    });
-    
-</script>
-
-<script type="text/javascript">    
-    jq(".notifySingleIcon > i").hover(function(event){
-        if(event.type == 'mouseenter'){
-            jq(this).parent().parent().children('td').slice(0, 5).css({"background": "#75b2f0","color": "white"});
-        } else {
-            jq(this).parent().parent().children('td').slice(0, 5).css({"background": "","color": ""});
-        }
-    });
-    
 </script>

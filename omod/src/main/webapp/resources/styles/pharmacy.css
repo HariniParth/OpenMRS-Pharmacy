@@ -94,28 +94,15 @@ and open the template in the editor.
     color: #363463;
 }
 
-.patientRow:hover {
+.patientRow:hover, .orderRow:hover, .groupRow:hover,.singleRow:hover{
     background: #75b2f0;
     color: white;
     cursor: pointer;
 }
 
-.orderRow:hover {
+.setHome:hover td:not(:last-child), .singleHome:hover td:not(:last-child){
     background: #75b2f0;
     color: white;
-    cursor: pointer;
-}
-
-.groupRow:hover{
-    background: #75b2f0;
-    color: white;
-    cursor: pointer;
-}
-
-.singleRow:hover{
-    background: #75b2f0;
-    color: white;
-    cursor: pointer;
 }
 
 #associatedOrdersTableWrapper .dataTables_wrapper, #otherOrdersTableWrapper .dataTables_wrapper, .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{

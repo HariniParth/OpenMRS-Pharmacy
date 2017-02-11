@@ -1,9 +1,10 @@
 <%
     ui.includeCss("pharmacy", "pharmacy.css")
+    ui.includeJavascript("pharmacy", "pharmacy.js")
 %>
 
-<form method="post">
-    <div id="removeHold" class="dialog">
+<div id="removeHold" class="dialog">
+    <form method="post">
         <div class="dialog-header">
             <h3 id="dialog-heading">${ ui.message("Remove Order Hold") }</h3>
         </div>
@@ -14,5 +15,5 @@
             <button class="confirm right" id="btn-place" type="submit">Confirm</button>
             <button class="cancel left" id="btn-place" type="button" onclick="closeRemoveOrderHoldWindow()">Cancel</button>
         </div>
-    </div>
-</form>
+    </form>
+</div>

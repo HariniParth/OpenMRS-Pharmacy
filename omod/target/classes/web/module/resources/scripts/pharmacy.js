@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-/* global jq */
+/* global jq, emr */
+
+var removeFromHoldDialog = null;
 
 $(document).ready( function() {
     
@@ -16,11 +18,11 @@ $(document).ready( function() {
                 clearHighlights();
             }
             else if(document.getElementById('pharma_order_details')){
-                    highlight();
-                }
+                highlight();
+            }
             else if(document.getElementsByClassName('group_order_order_details')){
-                    highlightGroup();
-                }
+                highlightGroup();
+            }
         });
     });
     
@@ -31,6 +33,16 @@ $(document).ready( function() {
     if(document.getElementsByClassName('group_order_order_details')){
         highlightGroup();
     }
+    
+    removeFromHoldDialog = emr.setupConfirmationDialog({
+        selector: '#removeHold',
+        actions: {
+            cancel: function() {
+            	removeFromHoldDialog.close();
+                clearHighlights();
+            }
+        }
+    });
     
 });
 
@@ -209,10 +221,6 @@ function closePharmaOrderView(){
 }
 
 function showRemoveOrderHoldWindow(){
-    jq("#removeHold").show();
+    removeFromHoldDialog.show();
     document.getElementById("#removeHold").style.display = 'block';
-}
-
-function closeRemoveOrderHoldWindow(){
-    jq("#removeHold").hide();
 }
