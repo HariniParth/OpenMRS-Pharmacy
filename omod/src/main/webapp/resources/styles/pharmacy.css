@@ -47,6 +47,10 @@ and open the template in the editor.
     padding-left: 10px;
 }
 
+#sendButton{
+    margin: 0px !important;
+}
+
 .additionalInformation, .expiryDateField{
     margin-left: 40px;
 }
@@ -110,7 +114,7 @@ and open the template in the editor.
     min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, .additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #confirmButtons, #contactLabel, #ordererContact, .expiryDateField, #removeHold{
+.icon-minus-sign.edit-action, .additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #confirmButtons, #contactLabel, #ordererContact, .expiryDateField, #removeHold, #mailWindow{
     display: none;
 }
 

@@ -7,13 +7,16 @@
 /* global jq, emr */
 
 var removeFromHoldDialog = null;
+var mailWindowDialog = null;
 
 $(document).ready( function() {
     
     $(document).mouseup(function (e){
         var objects = $('.dialog');
+        var mailDialog = $('#mailWindow');
+        
         $(objects).each(function(){
-            if (!$(this).is(e.target) && $(this).has(e.target).length === 0){
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && !$(mailDialog).is(e.target) && $(mailDialog).has(e.target).length === 0){
                 $(this).hide();
                 clearHighlights();
             }
@@ -39,6 +42,16 @@ $(document).ready( function() {
         actions: {
             cancel: function() {
             	removeFromHoldDialog.close();
+                clearHighlights();
+            }
+        }
+    });
+    
+    mailWindowDialog = emr.setupConfirmationDialog({
+        selector: '#mailWindow',
+        actions: {
+            cancel: function() {
+            	mailWindowDialog.close();
                 clearHighlights();
             }
         }
@@ -226,4 +239,9 @@ function showRemoveOrderHoldWindow(orderType,orderNum){
     
     removeFromHoldDialog.show();
     document.getElementById("#removeHold").style.display = 'block';
+}
+
+function showMailWindow(){
+    mailWindowDialog.show();
+    document.getElementById("#mailWindow").style.display = 'block';
 }
