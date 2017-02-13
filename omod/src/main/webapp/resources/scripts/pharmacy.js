@@ -46,17 +46,7 @@ $(document).ready( function() {
             }
         }
     });
-    
-    mailWindowDialog = emr.setupConfirmationDialog({
-        selector: '#mailWindow',
-        actions: {
-            cancel: function() {
-            	mailWindowDialog.close();
-                clearHighlights();
-            }
-        }
-    });
-    
+       
 });
 
 function highlight(){
@@ -241,7 +231,6 @@ function showRemoveOrderHoldWindow(orderType,orderNum){
     document.getElementById("#removeHold").style.display = 'block';
 }
 
-function showMailWindow(){
-    mailWindowDialog.show();
-    document.getElementById("#mailWindow").style.display = 'block';
+function closeMailWindow(){
+    jq("#mailWindow").hide();
 }

@@ -1,3 +1,4 @@
+/home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/fragment/controller/MailToOrdererFragmentController.java
 /home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/page/controller/PharmacyGroupPageController.java
 /home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/web/controller/PharmacyManageController.java
 /home/harini-geek/OpenMRS-Pharmacy/omod/src/main/java/org/openmrs/module/pharmacy/fragment/controller/PharmaGroupViewFragmentController.java

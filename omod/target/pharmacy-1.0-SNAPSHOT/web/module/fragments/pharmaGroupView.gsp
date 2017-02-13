@@ -153,7 +153,7 @@
                     <input type="textarea" maxlength="100" id="groupComments" name="groupComments" placeholder="Enter Comments for the Orderer"/>
                 </div><br/>
                 <div class="fields">
-                    <input class="confirm right" id="btn-place" value="Confirm" type="button" onclick="showMailWindow()" />
+                    <input class="confirm right" id="btn-place" type="submit" name="action" value="Confirm" />
                 </div>
                 <div class="fields">
                     <input class="cancel" id="btn-place" value="Back" type="button" onclick="showPharmaOrderViewSection()" />
