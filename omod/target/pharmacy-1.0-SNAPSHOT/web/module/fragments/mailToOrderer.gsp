@@ -5,7 +5,7 @@
 
 <% if(groupAction == "On Hold" || groupAction == "Discard") { %>
     <div id="mailWindow" class="dialog">
-        <form method="post">
+        <form method="post" id="mailOrdererForm">
             <div class="dialog-header">
                 <h3 id="dialog-heading">${ ui.message("Mail To Orderer") }</h3>
             </div>
@@ -13,11 +13,11 @@
             <table border="0">
                 <tr>
                     <td>From:</td>
-                    <td><input type="text" id="sender"  name="sender" value="" readonly="true" /></td>
+                    <td><input type="text" id="sender"  name="sender" value="${ sender }" readonly="true" /></td>
                 </tr>
                 <tr>
                     <td>To:</td>
-                    <td><input type="text" id="recipient" name="recipient" value="" readonly="true" /></td>
+                    <td><input type="text" id="recipient" name="recipient" value="${ recipient }" readonly="true" /></td>
                 </tr>
                 <tr>
                     <td>Subject:</td>
@@ -36,3 +36,25 @@
         </form>
     </div>
 <% } %>
+
+<script type="text/javascript">
+    jq(function(){
+        jq("#mailOrdererForm").submit(function(){
+            var sender = jq("#sender").val();
+            var recipient = jq("#recipient").val();
+            var subject = jq("#subject").val();
+            var message = jq("#message").val();
+            
+            jq.ajax({
+                type: "POST",
+                url: "${ ui.actionLink('contactOrderer') }",
+                data: {
+                    'sender': sender,
+                    'recipient': recipient,
+                    'subject': subject,
+                    'message': message
+                }
+            });
+        });
+    });
+</script>
