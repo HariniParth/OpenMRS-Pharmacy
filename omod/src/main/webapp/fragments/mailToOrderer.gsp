@@ -21,11 +21,11 @@
                 </tr>
                 <tr>
                     <td>Subject:</td>
-                    <td><input type="text" id="subject" name="subject" value="" readonly="true" /></td>
+                    <td><input type="text" id="subject" name="subject" value="Order ID(s): ${ orderList } - Order Status: ${ groupAction }" readonly="true" /></td>
                 </tr>
                 <tr>
                     <td>Message:</td>
-                    <td><textarea rows="10" id="message" name="message"></textarea></td>
+                    <td><textarea rows="10" id="message" name="message">This is to inform you that the following Order(s) Status is set to ${ groupAction }&#10;&#10;Patient ID: ${ patientID }&#10;Patient Name: ${ patientName }&#10;&#10;Orders:&#10;&#10;${ orderDetails }&#10;Comments: ${ groupComments }</textarea></td>
                 </tr>
             </table><br/>
             
