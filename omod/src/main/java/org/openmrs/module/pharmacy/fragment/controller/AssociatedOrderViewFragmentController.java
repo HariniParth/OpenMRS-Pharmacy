@@ -31,14 +31,14 @@ public class AssociatedOrderViewFragmentController {
                             @RequestParam(value = "pharmaOrderID", required = false) String pharmaOrderID,
                             @RequestParam("patientId") Patient patient){
     
-        HashMap<Integer,List<drugorders>> associatedOrderExtn = new HashMap<Integer,List<drugorders>>();
-        HashMap<Integer,DrugOrder> associatedOrderMain = new HashMap<Integer,DrugOrder>();
+        HashMap<Integer,List<drugorders>> associatedOrderExtn = new HashMap<>();
+        HashMap<Integer,DrugOrder> associatedOrderMain = new HashMap<>();
         
-        HashMap<Integer,drugorders> allOrdersExtn = new HashMap<Integer,drugorders>();
-        HashMap<Integer,DrugOrder> allOrdersMain = new HashMap<Integer,DrugOrder>();
+        HashMap<Integer,drugorders> allOrdersExtn = new HashMap<>();
+        HashMap<Integer,DrugOrder> allOrdersMain = new HashMap<>();
         
-        HashMap<Integer,List<String>> otherOrders = new HashMap<Integer,List<String>>();
-        HashMap<Integer, String> OrdererName = new HashMap<Integer, String>();
+        HashMap<Integer,List<String>> otherOrders = new HashMap<>();
+        HashMap<Integer, String> OrdererName = new HashMap<>();
                 
         if (StringUtils.isNotBlank(action)) {
             try {
@@ -62,7 +62,7 @@ public class AssociatedOrderViewFragmentController {
                         
                         //Fetch all Orders that were ordered as a part of Med Plan with the recorded OrderInteger
                         List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(Integer.parseInt(drugorder.getPatientId())));
-                        List<drugorders> orderExtn = new ArrayList<drugorders>();
+                        List<drugorders> orderExtn = new ArrayList<>();
                         
                         for(drugordersdiseases planOrder : planOrderList){
                             associatedOrderMain.put(planOrder.getOrderId(),(DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderId()));
@@ -99,9 +99,7 @@ public class AssociatedOrderViewFragmentController {
                     }
                 }
             }
-            catch (NumberFormatException e) {
-                System.out.println(e.toString());
-            } catch (APIException e) {
+            catch (NumberFormatException | APIException e) {
                 System.out.println(e.toString());
             }
         }
@@ -117,7 +115,7 @@ public class AssociatedOrderViewFragmentController {
     
     public ArrayList<String> pullAssociatedGroupOrders(drugorders drugorder){
         
-        ArrayList<String> otherOrdersDrugName = new ArrayList<String>();
+        ArrayList<String> otherOrdersDrugName = new ArrayList<>();
         
         List<drugorders> otherOrdersInGroup = Context.getService(drugordersService.class).getDrugOrdersByGroupID(drugorder.getGroupId());
 
@@ -129,7 +127,7 @@ public class AssociatedOrderViewFragmentController {
     
     public ArrayList<String> pullAssociatedPlanOrders(drugorders drugorder){
         
-        ArrayList<String> otherOrdersDrugName = new ArrayList<String>();
+        ArrayList<String> otherOrdersDrugName = new ArrayList<>();
 
         List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(Integer.parseInt(drugorder.getPatientId())));
 

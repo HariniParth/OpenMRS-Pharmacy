@@ -76,9 +76,7 @@ public class PharmacySinglePageController {
                     InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - "+pharmaSingleAction);
                     
                 }
-            } catch (NumberFormatException e) {
-                System.out.println(e.toString());
-            } catch (APIException e) {
+            } catch (NumberFormatException | APIException e) {
                 System.out.println(e.toString());
             }
         }
@@ -146,9 +144,7 @@ public class PharmacySinglePageController {
             }
             is.close();
             
-        } catch (IOException ex) {
-            Logger.getLogger(PharmacySinglePageController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PrintException ex) {
+        } catch (IOException | PrintException ex) {
             Logger.getLogger(PharmacySinglePageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

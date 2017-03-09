@@ -33,9 +33,9 @@ public class PharmaGroupViewFragmentController {
         model.addAttribute("groupID", groupID);
         model.addAttribute("orderID", orderID);
         
-        HashMap<Integer,String> provider = new HashMap<Integer,String>();
-        HashMap<Integer,DrugOrder> groupOrderMain = new HashMap<Integer,DrugOrder>();
-        HashMap<Integer,drugorders> groupOrderExtn = new HashMap<Integer,drugorders>();
+        HashMap<Integer,String> provider = new HashMap<>();
+        HashMap<Integer,DrugOrder> groupOrderMain = new HashMap<>();
+        HashMap<Integer,drugorders> groupOrderExtn = new HashMap<>();
         
         if(!planID.equals("")){
 

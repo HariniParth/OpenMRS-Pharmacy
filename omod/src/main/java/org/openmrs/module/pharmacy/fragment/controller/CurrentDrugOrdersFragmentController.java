@@ -26,8 +26,8 @@ public class CurrentDrugOrdersFragmentController {
         
         List<drugorders> allOrders = Context.getService(drugordersService.class).getDrugOrdersByPatient(patient);
         
-        List<drugorders> patientOrders = new ArrayList<drugorders>();
-        HashMap<Integer, String> OrdererName = new HashMap<Integer, String>();
+        List<drugorders> patientOrders = new ArrayList<>();
+        HashMap<Integer, String> OrdererName = new HashMap<>();
         
         for(drugorders order : allOrders){
             if(order.getOrderStatus().equals("Active") || order.getOrderStatus().equals("Active-Group") || order.getOrderStatus().equals("Active-Plan")){

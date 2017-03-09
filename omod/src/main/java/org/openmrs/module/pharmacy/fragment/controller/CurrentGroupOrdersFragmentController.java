@@ -29,15 +29,15 @@ public class CurrentGroupOrdersFragmentController {
         
         List<drugorders> allOrders = Context.getService(drugordersService.class).getDrugOrdersByPatient(patient);
         
-        List<drugorders> patientSingleOrders = new ArrayList<drugorders>();
+        List<drugorders> patientSingleOrders = new ArrayList<>();
         
-        HashMap<Integer, List<drugorders>> patientGroupOrders = new HashMap<Integer, List<drugorders>>();
+        HashMap<Integer, List<drugorders>> patientGroupOrders = new HashMap<>();
         
-        HashMap<Integer, List<drugorders>> patientPlanOrders = new HashMap<Integer, List<drugorders>>();
+        HashMap<Integer, List<drugorders>> patientPlanOrders = new HashMap<>();
         
-        HashMap<Integer, Concept> planName = new HashMap<Integer, Concept>();
+        HashMap<Integer, Concept> planName = new HashMap<>();
         
-        HashMap<Integer, String> OrdererName = new HashMap<Integer, String>();
+        HashMap<Integer, String> OrdererName = new HashMap<>();
         
         for(drugorders order : allOrders){
             if(order.getOrderStatus().equals("Active")){
@@ -48,7 +48,7 @@ public class CurrentGroupOrdersFragmentController {
 
                     List<drugorders> allGroupOrders = Context.getService(drugordersService.class).getDrugOrdersByGroupID(order.getGroupId());
 
-                    List<drugorders> activeGroupOrders = new ArrayList<drugorders>();
+                    List<drugorders> activeGroupOrders = new ArrayList<>();
 
                     for(drugorders groupOrder : allGroupOrders){
                         if(groupOrder.getOrderStatus().equals("Active-Group")){
@@ -65,7 +65,7 @@ public class CurrentGroupOrdersFragmentController {
 
                     List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanId());
 
-                    List<drugorders> activePlanOrders = new ArrayList<drugorders>();
+                    List<drugorders> activePlanOrders = new ArrayList<>();
 
                     for(drugordersdiseases plan : planOrders){
                         if(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()).getOrderStatus().equals("Active-Plan")){

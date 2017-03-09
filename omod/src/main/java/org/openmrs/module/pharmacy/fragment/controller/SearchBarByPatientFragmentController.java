@@ -19,7 +19,7 @@ public class SearchBarByPatientFragmentController {
     
     public void controller(PageModel model) {
         
-        List<String> allPatientNames = new ArrayList<String>();
+        List<String> allPatientNames = new ArrayList<>();
         
         List<Patient> allPatients = Context.getPatientService().getAllPatients();
         for(Patient patient : allPatients){
