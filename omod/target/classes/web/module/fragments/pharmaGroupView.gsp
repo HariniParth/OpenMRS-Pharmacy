@@ -32,15 +32,27 @@
                             </span>
                         </div>
 
-                        <div class="expiryDateField">
+                        <div class="dispatchFields">
                             <div class="fields" id="view_order_detail">
                                 <div id="order_label">
                                     <label>Expiry<span id="asterisk">*</span></label>
                                 </div>
                                 <div id="order_value">
-                                    <input type="date" class="drugExpiryDate" value="${ groupOrderExtn.get(groupOrder.key).drugExpiryDate }" name="drugExpiryDate">
+                                    <input type="date" class="drugExpiryDate" value="" name="drugExpiryDate">
                                 </div>
                             </div> 
+                            
+                            <br/><br/>
+                            
+                            <div class="fields" id="view_order_detail">
+                                <div id="order_label">
+                                    <label>Note<span id="asterisk">*</span></label>
+                                </div>
+                                <div id="order_value">
+                                    <input type="text" class="commentForPatient" value="" name="commentForPatient">
+                                </div>
+                            </div> 
+                            
                             <br/><br/>
                         </div>
 
@@ -122,8 +134,6 @@
             <label class="fields" id="statusLabel"><br/>Order Status: <span id="selectedAction"></span></label>
             
             <div class="fields" id="printLabel">
-                <div><label>Comments</label></div>
-                <div><input type="textarea" maxlength="100" id="patientNotes" name="patientNotes" placeholder="Enter Notes for the Patient"/></div><br/>
                 Click <a href="#" onclick="submitDispatch()">here</a> to Print Label<br/><br/>
             </div>
             

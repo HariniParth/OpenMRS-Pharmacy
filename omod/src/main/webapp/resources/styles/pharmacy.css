@@ -47,7 +47,7 @@ and open the template in the editor.
     padding-left: 10px;
 }
 
-.additionalInformation, .expiryDateField{
+.additionalInformation, .dispatchFields{
     margin-left: 40px;
 }
 
@@ -62,10 +62,6 @@ and open the template in the editor.
 #order_label{
     width: 30%;
     float: left;
-}
-
-#order_label label{
-    font-weight: bold;
 }
 
 #order_value{
@@ -110,7 +106,7 @@ and open the template in the editor.
     min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, .additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #confirmButtons, #contactLabel, #ordererContact, .expiryDateField, #removeHold{
+.icon-minus-sign.edit-action, .additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #confirmButtons, #contactLabel, #ordererContact, .dispatchFields, #removeHold{
     display: none;
 }
 
@@ -129,8 +125,8 @@ input[type=submit], input[type=button]{
 }
 
 .group{
-    min-height: 250px;
-    max-height: 250px;
+    min-height: 350px;
+    max-height: 350px;
     overflow-y: scroll;
     overflow-x: scroll;
     white-space:nowrap
@@ -338,4 +334,9 @@ form select, .form select {
 #patientTableWrapper .dataTables_wrapper{
     _height: 75px;
     min-height: 75px;
+}
+
+.drugExpiryDate, .commentForPatient{
+    width: 90% !important;
+    box-sizing: border-box !important;
 }

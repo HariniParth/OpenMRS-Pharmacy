@@ -180,8 +180,8 @@ function showPharmaConfirmationSection(action){
         jq("#printLabel").show();
         jq("#confirmButtons").show();
         document.getElementById("printLabel").style.display = 'block';
-        jq(".expiryDateField").show();
-        document.getElementsByClassName("expiryDateField").style.display = 'block';
+        jq(".dispatchFields").show();
+        document.getElementsByClassName("dispatchFields").style.display = 'block';
     }
 }
 
@@ -193,7 +193,7 @@ function showPharmaOrderViewSection(){
     jq("#printLabel").hide();
     jq("#statusLabel").hide();
     jq("#confirmButtons").hide();
-    jq(".expiryDateField").hide();
+    jq(".dispatchFields").hide();
     jq("#pharmaGroupActionButtons").hide();
     
     jq("#pharmaGroupButtons").show();

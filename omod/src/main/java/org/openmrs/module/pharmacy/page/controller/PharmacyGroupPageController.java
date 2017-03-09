@@ -8,6 +8,9 @@ package org.openmrs.module.pharmacy.page.controller;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,10 +51,25 @@ public class PharmacyGroupPageController {
             @RequestParam(value = "groupCheckBox", required=false) long[] groupCheckBox,
             @RequestParam(value = "pharmaGroupAction", required = false) String groupAction,
             @RequestParam(value = "group_order_ID", required = false) String group_order_ID,
-            @RequestParam(value = "groupComments", required = false) String groupComments) {
+            @RequestParam(value = "groupComments", required = false) String groupComments,
+            @RequestParam(value = "drugExpiryDate", required = false) Date[] drugExpiryDate,
+            @RequestParam(value = "commentForPatient", required = false) String[] commentForPatient) {
 
         Allergies allergies = patientService.getAllergies(patient);
         model.addAttribute("allergies", allergies);
+        
+        List<Date> expiryDate = new ArrayList<>();
+        for(Date d : drugExpiryDate){
+            if(d != null)
+                expiryDate.add(d);                
+        }
+        
+        List<String> comments = new ArrayList<>();
+        for(String comment : commentForPatient){
+            if(!comment.equals(""))
+                comments.add(comment);                
+        }
+        
         
         if (StringUtils.isNotBlank(action)) {
             try {
@@ -97,16 +115,16 @@ public class PharmacyGroupPageController {
 
                                     Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
                                 }
+                                drugorder.setDrugExpiryDate(expiryDate.get(i));
+                                drugorder.setCommentForPatient(comments.get(i));
+                                
                                 printOrder(drugorder.getOrderId());
-                                Context.getService(drugordersService.class).saveDrugOrder(drugorder);
                             }
                             Context.getService(drugordersService.class).saveDrugOrder(drugorder);
                         }
                     }
                 }
-            } catch (NumberFormatException e) {
-                System.out.println(e.toString());
-            } catch (APIException e) {
+            } catch (NumberFormatException | APIException e) {
                 System.out.println(e.toString());
             }
             InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - " + groupAction);
