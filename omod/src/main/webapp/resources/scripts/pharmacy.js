@@ -47,7 +47,33 @@ $(document).ready( function() {
         }
     });
        
+    
+    $("#confirmBtn1").prop("disabled", true);
+    $("#confirmBtn2").prop("disabled", true);
+    
+    $('.groupCheckBox').on('change', function() {
+        enableConfirmBtn();
+    }); 
+    
 });
+
+function enableConfirmBtn(){
+    
+    var selected = false;
+    $('.groupCheckBox').each(function() {
+        if(this.checked) {
+            selected = true;               
+        }
+    });
+    
+    if(selected){
+        $('#confirmBtn1').removeAttr('disabled'); 
+        $('#confirmBtn2').removeAttr('disabled'); 
+    } else {
+        $("#confirmBtn1").prop("disabled", true);
+        $("#confirmBtn2").prop("disabled", true);
+    } 
+}
 
 function highlight(){
     var selectedOrder = $("#pharma_order_details").val().replace(/(\w+).*/,"$1").toUpperCase();

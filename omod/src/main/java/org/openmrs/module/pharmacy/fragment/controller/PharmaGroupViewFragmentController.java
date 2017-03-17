@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import org.openmrs.DrugOrder;
 import org.openmrs.Patient;
+import java.util.Calendar;
+import java.util.Date;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
 import org.openmrs.module.drugorders.api.drugordersdiseasesService;
@@ -32,6 +34,11 @@ public class PharmaGroupViewFragmentController {
         model.addAttribute("planID", planID);
         model.addAttribute("groupID", groupID);
         model.addAttribute("orderID", orderID);
+        
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, 1);
+        Date expiryDate = cal.getTime();
+        model.addAttribute("expiryDate", expiryDate);
         
         HashMap<Integer,String> provider = new HashMap<>();
         HashMap<Integer,DrugOrder> groupOrderMain = new HashMap<>();

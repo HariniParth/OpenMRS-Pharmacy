@@ -8,9 +8,7 @@ package org.openmrs.module.pharmacy.page.controller;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Date;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,19 +56,6 @@ public class PharmacyGroupPageController {
         Allergies allergies = patientService.getAllergies(patient);
         model.addAttribute("allergies", allergies);
         
-        List<Date> expiryDate = new ArrayList<>();
-        for(Date d : drugExpiryDate){
-            if(d != null)
-                expiryDate.add(d);                
-        }
-        
-        List<String> comments = new ArrayList<>();
-        for(String comment : commentForPatient){
-            if(!comment.equals(""))
-                comments.add(comment);                
-        }
-        
-        
         if (StringUtils.isNotBlank(action)) {
             try {
                 if ("Confirm".equals(action)) {
@@ -79,9 +64,7 @@ public class PharmacyGroupPageController {
                             
                             int orderID = Integer.parseInt(Long.toString(groupCheckBox[i]));
                             drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
-
-                            drugorder.setCommentForOrderer(groupComments);
-
+                            
                             //Change Order Status when Pharmacist performs a new action on the Order
                             if(groupAction.equals("Discard")) {
                                 drugorder.setForDiscard(1);
@@ -93,6 +76,9 @@ public class PharmacyGroupPageController {
                                 if(drugorder.getForDiscard()== 1)
                                     drugorder.setForDiscard(0);
                             }
+                            if(groupComments != null)
+                                drugorder.setCommentForOrderer(groupComments);
+                            
                             if(groupAction.equals("Dispatch")){
                                 //Change Order Status when Pharmacist performs a new action on the Order
                                 if(drugorder.getForDiscard() == 1)
@@ -105,18 +91,22 @@ public class PharmacyGroupPageController {
                                     drugorder.setRefill(drugorder.getRefill() - 1);
                                 } 
                                 else {
-                                    if (drugorder.getOrderStatus().equals("Active")) {
-                                        drugorder.setOrderStatus("Non-Active");
-                                    } else if (drugorder.getOrderStatus().equals("Active-Group")) {
-                                        drugorder.setOrderStatus("Non-Active-Group");
-                                    } else if (drugorder.getOrderStatus().equals("Active-Plan")) {
-                                        drugorder.setOrderStatus("Non-Active-Plan");
+                                    switch (drugorder.getOrderStatus()) {
+                                        case "Active":
+                                            drugorder.setOrderStatus("Non-Active");
+                                            break;
+                                        case "Active-Group":
+                                            drugorder.setOrderStatus("Non-Active-Group");
+                                            break;
+                                        case "Active-Plan":
+                                            drugorder.setOrderStatus("Non-Active-Plan");
+                                            break;
                                     }
-
                                     Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
                                 }
-                                drugorder.setDrugExpiryDate(expiryDate.get(i));
-                                drugorder.setCommentForPatient(comments.get(i));
+                                
+                                drugorder.setDrugExpiryDate(drugExpiryDate[i]);                                    
+                                drugorder.setCommentForPatient(commentForPatient[i]);
                                 
                                 printOrder(drugorder.getOrderId());
                             }

@@ -14,7 +14,7 @@
                 <h3 id="dialog-heading">${ ui.message("Record Action") }</h3>
             </div>
 
-            <h4 id="heading"><strong>Selected Group Order(s)</strong></h4><br/>
+            <h4 id="heading"><strong>Selected Order(s)</strong></h4><br/>
             
             <div class="group">
                 <% groupOrderMain.each { groupOrder -> %>
@@ -24,36 +24,12 @@
                                 
                         <div id="view_order_detail">
                             <span id="drug_name">
-                                <h5><input type="checkbox" name="groupCheckBox" value="${ groupOrder.key }" ng-model="groupCheckBox" /></span>
+                                <h5><input type="checkbox" class="groupCheckBox" name="groupCheckBox" value="${ groupOrder.key }" ng-model="groupCheckBox" /></span>
                                     <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
                                     <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
                                     <strong>${ groupOrderExtn.get(groupOrder.key).drugName.getDisplayString() }</strong>
                                 </h5>
                             </span>
-                        </div>
-
-                        <div class="dispatchFields">
-                            <div class="fields" id="view_order_detail">
-                                <div id="order_label">
-                                    <label>Expiry<span id="asterisk">*</span></label>
-                                </div>
-                                <div id="order_value">
-                                    <input type="date" class="drugExpiryDate" value="" name="drugExpiryDate">
-                                </div>
-                            </div> 
-                            
-                            <br/><br/>
-                            
-                            <div class="fields" id="view_order_detail">
-                                <div id="order_label">
-                                    <label>Note<span id="asterisk">*</span></label>
-                                </div>
-                                <div id="order_value">
-                                    <input type="text" class="commentForPatient" value="" name="commentForPatient">
-                                </div>
-                            </div> 
-                            
-                            <br/><br/>
                         </div>
 
                         <div class="additionalInformation">
@@ -103,13 +79,10 @@
                                 <div id="order_value"><input type="text" class="group_order_order_refillInterval" name="group_order_order_refillInterval" value="${ groupOrderExtn.get(groupOrder.key).refillInterval }" readonly /></div>
                             </div>  
 
-                            <br/><br/>
-                            
-                            <div class="fields" id="view_order_detail">
-                                <p>Instructions from Physician for</p>
-                            </div>
+                            <br/><br/><br/>
 
                             <div class="fields" id="view_order_detail">
+                                <p>Instructions from Physician for</p>
                                 <div id="order_label"><label>Patient</label></div>
                                 <div id="order_value"><input type="text" class="group_order_patient_instructions" name="group_order_patient_instructions" value="${ groupOrderExtn.get(groupOrder.key).patientInstructions }" readonly /></div>
                             </div>     
@@ -123,6 +96,31 @@
 
                             <br/><br/>
                         </div><br/>
+                        
+                        <div class="dispatchFields">
+                            <div class="fields" id="view_order_detail">
+                                <div id="order_label">
+                                    <label>Expiry<span id="asterisk">*</span></label>
+                                </div>
+                                <div id="order_value">
+                                    <input type="date" class="drugExpiryDate" value="${ expiryDate.format('yyyy-MM-dd') }" name="drugExpiryDate">
+                                </div>
+                            </div> 
+                            
+                            <br/><br/>
+                            
+                            <div class="fields" id="view_order_detail">
+                                <div id="order_label">
+                                    <label>Note<span id="asterisk">*</span></label>
+                                </div>
+                                <div id="order_value">
+                                    <input type="text" class="commentForPatient" value=" " name="commentForPatient">
+                                </div>
+                            </div> 
+                            
+                            <br/><br/>
+                        </div>
+                        
                     </div>
                     <% provider_name = provider.get(groupOrder.key) %>
                 <% } %>
@@ -137,21 +135,21 @@
                 Click <a href="#" onclick="submitDispatch()">here</a> to Print Label<br/><br/>
             </div>
             
-            <span id="pharmaGroupButtons"><br/>
-                <div class="fields"><input class="confirm right" id="btn-place" value="Dispatch" type="button" onclick="showPharmaConfirmationSection('Dispatch')" /></div><br/><br/>
-                <div class="fields"><input class="confirm right" id="btn-place" value="On Hold" type="button" onclick="showPharmaConfirmationSection('On Hold')" /></div><br/><br/>
-                <div class="fields"><input class="confirm right" id="btn-place" value="Discard" type="button" onclick="showPharmaConfirmationSection('Discard')" />
-                <input class="cancel" id="btn-place" value="Cancel" type="submit" /></div>
+            <span id="pharmaGroupButtons">
+                <div class="fields" id="btn-place">
+                    <input class="confirm right" type="button" value="Dispatch" onclick="showPharmaConfirmationSection('Dispatch')" /> <br/><br/>
+                    <input class="confirm right" type="button" value="On Hold" onclick="showPharmaConfirmationSection('On Hold')" /> <br/><br/>
+                    <input class="confirm right" type="button" value="Discard" onclick="showPharmaConfirmationSection('Discard')" />
+                    <input class="cancel left"   type="submit" value="Cancel"  />
+                </div>
             </span>
             
             <input type="hidden" id="pharmaGroupAction" name="pharmaGroupAction" />
             
             <div id="confirmButtons">
-                <div class="fields">
-                    <input class="confirm right" id="btn-place" type="submit" name="action" value="Confirm" />
-                </div>
-                <div class="fields">
-                    <input class="cancel left" id="btn-place" type="button" value="Back" onclick="showPharmaOrderViewSection()" />
+                <div class="fields" id="btn-place">
+                    <input class="confirm right" id="confirmBtn1" type="submit" name="action" value="Confirm" />
+                    <input class="cancel left" type="button" value="Back" onclick="showPharmaOrderViewSection()" />
                 </div>
             </div>
                     
@@ -160,13 +158,11 @@
                     <label>Comments</label>
                 </div>
                 <div class="fields">
-                    <input type="textarea" maxlength="100" id="groupComments" name="groupComments" placeholder="Enter Comments for the Orderer"/>
-                </div><br/>
-                <div class="fields">
-                    <input class="confirm right" id="btn-place" type="submit" name="action" value="Confirm" />
-                </div>
-                <div class="fields">
-                    <input class="cancel" id="btn-place" value="Back" type="button" onclick="showPharmaOrderViewSection()" />
+                    <input type="textarea" maxlength="100" id="groupComments" name="groupComments" placeholder="Enter Comments for the Orderer"/><br/>
+                    <div id="btn-place">
+                        <input class="confirm right" id="confirmBtn2" type="submit" name="action" value="Confirm" />
+                        <input class="cancel" value="Back" type="button" onclick="showPharmaOrderViewSection()" />
+                    </div>
                 </div>
             </span>
             
