@@ -136,23 +136,20 @@ public class PharmacyGroupPageController {
                     "Start Date: " + drugorder.getStartDate().toString() + "\n" +
                     "Patient Instructions: " + drugorder.getPatientInstructions();
             
-            InputStream is = new ByteArrayInputStream(OrderDetails.getBytes());
-            
-            PrintRequestAttributeSet  pras = new HashPrintRequestAttributeSet();
-            pras.add(new Copies(1));
-            
-            if(service != null){
-                DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
-                Doc doc = new SimpleDoc(is, flavor, null);
-                DocPrintJob job = service.createPrintJob();
-
-                job.print(doc, pras);
+            try (InputStream is = new ByteArrayInputStream(OrderDetails.getBytes())) {
+                PrintRequestAttributeSet  pras = new HashPrintRequestAttributeSet();
+                pras.add(new Copies(1));
+                
+                if(service != null){
+                    DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
+                    Doc doc = new SimpleDoc(is, flavor, null);
+                    DocPrintJob job = service.createPrintJob();
+                    
+                    job.print(doc, pras);
+                }
             }
-            is.close();
             
-        } catch (IOException ex) {
-            Logger.getLogger(PharmacyGroupPageController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PrintException ex) {
+        } catch (IOException | PrintException ex) {
             Logger.getLogger(PharmacyGroupPageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

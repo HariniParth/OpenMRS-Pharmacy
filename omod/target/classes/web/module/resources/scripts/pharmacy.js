@@ -6,7 +6,6 @@
 
 /* global jq, emr */
 
-var removeFromHoldDialog = null;
 var mailWindowDialog = null;
 
 $(document).ready( function() {
@@ -35,18 +34,7 @@ $(document).ready( function() {
     
     if(document.getElementsByClassName('group_order_order_details')){
         highlightGroup();
-    }
-    
-    removeFromHoldDialog = emr.setupConfirmationDialog({
-        selector: '#removeHold',
-        actions: {
-            cancel: function() {
-            	removeFromHoldDialog.close();
-                clearHighlights();
-            }
-        }
-    });
-       
+    }       
     
     $("#confirmBtn1").prop("disabled", true);
     $("#confirmBtn2").prop("disabled", true);
@@ -138,6 +126,10 @@ function clearHighlights(){
 
 function closeAllOrdersWindow(){
     jq("#allOrdersTableWrapper").hide();
+}
+
+function closeRemoveOrderHoldWindow(){
+    jq("#removeHold").hide();
 }
 
 function autoCompletePatientName(patientNameList){
