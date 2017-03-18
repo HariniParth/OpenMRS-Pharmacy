@@ -6,6 +6,7 @@
 
 /* global jq, emr */
 
+var removeFromHoldDialog = null;
 var mailWindowDialog = null;
 
 $(document).ready( function() {
@@ -43,6 +44,17 @@ $(document).ready( function() {
         enableConfirmBtn();
     }); 
     
+    removeFromHoldDialog = emr.setupConfirmationDialog({
+        selector: '#removeHold',
+        actions: {
+            cancel: function() {
+            	removeFromHoldDialog.close();
+                clearHighlights();
+            }
+        }
+    });
+    
+    removeFromHoldDialog.show();
 });
 
 function enableConfirmBtn(){
