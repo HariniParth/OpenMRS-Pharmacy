@@ -96,9 +96,13 @@ and open the template in the editor.
     cursor: pointer;
 }
 
-.setHome:hover td:not(:last-child), .singleHome:hover td:not(:last-child){
+.setHome:hover td:not(:first-child), .singleHome:hover td:not(:first-child){
     background: #75b2f0;
     color: white;
+}
+
+.selectSingle > input, .selectGroup > input{
+    margin: auto;
 }
 
 #associatedOrdersTableWrapper .dataTables_wrapper, #otherOrdersTableWrapper .dataTables_wrapper, .dataTables_wrapper, #activeOrdersWindow .dataTables_wrapper{
@@ -298,11 +302,11 @@ form select, .form select {
     text-decoration: none !important;
 }
 
-.groupHome.onHold > div > div:not(.l21), .singleHome.onHold td:not(:first-child):not(:last-child), .singleRow.onHold > *, .groupElement.onHold > *{
+.groupHome.onHold > div > div:not(.l21), .singleHome.onHold td:not(:first-child):not(:nth-child(2)), .singleRow.onHold > *, .groupElement.onHold > *{
     color: orange;
 }
 
-.groupHome.forDiscard > div > div:not(.l21), .groupHome.forDiscard > div > div > *, .singleHome.forDiscard > td:not(:first-child):not(:last-child), .singleRow.forDiscard > *, .groupElement.forDiscard > div > div > *{
+.groupHome.forDiscard > div > div:not(.l21), .groupHome.forDiscard > div > div > *, .singleHome.forDiscard > td:not(:first-child):not(:nth-child(2)), .singleRow.forDiscard > *, .groupElement.forDiscard > div > div > *{
     color: orangered;
     text-decoration: line-through;
 }
@@ -321,14 +325,6 @@ form select, .form select {
     font-size: 10px;
     font-weight: bold;
     vertical-align: top;
-}
-
-#nonActiveTable td:last-child > i{
-    color: green;
-}
-
-#nonActiveTable td:last-child > i:hover{
-    cursor: pointer;
 }
 
 #patientTableWrapper .dataTables_wrapper{
