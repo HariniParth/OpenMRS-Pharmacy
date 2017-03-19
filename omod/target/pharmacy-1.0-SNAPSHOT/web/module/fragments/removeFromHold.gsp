@@ -12,7 +12,7 @@
 
             <h4 id="heading"><strong>Remove hold on selected Orders?</strong></h4><br/>
 
-            <input type="hidden" value="${ listOfOrders }" name="ordersOnHold" />
+            <input type="hidden" value="${ listOfOrders }" id="ordersOnHold" name="ordersOnHold" />
 
             <div class="fields">
                 <button class="confirm right" id="btn-place" type="submit">Confirm</button>

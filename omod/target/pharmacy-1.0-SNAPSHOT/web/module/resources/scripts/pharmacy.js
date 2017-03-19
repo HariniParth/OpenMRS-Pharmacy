@@ -7,16 +7,14 @@
 /* global jq, emr */
 
 var removeFromHoldDialog = null;
-var mailWindowDialog = null;
 
 $(document).ready( function() {
     
     $(document).mouseup(function (e){
         var objects = $('.dialog');
-        var mailDialog = $('#mailWindow');
         
         $(objects).each(function(){
-            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && !$(mailDialog).is(e.target) && $(mailDialog).has(e.target).length === 0){
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0){
                 $(this).hide();
                 clearHighlights();
             }
@@ -35,7 +33,20 @@ $(document).ready( function() {
     
     if(document.getElementsByClassName('group_order_order_details')){
         highlightGroup();
-    }       
+    }
+    
+    removeFromHoldDialog = emr.setupConfirmationDialog({
+        selector: '#removeHold',
+        actions: {
+            cancel: function() {
+            	removeFromHoldDialog.close();
+            }
+        }
+    });
+    
+    if($("#ordersOnHold").val() !== undefined){
+        removeFromHold();
+    }
     
     $("#confirmBtn1").prop("disabled", true);
     $("#confirmBtn2").prop("disabled", true);
@@ -44,18 +55,11 @@ $(document).ready( function() {
         enableConfirmBtn();
     }); 
     
-    removeFromHoldDialog = emr.setupConfirmationDialog({
-        selector: '#removeHold',
-        actions: {
-            cancel: function() {
-            	removeFromHoldDialog.close();
-                clearHighlights();
-            }
-        }
-    });
-    
-    removeFromHoldDialog.show();
 });
+
+function removeFromHold(){
+    removeFromHoldDialog.show();
+}
 
 function enableConfirmBtn(){
     
