@@ -47,7 +47,13 @@ and open the template in the editor.
     padding-left: 10px;
 }
 
-.additionalInformation, .dispatchFields{
+.additionalInformation, #drugDetails{
+    font-size: 14px;
+    margin-left: 40px;
+    padding-bottom: 10px;
+}
+
+.dispatchFields{
     margin-left: 40px;
 }
 
@@ -67,6 +73,11 @@ and open the template in the editor.
 #order_value{
     width: 70%;
     float: right;
+}
+
+.dialog input[type="text"]{
+    width: 80% !important;
+    box-sizing: border-box !important;
 }
 
 .dialog .dialog-header{
@@ -114,7 +125,7 @@ and open the template in the editor.
     display: none;
 }
 
-#currentDrugOrdersTable, #associatedOrdersTable, #allOrdersTable, #currentGroupOrdersTable, #drug_name {
+#currentDrugOrdersTable, #associatedOrdersTable, #allOrdersTable, #currentGroupOrdersTable, #drugName{
     font-size: 13px;
 }
 
@@ -311,7 +322,7 @@ form select, .form select {
     text-decoration: line-through;
 }
 
-.groupElement, #removeHold{
+.groupElement, #removeHold, .additionalInformation{
     overflow: hidden;
 }
 

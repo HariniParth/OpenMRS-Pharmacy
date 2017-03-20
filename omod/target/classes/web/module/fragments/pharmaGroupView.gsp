@@ -23,7 +23,7 @@
                     <div class="groupItem">
                                 
                         <div id="view_order_detail">
-                            <span id="drug_name">
+                            <span id="drugName">
                                 <h5><input type="checkbox" class="groupCheckBox" name="groupCheckBox" value="${ groupOrder.key }" ng-model="groupCheckBox" /></span>
                                     <i class="icon-plus-sign edit-action" title="${ ui.message("Show") }"></i>
                                     <i class="icon-minus-sign edit-action" title="${ ui.message("Hide") }"></i>
@@ -32,34 +32,34 @@
                             </span>
                         </div>
 
+                        <div class="fields" id="drugDetails">Dose: ${ groupOrder.value.dose } ${ groupOrder.value.doseUnits.getDisplayString() }, Quantity: ${ groupOrder.value.quantity } ${ groupOrder.value.quantityUnits.getDisplayString() }</div>
+                        
                         <div class="additionalInformation">
-                            <div class="fields" id="view_order_detail">
-                                <div id="order_label"><label>Order</label></div>
-                                <div id="order_value"><input type="text" class="group_order_order_details" name="group_order_order_details" value="${ groupOrderExtn.get(groupOrder.key).drugName.getDisplayString() }, ${ groupOrder.value.route.getDisplayString() }, ${ groupOrder.value.dose } ${ groupOrder.value.doseUnits.getDisplayString() }, ${ groupOrder.value.duration } ${ groupOrder.value.durationUnits.getDisplayString() }, ${ groupOrder.value.quantity } ${ groupOrder.value.quantityUnits.getDisplayString() }, ${ groupOrder.value.frequency }" readonly /></div>
-                            </div>     
-
-                            <br/><br/>
                             
                             <div class="fields" id="view_order_detail">
-                                <div id="order_label"><label>Allergy</label></div>
-                                <div id="order_value"><input type="text" class="group_order_order_allergic" name="group_order_order_allergic" value="${ groupOrderExtn.get(groupOrder.key).isAllergicOrderReasons }" readonly /></div>
+                                <div id="order_label">Details</div>
+                                <div id="order_value">Route: ${ groupOrder.value.route.getDisplayString() }, Duration: ${ groupOrder.value.duration } ${ groupOrder.value.durationUnits.getDisplayString() }, Frequency: ${ groupOrder.value.frequency }</div>
                             </div>
                             
-                            <br/><br/>
-                            
                             <div class="fields" id="view_order_detail">
-                                <div id="order_label"><label>Diagnosis</label></div>
-                                <div id="order_value"><input type="text" class="group_order_order_diagnosis" name="group_order_order_diagnosis" value="${ groupOrderExtn.get(groupOrder.key).associatedDiagnosis.getDisplayString() }" readonly /></div>
+                                <div id="order_label">Diagnosis</div>
+                                <div id="order_value">${ groupOrderExtn.get(groupOrder.key).associatedDiagnosis.getDisplayString() }</div>
                             </div>
-
-                            <br/><br/>
                             
                             <div class="fields" id="view_order_detail">
-                                <div id="order_label"><label>Refills</label></div>
-                                <div id="order_value"><input type="text" class="group_order_order_refill" name="group_order_order_refill" value="${ groupOrderExtn.get(groupOrder.key).refill }" readonly /></div>
-                            </div> 
-
-                            <br/><br/>
+                                <div id="order_label">Allergy</div>
+                                <div id="order_value">${ groupOrderExtn.get(groupOrder.key).isAllergicOrderReasons }</div>
+                            </div>
+                            
+                            <div class="fields" id="view_order_detail">
+                                <div id="order_label">Refills</div>
+                                <div id="order_value">${ groupOrderExtn.get(groupOrder.key).refill }</div>
+                            </div>
+                            
+                            <div class="fields" id="view_order_detail">
+                                <div id="order_label">Interval</div>
+                                <div id="order_value">${ groupOrderExtn.get(groupOrder.key).refillInterval }</div>
+                            </div>
                             
                             <% if(groupOrderExtn.get(groupOrder.key).lastDispatchDate != null) { %>
                                 <% last_dispatch_date = groupOrderExtn.get(groupOrder.key).lastDispatchDate.format('yyyy-MM-dd'); %>
@@ -68,59 +68,42 @@
                             <% } %>
 
                             <div class="fields" id="view_order_detail">
-                                <div id="order_label"><label>Last Refill</label></div>
-                                <div id="order_value"><input type="text" id="group_order_last_dispatch_date" name="group_order_last_dispatch_date" value="${ last_dispatch_date }" readonly /></div>
-                            </div>   
-
-                            <br/><br/>
+                                <div id="order_label">Last Refill</div>
+                                <div id="order_value">${ last_dispatch_date }</div>
+                            </div>
+                            
+                            <div class="fields" id="view_order_detail">
+                                <div id="order_label">Instructions</div>
+                                <div id="order_value">for</div>
+                            </div>
 
                             <div class="fields" id="view_order_detail">
-                                <div id="order_label"><label>Interval</label></div>
-                                <div id="order_value"><input type="text" class="group_order_order_refillInterval" name="group_order_order_refillInterval" value="${ groupOrderExtn.get(groupOrder.key).refillInterval }" readonly /></div>
-                            </div>  
-
-                            <br/><br/><br/>
+                                <div id="order_label">Patient</div>
+                                <div id="order_value">${ groupOrderExtn.get(groupOrder.key).patientInstructions }</div>
+                            </div>
 
                             <div class="fields" id="view_order_detail">
-                                <p>Instructions from Physician for</p>
-                                <div id="order_label"><label>Patient</label></div>
-                                <div id="order_value"><input type="text" class="group_order_patient_instructions" name="group_order_patient_instructions" value="${ groupOrderExtn.get(groupOrder.key).patientInstructions }" readonly /></div>
-                            </div>     
-
-                            <br/><br/>
-
-                            <div class="fields" id="view_order_detail">
-                                <div id="order_label"><label>Pharmacy</label></div>
-                                <div id="order_value"><input type="text" class="group_order_pharmacist_instructions" name="group_order_pharmacist_instructions" value="${ groupOrderExtn.get(groupOrder.key).pharmacistInstructions }" readonly /></div>
-                            </div>    
-
-                            <br/><br/>
-                        </div><br/>
+                                <div id="order_label">Pharmacy</div>
+                                <div id="order_value">${ groupOrderExtn.get(groupOrder.key).pharmacistInstructions }</div>
+                            </div><br/>
+                            
+                        </div>
                         
                         <div class="dispatchFields">
                             <div class="fields" id="view_order_detail">
-                                <div id="order_label">
-                                    <label>Expiry<span id="asterisk">*</span></label>
-                                </div>
-                                <div id="order_value">
-                                    <input type="date" class="drugExpiryDate" value="${ expiryDate.format('yyyy-MM-dd') }" name="drugExpiryDate">
-                                </div>
-                            </div> 
-                            
+                                <div id="order_label"><label>Expiry<span id="asterisk">*</span></label></div>
+                                <div id="order_value">${ ui.includeFragment("uicommons", "field/datetimepicker", [ class: 'drugExpiryDate', label: '', formFieldName: 'drugExpiryDate', useTime: '', defaultDate: expiryDate ]) }</div>
+                            </div>
+                                
                             <br/><br/>
                             
                             <div class="fields" id="view_order_detail">
-                                <div id="order_label">
-                                    <label>Note<span id="asterisk">*</span></label>
-                                </div>
-                                <div id="order_value">
-                                    <input type="text" class="commentForPatient" value=" " name="commentForPatient">
-                                </div>
-                            </div> 
+                                <div id="order_label"><label>Note<span id="asterisk">*</span></label></div>
+                                <div id="order_value"><input type="text" class="commentForPatient" value=" " name="commentForPatient"></div>
+                            </div>
                             
                             <br/><br/>
                         </div>
-                        
                     </div>
                     <% provider_name = provider.get(groupOrder.key) %>
                 <% } %>
