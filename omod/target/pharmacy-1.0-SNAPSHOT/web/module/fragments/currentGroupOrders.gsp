@@ -52,7 +52,7 @@
                                             <% if(order.lastDispatchDate != null) { %>
                                                 <% last_dispatch_date = order.lastDispatchDate.format('yyyy-MM-dd'); %>
                                             <% } else { %>
-                                                <% last_dispatch_date = order.lastDispatchDate; %>
+                                                <% last_dispatch_date = "NA"; %>
                                             <% } %>
 
                                             <div class="g4">${ last_dispatch_date }</div>
@@ -98,7 +98,7 @@
                                             <% if(order.lastDispatchDate != null) { %>
                                                 <% last_dispatch_date = order.lastDispatchDate.format('yyyy-MM-dd'); %>
                                             <% } else { %>
-                                                <% last_dispatch_date = order.lastDispatchDate; %>
+                                                <% last_dispatch_date = "NA"; %>
                                             <% } %>
 
                                             <div class="g4">${ last_dispatch_date }</div>
@@ -127,7 +127,7 @@
                         <% if(patientSingleOrder.lastDispatchDate != null) { %>
                             <% last_dispatch_date = patientSingleOrder.lastDispatchDate.format('yyyy-MM-dd'); %>
                         <% } else { %>
-                            <% last_dispatch_date = patientSingleOrder.lastDispatchDate; %>
+                            <% last_dispatch_date = "NA"; %>
                         <% } %>
                             
                         <td>${ last_dispatch_date }</td>

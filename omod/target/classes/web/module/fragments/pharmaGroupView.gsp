@@ -2,6 +2,7 @@
     ui.includeCss("pharmacy", "pharmacy.css")
     def list_of_orders = "";
     def provider_name = "";
+    def allergic_order = "";
     def last_dispatch_date = "";
 %>
 
@@ -46,9 +47,15 @@
                                 <div id="order_value">${ groupOrderExtn.get(groupOrder.key).associatedDiagnosis.getDisplayString() }</div>
                             </div>
                             
+                            <% if(groupOrderExtn.get(groupOrder.key).isAllergicOrderReasons != null) { %>
+                                <% allergic_order = groupOrderExtn.get(groupOrder.key).isAllergicOrderReasons; %>
+                            <% } else { %>
+                                <% allergic_order = "NA"; %>
+                            <% } %>
+                            
                             <div class="fields" id="view_order_detail">
                                 <div id="order_label">Allergy</div>
-                                <div id="order_value">${ groupOrderExtn.get(groupOrder.key).isAllergicOrderReasons }</div>
+                                <div id="order_value">${ allergic_order }</div>
                             </div>
                             
                             <div class="fields" id="view_order_detail">
@@ -58,13 +65,13 @@
                             
                             <div class="fields" id="view_order_detail">
                                 <div id="order_label">Interval</div>
-                                <div id="order_value">${ groupOrderExtn.get(groupOrder.key).refillInterval }</div>
+                                <div id="order_value">${ groupOrderExtn.get(groupOrder.key).refillInterval } (days)</div>
                             </div>
-                            
+                                                        
                             <% if(groupOrderExtn.get(groupOrder.key).lastDispatchDate != null) { %>
                                 <% last_dispatch_date = groupOrderExtn.get(groupOrder.key).lastDispatchDate.format('yyyy-MM-dd'); %>
                             <% } else { %>
-                                <% last_dispatch_date = groupOrderExtn.get(groupOrder.key).lastDispatchDate; %>
+                                <% last_dispatch_date = "NA"; %>
                             <% } %>
 
                             <div class="fields" id="view_order_detail">
@@ -74,7 +81,7 @@
                             
                             <div class="fields" id="view_order_detail">
                                 <div id="order_label">Instructions</div>
-                                <div id="order_value">for</div>
+                                <div id="order_value">-</div>
                             </div>
 
                             <div class="fields" id="view_order_detail">
