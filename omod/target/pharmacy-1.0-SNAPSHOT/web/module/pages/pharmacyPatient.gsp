@@ -40,7 +40,7 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
     </table>
 </div>
 
-<br/><br/> ${ ui.includeFragment("pharmacy", "removeFromHold") } <br/><br/>
+${ ui.includeFragment("pharmacy", "removeFromHold") } <br/><br/>
 
 <p><strong>ORDERS Hold/Discard</strong></p><br/>
 
@@ -171,10 +171,10 @@ ${ ui.includeFragment("pharmacy", "searchBarByPatient") } <br/>
                     </tr>
                 <% } %>
             </tbody>
-        </table>
+        </table> <br/><br/>
 
         <div class="pull-right">
-            <button type="submit" name="action" value="removeHold">Remove Hold</button>
+            <button type="button" onclick="showRemoveOrderHoldWindow()">Remove Hold</button>
         </div>
     </form>
 </div>

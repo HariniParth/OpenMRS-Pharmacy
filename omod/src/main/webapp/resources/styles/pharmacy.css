@@ -121,7 +121,7 @@ and open the template in the editor.
     min-height: 152px;
 }
 
-.icon-minus-sign.edit-action, .additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #confirmButtons, #contactLabel, #ordererContact, .dispatchFields{
+.icon-minus-sign.edit-action, .additionalInformation, #pharmaGroupActionButtons, #statusLabel, #printLabel, #confirmButtons, #contactLabel, #ordererContact, .dispatchFields, #removeHold{
     display: none;
 }
 
@@ -338,7 +338,7 @@ form select, .form select {
     vertical-align: top;
 }
 
-#patientTableWrapper .dataTables_wrapper{
+#patientTableWrapper .dataTables_wrapper, #nonActiveTableWrapper .dataTables_wrapper{
     _height: 75px;
     min-height: 75px;
 }

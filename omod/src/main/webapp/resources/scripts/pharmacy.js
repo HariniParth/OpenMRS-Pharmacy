@@ -44,10 +44,6 @@ $(document).ready( function() {
         }
     });
     
-    if($("#ordersOnHold").val() !== undefined){
-        removeFromHold();
-    }
-    
     $("#confirmBtn1").prop("disabled", true);
     $("#confirmBtn2").prop("disabled", true);
     
@@ -57,8 +53,12 @@ $(document).ready( function() {
     
 });
 
-function removeFromHold(){
+function showRemoveOrderHoldWindow(){
     removeFromHoldDialog.show();
+}
+
+function removeHoldOnOrders(){
+    $("#nonActiveTableForm").submit();
 }
 
 function enableConfirmBtn(){
@@ -144,10 +144,6 @@ function closeAllOrdersWindow(){
     jq("#allOrdersTableWrapper").hide();
 }
 
-function closeRemoveOrderHoldWindow(){
-    jq("#removeHold").hide();
-}
-
 function autoCompletePatientName(patientNameList){
     var list = patientNameList.replace("[","").replace("]","").split(',');
     console.log(list);
@@ -225,7 +221,7 @@ function showPharmaOrderViewSection(){
     jq("#pharmaGroupActionButtons").hide();
     
     jq("#pharmaGroupButtons").show();
-    document.getElementById("#pharmaGroupButtons").style.display = 'block';
+    document.getElementById("pharmaGroupButtons").style.display = 'block';
 }
 
 function clearPatientTableFIlters(){
