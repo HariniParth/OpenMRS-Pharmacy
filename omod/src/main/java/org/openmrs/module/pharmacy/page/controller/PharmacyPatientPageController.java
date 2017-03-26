@@ -130,9 +130,9 @@ public class PharmacyPatientPageController {
             }
             
             //Store the list of Patient's name who have an Order that is On-Hold or For-Discard
-            if(!patientName.containsKey(Integer.parseInt(order.getPatientId()))){
-                Patient patient = Context.getPatientService().getPatient(Integer.parseInt(order.getPatientId()));
-                patientName.put(Integer.parseInt(order.getPatientId()), patient.getGivenName()+" "+patient.getFamilyName());
+            if(!patientName.containsKey(order.getPatientId())){
+                Patient patient = Context.getPatientService().getPatient(order.getPatientId());
+                patientName.put(order.getPatientId(), patient.getGivenName()+" "+patient.getFamilyName());
             }
         }
         model.addAttribute("patientName", patientName);

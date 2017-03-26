@@ -66,55 +66,57 @@ public class PharmacyGroupPageController {
                             drugorders drugorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(orderID);
                             
                             //Change Order Status when Pharmacist performs a new action on the Order
-                            if(groupAction.equals("Discard")) {
-                                drugorder.setForDiscard(1);
-                                if(drugorder.getOnHold() == 1)
-                                    drugorder.setOnHold(0);
-                            }
-                            if(groupAction.equals("On Hold")){
-                                drugorder.setOnHold(1);
-                                if(drugorder.getForDiscard()== 1)
-                                    drugorder.setForDiscard(0);
-                            }
-                            if(groupComments != null)
-                                drugorder.setCommentForOrderer(groupComments);
-                            
-                            if(groupAction.equals("Dispatch")){
-                                //Change Order Status when Pharmacist performs a new action on the Order
-                                if(drugorder.getForDiscard() == 1)
-                                    drugorder.setForDiscard(0);
-                                else if(drugorder.getOnHold() == 1)
-                                    drugorder.setOnHold(0);
-
-                                if (drugorder.getRefill() > 0) {
-                                    drugorder.setLastDispatchDate(Calendar.getInstance().getTime());
-                                    drugorder.setRefill(drugorder.getRefill() - 1);
-                                } 
-                                else {
-                                    switch (drugorder.getOrderStatus()) {
-                                        case "Active":
-                                            drugorder.setOrderStatus("Non-Active");
-                                            break;
-                                        case "Active-Group":
-                                            drugorder.setOrderStatus("Non-Active-Group");
-                                            break;
-                                        case "Active-Plan":
-                                            drugorder.setOrderStatus("Non-Active-Plan");
-                                            break;
+                            switch (groupAction) {
+                                case "Discard":
+                                    drugorder.setForDiscard(1);
+                                    if(drugorder.getOnHold() == 1)
+                                        drugorder.setOnHold(0);
+                                    if(groupComments != null)
+                                        drugorder.setCommentForOrderer(groupComments);
+                                    break;
+                                case "On Hold":
+                                    drugorder.setOnHold(1);
+                                    if(drugorder.getForDiscard()== 1)
+                                        drugorder.setForDiscard(0);
+                                    if(groupComments != null)
+                                        drugorder.setCommentForOrderer(groupComments);
+                                    break;
+                                case "Dispatch":
+                                    //Change Order Status when Pharmacist performs a new action on the Order
+                                    if(drugorder.getForDiscard() == 1)
+                                        drugorder.setForDiscard(0);
+                                    else if(drugorder.getOnHold() == 1)
+                                        drugorder.setOnHold(0);
+                                    if (drugorder.getRefill() > 0) {
+                                        drugorder.setLastDispatchDate(Calendar.getInstance().getTime());
+                                        drugorder.setRefill(drugorder.getRefill() - 1);
                                     }
-                                    Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
-                                }
-                                
-                                drugorder.setDrugExpiryDate(drugExpiryDate[i]);                                    
-                                drugorder.setCommentForPatient(commentForPatient[i]);
-                                
-                                printOrder(drugorder.getOrderId());
+                                    else {
+                                        switch (drugorder.getOrderStatus()) {
+                                            case "Active":
+                                                drugorder.setOrderStatus("Non-Active");
+                                                break;
+                                            case "Active-Group":
+                                                drugorder.setOrderStatus("Non-Active-Group");
+                                                break;
+                                            case "Active-Plan":
+                                                drugorder.setOrderStatus("Non-Active-Plan");
+                                                break;
+                                        }
+                                        Context.getOrderService().voidOrder(Context.getOrderService().getOrder(drugorder.getOrderId()), "No Longer Active");
+                                    }   
+                                    drugorder.setDrugExpiryDate(drugExpiryDate[i]);
+                                    drugorder.setCommentForPatient(commentForPatient[i]);
+                                    
+                                    printOrder(drugorder.getOrderId());
+                                    break;
                             }
                             Context.getService(drugordersService.class).saveDrugOrder(drugorder);
                         }
                     }
                 }
-            } catch (NumberFormatException | APIException e) {
+            } 
+            catch (NumberFormatException | APIException e) {
                 System.out.println(e.toString());
             }
             InfoErrorMessageUtil.flashInfoMessage(session, "Order Status - " + groupAction);
