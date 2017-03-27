@@ -10,9 +10,9 @@ import org.openmrs.DrugOrder;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
-import org.openmrs.module.drugorders.api.drugordersdiseasesService;
+import org.openmrs.module.drugorders.api.planordersService;
 import org.openmrs.module.drugorders.drugorders;
-import org.openmrs.module.drugorders.drugordersdiseases;
+import org.openmrs.module.drugorders.planorders;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,9 +61,9 @@ public class PharmaOrderViewFragmentController {
             }
             
             if(orderExtn.getOrderStatus().equals("Active-Plan")){
-                drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(orderExtn.getOrderId());
-                List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanId());
-                for(drugordersdiseases plan : planOrders){
+                planorders planOrder = Context.getService(planordersService.class).getDrugOrderByOrderID(orderExtn.getOrderId());
+                List<planorders> planOrders = Context.getService(planordersService.class).getDrugOrdersByPlanID(planOrder.getPlanId());
+                for(planorders plan : planOrders){
                     associatedOrders = associatedOrders + Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()).getDrugName().getDisplayString() + " ";
                 }
                 

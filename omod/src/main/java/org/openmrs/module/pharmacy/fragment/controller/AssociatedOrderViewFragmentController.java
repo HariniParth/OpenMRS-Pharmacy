@@ -15,9 +15,9 @@ import org.openmrs.Person;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
-import org.openmrs.module.drugorders.api.drugordersdiseasesService;
+import org.openmrs.module.drugorders.api.planordersService;
 import org.openmrs.module.drugorders.drugorders;
-import org.openmrs.module.drugorders.drugordersdiseases;
+import org.openmrs.module.drugorders.planorders;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -58,13 +58,13 @@ public class AssociatedOrderViewFragmentController {
                             OrdererName.put(oExtn.getOrderId(), person.getGivenName()+" "+person.getFamilyName());
                         }
                         
-                    } else if(Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID)) != null){
+                    } else if(Context.getService(planordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID)) != null){
                         
                         //Fetch all Orders that were ordered as a part of Med Plan with the recorded OrderInteger
-                        List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(drugorder.getPatientId()));
+                        List<planorders> planOrderList = Context.getService(planordersService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(drugorder.getPatientId()));
                         List<drugorders> orderExtn = new ArrayList<>();
                         
-                        for(drugordersdiseases planOrder : planOrderList){
+                        for(planorders planOrder : planOrderList){
                             associatedOrderMain.put(planOrder.getOrderId(),(DrugOrder) Context.getOrderService().getOrder(planOrder.getOrderId()));
                             orderExtn.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId()));
                         }
@@ -133,9 +133,9 @@ public class AssociatedOrderViewFragmentController {
         
         ArrayList<String> otherOrdersDrugName = new ArrayList<>();
 
-        List<drugordersdiseases> planOrderList = Context.getService(drugordersdiseasesService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(drugorder.getPatientId()));
+        List<planorders> planOrderList = Context.getService(planordersService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(drugorder.getPatientId()));
 
-        for(drugordersdiseases planOrder : planOrderList){
+        for(planorders planOrder : planOrderList){
             drugorders otherOrder = Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId());
             otherOrdersDrugName.add(otherOrder.getDrugName().getDisplayString());
         }

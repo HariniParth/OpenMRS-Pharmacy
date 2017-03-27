@@ -13,9 +13,9 @@ import org.openmrs.Patient;
 import org.openmrs.Person;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
-import org.openmrs.module.drugorders.api.drugordersdiseasesService;
+import org.openmrs.module.drugorders.api.planordersService;
 import org.openmrs.module.drugorders.drugorders;
-import org.openmrs.module.drugorders.drugordersdiseases;
+import org.openmrs.module.drugorders.planorders;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -50,8 +50,8 @@ public class PharmacyPatientPageController {
                 
                 switch (selected[0]) {
                     case "PLAN":
-                        List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(Integer.parseInt(selected[1]));
-                        for(drugordersdiseases planOrder : planOrders){
+                        List<planorders> planOrders = Context.getService(planordersService.class).getDrugOrdersByPlanID(Integer.parseInt(selected[1]));
+                        for(planorders planOrder : planOrders){
                             listOfOrders.add(planOrder.getOrderId());
                         }   
                         break;
@@ -112,14 +112,14 @@ public class PharmacyPatientPageController {
                     }   break;
                     
                 case "Active-Plan":
-                    drugordersdiseases planOrder = Context.getService(drugordersdiseasesService.class).getDrugOrderByOrderID(order.getOrderId());
+                    planorders planOrder = Context.getService(planordersService.class).getDrugOrderByOrderID(order.getOrderId());
                     if(!patientPlanOrders.containsKey(planOrder.getPlanId())){
                         
-                        List<drugordersdiseases> planOrders = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(planOrder.getPlanId());
+                        List<planorders> planOrders = Context.getService(planordersService.class).getDrugOrdersByPlanID(planOrder.getPlanId());
                         
                         List<drugorders> activePlanOrders = new ArrayList<>();
                         
-                        for(drugordersdiseases plan : planOrders){
+                        for(planorders plan : planOrders){
                             if(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()).getOrderStatus().equals("Active-Plan")){
                                 activePlanOrders.add(Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId()));
                                 ordererName.put(plan.getOrderId(), physician.getGivenName()+" "+physician.getFamilyName());

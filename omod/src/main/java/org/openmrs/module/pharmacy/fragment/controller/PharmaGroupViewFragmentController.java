@@ -13,9 +13,9 @@ import java.util.Calendar;
 import java.util.Date;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.drugorders.api.drugordersService;
-import org.openmrs.module.drugorders.api.drugordersdiseasesService;
+import org.openmrs.module.drugorders.api.planordersService;
 import org.openmrs.module.drugorders.drugorders;
-import org.openmrs.module.drugorders.drugordersdiseases;
+import org.openmrs.module.drugorders.planorders;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,8 +47,8 @@ public class PharmaGroupViewFragmentController {
         if(!planID.equals("")){
 
             //Get the list of Med Plan Orders ordered for this Patient to treat this Disease
-            List<drugordersdiseases> plans = Context.getService(drugordersdiseasesService.class).getDrugOrdersByPlanID(Integer.parseInt(planID));
-            for(drugordersdiseases plan : plans){
+            List<planorders> plans = Context.getService(planordersService.class).getDrugOrdersByPlanID(Integer.parseInt(planID));
+            for(planorders plan : plans){
                 
                 drugorders dorder = Context.getService(drugordersService.class).getDrugOrderByOrderID(plan.getOrderId());
                 if(dorder.getOrderStatus().equals("Active-Plan")){
