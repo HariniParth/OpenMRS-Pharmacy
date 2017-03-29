@@ -61,7 +61,7 @@ public class AssociatedOrderViewFragmentController {
                     } else if(Context.getService(planordersService.class).getDrugOrderByOrderID(Integer.parseInt(pharmaOrderID)) != null){
                         
                         //Fetch all Orders that were ordered as a part of Med Plan with the recorded OrderInteger
-                        List<planorders> planOrderList = Context.getService(planordersService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(drugorder.getPatientId()));
+                        List<planorders> planOrderList = Context.getService(planordersService.class).getDrugOrdersByPlanAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(drugorder.getPatientId()));
                         List<drugorders> orderExtn = new ArrayList<>();
                         
                         for(planorders planOrder : planOrderList){
@@ -133,7 +133,7 @@ public class AssociatedOrderViewFragmentController {
         
         ArrayList<String> otherOrdersDrugName = new ArrayList<>();
 
-        List<planorders> planOrderList = Context.getService(planordersService.class).getDrugOrdersByDiseaseAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(drugorder.getPatientId()));
+        List<planorders> planOrderList = Context.getService(planordersService.class).getDrugOrdersByPlanAndPatient(drugorder.getAssociatedDiagnosis(), Context.getPatientService().getPatient(drugorder.getPatientId()));
 
         for(planorders planOrder : planOrderList){
             drugorders otherOrder = Context.getService(drugordersService.class).getDrugOrderByOrderID(planOrder.getOrderId());
